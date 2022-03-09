@@ -16,7 +16,7 @@ class Player:
         self.characterCreation()
 
         # set starting room to 0 for opening scene
-        self.zone = zones.Zone(0)
+        self.zoneID = 0
 
         self.inventory = {
             "Note": {
@@ -57,9 +57,10 @@ class Player:
         self.hp = self.stats["con"] + 2
         self.damage = math.ceil(self.stats["str"] / 5)
         self.globalStatus = {
-            "hatTaken": False
+            "Fancy Hat taken": False
         }
 
+        self.isAlive = True
 
         print("\n # FINAL STATS #")
 
@@ -68,7 +69,6 @@ class Player:
 
         print(f"Base Damage: {self.damage}")
         print(f"HP: {self.hp}")
-
 
 
 

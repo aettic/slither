@@ -3,13 +3,12 @@
 
 class Zone:
 
-    def __init__(self, zoneID):
+    def __init__(self, zoneID, pc):
 
         self.zoneID = zoneID
         self.items = {}
 
         if (self.zoneID == 0):  # starting zone (road)
-            print(f"zone {zoneID}")
             self.summary = "You stand just off a dirt road. The road continues North and South. There is a farm to the West. Past the farmhouse can be seen a barn, and two small buildings."
             self.description = "You are standing just off a dirt road which stretches onward for what seems like miles to the North and South. The sun hangs overhead, slowly dipping toward the horizon behind a steady farm. Several structures dot the property, including a house, a barn, and a couple ancilliary buildings. Behind you, across the road, a wide field of beans stretches far into the distance, abutting a misty thicket of wood. Tucked into the sparse grass, in the ditch just off the road, you spot a tiny hat."
             self.items.clear()
@@ -18,7 +17,90 @@ class Zone:
                 "description": "A small decorative hat, too small to wear. It is finely crafted of black silk with green embroidery.",
                 "value": 5
             }
-            self.options = ["Walk West toward the house", "Walk North along the road", "Walk South along the road", "Pickup the hat", "Look at your inventory"]
+            if(pc.globalStatus["Fancy Hat taken"] == False):
+                self.options = ["Walk West toward the house", "Walk North along the road", "Walk South along the road", "Pickup the hat", "Look at your inventory", "Look around the area"]
+
+                self.selection = {
+                    1: {
+                        "do": "You walk toward the house",
+                        "moveTo": 1,
+                    },
+                    2: {
+                        "do": "You walk up the road, but decide to head back",
+                    },
+                    3: {
+                        "do": "You walk down the road, but decide to head back",
+                    },
+                    4: {
+                        "do": "You pick up the small hat",
+                        "takeItem": "Fancy Hat"
+                    },
+                    5: {
+                        "pack": "You look into your backpack"
+                    },
+                    6: {
+                        "do": self.description
+                    }
+                }
+            elif(pc.globalStatus["Fancy Hat taken"] == True):
+                self.options = ["Walk West toward the house", "Walk North along the road", "Walk South along the road", "Look at your inventory", "Look around the area"]
+
+                self.selection = {
+                    1: {
+                        "do": "You walk toward the house",
+                        "moveTo": 1,
+                    },
+                    2: {
+                        "do": "You walk up the road, but decide to head back",
+                    },
+                    3: {
+                        "do": "You walk down the road, but decide to head back",
+                    },
+                    4: {
+                        "pack": "You look into your backpack"
+                    },
+                    5: {
+                        "do": self.description
+                    }
+                }
+
+        elif (self.zoneID == 1):  # farmhouse front entrance
+            self.summary = "You have walked up to the farmhouse. Behind the house in an open prairie are a barn, a shed, an outhouse, and a well. To the North, the property unfolds into a corn field."
+            self.description = "A looming log farmhouse, nearly a two-story cabin, complete with thatched gable roofing, stands firm in front of you, here in the center of this farm property. The sun threatens to set behind it, inching closer every moment. Behind the house, a smattering of structures dot the property: A stone well close by; a farm tool shed, a cramped looking outhouse, and a large barn which dwarfs the house itself, even from so far away. The gently rolling landscape surrounding the house is comprised of wheats and grasses, with a couple small plots of beans, cabbages, and other low crops. In the distance a scarecrow watches plaintively over the crops. The Northern edge of the property fades into a dense and tall corn field. The whole property is surrounded on the outskirts by darkened and misty woods."
+            self.items.clear()
+            self.options = ["Enter the house", "Walk into the backyard", "Travel to the corn field", "Look at your inventory", "Look around the area"]
+
+            self.selection = {
+                1: {
+                    "do": "You walk inside the farmhouse through the porch door",
+                    "moveTo": 2
+                },
+                2: {
+                    "do": "You skirt the side of the house and walk into the prairie behind the house",
+                    "moveTo": 3
+                },
+                3: {
+                    "do": "You depart the house and head North, toward the wall of green corn stalks",
+                    "moveTo": 8
+                },
+                4: {
+                    "pack": "You look into your backpack, remembering your note"
+                },
+                5: {
+                    "do": self.description
+                }
+            }
+
+        elif (self.zoneID == 2):  # inside farmhouse - kitchen
+            self.summary = "The house is dark. You stand in the kitchen, which also serves as a dining room. There is a closet to your right, a great room behind a wall straight ahead, and a staircase at the far back of this floor leading up."
+            self.description = "Only the dim evening light spills in from the windows on the West side of the wall. "
+            self.items.clear()
+            self.items["Fancy Hat"] = {
+                "quantity": 1,
+                "description": "A small decorative hat, too small to wear. It is finely crafted of black silk with green embroidery.",
+                "value": 5
+            }
+            self.options = ["Walk West toward the house", "Walk North along the road", "Walk South along the road", "Pickup the hat", "Look at your inventory", "Look around the area"]
 
             self.selection = {
                 1: {
@@ -37,15 +119,12 @@ class Zone:
                 },
                 5: {
                     "pack": "You look into your backpack"
+                },
+                6: {
+                    "do": self.description
                 }
             }
 
-        elif (self.zoneID == 1):  # farmhouse
-            print(f"zone {zoneID}")
-            self.summary = "There is a two-story farm house"
-        elif (self.zoneID == 2):  # barn
-            print(f"zone {zoneID}")
-            self.summary = "There is a tall barn"
         elif (self.zoneID == 3):  # prairie
             print(f"zone {zoneID}")
             self.summary = "A wide open prairie"
@@ -55,9 +134,9 @@ class Zone:
             print(f"zone {zoneID}")
         elif (self.zoneID == 6):  # well
             print(f"zone {zoneID}")
-        elif (self.zoneID == 7):  # cornfield
+        elif (self.zoneID == 7):  # barn entrance
             print(f"zone {zoneID}")
-        elif (self.zoneID == 8):  # cornmaze
+        elif (self.zoneID == 8):  # cornfield
             print(f"zone {zoneID}")
         else:
             print(f"No zone")
