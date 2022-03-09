@@ -24,16 +24,64 @@ def printArgs():
     print ('Argument List:', str(sys.argv))
 
 
-def doSomething():
-    print("I did something!");
+def doSomething(pc):
+    zoneStart = pc.zone.zoneID
+
+    while (zoneStart == pc.zone.zoneID):
+
+        print("")
+        for i in pc.zone.options:
+            print(f"{pc.zone.options.index(i) + 1}: {i}")
+        # print(pc.zone.options)
+        print("\nWhat do you do?");
+        choice = int(input())
+
+        whatHappens = pc.zone.selection[choice]
+        for key in whatHappens:
+            if (key == "do"):
+                print(whatHappens[key])
+            elif (key == "takeItem"):
+                pc.inventory[whatHappens[key]] = pc.zone.items[whatHappens[key]]
+                pc.zone.items.pop(whatHappens[key])
+            elif (key == "moveTo"):
+                pc.zone.zoneID = whatHappens[key]
+            elif (key == "pack"):
+                print(whatHappens[key])
+                for item in pc.inventory:
+                    print(f"\n{item}:")
+                    print(pc.inventory[item]["description"])
+            else:
+                print("Invalid selection.")
+                break
+
+        # print(pc.inventory)
+        # print(pc.zone.zoneID)
+
+
+def gameloop(pc):
+    running = True
+    while (running):
+
+        if(pc.zone == 0):
+            print(pc.zone.summary)
+            print(pc.zone.options)
+
+        running = False
+
+
 
 if __name__ == "__main__":
     # print("Slither! - A Zorklike Game (WIP)");
-
     print("Testing")
+    pc = player.Player()
+    playing = True
+    while (playing):
+        # gameloop(pc)
+        doSomething(pc)
+        playing = False
 
-    newPlayer = player.Player()
-    newPlayer.characterCreation()
+
+
 
 
     # printArgs()

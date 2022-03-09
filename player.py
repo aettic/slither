@@ -1,8 +1,10 @@
 import math
+import zones
 
 class Player:
     def __init__(self):
-        self.name = ""
+
+        # base stats
         self.stats = {
             "str": 8,  # strength and damage
             "dex": 8,  # maneuverability and reflexes
@@ -10,6 +12,19 @@ class Player:
             "con": 8  # health and resillience
         }
 
+        # initialize character creator to select stats
+        self.characterCreation()
+
+        # set starting room to 0 for opening scene
+        self.zone = zones.Zone(0)
+
+        self.inventory = {
+            "Note": {
+                "quantity": 1,
+                "description": "A small note from your friend pleading for you to visit her at her farm. She seemed desparate, which is not like her. But she also seemed excited, as if she was on the verge of a great discovery.",
+                "value": 0
+            }
+        }
 
     def characterCreation(self):
 
@@ -41,6 +56,9 @@ class Player:
 
         self.hp = self.stats["con"] + 2
         self.damage = math.ceil(self.stats["str"] / 5)
+        self.globalStatus = {
+            "hatTaken": False
+        }
 
 
         print("\n # FINAL STATS #")
