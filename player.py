@@ -57,7 +57,9 @@ class Player:
         self.hp = self.stats["con"] + 2
         self.damage = math.ceil(self.stats["str"] / 5)
         self.globalStatus = {
-            "Fancy Hat taken": False
+            "Game Start": True,
+            "Fancy Hat taken": False,
+            "Farmhouse First Time": True
         }
 
         self.isAlive = True
