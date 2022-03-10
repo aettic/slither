@@ -97,37 +97,52 @@ class Zone:
 
         elif (self.zoneID == 2):  # inside farmhouse - kitchen
             self.summary = "The house is dark. You stand in the kitchen, which also serves as a dining room. There is a closet to your right, a great room behind a wall straight ahead, and a staircase at the far back of this floor leading up."
-            self.description = "Only the dim evening light spills in from the windows on the West side of the wall. "
+            self.description = "Only the dim evening light spills in from the windows on the West side of the wall. It appears that this place was left in a hurry. The tell-tale signs of a struggle can be seen about the room."
             self.items.clear()
-            self.items["Fancy Hat"] = {
-                "quantity": 1,
-                "description": "A small decorative hat, too small to wear. It is finely crafted of black silk with green embroidery.",
-                "value": 5
-            }
-            self.options = ["Walk West toward the house", "Walk North along the road", "Walk South along the road", "Pickup the hat", "Look at your inventory", "Look around the area"]
 
-            self.selection = {
-                1: {
-                    "do": "You walk toward the house",
-                    "moveTo": 1,
-                },
-                2: {
-                    "do": "You walk up the road, but decide to head back",
-                },
-                3: {
-                    "do": "You walk down the road, but decide to head back",
-                },
-                4: {
-                    "do": "You pick up the small hat",
-                    "takeItem": "Fancy Hat"
-                },
-                5: {
-                    "pack": "You look into your backpack"
-                },
-                6: {
-                    "do": self.description
+            if(pc.globalStatus["Kitchen examined"] == False):
+                self.options = ["Into the sitting room", "Open the closet", "Head back outside", "Look around the area"]
+
+                self.selection = {
+                    1: {
+                        "do": "You traverse the creaking floor and head into the sitting room",
+                        "moveTo": 4
+                    },
+                    2: {
+                        "do": "You walk over to the closet door and pull it open",
+                        "moveTo": 3
+                    },
+                    3: {
+                        "do": "You step back outside the house",
+                    },
+                    4: {
+                        "do": self.description,
+                        "examine": "Kitchen"
+                    }
                 }
-            }
+            else:
+                self.options = ["Into the sitting room", "Open the closet", "Head back outside", "Examine the signs of struggle", "Look around the area"]
+
+                self.selection = {
+                    1: {
+                        "do": "You traverse the creaking floor and head into the sitting room",
+                        "moveTo": 4
+                    },
+                    2: {
+                        "do": "You walk over to the closet door and pull it open",
+                        "moveTo": 3
+                    },
+                    3: {
+                        "do": "You step back outside the house",
+                    },
+                    4: {
+                        "do": "You look around the room, examining the chaos and bedlam. Silverware and dishes lie scattered haphazardly. A tea kettle is overturned on the floor, a small puddle of brown tea gathered around it. It is no longer warm. A fight happened here. Is Alys okay?"
+                    },
+                    5: {
+                        "do": self.description
+                    }
+                }
+
 
         elif (self.zoneID == 3):  # prairie
             print(f"zone {zoneID}")

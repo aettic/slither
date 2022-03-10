@@ -1,23 +1,12 @@
 #!/usr/bin/python
 
-# Slither v0.1
+# Slither v0.1 (Work in Progress)
 
-# --- Brainstorming goals for this project --- #
-
-    ### Slither can be just about anything, and in fact it can be multiple things. I want to be able to use it for playing around and experimenting with Python in particular. As such, I should create an initial program idea.
-
-    ### A Game
-    # My first idea is to create a small graphical game, such as worm / snake, because I've always wanted to do something that like, and never actually done it. Plus it could be more interesting than trying to make, say, a database.
-
-    ### Bloodborne
-    # One possible option would be to recreate everything about Javaborne in Python, in other words, basically abandon the Java version and start over in this language. The problem is, while I don't necessarily like Java, the whole point of building that game is to learn Java. So I will probably not do this. I don't want to ruin the steam on that project either.
-
-    # Zorklike
-    # However, another text based adventure game - and even one with a graphical component would be pretty interesting. I think I'm going to do this.
+# This file runs the core of the Slither engine, and accesses other adjacent classes.
 
 
 import sys
-import player
+from player import Player
 from zones import Zone
 
 def printArgs():
@@ -37,32 +26,35 @@ def doSomething(pc):
             print(f"{pc.zone.options.index(i) + 1}: {i}")
         # print(pc.zone.options)
         print("\nWhat do you do?");
-        choice = int(input())
 
-        whatHappens = pc.zone.selection[choice]
-        for key in whatHappens:
-            if(key == "do"):
-                print(whatHappens[key])
-            elif(key == "takeItem"):
-                pc.inventory[whatHappens[key]] = pc.zone.items.pop(whatHappens[key])
-                pc.globalStatus[f"{whatHappens[key]} taken"] = True
-                break
-            elif(key == "moveTo"):
-                pc.zone.zoneID = whatHappens[key]
-            elif(key == "pack"):
-                print(whatHappens[key])
-                for item in pc.inventory:
-                    print(f"\n{item}:")
-                    print(pc.inventory[item]["description"])
-            elif(key == "examine"):
-                print(whatHappens[key])
-                pc.globalStatus[f"{whatHappens[key]} examined"] = True
-            else:
-                print("Invalid selection.")
-                break
+        try:
+            choice = int(input())
 
-        # print(pc.inventory)
-        # print(pc.zone.zoneID)
+            whatHappens = pc.zone.selection[choice]
+            for key in whatHappens:
+                if(key == "do"):
+                    print(whatHappens[key])
+                elif(key == "takeItem"):
+                    pc.inventory[whatHappens[key]] = pc.zone.items.pop(whatHappens[key])
+                    pc.globalStatus[f"{whatHappens[key]} taken"] = True
+                    break
+                elif(key == "moveTo"):
+                    pc.zone.zoneID = whatHappens[key]
+                elif(key == "pack"):
+                    print(whatHappens[key])
+                    for item in pc.inventory:
+                        print(f"\n{item}:")
+                        print(pc.inventory[item]["description"])
+                elif(key == "examine"):
+                    print(whatHappens[key])
+                    pc.globalStatus[f"{whatHappens[key]} examined"] = True
+                else:
+                    print("Invalid selection.")
+                    break
+        except ValueError:
+            print("Please enter a valid selection.")
+        except KeyError:
+            print("Please enter a valid selection.")
 
 
 def gameloop(pc):
@@ -91,37 +83,41 @@ def gameloop(pc):
             if (pc.globalStatus["Farmhouse First Time"] == True):
                 print("Before you stands a looming farmhouse, drab in its aged appearance. The darkened logs and fogged windows belie the tales of magic and adventure you have heard from your friend Alys, who is supposed to live here. You visited once, long ago, but that is now a mere memory, and what lies ahead are the echoes of a recent past, one which you do not remember. Something happened here. Where did she go? You recall Alys' note, which you tucked have away in your backpack.")
             else:
-                print("You stand in front of the farmstead home, darkened with abandon.")
+                print("You stand in front of the farmstead home, darkened with abandon. Behind the farm is a prairie with several structures including a well, an outhouse, a shed, and a large barn. On the far North of the property is a large cornfield.")
             farmhouseFront(pc)
             pc.globalStatus["Farmhouse First Time"] = False
 
         elif(pc.zone.zoneID == 2):
-            if (pc.globalStatus[""] == True):
-                print("")
+            if (pc.globalStatus["Kitchen First Time"] == True):
+                print("The door creaks open as you enter the kitchen of this home. The dry light of evening gently illuminating a diner table that is still set, plates with only scraps of food left, silverware scattered around, and even on the ground. Past the dining room table is a sitting room, and to the right is a closet door. The far back of this floor is home to a staircase heading upstairs.")
             else:
-                print("")
+                print(pc.zone.summary)
             farmhouseKitchen(pc)
+            pc.globalStatus["Kitchen First Time"] = False
 
         elif(pc.zone.zoneID == 3):
-            if (pc.globalStatus[""] == True):
+            if (pc.globalStatus["Closet1 First Time"] == True):
                 print("")
             else:
                 print("")
             farmhouseCloset1(pc)
+            pc.globalStatus["Closet1 First Time"] = False
 
         elif(pc.zone.zoneID == 4):
-            if (pc.globalStatus[""] == True):
+            if (pc.globalStatus["Sitting Room First Time"] == True):
                 print("")
             else:
                 print("")
             farmhouseSittingRoom(pc)
+            pc.globalStatus["Sitting Room First Time"] = False
 
         elif(pc.zone.zoneID == 5):
-            if (pc.globalStatus[""] == True):
+            if (pc.globalStatus["StairsInside First Time"] == True):
                 print("")
             else:
                 print("")
             farmhouseStairsInside(pc)
+            pc.globalStatus["StairsInside First Time"] = False
 
         elif(pc.zone.zoneID == 6):
             if (pc.globalStatus[""] == True):
@@ -208,8 +204,17 @@ def farmhouseKitchen(pc):
     # Cycle: Closet, Sitting Room, Stairs up, examine signs of struggle
     # GS: Struggle examined
 
-def farmhouseSittingRoom(pc):
+def farmhouseCloset1(pc):
     pc.zone = Zone(3, pc)
+    doSomething(pc)
+    pass
+    # Small front closet with work clothes and warm clothes (women's)
+    # Cycle: Back to kitchen
+    # Items: Boots (armor) & gloves (Puzzle item: armor + safely handle dangerous things)
+    # GS: Boots taken, Gloves taken
+
+def farmhouseSittingRoom(pc):
+    pc.zone = Zone(4, pc)
     doSomething(pc)
     pass
     # Smoldering embers of a fire. A couple books. More signs of struggle. Weapon missing from wall.
@@ -217,19 +222,16 @@ def farmhouseSittingRoom(pc):
     # Item: Books (non removable)
     # GS: Books read
 
-def farmhouseCloset1(pc):
-    pass
-    # Small front closet with work clothes and warm clothes (women's)
-    # Cycle: Back to kitchen
-    # Items: Boots (armor) & gloves (Puzzle item: armor + safely handle dangerous things)
-    # GS: Boots taken, Gloves taken
-
 def farmhouseStairsInside(pc):
+    pc.zone = Zone(5, pc)
+    doSomething(pc)
     pass
     # Leads between first and second floors
     # Cycle: walk up or down the Stairs
 
 def farmhouseHallway(pc):
+    pc.zone = Zone(6, pc)
+    doSomething(pc)
     pass
     # Open hallway split in two, chest at far End
     # Cycle: Master, Guest, Closet, Storage, examine chest
@@ -237,6 +239,8 @@ def farmhouseHallway(pc):
     # GS: Hallway Chest examined, Spellbook taken
 
 def farmhouseCloset2(pc):
+    pc.zone = Zone(7, pc)
+    doSomething(pc)
     pass
     # Small closet with more clothes
     # Cycle: Back to Hallway
@@ -440,7 +444,7 @@ def cornfieldMazeCenter(pc):
 if __name__ == "__main__":
     # print("Slither! - A Zorklike Game (WIP)");
     print("Testing")
-    pc = player.Player()
+    pc = Player()
     playing = True
     while (playing):
         gameloop(pc)

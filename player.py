@@ -30,8 +30,11 @@ class Player:
 
         statsTuple = ("str", "dex", "int", "con")
         pointsLeft = 10
+        creationRunning = True
+
 
         print("Welcome to character creation. Please enter a name:")
+
         self.name = input()
         print(f"Hello, {self.name}. You have a pool of ten points to spend to increase your stats.")
 
@@ -59,7 +62,12 @@ class Player:
         self.globalStatus = {
             "Game Start": True,
             "Fancy Hat taken": False,
-            "Farmhouse First Time": True
+            "Farmhouse First Time": True,
+            "Kitchen First Time": True,
+            "Kitchen examined": False,
+            "Closet1 First Time": True,
+            "Sitting Room First Time": True,
+            "StairsInside First Time": True
         }
 
         self.isAlive = True
@@ -71,7 +79,5 @@ class Player:
 
         print(f"Base Damage: {self.damage}")
         print(f"HP: {self.hp}")
-
-
 
     pass
