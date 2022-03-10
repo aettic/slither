@@ -16,4 +16,11 @@ Like with Bloodborne java, there will be a player character object which is pass
 ### The Slither Engine so far
 This is a zork-like text-based adventure game. It contains a global status system to track world changes consistently. It uses a numbered option based system for acting. The story is homebrew High Fantasy, taking place in a land called Corindos. Distinct from Javaborne, this game is designed with a single "doSomething()" function which can handle all locations and all actions. This, paired with the system of selection and options rooted inside the player's active zone itself allows for a smooth, single system which can handle and parse many different things.
 
+### To Do (Development)
+- [ ] Create a useItem method in player.py
+- [ ] Actually use item.py before getting too carried away
+- [ ] Test save state works
+- [ ] Build load state function
+
+
 ### Story

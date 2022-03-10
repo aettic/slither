@@ -1,0 +1,36 @@
+{
+  "name": "Taylor",
+  "isAlive": true,
+  "zoneID": 0,
+  "maxHP": 11,
+  "currentHP": 11,
+  "globalStatus": {
+    "Game Start": false,
+    "Fancy Hat taken": true,
+    "Farmhouse First Time": false,
+    "Kitchen First Time": false,
+    "Kitchen examined": true,
+    "Closet1 First Time": true,
+    "Sitting Room First Time": true,
+    "StairsInside First Time": true
+  },
+  "damage": 3,
+  "stats": {
+    "str": 12,
+    "dex": 11,
+    "int": 10,
+    "con": 9
+  },
+  "inventory": {
+    "Note": {
+      "quantity": 1,
+      "description": "A small note from your friend pleading for you to visit her at her farm. She seemed desparate, which is not like her. But she also seemed excited, as if she was on the verge of a great discovery.",
+      "value": 0
+    },
+    "Fancy Hat": {
+      "quantity": 1,
+      "description": "A small decorative hat, too small to wear. It is finely crafted of black silk with green embroidery.",
+      "value": 5
+    }
+  }
+}

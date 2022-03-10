@@ -1,83 +1,49 @@
 import math
-import zones
+from zones import Zone
+import json
 
 class Player:
-    def __init__(self):
+    def __init__(self, playerDict):
 
-        # base stats
-        self.stats = {
-            "str": 8,  # strength and damage
-            "dex": 8,  # maneuverability and reflexes
-            "int": 8,  # perception and understanding
-            "con": 8  # health and resillience
-        }
+        # initialize player values based on either newPlayer or loaded JSON data
+        self.name = playerDict["name"]
+        self.isAlive = playerDict["isAlive"]
+        self.zoneID = playerDict["zoneID"]
+        self.maxHP = playerDict["maxHP"]
+        self.currentHP = playerDict["currentHP"]
+        self.globalStatus = playerDict["globalStatus"]
+        self.damage = playerDict["damage"]
+        self.stats = playerDict["stats"]
+        self.inventory = playerDict["inventory"]
 
-        # initialize character creator to select stats
-        self.characterCreation()
-
-        # set starting room to 0 for opening scene
-        self.zoneID = 0
-
-        self.inventory = {
-            "Note": {
-                "quantity": 1,
-                "description": "A small note from your friend pleading for you to visit her at her farm. She seemed desparate, which is not like her. But she also seemed excited, as if she was on the verge of a great discovery.",
-                "value": 0
-            }
-        }
-
-    def characterCreation(self):
-
-        statsTuple = ("str", "dex", "int", "con")
-        pointsLeft = 10
-        creationRunning = True
+        # Create Zone object using given zoneID
+        self.zone = Zone(self.zoneID, self)
 
 
-        print("Welcome to character creation. Please enter a name:")
-
-        self.name = input()
-        print(f"Hello, {self.name}. You have a pool of ten points to spend to increase your stats.")
-
-        for i in statsTuple:
-            next = False
-            if (pointsLeft > 0):
-                while next == False:
-                    if (pointsLeft > 0):
-                        print(f"\nCurrent {i}: {self.stats[i]}. Add [0 - {pointsLeft}]: ")
-                        readIn = int(input())
-                        if (readIn <= pointsLeft and readIn >= 0):
-                            self.stats[i] += readIn
-                            pointsLeft -= readIn
-                            print(f"new {i}: {self.stats[i]}")
-                            next = True
-                        else:
-                            print(f"invalid input, please choose a number between [0 - {pointsLeft}]")
-                    else:
-                        next = True
-            else:
-                print(f"Current {i}: {self.stats[i]}. No more points to spend.")
-
-        self.hp = self.stats["con"] + 2
-        self.damage = math.ceil(self.stats["str"] / 5)
-        self.globalStatus = {
-            "Game Start": True,
-            "Fancy Hat taken": False,
-            "Farmhouse First Time": True,
-            "Kitchen First Time": True,
-            "Kitchen examined": False,
-            "Closet1 First Time": True,
-            "Sitting Room First Time": True,
-            "StairsInside First Time": True
-        }
-
-        self.isAlive = True
-
+    def printStats(self):
         print("\n # FINAL STATS #")
 
         for i in statsTuple:
             print(f"{i}: {self.stats[i]}")
 
         print(f"Base Damage: {self.damage}")
-        print(f"HP: {self.hp}")
+        print(f"HP: {self.maxHP}")
 
-    pass
+
+    def saveState(self):
+        saveDict = {
+            "name": self.name,
+            "isAlive": self.isAlive,
+            "zoneID": self.zone.zoneID,
+            "maxHP": self.maxHP,
+            "currentHP": self.currentHP,
+            "globalStatus": self.globalStatus,
+            "damage": self.damage,
+            "stats": self.stats,
+            "inventory": self.inventory
+        }
+
+        saveJson = json.dumps(saveDict, indent = 2)
+
+        with open("saves/gameSave.json", 'w') as file:
+            file.write(saveJson)

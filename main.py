@@ -8,6 +8,8 @@
 import sys
 from player import Player
 from zones import Zone
+import math
+import json
 
 def printArgs():
     print ('Number of arguments:', len(sys.argv), 'arguments.')
@@ -48,6 +50,9 @@ def doSomething(pc):
                 elif(key == "examine"):
                     print(whatHappens[key])
                     pc.globalStatus[f"{whatHappens[key]} examined"] = True
+                elif(key == "save"):
+                    print("The game will be saved")
+                    pc.saveState()
                 else:
                     print("Invalid selection.")
                     break
@@ -61,7 +66,7 @@ def gameloop(pc):
     running = pc.isAlive
 
     # GAME START - should only play when game is launched
-    pc.zone = Zone(0, pc)
+    pc.zone = Zone(pc.zoneID, pc)
     while(running):
 
         # each loop statement will play every time one enters that room. The descriptions should be split in two: first time, and post-acquaintance.
@@ -72,7 +77,7 @@ def gameloop(pc):
             if (pc.globalStatus["Game Start"] == True):
                 print("The carriage drops you off, and the dust drifts thoughtlessly into the air leaving a stream of beige behind the team of horses and their dark wagon as the driver leaves you here alone. It is quiet.")
             else:
-                print("The road still lies barren and empty. The dust has settled. North and South the dirt path stretches on. To the West is the farmhouse, and to the East, the open countryside.")
+                print("The road still lies barren and empty. The dust has settled.")
             dirtRoad(pc)
             pc.globalStatus["Game Start"] = False
 
@@ -81,7 +86,7 @@ def gameloop(pc):
 
         elif(pc.zone.zoneID == 1):
             if (pc.globalStatus["Farmhouse First Time"] == True):
-                print("Before you stands a looming farmhouse, drab in its aged appearance. The darkened logs and fogged windows belie the tales of magic and adventure you have heard from your friend Alys, who is supposed to live here. You visited once, long ago, but that is now a mere memory, and what lies ahead are the echoes of a recent past, one which you do not remember. Something happened here. Where did she go? You recall Alys' note, which you tucked have away in your backpack.")
+                print("Before you stands a looming farmhouse, drab in its aged appearance. The darkened logs and fogged windows belie the tales of magic and adventure you have heard from your friend Alys, who is supposed to live here. You visited once, long ago, but that is now a mere memory, and what lies ahead are the echoes of a recent past, one which you do not remember. Something happened here. Where did she go? You recall Alys' note, which you have tucked away in your backpack.")
             else:
                 print("You stand in front of the farmstead home, darkened with abandon. Behind the farm is a prairie with several structures including a well, an outhouse, a shed, and a large barn. On the far North of the property is a large cornfield.")
             farmhouseFront(pc)
@@ -192,14 +197,13 @@ def farmhouseFront(pc):
     pc.zone = Zone(1, pc)
     doSomething(pc)
 
-    pass
     # Looming farmhouse
     # Cycle: Walk into house, walk to backyard, walk to cornfield, walk back to road
 
 def farmhouseKitchen(pc):
     pc.zone = Zone(2, pc)
     doSomething(pc)
-    pass
+
     # Dark kitchen, remnants of food recently abandoned.
     # Cycle: Closet, Sitting Room, Stairs up, examine signs of struggle
     # GS: Struggle examined
@@ -207,7 +211,7 @@ def farmhouseKitchen(pc):
 def farmhouseCloset1(pc):
     pc.zone = Zone(3, pc)
     doSomething(pc)
-    pass
+
     # Small front closet with work clothes and warm clothes (women's)
     # Cycle: Back to kitchen
     # Items: Boots (armor) & gloves (Puzzle item: armor + safely handle dangerous things)
@@ -216,7 +220,7 @@ def farmhouseCloset1(pc):
 def farmhouseSittingRoom(pc):
     pc.zone = Zone(4, pc)
     doSomething(pc)
-    pass
+
     # Smoldering embers of a fire. A couple books. More signs of struggle. Weapon missing from wall.
     # Cycle: Walk to kitchen, upstairs
     # Item: Books (non removable)
@@ -438,36 +442,131 @@ def cornfieldMazeCenter(pc):
     # GS: Staircase examined (look)
 
 
+def newGame():
+    statsTuple = ("str", "dex", "int", "con")
+    pointsLeft = 10
+    creationRunning = True
 
+    # Welcome
+    print("Welcome to to the land of Corindos. Who are you? ")
+
+    # Set name
+    name = input()
+    print(f"Hello, {name}. You have a pool of ten points to spend to increase your stats.")
+
+    # Set player to Alive
+    isAlive = True
+
+    # Set currentZone to 0 for game opening
+    startingZoneID = 0
+
+    ### Create and spend points on stats
+    # starting base stats
+    stats = {
+        "str": 8,  # strength and damage
+        "dex": 8,  # maneuverability and reflexes
+        "int": 8,  # perception and understanding
+        "con": 8  # health and resillience
+    }
+
+    # Additional point allocation, based on pointsLeft
+    for i in statsTuple:
+        next = False
+        if (pointsLeft > 0):
+            while next == False:
+                if (pointsLeft > 0):
+                    print(f"\nCurrent {i}: {stats[i]}. Add [0 - {pointsLeft}]: ")
+                    try:
+                        readIn = int(input())
+                        if (readIn <= pointsLeft and readIn >= 0):
+                            stats[i] += readIn
+                            pointsLeft -= readIn
+                            print(f"new {i}: {stats[i]}")
+                            next = True
+                        else:
+                            print(f"invalid input, please choose a number between [0 - {pointsLeft}]")
+                    except ValueError:
+                        print(f"invalid input, please choose a number between [0 - {pointsLeft}]")
+                else:
+                    next = True
+
+        else:
+            print(f"Current {i}: {stats[i]}. No more points to spend.")
+
+    # Calculate derived stats (maxHP, currentHP, and damage)
+    maxHP = stats["con"] + 2
+    currentHP = int(maxHP)
+    damage = math.ceil(stats["str"] / 5)
+
+    # Set initial globalStatus variables to define the original values of a new game. These will get changed as the game is played, and should remain consistent throughout the whole game. ALL new globalStatus variables need to be published here first, and updated anywhere that they ought to be updated.
+    globalStatus = {
+        "Game Start": True,
+        "Fancy Hat taken": False,
+        "Farmhouse First Time": True,
+        "Kitchen First Time": True,
+        "Kitchen examined": False,
+        "Closet1 First Time": True,
+        "Sitting Room First Time": True,
+        "StairsInside First Time": True
+    }
+
+    # Creates new inventory with note object
+    inventory = {
+        "Note": {
+            "quantity": 1,
+            "description": "A small note from your friend pleading for you to visit her at her farm. She seemed desparate, which is not like her. But she also seemed excited, as if she was on the verge of a great discovery.",
+            "value": 0
+        }
+    }
+
+    # Define newPlayer dictionary in same format as load, then return it.
+    newPlayer = {
+        "name": name,
+        "isAlive": isAlive,
+        "zoneID": startingZoneID,
+        "stats": stats,
+        "maxHP": maxHP,
+        "currentHP": currentHP,
+        "damage": damage,
+        "globalStatus": globalStatus,
+        "inventory": inventory
+    }
+    return newPlayer
+
+
+def gameStart():
+    print("\t1 - NEW GAME\n\t2 - CONTINUE")
+    choice = int(input())
+
+    if(choice == 2):
+        return "CONTINUE"
+    else:
+        return "NEW GAME"
 
 
 if __name__ == "__main__":
     # print("Slither! - A Zorklike Game (WIP)");
-    print("Testing")
-    pc = Player()
+    print("""
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ ▄▄▄ █ ███▄██▄ ▄█ ████ ▄▄█ ▄▄▀████ ▄▄▄█ ▄▄▀█ ▄▄▄██▄██ ▄▄▀█ ▄▄██
+██▄▄▄▀▀█ ███ ▄██ ██ ▄▄ █ ▄▄█ ▀▀▄████ ▄▄▄█ ██ █ █▄▀██ ▄█ ██ █ ▄▄██
+██ ▀▀▀ █▄▄█▄▄▄██▄██▄██▄█▄▄▄█▄█▄▄████ ▀▀▀█▄██▄█▄▄▄▄█▄▄▄█▄██▄█▄▄▄██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ v0.1.2 ▀▀▀▀
+          __    ___   ___   _   _      ___   ___   __
+         / /`  / / \ | |_) | | | |\ | | | \ / / \ ( (`
+         \_\_, \_\_/ |_| \ |_| |_| \| |_|_/ \_\_/ _)_)\n""")
+
+    startOption = gameStart()
+
+    if(startOption == "CONTINUE"):
+        with open("saves/gameSave.json", encoding="utf-8") as file:
+            continuePlayer = json.load(file)
+        pc = Player(continuePlayer)
+
+    else:
+        pc = Player(newGame())
+
     playing = True
     while (playing):
         gameloop(pc)
         playing = False
-
-
-
-
-
-    # printArgs()
-    # doSomething()
-
-    # Zorklike (name pending)
-
-    ### Scope:
-    # To create a text based adventure game that is contained, and makes use of graphical features while rendering the graphics using ASCII text - just not in a terminal.
-
-    ### Objectives:
-    # - Learn to render a window
-    # - Learn to output text to that window
-    # --- Create a small fantasy world ---
-    # - Construct elements and objects for playing the Game
-    # - Have fun
-
-    ### World / Story creation
-    # I've always been partial to high fantasy, sword and sorcery style, with grand adventures. But for this I'd like to start small at least; Zork was one of my favorite text-based adventure games, and I think it provides some decent inspiration. The world felt somewhat large, but also simultaneously condensed and approachable. The house at the beginning always served as a good introduction to the mechanics - it had items, it had some puzzles for getting around / opening the trap door, and it even had a grue in the dark attic.

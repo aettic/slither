@@ -1,6 +1,5 @@
 # zones.py
 
-
 class Zone:
 
     def __init__(self, zoneID, pc):
@@ -18,7 +17,7 @@ class Zone:
                 "value": 5
             }
             if(pc.globalStatus["Fancy Hat taken"] == False):
-                self.options = ["Walk West toward the house", "Walk North along the road", "Walk South along the road", "Pickup the hat", "Look at your inventory", "Look around the area"]
+                self.options = ["Walk West toward the house", "Walk North along the road", "Walk South along the road", "Pickup the hat", "Look at your inventory", "Look around the area", "Save the game"]
 
                 self.selection = {
                     1: {
@@ -40,10 +39,13 @@ class Zone:
                     },
                     6: {
                         "do": self.description
+                    },
+                    7: {
+                        "save": "saveGame"
                     }
                 }
             elif(pc.globalStatus["Fancy Hat taken"] == True):
-                self.options = ["Walk West toward the house", "Walk North along the road", "Walk South along the road", "Look at your inventory", "Look around the area"]
+                self.options = ["Walk West toward the house", "Walk North along the road", "Walk South along the road", "Look at your inventory", "Look around the area", "Save the game"]
 
                 self.selection = {
                     1: {
@@ -61,14 +63,17 @@ class Zone:
                     },
                     5: {
                         "do": self.description
+                    },
+                    6: {
+                        "save": "saveGame"
                     }
                 }
 
         elif (self.zoneID == 1):  # farmhouse front entrance
-            self.summary = "You have walked up to the farmhouse. Behind the house in an open prairie are a barn, a shed, an outhouse, and a well. To the North, the property unfolds into a corn field."
+            self.summary = "Behind the house in an open prairie are a barn, a shed, an outhouse, and a well. To the North, the property unfolds into a corn field."
             self.description = "A looming log farmhouse, nearly a two-story cabin, complete with thatched gable roofing, stands firm in front of you, here in the center of this farm property. The sun threatens to set behind it, inching closer every moment. Behind the house, a smattering of structures dot the property: A stone well close by; a farm tool shed, a cramped looking outhouse, and a large barn which dwarfs the house itself, even from so far away. The gently rolling landscape surrounding the house is comprised of wheats and grasses, with a couple small plots of beans, cabbages, and other low crops. In the distance a scarecrow watches plaintively over the crops. The Northern edge of the property fades into a dense and tall corn field. The whole property is surrounded on the outskirts by darkened and misty woods."
             self.items.clear()
-            self.options = ["Enter the house", "Walk into the backyard", "Travel to the corn field", "Return to the road", "Look at your inventory", "Look around the area"]
+            self.options = ["Enter the house", "Walk into the backyard", "Travel to the corn field", "Return to the road", "Look at your inventory", "Look around the area", "Save the game"]
 
             self.selection = {
                 1: {
@@ -92,6 +97,9 @@ class Zone:
                 },
                 6: {
                     "do": self.description
+                },
+                7: {
+                    "save": "saveGame"
                 }
             }
 
@@ -101,7 +109,7 @@ class Zone:
             self.items.clear()
 
             if(pc.globalStatus["Kitchen examined"] == False):
-                self.options = ["Into the sitting room", "Open the closet", "Head back outside", "Look around the area"]
+                self.options = ["Into the sitting room", "Open the closet", "Head back outside", "Look around the area", "Save the game"]
 
                 self.selection = {
                     1: {
@@ -114,14 +122,18 @@ class Zone:
                     },
                     3: {
                         "do": "You step back outside the house",
+                        "moveTo": 1
                     },
                     4: {
                         "do": self.description,
                         "examine": "Kitchen"
+                    },
+                    5: {
+                        "save": "saveGame"
                     }
                 }
             else:
-                self.options = ["Into the sitting room", "Open the closet", "Head back outside", "Examine the signs of struggle", "Look around the area"]
+                self.options = ["Into the sitting room", "Open the closet", "Head back outside", "Examine the signs of struggle", "Look around the area", "Save the game"]
 
                 self.selection = {
                     1: {
@@ -134,20 +146,24 @@ class Zone:
                     },
                     3: {
                         "do": "You step back outside the house",
+                        "moveTo": 1
                     },
                     4: {
                         "do": "You look around the room, examining the chaos and bedlam. Silverware and dishes lie scattered haphazardly. A tea kettle is overturned on the floor, a small puddle of brown tea gathered around it. It is no longer warm. A fight happened here. Is Alys okay?"
                     },
                     5: {
                         "do": self.description
+                    },
+                    6: {
+                        "save": "saveGame"
                     }
                 }
 
 
-        elif (self.zoneID == 3):  # prairie
+        elif (self.zoneID == 3):  # farmhouseCloset1
             print(f"zone {zoneID}")
             self.summary = "A wide open prairie"
-        elif (self.zoneID == 4):  # shed
+        elif (self.zoneID == 4):  # farmhouseSittingRoom
             print(f"zone {zoneID}")
         elif (self.zoneID == 5):  # outhouse
             print(f"zone {zoneID}")
