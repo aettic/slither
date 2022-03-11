@@ -161,8 +161,104 @@ class Zone:
 
 
         elif (self.zoneID == 3):  # farmhouseCloset1
-            print(f"zone {zoneID}")
-            self.summary = "A wide open prairie"
+            self.summary = "A dusty front closet, muddy boots on the ground, a couple thick coats, and some overalls."
+            self.description = "A wooden dowel supports a handful of coats, a pair of hide overalls, and a nice shawl tucked behind the rest of the clothes. There is a shelf, upon which rests a small box. On the floor are two pairs of muddy boots. One pair looks like it could fit you."
+            self.items.clear()
+            self.items = {
+                "Muddy Boots": {
+                    "quantity": 1,
+                    "description": "A pair of slightly muddy work boots.",
+                    "value": 2
+                },
+                "Emerald Medallion": {
+                    "quantity": 1,
+                    "description": "A gleaming forest green six-sided gem, facetted to perfection, set in silver, and meant to be warn around the neck.",
+                    "value": 10
+                }
+            }
+
+
+            if(pc.globalStatus["Muddy Boots taken"] == False and pc.globalStatus["Closet1 Box examined"] == False):
+                self.options = ["Head back to the kitchen", "Go to the sitting room", "Take the boots", "Look in the box", "Save the game"]
+
+                self.selection = {
+                    1: {
+                        "do": "You close the closet door, and walk back to the kitchen",
+                        "moveTo": 1
+                    },
+                    2: {
+                        "do": "You close the closet door and head into the sitting room",
+                        "moveTo": 4
+                    },
+                    3: {
+                        "do": "You grab the boots and put them on, dried mud is crusted on the sides, but they're comfortable",
+                        "takeItem": "Muddy Boots"
+                    },
+                    4: {
+                        "do": "You pull the box down and open it up, inside is a small crystal trinket in the shape of a hexagon",
+                        "examine": "Closet1 Box"
+                    },
+                    5: {
+                        "save": "saveGame"
+                    }
+                }
+            elif(pc.globalStatus["Muddy Boots taken"] == True and pc.globalStatus["Closet1 Box examined"] == False):
+                self.options = ["Head back to the kitchen", "Go to the sitting room", "Save the game"]
+
+                self.selection = {
+                    1: {
+                        "do": "You close the closet door, and walk back to the kitchen",
+                        "moveTo": 1
+                    },
+                    2: {
+                        "do": "You close the closet door and head into the sitting room",
+                        "moveTo": 4
+                    },
+                    3: {
+                        "save": "saveGame"
+                    }
+                }
+            elif(pc.globalStatus["Muddy Boots taken"] == False and pc.globalStatus["Closet1 Box examined"] == True):
+                self.options = ["Head back to the kitchen", "Go to the sitting room", "Take the boots", "Look in the box", "Save the game"]
+
+                self.selection = {
+                    1: {
+                        "do": "You close the closet door, and walk back to the kitchen",
+                        "moveTo": 1
+                    },
+                    2: {
+                        "do": "You close the closet door and head into the sitting room",
+                        "moveTo": 4
+                    },
+                    3: {
+                        "do": "You grab the boots and put them on, dried mud is crusted on the sides, but they're comfortable",
+                        "takeItem": "Muddy Boots"
+                    },
+                    4: {
+                        "do": "You gently life the delicate charm out of the box, it is on a silver chain. You put it in your pack.",
+                        "takeItem": "Emerald Medallion"
+                    },
+                    5: {
+                        "save": "saveGame"
+                    }
+                }
+            elif(pc.globalStatus["Muddy Boots taken"] == True and pc.globalStatus["Closet1 Box examined"] == True):
+                self.options = ["Head back to the kitchen", "Go to the sitting room", "Save the game"]
+
+                self.selection = {
+                    1: {
+                        "do": "You close the closet door, and walk back to the kitchen",
+                        "moveTo": 1
+                    },
+                    2: {
+                        "do": "You close the closet door and head into the sitting room",
+                        "moveTo": 4
+                    },
+                    3: {
+                        "save": "saveGame"
+                    }
+                }
+
         elif (self.zoneID == 4):  # farmhouseSittingRoom
             print(f"zone {zoneID}")
         elif (self.zoneID == 5):  # outhouse

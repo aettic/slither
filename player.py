@@ -1,4 +1,5 @@
 import math
+import random
 from zones import Zone
 import json
 
@@ -15,9 +16,12 @@ class Player:
         self.damage = playerDict["damage"]
         self.stats = playerDict["stats"]
         self.inventory = playerDict["inventory"]
+        self.weapon = playerDict["weapon"]
+        self.magic = playerDict["magic"]
 
         # Create Zone object using given zoneID
         self.zone = Zone(self.zoneID, self)
+
 
 
     def printStats(self):
@@ -30,6 +34,17 @@ class Player:
         print(f"HP: {self.maxHP}")
 
 
+    def attack(creature):
+        print(f"You attack with your {self.weapon}")
+        creature.takeDamage(random.randrange(self.damage))
+
+
+    def takeDamage(damage):
+        self.currentHP -= damage
+        if(self.currentHP <= 0):
+            self.isAlive = False
+
+
     def saveState(self):
         saveDict = {
             "name": self.name,
@@ -40,7 +55,9 @@ class Player:
             "globalStatus": self.globalStatus,
             "damage": self.damage,
             "stats": self.stats,
-            "inventory": self.inventory
+            "inventory": self.inventory,
+            "weapon": self.weapon,
+            "magic": self.magic
         }
 
         saveJson = json.dumps(saveDict, indent = 2)

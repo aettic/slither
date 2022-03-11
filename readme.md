@@ -19,8 +19,11 @@ This is a zork-like text-based adventure game. It contains a global status syste
 ### To Do (Development)
 - [ ] Create a useItem method in player.py
 - [ ] Actually use item.py before getting too carried away
-- [ ] Test save state works
-- [ ] Build load state function
+- [x] Test save state works
+- [x] Build load state function
+- [ ] build combat system
+- [ ] build magic system
+- [ ] build creature objects for combat
 
 
 ### Story

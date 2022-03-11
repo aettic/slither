@@ -11,9 +11,18 @@ from zones import Zone
 import math
 import json
 
-def printArgs():
-    print ('Number of arguments:', len(sys.argv), 'arguments.')
-    print ('Argument List:', str(sys.argv))
+def printTitle():
+    print('\033[33m' + '''
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ ▄▄▄ █ ███▄██▄ ▄█ ████ ▄▄█ ▄▄▀████ ▄▄▄█ ▄▄▀█ ▄▄▄██▄██ ▄▄▀█ ▄▄██
+██▄▄▄▀▀█ ███ ▄██ ██ ▄▄ █ ▄▄█ ▀▀▄████ ▄▄▄█ ██ █ █▄▀██ ▄█ ██ █ ▄▄██
+██ ▀▀▀ █▄▄█▄▄▄██▄██▄██▄█▄▄▄█▄█▄▄████ ▀▀▀█▄██▄█▄▄▄▄█▄▄▄█▄██▄█▄▄▄██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ v0.1.3 ▀▀▀▀
+
+   db     888888  888888  88""Yb  Yb  dY  88b 88   dP"Yb   .dP"Y8
+  dPYb    88__      88    88__dP   YbdY   88Yb88  dY   Yb  `Ybo.
+ dP__Yb   88""      88    88"Yb     88    88 Y88  Yb   dY  , `Y8b
+dP""""Yb  888888    88    88  Yb    88    88  Y8   YbodP   8bodP' \n''' + '\033[0m')
 
 
 def doSomething(pc):
@@ -62,6 +71,29 @@ def doSomething(pc):
             print("Please enter a valid selection.")
 
 
+def combat(pc, creature):
+    combatRunning = True
+
+    # introduce enemy
+    print(f"A {creature.type} has appeared, {creature.description}.")
+
+    while(combatRunning):
+
+        # combat selections
+        print(f"1 - Strike at the {creature.type}")
+        print("2 - Stay on your guard")
+        print("3 - Use an item")
+        print("4 - Try to scare it off")
+        print("5 - Run and hide")
+
+        # take user selection
+        print("What do you do?")
+
+        try:
+            choice = int(input())
+        except ValueError:
+            print("Enter a valid input")
+
 def gameloop(pc):
     running = pc.isAlive
 
@@ -71,7 +103,7 @@ def gameloop(pc):
 
         # each loop statement will play every time one enters that room. The descriptions should be split in two: first time, and post-acquaintance.
 
-
+        ### STARTING ZONE ###-------------------------------------------------------------------- -|
 
         if(pc.zone.zoneID == 0):  # dirt road
             if (pc.globalStatus["Game Start"] == True):
@@ -82,7 +114,7 @@ def gameloop(pc):
             pc.globalStatus["Game Start"] = False
 
 
-        ### FARMHOUSE ZONES
+        ### FARMHOUSE ZONES ###------------------------------------------------------------------ -|
 
         elif(pc.zone.zoneID == 1):
             if (pc.globalStatus["Farmhouse First Time"] == True):
@@ -102,9 +134,9 @@ def gameloop(pc):
 
         elif(pc.zone.zoneID == 3):
             if (pc.globalStatus["Closet1 First Time"] == True):
-                print("")
+                print("You pull open the closet door, which squeaks with rusty hinges. Immediately, you spot two pairs of boots on the ground, mud now dried onto the wooden boards underneath. ")
             else:
-                print("")
+                print(pc.zone.summary)
             farmhouseCloset1(pc)
             pc.globalStatus["Closet1 First Time"] = False
 
@@ -112,7 +144,7 @@ def gameloop(pc):
             if (pc.globalStatus["Sitting Room First Time"] == True):
                 print("")
             else:
-                print("")
+                print(pc.zone.summary)
             farmhouseSittingRoom(pc)
             pc.globalStatus["Sitting Room First Time"] = False
 
@@ -120,53 +152,121 @@ def gameloop(pc):
             if (pc.globalStatus["StairsInside First Time"] == True):
                 print("")
             else:
-                print("")
+                print(pc.zone.summary)
             farmhouseStairsInside(pc)
             pc.globalStatus["StairsInside First Time"] = False
 
         elif(pc.zone.zoneID == 6):
-            if (pc.globalStatus[""] == True):
+            if (pc.globalStatus["Hallway First Time"] == True):
                 print("")
             else:
-                print("")
+                print(pc.zone.summary)
             farmhouseHallway(pc)
+            pc.globalStatus["Hallway First Time"] = False
 
         elif(pc.zone.zoneID == 7):
-            if (pc.globalStatus[""] == True):
+            if (pc.globalStatus["Closet2 First Time"] == True):
                 print("")
             else:
-                print("")
+                print(pc.zone.summary)
             farmhouseCloset2(pc)
+            pc.globalStatus["Closet2 First Time"] = False
 
         elif(pc.zone.zoneID == 8):
-            if (pc.globalStatus[""] == True):
+            if (pc.globalStatus["Master Bedroom First Time"] == True):
                 print("")
             else:
-                print("")
+                print(pc.zone.summary)
             farmhouseMasterBedroom(pc)
+            pc.globalStatus["Master Bedroom First Time"] = False
 
         elif(pc.zone.zoneID == 9):
+            if (pc.globalStatus["Guest Bedroom First Time"] == True):
+                print("")
+            else:
+                print(pc.zone.summary)
+            farmhouseGuestBedroom(pc)
+            pc.globalStatus["Guest Bedroom First Time"] = False
+
+        elif(pc.zone.zoneID == 10):
+            if (pc.globalStatus["Study First Time"] == True):
+                print("")
+            else:
+                print(pc.zone.summary)
+            farmhouseStudy(pc)
+            pc.globalStatus["Study First Time"] = False
+
+        elif(pc.zone.zoneID == 11):
+            if (pc.globalStatus["Storage First Time"] == True):
+                print("")
+            else:
+                print(pc.zone.summary)
+            farmhouseStorage(pc)
+            pc.globalStatus["Storage First Time"] = False
+
+        elif(pc.zone.zoneID == 12):
+            if (pc.globalStatus["StairsCellar First Time"] == True):
+                print("")
+            else:
+                print(pc.zone.summary)
+            farmhouseStairsCellar(pc)
+            pc.globalStatus["StairsCellar First Time"] = False
+
+        elif(pc.zone.zoneID == 13):
+            if (pc.globalStatus["Cellar First Time"] == True):
+                print("")
+            else:
+                print(pc.zone.summary)
+            farmhouseCellar(pc)
+            pc.globalStatus["Cellar First Time"] = False
+
+
+
+        ### PRAIRIE ZONES ###-------------------------------------------------------------------- -|
+
+        elif(pc.zone.zoneID == 14):
             if (pc.globalStatus[""] == True):
                 print("")
             else:
+                print(pc.zone.summary)
+            prairieBackyard(pc)
+            pc.globalStatus[""] = False
+
+        elif(pc.zone.zoneID == 15):
+            if (pc.globalStatus[""] == True):
                 print("")
-            farmhouseGuestBedroom(pc)
+            else:
+                print(pc.zone.summary)
+            prairieWell(pc)
+            pc.globalStatus[""] = False
 
-        elif(pc.zone.zoneID == 5):
-            print("")
-            farmhouseStudy(pc)
+        elif(pc.zone.zoneID == 16):
+            if (pc.globalStatus[""] == True):
+                print("")
+            else:
+                print(pc.zone.summary)
+            prairieShedExterior(pc)
+            pc.globalStatus[""] = False
 
-        elif(pc.zone.zoneID == 5):
-            print("")
-            farmhouseStorage(pc)
+        elif(pc.zone.zoneID == 17):
+            if (pc.globalStatus[""] == True):
+                print("")
+            else:
+                print(pc.zone.summary)
+            prairieShedInterior(pc)
+            pc.globalStatus[""] = False
 
-        elif(pc.zone.zoneID == 5):
-            print("")
-            farmhouseStairsCellar(pc)
+        elif(pc.zone.zoneID == 18):
+            if (pc.globalStatus[""] == True):
+                print("")
+            else:
+                print(pc.zone.summary)
+            prairieOuthouse(pc)
+            pc.globalStatus[""] = False
 
-        elif(pc.zone.zoneID == 5):
-            print("")
-            farmhouseCellar(pc)
+
+
+
 
         else:  # kill game
             running = False
@@ -215,7 +315,7 @@ def farmhouseCloset1(pc):
     # Small front closet with work clothes and warm clothes (women's)
     # Cycle: Back to kitchen
     # Items: Boots (armor) & gloves (Puzzle item: armor + safely handle dangerous things)
-    # GS: Boots taken, Gloves taken
+    # GS: Boots taken, Emerald Medallion in box
 
 def farmhouseSittingRoom(pc):
     pc.zone = Zone(4, pc)
@@ -239,7 +339,7 @@ def farmhouseHallway(pc):
     pass
     # Open hallway split in two, chest at far End
     # Cycle: Master, Guest, Closet, Storage, examine chest
-    # Items in chest: Spellbook (need Int 13)
+    # Items in chest: Spellbook (need Int 12)
     # GS: Hallway Chest examined, Spellbook taken
 
 def farmhouseCloset2(pc):
@@ -250,6 +350,8 @@ def farmhouseCloset2(pc):
     # Cycle: Back to Hallway
 
 def farmhouseMasterBedroom(pc):
+    pc.zone = Zone(8, pc)
+    doSomething(pc)
     pass
     # Comfortable bed, fireplace directly above lower floor's fireplace. Chest of belongings (expensive stuff has been taken), more signs of Struggle
     # Cycle: Back to Hallway, to Study
@@ -257,11 +359,15 @@ def farmhouseMasterBedroom(pc):
     # GS: Master Chest examined
 
 def farmhouseGuestBedroom(pc):
+    pc.zone = Zone(9, pc)
+    doSomething(pc)
     pass
     # Smaller bed, towels, sheets, pillows
     # Cycle: Back to Hallway, To Storage
 
 def farmhouseStudy(pc):
+    pc.zone = Zone(10, pc)
+    doSomething(pc)
     pass
     # Desk with books, chair, and small lantern. Bookshelf. Surprisingly in tact.
     # Cycle: Back to Master Bedroom
@@ -269,6 +375,8 @@ def farmhouseStudy(pc):
     # GS: Lantern taken, note taken
 
 def farmhouseStorage(pc):
+    pc.zone = Zone(11, pc)
+    doSomething(pc)
     pass
     # Extra sheets, bedspread stuff
     # Cycle: back to Guest bedroom
@@ -276,12 +384,16 @@ def farmhouseStorage(pc):
     # GS: Sheets taken
 
 def farmhouseStairsCellar(pc):
+    pc.zone = Zone(12, pc)
+    doSomething(pc)
     pass
     # Stairs outside protected by a door
     # Cycle: Into Cellar, out to prairieBackyard, open / close the door
     # GS: Door opened (can be closed)
 
 def farmhouseCellar(pc):
+    pc.zone = Zone(13, pc)
+    doSomething(pc)
     pass
     # Dark, cold, and grey stone. Underground. No light at all. Jarred foods, gunpowder, alchmical ingredients and utensils
     # Cycle: Back to Stairs
@@ -295,12 +407,16 @@ def farmhouseCellar(pc):
 ### PRAIRIE
 
 def prairieBackyard(pc):
+    pc.zone = Zone(14, pc)
+    doSomething(pc)
     pass
     # Open, view of scarecrow, leads to all other places (HUB)
     # Cycle: Well, Shed, Outhouse, barnFront, House Front, Cellar stairs, Cornfield
     # GS: Bloodtrail examined (look)
 
 def prairieWell(pc):
+    pc.zone = Zone(15, pc)
+    doSomething(pc)
     pass
     # Large handbuilt stone well. Tented roof. Rope pulley system for bucket. Water inside.
     # Cycle: Backyard, barnBack, outhouse, shed
@@ -308,11 +424,15 @@ def prairieWell(pc):
     # GS: Bucket taken
 
 def prairieShedExterior(pc):
+    pc.zone = Zone(16, pc)
+    doSomething(pc)
     pass
     # Dingy shack with sloped roof
     # Cycle: Enter shed, back to Backyard, Well, Outhouse, BarnFront
 
 def prairieShedInterior(pc):
+    pc.zone = Zone(17, pc)
+    doSomething(pc)
     pass
     # Filled with tools
     # Cycle: Shed exterior
@@ -320,6 +440,8 @@ def prairieShedInterior(pc):
     # GS: Tool taken
 
 def prairieOuthouse(pc):
+    pc.zone = Zone(18, pc)
+    doSomething(pc)
     pass
     # It's an outhouse.
     # Cycle: Backyard, Well, Shed
@@ -331,11 +453,15 @@ def prairieOuthouse(pc):
 ### BARN
 
 def barnFront(pc):
+    pc.zone = Zone(19, pc)
+    doSomething(pc)
     pass
     # Same materials and style as house, Open windows high up, Large barn doors
     # Cycle: barnInterior, barnBack, Backyard, Well, Shed
 
 def barnInterior(pc):
+    pc.zone = Zone(20, pc)
+    doSomething(pc)
     pass
     # Floor made of hard packed dirt with scattered hay. A trail of blood leads out of one of the stables. Pitchfork on a support beam. No animals.
     # Cycle: barnFront, barnBack, barnStable, barnLoft
@@ -343,18 +469,24 @@ def barnInterior(pc):
     # GS: Pitchfork taken
 
 def barnLoft(pc):
+    pc.zone = Zone(21, pc)
+    doSomething(pc)
     pass
     # Upper area, accessible by ladder from barnInterior. Stray cat startled and reflexes
     # Cycle: barnInterior
     # GS: Cat fled
 
 def barnBack(pc):
+    pc.zone = Zone(22, pc)
+    doSomething(pc)
     pass
     # Outside the barn's back door, blood trail passs around the edges of the fields all the way to the cornfieldEdge
     # Cycle: barnInterior, barnStable, prairieBackyard
     # GS: Bloodtrail examined (automatically True)
 
 def barnStable(pc):
+    pc.zone = Zone(23, pc)
+    doSomething(pc)
     pass
     # The rear of the interior, no animals present, but one stable shows clear signs of a struggle. Bloodtrail leads from the stable out into barnBack, and then prairieBackyard, as well as to cornfieldEdge
     # Cycle: barnBack, barnInterior
@@ -367,18 +499,24 @@ def barnStable(pc):
 
 
 def cornfieldEdge(pc):
+    pc.zone = Zone(24, pc)
+    doSomething(pc)
     pass
     # The south end of the Cornfield, a wall of tall corn. On the far West side, a trail of blood can be seen once Bloodtrail examined is True.
     # Cycle: back to prairieBackyard, or prairieOuthouse, forward to cornfieldThick
     # GS: Bloodtrail examined (look)
 
 def cornfieldThick(pc):
+    pc.zone = Zone(25, pc)
+    doSomething(pc)
     pass
     # First step into the corn. The corn is thicker and harder to move through
     # Cycle: Back to cornfieldEdge, forward to cornfieldTangle
 
 
 def cornfieldTangle(pc):
+    pc.zone = Zone(26, pc)
+    doSomething(pc)
     pass
     # The corn is dense, and tangled, but there is a flash of movement
     # Cycle: Back to cornfieldThick. following the movement leads to cornfieldMazeStart.
@@ -386,56 +524,78 @@ def cornfieldTangle(pc):
 
 
 def cornfieldMazeStart(pc):
+    pc.zone = Zone(27, pc)
+    doSomething(pc)
     pass
     # The corn thins out and opens into a clear path, two and a half feet wide. Plenty of space to walk comfortably.
     # Cycle: back to cornfieldTangle, forward to cornfieldMaze1
 
 def cornfieldMaze1(pc):
+    pc.zone = Zone(28, pc)
+    doSomething(pc)
     pass
     # It becomes apparent that this is a corn maze, because the path branches into a T. Each maze leads to the next, and it's random which one it spits out to
     # Cycle: Right, Forward, Back
 
 def cornfieldMaze2(pc):
+    pc.zone = Zone(29, pc)
+    doSomething(pc)
     pass
     # More maze. Each maze leads to the next, and it's random which one it spits out to.
     # Cycle: Forward, Left, Back
 
 def cornfieldMaze3(pc):
+    pc.zone = Zone(30, pc)
+    doSomething(pc)
     pass
     # More maze. Each maze leads to the next, and it's random which one it spits out to.
     # Cycle: Right, Left, Back
 
 def cornfieldMaze4(pc):
+    pc.zone = Zone(31, pc)
+    doSomething(pc)
     pass
     # More maze. Each maze leads to the next, and it's random which one it spits out to.
     # Cycle: Left 1, Left 2, Back
 
 def cornfieldMaze5(pc):
+    pc.zone = Zone(32, pc)
+    doSomething(pc)
     pass
     # More maze. Each maze leads to the next, and it's random which one it spits out to.
     # Cycle: Right 1, Right 2, Back
 
 def cornfieldMaze6(pc):
+    pc.zone = Zone(33, pc)
+    doSomething(pc)
     pass
     # More maze. Each maze leads to the next, and it's random which one it spits out to.
     # Cycle: Right, Forward, Left, Back
 
 def cornfieldMaze7(pc):
+    pc.zone = Zone(34, pc)
+    doSomething(pc)
     pass
     # More maze. Each maze leads to the next, and it's random which one it spits out to.
     # Cycle: Right, Left, Back
 
 def cornfieldMaze8(pc):
+    pc.zone = Zone(35, pc)
+    doSomething(pc)
     pass
     # More maze. Each maze leads to the next, and it's random which one it spits out to.
     # Cycle: Right 1, Right 2, Back
 
 def cornfieldMaze9(pc):
+    pc.zone = Zone(36, pc)
+    doSomething(pc)
     pass
     # More maze. Each maze leads to the next, and it's random which one it spits out to.
     # Cycle: Forward, Left, Back
 
 def cornfieldMazeCenter(pc):
+    pc.zone = Zone(37, pc)
+    doSomething(pc)
     pass
     # The maze winds up eventually (4 - 15 moves) at the cornfieldMazeCenter, which is an open space. The dirt floor is a perfect circle inside the corn - almost like a crop circle, but in the middle is a spiral staircase leading down. It's important that getting here feels disorienting, and feels like a threshold has been crossed, leading to another world. This change can happen during the above maze instances, gradually. Will need 4 major progression dialogues.
     # Cycle: Back (immediately leads to cornfieldTangle, but coming back here involves going through the maze again). Down the stairs.
@@ -497,6 +657,12 @@ def newGame():
     maxHP = stats["con"] + 2
     currentHP = int(maxHP)
     damage = math.ceil(stats["str"] / 5)
+    weapon = {
+        "weaponName": "bare hands",
+        "baseDamage": 2
+    }
+
+    magic = math.ceil((stats["int"] / 2) - 4)
 
     # Set initial globalStatus variables to define the original values of a new game. These will get changed as the game is played, and should remain consistent throughout the whole game. ALL new globalStatus variables need to be published here first, and updated anywhere that they ought to be updated.
     globalStatus = {
@@ -506,8 +672,17 @@ def newGame():
         "Kitchen First Time": True,
         "Kitchen examined": False,
         "Closet1 First Time": True,
+        "Muddy Boots taken": False,
+        "Closet1 Box examined": False,
+        "Emerald Medallion taken": False,
         "Sitting Room First Time": True,
-        "StairsInside First Time": True
+        "StairsInside First Time": True,
+        "Hallway First Time": True,
+        "Master Bedroom First Time": True,
+        "Guest Bedroom First Time": True,
+        "Storage First Time": True,
+        "Study First Time": True,
+        "StairsCellar First Time": True
     }
 
     # Creates new inventory with note object
@@ -529,7 +704,9 @@ def newGame():
         "currentHP": currentHP,
         "damage": damage,
         "globalStatus": globalStatus,
-        "inventory": inventory
+        "inventory": inventory,
+        "weapon": weapon,
+        "magic": magic
     }
     return newPlayer
 
@@ -545,28 +722,19 @@ def gameStart():
 
 
 if __name__ == "__main__":
-    # print("Slither! - A Zorklike Game (WIP)");
-    print("""
-▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-██ ▄▄▄ █ ███▄██▄ ▄█ ████ ▄▄█ ▄▄▀████ ▄▄▄█ ▄▄▀█ ▄▄▄██▄██ ▄▄▀█ ▄▄██
-██▄▄▄▀▀█ ███ ▄██ ██ ▄▄ █ ▄▄█ ▀▀▄████ ▄▄▄█ ██ █ █▄▀██ ▄█ ██ █ ▄▄██
-██ ▀▀▀ █▄▄█▄▄▄██▄██▄██▄█▄▄▄█▄█▄▄████ ▀▀▀█▄██▄█▄▄▄▄█▄▄▄█▄██▄█▄▄▄██
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ v0.1.2 ▀▀▀▀
-          __    ___   ___   _   _      ___   ___   __
-         / /`  / / \ | |_) | | | |\ | | | \ / / \ ( (`
-         \_\_, \_\_/ |_| \ |_| |_| \| |_|_/ \_\_/ _)_)\n""")
 
+    # Slither Engine: Aetrynos
+    # version 0.1.2
+    printTitle()
+
+    # Start menu for selecting gameStart option (new / continue)
     startOption = gameStart()
-
     if(startOption == "CONTINUE"):
         with open("saves/gameSave.json", encoding="utf-8") as file:
             continuePlayer = json.load(file)
         pc = Player(continuePlayer)
-
     else:
         pc = Player(newGame())
 
-    playing = True
-    while (playing):
-        gameloop(pc)
-        playing = False
+    # Begin the gameloop if player is alive
+    gameloop(pc)
