@@ -1,6 +1,7 @@
 # creature.py
 
 import random
+from item import Item
 
 
 class Creature:
@@ -12,14 +13,15 @@ class Creature:
         if (self.type == "Goblin"):
 
             # Possible descriptions
-            descriptions = ["A nasty green creature, half-feral, half-cunning, with a malicious and tricksome spark about its eye", "A tiny brownie, mangie and ferocious, with a wild smile wider than its own face", "A thin and nimble spirte, its warty skin matte as dry bark"]
+            descriptions = ["A nasty green creature, half-feral, half-cunning, with a malicious and tricksome spark about its eye", "A tiny brownie, mangy and ferocious, with a wild smile wider than its own face", "A thin and nimble spirte, its warty skin matte as dry bark"]
 
             # Setting stats
-            self.maxHP = 6
+            self.maxHP = 8
             self.currentHP = self.maxHP - 1
             self.damage = 3
             self.description = random.choice(descriptions)
-            self.weapons = ["claws", "bite", "knife"]
+            self.weapons = ["claw", "bite", "knife"]
+            self.itemDrops = [5]  # gold coin
 
         elif (self.type == "Beast"):
 
@@ -32,18 +34,32 @@ class Creature:
             self.damage = 2
             self.description = random.choice(descriptions)
             self.weapons = ["claw", "bite", "tail whip"]
-            self.itemDrops = [
-                {
-                    "itemName": "gold coin"
-                }
-            ]
+            self.itemDrops = [5]  # gold coin
 
-    def attack(pc):
-        print(f"The {self.type} attacks with a {random.choice(self.weapons)}")
-        pc.takeDamage(random.randrange(self.damage))
+        elif (self.type == "Grue"):
 
-    def takeDamage(damage):
+            # Possible descriptions
+            descriptions = ["It is dark, but you hear the faint tapping of tiny feet", "The glint of teeth shines against what little light surrounds you", "You smell a foul odor of decay, and hear soft laughter nearby"]
+
+            # Setting stats
+            self.maxHP = 10
+            self.currentHP = self.maxHP - 0
+            self.damage = 10
+            self.description = random.choice(descriptions)
+            self.weapons = ["bite", "chomp", "eaten"]
+            self.itemDrops = [11]  # liquid darkness
+
+    def attack(self, pc):
+        damage = random.randrange(self.damage)
+        pc.takeDamage(damage)
+        print(f"The {self.type} attacks with a {random.choice(self.weapons)}.")
+        if(damage > 0):
+            print(f"The {self.type} deals {damage} damage.")
+        else:
+            print(f"You evade the attack.")
+
+    def takeDamage(self, damage):
         self.currentHP -= damage
         if(self.currentHP <= 0):
             self.isAlive = False
-            print(f"The {self.type} falls, and drops a {random.choice(self.itemDrops)["itemName"]}.")
+            print(f"The {self.type} falls, and drops a {random.choice(self.itemDrops)}.")

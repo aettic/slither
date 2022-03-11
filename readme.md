@@ -17,13 +17,21 @@ Like with Bloodborne java, there will be a player character object which is pass
 This is a zork-like text-based adventure game. It contains a global status system to track world changes consistently. It uses a numbered option based system for acting. The story is homebrew High Fantasy, taking place in a land called Corindos. Distinct from Javaborne, this game is designed with a single "doSomething()" function which can handle all locations and all actions. This, paired with the system of selection and options rooted inside the player's active zone itself allows for a smooth, single system which can handle and parse many different things.
 
 ### To Do (Development)
-- [ ] Create a useItem method in player.py
-- [ ] Actually use item.py before getting too carried away
+- [x] Create a useItem method in player.py (now contains equip, toggle, and spell)
+- [ ] Create a combine(item, item) method
+- [ ] Construct a puzzle using items (Alcohol, alchemical stuff, blowing something up?)
+- [x] Actually use item.py before getting too carried away
 - [x] Test save state works
 - [x] Build load state function
-- [ ] build combat system
-- [ ] build magic system
-- [ ] build creature objects for combat
+- [x] build combat system
+- [x] build magic system
+- [x] build creature objects for combat
+- [ ] Put a Grue in Dark spots (cellar, loft) (Add Dark timer (Dark True, Darkvision False, Dark Place True - 2 rounds))
+- [ ] Finish combat options
+- [ ] Complete Beast itemDrops
+- [ ] Write out the rest of the zones
+- [ ] complete globalStatus entries
+
 
 
 ### Story

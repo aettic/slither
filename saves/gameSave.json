@@ -1,36 +1,48 @@
 {
-  "name": "Taylor",
+  "name": "T",
   "isAlive": true,
   "zoneID": 0,
-  "maxHP": 11,
-  "currentHP": 11,
+  "maxHP": 14,
+  "currentHP": 14,
   "globalStatus": {
-    "Game Start": false,
-    "Fancy Hat taken": true,
-    "Farmhouse First Time": false,
-    "Kitchen First Time": false,
-    "Kitchen examined": true,
+    "Game Start": true,
+    "Fancy Hat taken": false,
+    "Farmhouse First Time": true,
+    "Kitchen First Time": true,
+    "Kitchen examined": false,
     "Closet1 First Time": true,
+    "Muddy Boots taken": false,
+    "Closet1 Box examined": false,
+    "Emerald Medallion taken": false,
     "Sitting Room First Time": true,
-    "StairsInside First Time": true
+    "StairsInside First Time": true,
+    "Hallway First Time": true,
+    "Master Bedroom First Time": true,
+    "Guest Bedroom First Time": true,
+    "Storage First Time": true,
+    "Study First Time": true,
+    "StairsCellar First Time": true,
+    "Backyard First Time": true,
+    "Well First Time": true,
+    "Shed Exterior First Time": true,
+    "Shed Interior First Time": true,
+    "Outhouse First Time": true,
+    "1 taken": true
   },
-  "damage": 3,
+  "damage": 2,
   "stats": {
-    "str": 12,
-    "dex": 11,
-    "int": 10,
-    "con": 9
+    "str": 9,
+    "dex": 10,
+    "int": 11,
+    "con": 12
   },
-  "inventory": {
-    "Note": {
-      "quantity": 1,
-      "description": "A small note from your friend pleading for you to visit her at her farm. She seemed desparate, which is not like her. But she also seemed excited, as if she was on the verge of a great discovery.",
-      "value": 0
-    },
-    "Fancy Hat": {
-      "quantity": 1,
-      "description": "A small decorative hat, too small to wear. It is finely crafted of black silk with green embroidery.",
-      "value": 5
-    }
-  }
+  "inventory": [
+    0,
+    1
+  ],
+  "weapon": {
+    "weaponName": "bare hands",
+    "baseDamage": 2
+  },
+  "magic": 2
 }

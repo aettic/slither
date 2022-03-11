@@ -1,21 +1,19 @@
 # zones.py
 
+from item import Item
+
 class Zone:
 
     def __init__(self, zoneID, pc):
 
         self.zoneID = zoneID
-        self.items = {}
+        self.items = []
 
         if (self.zoneID == 0):  # starting zone (road)
             self.summary = "You stand just off a dirt road. The road continues North and South. There is a farm to the West. Past the farmhouse can be seen a barn, and two small buildings."
             self.description = "You are standing just off a dirt road which stretches onward for what seems like miles to the North and South. The sun hangs overhead, slowly dipping toward the horizon behind a steady farm. Several structures dot the property, including a house, a barn, and a couple ancilliary buildings. Behind you, across the road, a wide field of beans stretches far into the distance, abutting a misty thicket of wood. Tucked into the sparse grass, in the ditch just off the road, you spot a tiny hat."
             self.items.clear()
-            self.items["Fancy Hat"] = {
-                "quantity": 1,
-                "description": "A small decorative hat, too small to wear. It is finely crafted of black silk with green embroidery.",
-                "value": 5
-            }
+            self.items = [1]
             if(pc.globalStatus["Fancy Hat taken"] == False):
                 self.options = ["Walk West toward the house", "Walk North along the road", "Walk South along the road", "Pickup the hat", "Look at your inventory", "Look around the area", "Save the game"]
 
@@ -32,7 +30,7 @@ class Zone:
                     },
                     4: {
                         "do": "You pick up the small hat",
-                        "takeItem": "Fancy Hat"
+                        "takeItem": 1
                     },
                     5: {
                         "pack": "You look into your backpack"
@@ -164,18 +162,7 @@ class Zone:
             self.summary = "A dusty front closet, muddy boots on the ground, a couple thick coats, and some overalls."
             self.description = "A wooden dowel supports a handful of coats, a pair of hide overalls, and a nice shawl tucked behind the rest of the clothes. There is a shelf, upon which rests a small box. On the floor are two pairs of muddy boots. One pair looks like it could fit you."
             self.items.clear()
-            self.items = {
-                "Muddy Boots": {
-                    "quantity": 1,
-                    "description": "A pair of slightly muddy work boots.",
-                    "value": 2
-                },
-                "Emerald Medallion": {
-                    "quantity": 1,
-                    "description": "A gleaming forest green six-sided gem, facetted to perfection, set in silver, and meant to be warn around the neck.",
-                    "value": 10
-                }
-            }
+            self.items = [2, 3]
 
 
             if(pc.globalStatus["Muddy Boots taken"] == False and pc.globalStatus["Closet1 Box examined"] == False):

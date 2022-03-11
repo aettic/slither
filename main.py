@@ -8,6 +8,8 @@
 import sys
 from player import Player
 from zones import Zone
+from item import Item
+from creature import Creature
 import math
 import json
 import random
@@ -47,7 +49,7 @@ def doSomething(pc):
                 if(key == "do"):
                     print(whatHappens[key])
                 elif(key == "takeItem"):
-                    pc.inventory[whatHappens[key]] = pc.zone.items.pop(whatHappens[key])
+                    pc.inventory.append(pc.zone.items.pop(pc.zone.items.index(whatHappens[key])))
                     pc.globalStatus[f"{whatHappens[key]} taken"] = True
                     break
                 elif(key == "moveTo"):
@@ -55,14 +57,22 @@ def doSomething(pc):
                 elif(key == "pack"):
                     print(whatHappens[key])
                     for item in pc.inventory:
-                        print(f"\n{item}:")
-                        print(pc.inventory[item]["description"])
+                        print(f"\n{Item(item).name}:")
+                        print(Item(item).description)
                 elif(key == "examine"):
                     print(whatHappens[key])
                     pc.globalStatus[f"{whatHappens[key]} examined"] = True
                 elif(key == "save"):
                     print("The game will be saved")
                     pc.saveState()
+                elif(key == "useItem"):
+                    for item in pc.inventory:
+                        print(f"\n{item}: {Item(item).name}: ")
+                        print(Item(item).description)
+
+                    print("Which item do you want to use?")
+                    itemChoice = int(input())
+                    pc.useItem(itemChoice)
                 else:
                     print("Invalid selection.")
                     break
@@ -72,16 +82,16 @@ def doSomething(pc):
             print("Please enter a valid selection.")
 
 
-def combat(pc, creature):
+def combat(pc, enemy):
     combatRunning = True
 
     # introduce enemy
-    print(f"A {creature.type} has appeared, {creature.description}.")
+    print(f"A {enemy.type} has appeared, {enemy.description}.")
 
     while(combatRunning):
 
         # combat selections
-        print(f"1 - Strike at the {creature.type}")
+        print(f"1 - Strike at the {enemy.type}")
         print("2 - Stay on your guard")
         print("3 - Use an item")
         print("4 - Try to scare it off")
@@ -92,6 +102,36 @@ def combat(pc, creature):
 
         try:
             choice = int(input())
+
+            if (choice == 1):
+                pc.attack(enemy)
+                enemy.attack(pc)
+            elif(choice == 2):
+                print("You stand firm")
+                enemy.attack(pc)
+            elif(choice == 3):
+                print("You stand firm")
+                for item in pc.inventory:
+                    print(f"\n{pc.inventory.index(item) + 1}: {Item(item).name}: ")
+                    print(Item(item).description)
+                itemChoice = input()
+                pc.useItem(itemChoice)
+            elif(choice == 4):
+                print("You stand firm")
+            elif(choice == 5):
+                print("You flee the combat")
+                combatRunning = False
+            else:
+                print("WIP")
+
+            print(f"YOU[{pc.currentHP}], IT[{enemy.currentHP}]")
+            print(pc.damage)
+
+            if(pc.isAlive and enemy.isAlive):
+                combatRunning = True
+            else:
+                combatRunning = False
+
         except ValueError:
             print("Enter a valid input")
 
@@ -226,44 +266,44 @@ def gameloop(pc):
         ### PRAIRIE ZONES ###-------------------------------------------------------------------- -|
 
         elif(pc.zone.zoneID == 14):
-            if (pc.globalStatus[""] == True):
+            if (pc.globalStatus["Backyard First Time"] == True):
                 print("")
             else:
                 print(pc.zone.summary)
             prairieBackyard(pc)
-            pc.globalStatus[""] = False
+            pc.globalStatus["Backyard First Time"] = False
 
         elif(pc.zone.zoneID == 15):
-            if (pc.globalStatus[""] == True):
+            if (pc.globalStatus["Well First Time"] == True):
                 print("")
             else:
                 print(pc.zone.summary)
             prairieWell(pc)
-            pc.globalStatus[""] = False
+            pc.globalStatus["Well First Time"] = False
 
         elif(pc.zone.zoneID == 16):
-            if (pc.globalStatus[""] == True):
+            if (pc.globalStatus["Shed Exterior First Time"] == True):
                 print("")
             else:
                 print(pc.zone.summary)
             prairieShedExterior(pc)
-            pc.globalStatus[""] = False
+            pc.globalStatus["Shed Exterior First Time"] = False
 
         elif(pc.zone.zoneID == 17):
-            if (pc.globalStatus[""] == True):
+            if (pc.globalStatus["Shed Interior First Time"] == True):
                 print("")
             else:
                 print(pc.zone.summary)
             prairieShedInterior(pc)
-            pc.globalStatus[""] = False
+            pc.globalStatus["Shed Interior First Time"] = False
 
         elif(pc.zone.zoneID == 18):
-            if (pc.globalStatus[""] == True):
+            if (pc.globalStatus["Outhouse First Time"] == True):
                 print("")
             else:
                 print(pc.zone.summary)
             prairieOuthouse(pc)
-            pc.globalStatus[""] = False
+            pc.globalStatus["Outhouse First Time"] = False
 
 
 
@@ -356,7 +396,7 @@ def farmhouseMasterBedroom(pc):
     pass
     # Comfortable bed, fireplace directly above lower floor's fireplace. Chest of belongings (expensive stuff has been taken), more signs of Struggle
     # Cycle: Back to Hallway, to Study
-    # Item: (Puzzle Item)
+    # Item: Alcohol
     # GS: Master Chest examined
 
 def farmhouseGuestBedroom(pc):
@@ -658,12 +698,12 @@ def newGame():
     maxHP = stats["con"] + 2
     currentHP = int(maxHP)
     damage = math.ceil(stats["str"] / 5)
-    weapon = {
-        "weaponName": "bare hands",
-        "baseDamage": 2
-    }
-
     magic = math.ceil((stats["int"] / 2) - 4)
+
+    # equippable slots
+    weapon = "bare hands"
+    armor = ""
+
 
     # Set initial globalStatus variables to define the original values of a new game. These will get changed as the game is played, and should remain consistent throughout the whole game. ALL new globalStatus variables need to be published here first, and updated anywhere that they ought to be updated.
     globalStatus = {
@@ -683,17 +723,22 @@ def newGame():
         "Guest Bedroom First Time": True,
         "Storage First Time": True,
         "Study First Time": True,
-        "StairsCellar First Time": True
+        "StairsCellar First Time": True,
+        "Backyard First Time": True,
+        "Well First Time": True,
+        "Shed Exterior First Time": True,
+        "Shed Interior First Time": True,
+        "Outhouse First Time": True,
+        "Staircase Visible": False,
+        "Damage Enchanted": False,
+        "Dark": False,
+        "Dark Place": False,
+        "Lantern Lit": False,
+        "Darkvision": False
     }
 
     # Creates new inventory with note object
-    inventory = {
-        "Note": {
-            "quantity": 1,
-            "description": "A small note from your friend pleading for you to visit her at her farm. She seemed desparate, which is not like her. But she also seemed excited, as if she was on the verge of a great discovery.",
-            "value": 0
-        }
-    }
+    inventory = [0, 7, 9, 1, 11]
 
     # Define newPlayer dictionary in same format as load, then return it.
     newPlayer = {
@@ -706,6 +751,7 @@ def newGame():
         "damage": damage,
         "globalStatus": globalStatus,
         "inventory": inventory,
+        "armor": armor,
         "weapon": weapon,
         "magic": magic
     }
@@ -725,7 +771,7 @@ def gameStart():
 if __name__ == "__main__":
 
     # Slither Engine: Aetrynos
-    # version 0.1.2
+    # version 0.1.3
     printTitle()
 
     # Start menu for selecting gameStart option (new / continue)
@@ -737,5 +783,10 @@ if __name__ == "__main__":
     else:
         pc = Player(newGame())
 
+
+    goblin = Creature("Goblin")
+
+    combat(pc, goblin)
+
     # Begin the gameloop if player is alive
-    gameloop(pc)
+    # gameloop(pc)
