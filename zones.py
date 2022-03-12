@@ -68,7 +68,7 @@ class Zone:
                 }
 
         elif (self.zoneID == 1):  # farmhouse front entrance
-            self.summary = "Behind the house in an open prairie are a barn, a shed, an outhouse, and a well. To the North, the property unfolds into a corn field."
+            self.summary = "A residence sits before you. Behind the house in an open prairie are a barn, a shed, an outhouse, and a well. To the North, the property unfolds into a corn field."
             self.description = "A looming log farmhouse, nearly a two-story cabin, complete with thatched gable roofing, stands firm in front of you, here in the center of this farm property. The sun threatens to set behind it, inching closer every moment. Behind the house, a smattering of structures dot the property: A stone well close by; a farm tool shed, a cramped looking outhouse, and a large barn which dwarfs the house itself, even from so far away. The gently rolling landscape surrounding the house is comprised of wheats and grasses, with a couple small plots of beans, cabbages, and other low crops. In the distance a scarecrow watches plaintively over the crops. The Northern edge of the property fades into a dense and tall corn field. The whole property is surrounded on the outskirts by darkened and misty woods."
             self.items.clear()
             self.options = ["Enter the house", "Walk into the backyard", "Travel to the corn field", "Return to the road", "Look at your inventory", "Look around the area", "Save the game"]

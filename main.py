@@ -30,7 +30,7 @@ dP""""Yb  888888    88    88  Yb    88    88  Y8   YbodP   8bodP' \n''' + '\033[
 
 def doSomething(pc):
     zoneStart = pc.zone.zoneID
-    print(pc.zone.summary)
+    # print(pc.zone.summary)
 
     while(zoneStart == pc.zone.zoneID):
         pc.zone = Zone(zoneStart, pc)
@@ -50,7 +50,7 @@ def doSomething(pc):
                     print(whatHappens[key])
                 elif(key == "takeItem"):
                     pc.inventory.append(pc.zone.items.pop(pc.zone.items.index(whatHappens[key])))
-                    pc.globalStatus[f"{whatHappens[key]} taken"] = True
+                    pc.globalStatus[f"{Item(whatHappens[key]).name} taken"] = True
                     break
                 elif(key == "moveTo"):
                     pc.zone.zoneID = whatHappens[key]
@@ -144,11 +144,56 @@ def gameloop(pc):
 
         # each loop statement will play every time one enters that room. The descriptions should be split in two: first time, and post-acquaintance.
 
+
         ### STARTING ZONE ###-------------------------------------------------------------------- -|
 
         if(pc.zone.zoneID == 0):  # dirt road
             if (pc.globalStatus["Game Start"] == True):
-                print("The carriage drops you off, and the dust drifts thoughtlessly into the air leaving a stream of beige behind the team of horses and their dark wagon as the driver leaves you here alone. It is quiet.")
+                print("\nGAME START\n")
+
+                print('''Years ago, when you lived in the town of Almyth, there was a
+strong sense of community. In many ways, it felt like you
+mattered to the people you called friends, the people you called
+neighbors. They were family. After you moved out, heading toward
+bigger and better things in the city of Cormandyr, there was a
+sense of betrayal.\n''')
+
+                print('''Yes, certainly a sense that your trust had been abused by
+those who you called family, who no longer kept in touch. But
+also a sense that you were guilty of the same abuse. Did you
+ever write? Of course not. The only person you kept in touch
+with - and mostly because she always returned your notes,
+always... - was Alys Astranos. So named because of her family's
+ties to staring up at the stars, and wondering.\n''')
+
+                print('''Alys and her son worked their family's last farm, her
+parents had both gone years ago, and the two of them were
+all that remained of their Night-intoxicated family. She
+made a point to always return your letters, and in some
+ways you felt it was because she was growing lonely. Her
+son, Dareth, was a good lad, but surely you'd get sick of
+anyone you were stuck with. In one of her notes a year
+ago, Alys informed you that the boy's father enlisted and
+went galavanting off with other men with swords and too
+much gumption. He never returned.\n''')
+
+                print('''About a week ago, you received the most recent letter from
+Alys, one that you'd almost hope hadn't been written. In it,
+she seemed nearly desparate, and implored you to travel back
+out to the countryside and visit her. She had so much to show
+you! She was on the verge of unlocking some kind of great
+discovery, and she wanted to share this with you, her friend.\n''')
+
+                print('''With some hesitation, but a sense of wonder about you, you
+organized to take a carriage out of the city to her farm in
+the countryside. The carriage ride was bumpy after a while as
+the even cobbled roads unfurled into haphazard dirt trails
+beaten by wagon tracks and horseshoes.\n''')
+
+                print('''The carriage drops you off, and the dust drifts thoughtlessly
+into the air leaving a stream of beige behind the team of
+horses and their dark wagon as the driver leaves you here
+alone. It is quiet.\n''')
             else:
                 print("The road still lies barren and empty. The dust has settled.")
             dirtRoad(pc)
@@ -158,152 +203,152 @@ def gameloop(pc):
         ### FARMHOUSE ZONES ###------------------------------------------------------------------ -|
 
         elif(pc.zone.zoneID == 1):
-            if (pc.globalStatus["Farmhouse First Time"] == True):
+            if (pc.globalStatus["farmhouseFront first time"] == True):
                 print("Before you stands a looming farmhouse, drab in its aged appearance. The darkened logs and fogged windows belie the tales of magic and adventure you have heard from your friend Alys, who is supposed to live here. You visited once, long ago, but that is now a mere memory, and what lies ahead are the echoes of a recent past, one which you do not remember. Something happened here. Where did she go? You recall Alys' note, which you have tucked away in your backpack.")
             else:
                 print("You stand in front of the farmstead home, darkened with abandon. Behind the farm is a prairie with several structures including a well, an outhouse, a shed, and a large barn. On the far North of the property is a large cornfield.")
             farmhouseFront(pc)
-            pc.globalStatus["Farmhouse First Time"] = False
+            pc.globalStatus["farmhouseFront first time"] = False
 
         elif(pc.zone.zoneID == 2):
-            if (pc.globalStatus["Kitchen First Time"] == True):
+            if (pc.globalStatus["farmhouseKitchen first time"] == True):
                 print("The door creaks open as you enter the kitchen of this home. The dry light of evening gently illuminating a diner table that is still set, plates with only scraps of food left, silverware scattered around, and even on the ground. Past the dining room table is a sitting room, and to the right is a closet door. The far back of this floor is home to a staircase heading upstairs.")
             else:
                 print(pc.zone.summary)
             farmhouseKitchen(pc)
-            pc.globalStatus["Kitchen First Time"] = False
+            pc.globalStatus["farmhouseKitchen first time"] = False
 
         elif(pc.zone.zoneID == 3):
-            if (pc.globalStatus["Closet1 First Time"] == True):
-                print("You pull open the closet door, which squeaks with rusty hinges. Immediately, you spot two pairs of boots on the ground, mud now dried onto the wooden boards underneath. ")
+            if (pc.globalStatus["farmhouseCloset1 first time"] == True):
+                print("You pull open the closet door, which squeaks with rusty hinges. Immediately, you spot two pairs of boots on the ground, mud now dried onto the wooden boards underneath.")
             else:
                 print(pc.zone.summary)
             farmhouseCloset1(pc)
-            pc.globalStatus["Closet1 First Time"] = False
+            pc.globalStatus["farmhouseCloset1 first time"] = False
 
         elif(pc.zone.zoneID == 4):
-            if (pc.globalStatus["Sitting Room First Time"] == True):
-                print("")
+            if (pc.globalStatus["farmhouseSittingRoom first time"] == True):
+                print("This sitting room would come off as still, and almost peaceful, were it not for the tumbled pile of books in the corner, or the scattered dust, dashed from the fireplace. A pair of comfy looking chairs sit cozily huddled in the center, facing that fireplace. The stairs spiral up behind them. The kitchen isn't too far away.")
             else:
                 print(pc.zone.summary)
             farmhouseSittingRoom(pc)
-            pc.globalStatus["Sitting Room First Time"] = False
+            pc.globalStatus["farmhouseSittingRoom first time"] = False
 
         elif(pc.zone.zoneID == 5):
-            if (pc.globalStatus["StairsInside First Time"] == True):
-                print("")
+            if (pc.globalStatus["farmhouseStairsInside first time"] == True):
+                print("This spiral staircase with a tight railing feels solid under your feet, yet its boards creak nonetheless. It leads up to the second floor.")
             else:
                 print(pc.zone.summary)
             farmhouseStairsInside(pc)
-            pc.globalStatus["StairsInside First Time"] = False
+            pc.globalStatus["farmhouseStairsInside first time"] = False
 
         elif(pc.zone.zoneID == 6):
-            if (pc.globalStatus["Hallway First Time"] == True):
-                print("")
+            if (pc.globalStatus["farmhouseHallway first time"] == True):
+                print("Light spills in from the wide rippled windows, motes of dust floating through the hall. Two doors on either side of the hallway. The first door on the left is open, and it seems to be a bedroom.")
             else:
                 print(pc.zone.summary)
             farmhouseHallway(pc)
-            pc.globalStatus["Hallway First Time"] = False
+            pc.globalStatus["farmhouseHallway first time"] = False
 
         elif(pc.zone.zoneID == 7):
-            if (pc.globalStatus["Closet2 First Time"] == True):
-                print("")
+            if (pc.globalStatus["farmhouseCloset2 first time"] == True):
+                print("This closet is narrow, packed with a variety of clothes and sheets.")
             else:
                 print(pc.zone.summary)
             farmhouseCloset2(pc)
-            pc.globalStatus["Closet2 First Time"] = False
+            pc.globalStatus["farmhouseCloset2 first time"] = False
 
         elif(pc.zone.zoneID == 8):
-            if (pc.globalStatus["Master Bedroom First Time"] == True):
-                print("")
+            if (pc.globalStatus["farmhouseMasterBedroom first time"] == True):
+                print("This room seems untouched, unlike much of the rest of the house. The bed is neatly made, and there is a footlocker, shut. There are shelves with books and knick-knacks, and a mounted brass telescope pointing out the window, and up at the sky. To the right is another door leading to an adjacent room.")
             else:
                 print(pc.zone.summary)
             farmhouseMasterBedroom(pc)
-            pc.globalStatus["Master Bedroom First Time"] = False
+            pc.globalStatus["farmhouseMasterBedroom first time"] = False
 
         elif(pc.zone.zoneID == 9):
-            if (pc.globalStatus["Guest Bedroom First Time"] == True):
-                print("")
+            if (pc.globalStatus["farmhouseGuestBedroom first time"] == True):
+                print("Another bedroom, This one decorated with more reckless abandon, clothes thrown into a corner, indicative of laziness, not of a struggle. There is a sword mounted over the bed.")
             else:
                 print(pc.zone.summary)
             farmhouseGuestBedroom(pc)
-            pc.globalStatus["Guest Bedroom First Time"] = False
+            pc.globalStatus["farmhouseGuestBedroom first time"] = False
 
         elif(pc.zone.zoneID == 10):
-            if (pc.globalStatus["Study First Time"] == True):
-                print("")
+            if (pc.globalStatus["farmhouseStudy first time"] == True):
+                print("This room is darker than the bedroom itself, and contains one large desk pressed up against the solid wooden wall. A narrow window lets light in from the North. On the desk is a lantern, and several handwritten notes.")
             else:
                 print(pc.zone.summary)
             farmhouseStudy(pc)
-            pc.globalStatus["Study First Time"] = False
+            pc.globalStatus["farmhouseStudy first time"] = False
 
         elif(pc.zone.zoneID == 11):
-            if (pc.globalStatus["Storage First Time"] == True):
-                print("")
+            if (pc.globalStatus["farmhouseStorage first time"] == True):
+                print("Not much in here but blankets, pillows, sheets, and bags of hay and feathers - probably used for stuffing.")
             else:
                 print(pc.zone.summary)
             farmhouseStorage(pc)
-            pc.globalStatus["Storage First Time"] = False
+            pc.globalStatus["farmhouseStorage first time"] = False
 
         elif(pc.zone.zoneID == 12):
-            if (pc.globalStatus["StairsCellar First Time"] == True):
-                print("")
+            if (pc.globalStatus["farmhouseStairsCellar first time"] == True):
+                print("A wooden doubledoor rests over the cellar stairs, at a slight angle, foretelling the imminent descent.")
             else:
                 print(pc.zone.summary)
             farmhouseStairsCellar(pc)
-            pc.globalStatus["StairsCellar First Time"] = False
+            pc.globalStatus["farmhouseStairsCellar first time"] = False
 
         elif(pc.zone.zoneID == 13):
-            if (pc.globalStatus["Cellar First Time"] == True):
-                print("")
+            if (pc.globalStatus["farmhouseCellar first time"] == True):
+                print("Cold and somewhat damp, this stone cellar seems like a well-deserved escape from the moderate heat of the summer day.")
             else:
                 print(pc.zone.summary)
             farmhouseCellar(pc)
-            pc.globalStatus["Cellar First Time"] = False
+            pc.globalStatus["farmhouseCellar first time"] = False
 
 
 
         ### PRAIRIE ZONES ###-------------------------------------------------------------------- -|
 
         elif(pc.zone.zoneID == 14):
-            if (pc.globalStatus["Backyard First Time"] == True):
+            if (pc.globalStatus["Backyard first time"] == True):
                 print("")
             else:
                 print(pc.zone.summary)
             prairieBackyard(pc)
-            pc.globalStatus["Backyard First Time"] = False
+            pc.globalStatus["Backyard first time"] = False
 
         elif(pc.zone.zoneID == 15):
-            if (pc.globalStatus["Well First Time"] == True):
+            if (pc.globalStatus["Well first time"] == True):
                 print("")
             else:
                 print(pc.zone.summary)
             prairieWell(pc)
-            pc.globalStatus["Well First Time"] = False
+            pc.globalStatus["Well first time"] = False
 
         elif(pc.zone.zoneID == 16):
-            if (pc.globalStatus["Shed Exterior First Time"] == True):
+            if (pc.globalStatus["Shed Exterior first time"] == True):
                 print("")
             else:
                 print(pc.zone.summary)
             prairieShedExterior(pc)
-            pc.globalStatus["Shed Exterior First Time"] = False
+            pc.globalStatus["Shed Exterior first time"] = False
 
         elif(pc.zone.zoneID == 17):
-            if (pc.globalStatus["Shed Interior First Time"] == True):
+            if (pc.globalStatus["Shed Interior first time"] == True):
                 print("")
             else:
                 print(pc.zone.summary)
             prairieShedInterior(pc)
-            pc.globalStatus["Shed Interior First Time"] = False
+            pc.globalStatus["Shed Interior first time"] = False
 
         elif(pc.zone.zoneID == 18):
-            if (pc.globalStatus["Outhouse First Time"] == True):
+            if (pc.globalStatus["Outhouse first time"] == True):
                 print("")
             else:
                 print(pc.zone.summary)
             prairieOuthouse(pc)
-            pc.globalStatus["Outhouse First Time"] = False
+            pc.globalStatus["Outhouse first time"] = False
 
 
 
@@ -649,7 +694,7 @@ def newGame():
     creationRunning = True
 
     # Welcome
-    print("Welcome to to the land of Corindos. Who are you? ")
+    print("Welcome to to the land of Aetrynos. Who are you? ")
 
     # Set name
     name = input()
@@ -707,38 +752,83 @@ def newGame():
 
     # Set initial globalStatus variables to define the original values of a new game. These will get changed as the game is played, and should remain consistent throughout the whole game. ALL new globalStatus variables need to be published here first, and updated anywhere that they ought to be updated.
     globalStatus = {
+        # organize by category, and then by alphabetical
+
+        ### GAME CORE
         "Game Start": True,
-        "Fancy Hat taken": False,
-        "Farmhouse First Time": True,
-        "Kitchen First Time": True,
-        "Kitchen examined": False,
-        "Closet1 First Time": True,
-        "Muddy Boots taken": False,
-        "Closet1 Box examined": False,
+
+        ### first time
+        # barn
+        "barnFront first time": True,
+        "barnInterior first time": True,
+        "barnLoft first time": True,
+        "barnBack first time": True,
+        "barnStable first time": True,
+
+        # cornfield
+        "cornfieldEdge first time": True,
+        "cornfieldMaze1 first time": True,
+        "cornfieldMaze2 first time": True,
+        "cornfieldMaze3 first time": True,
+        "cornfieldMaze4 first time": True,
+        "cornfieldMaze5 first time": True,
+        "cornfieldMaze6 first time": True,
+        "cornfieldMaze7 first time": True,
+        "cornfieldMaze8 first time": True,
+        "cornfieldMaze9 first time": True,
+        "cornfieldMazeCenter first time": True,
+        "cornfieldMazeStart first time": True,
+        "cornfieldThick first time": True,
+        "cornfieldTangle first time": True,
+
+        # farmhouse
+        "farmhouseCellar first time": True,
+        "farmhouseCloset1 first time": True,
+        "farmhouseCloset2 first time": True,
+        "farmhouseFront first time": True,
+        "farmhouseGuestBedroom first time": True,
+        "farmhouseHallway first time": True,
+        "farmhouseKitchen first time": True,
+        "farmhouseMasterBedroom first time": True,
+        "farmhouseSittingRoom first time": True,
+        "farmhouseStairsCellar first time": True,
+        "farmhouseStairsInside first time": True,
+        "farmhouseStorage first time": True,
+        "farmhouseStudy first time": True,
+
+        # prairie
+        "prairieBackyard first time": True,
+        "prairieShedExterior first time": True,
+        "prairieShedInterior first time": True,
+        "prairieWell first time": True,
+        "prairieOuthouse first time": True,
+
+        ### ITEMS TAKEN
+        # f"{Item(itemID).name} taken" as format
         "Emerald Medallion taken": False,
-        "Sitting Room First Time": True,
-        "StairsInside First Time": True,
-        "Hallway First Time": True,
-        "Master Bedroom First Time": True,
-        "Guest Bedroom First Time": True,
-        "Storage First Time": True,
-        "Study First Time": True,
-        "StairsCellar First Time": True,
-        "Backyard First Time": True,
-        "Well First Time": True,
-        "Shed Exterior First Time": True,
-        "Shed Interior First Time": True,
-        "Outhouse First Time": True,
+        "Fancy Hat taken": False,
+        "Muddy Boots taken": False,
+
+        ### EXAMINED
+        # f"{location or item} examined" as format
+        "farmhouseCloset1 Box examined": False,
+        "farmhouseKitchen examined": False,
+
+        ### STATUS EFFECTS
         "Staircase Visible": False,
         "Damage Enchanted": False,
         "Dark": False,
         "Dark Place": False,
         "Lantern Lit": False,
-        "Darkvision": False
+        "Darkvision": False,
+
+        ### GAME WON
+        "Game Won": False
     }
 
     # Creates new inventory with note object
-    inventory = [0, 7, 9, 1, 11]
+    # inventory = [0, 7, 9, 1, 11]  # testing all item types
+    inventory = [0]  # only note
 
     # Define newPlayer dictionary in same format as load, then return it.
     newPlayer = {
@@ -759,7 +849,7 @@ def newGame():
 
 
 def gameStart():
-    print("\t1 - NEW GAME\n\t2 - CONTINUE")
+    print("\t\t\t  1 - NEW GAME\n\t\t\t  2 - CONTINUE\n")
     choice = int(input())
 
     if(choice == 2):
@@ -784,9 +874,8 @@ if __name__ == "__main__":
         pc = Player(newGame())
 
 
-    goblin = Creature("Goblin")
-
-    combat(pc, goblin)
+    #goblin = Creature("Goblin")
+    #combat(pc, goblin)
 
     # Begin the gameloop if player is alive
-    # gameloop(pc)
+    gameloop(pc)
