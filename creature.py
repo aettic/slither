@@ -39,7 +39,7 @@ class Creature:
         elif (self.type == "Grue"):
 
             # Possible descriptions
-            descriptions = ["It is dark, but you hear the faint tapping of tiny feet", "The glint of teeth shines against what little light surrounds you", "You smell a foul odor of decay, and hear soft laughter nearby"]
+            descriptions = ["It is dark, but you hear the sloshing of some slimy thing", "The glint of teeth shines against what little light surrounds you", "You smell a foul odor of decay, and hear soft laughter nearby"]
 
             # Setting stats
             self.maxHP = 10

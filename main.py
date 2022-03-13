@@ -24,8 +24,9 @@ def printTitle():
 
    db     888888  888888  88""Yb  Yb  dY  88b 88   dP"Yb   .dP"Y8
   dPYb    88__      88    88__dP   YbdY   88Yb88  dY   Yb  `Ybo.
- dP__Yb   88""      88    88"Yb     88    88 Y88  Yb   dY  , `Y8b
-dP""""Yb  888888    88    88  Yb    88    88  Y8   YbodP   8bodP' \n''' + '\033[0m')
+ dP__Yb   88""      88    88"Yb     88    88 Y88  Yb   dY    `Y8b
+dP""""Yb  888888    88    88  Yb    88    88  Y8   YbodP   8bodP'''
++ '\n \033[0m')
 
 
 def doSomething(pc):
@@ -204,15 +205,30 @@ alone. It is quiet.\n''')
 
         elif(pc.zone.zoneID == 1):
             if (pc.globalStatus["farmhouseFront first time"] == True):
-                print("Before you stands a looming farmhouse, drab in its aged appearance. The darkened logs and fogged windows belie the tales of magic and adventure you have heard from your friend Alys, who is supposed to live here. You visited once, long ago, but that is now a mere memory, and what lies ahead are the echoes of a recent past, one which you do not remember. Something happened here. Where did she go? You recall Alys' note, which you have tucked away in your backpack.")
+                print('''Before you stands a looming farmhouse, drab in its aged appearance.
+The darkened logs and fogged windows belie the tales of magic
+and adventure you have heard from your friend Alys, who is
+supposed to live here. You visited once, long ago, but that
+is now a mere memory, and what lies ahead are the echoes of
+a recent past, one which you do not remember. Something happened
+here. Where did she go? You recall Alys' note, which you have
+tucked away in your backpack.''')
             else:
-                print("You stand in front of the farmstead home, darkened with abandon. Behind the farm is a prairie with several structures including a well, an outhouse, a shed, and a large barn. On the far North of the property is a large cornfield.")
+                print('''You stand in front of the farmstead home, darkened with abandon.
+Behind the farm is a prairie with several structures including
+a well, an outhouse, a shed, and a large barn. On the far North
+of the property is a large cornfield.''')
             farmhouseFront(pc)
             pc.globalStatus["farmhouseFront first time"] = False
 
         elif(pc.zone.zoneID == 2):
             if (pc.globalStatus["farmhouseKitchen first time"] == True):
-                print("The door creaks open as you enter the kitchen of this home. The dry light of evening gently illuminating a diner table that is still set, plates with only scraps of food left, silverware scattered around, and even on the ground. Past the dining room table is a sitting room, and to the right is a closet door. The far back of this floor is home to a staircase heading upstairs.")
+                print('''The door creaks open as you enter the kitchen of this home. The
+dry light of evening gently illuminating a diner table that is
+still set, plates with only scraps of food left, silverware
+scattered around, and even on the ground. Past the dining room
+table is a sitting room, and to the right is a closet door. The
+far back of this floor is home to a staircase heading upstairs.''')
             else:
                 print(pc.zone.summary)
             farmhouseKitchen(pc)
@@ -220,7 +236,9 @@ alone. It is quiet.\n''')
 
         elif(pc.zone.zoneID == 3):
             if (pc.globalStatus["farmhouseCloset1 first time"] == True):
-                print("You pull open the closet door, which squeaks with rusty hinges. Immediately, you spot two pairs of boots on the ground, mud now dried onto the wooden boards underneath.")
+                print('''You pull open the closet door, which squeaks with rusty hinges.
+Immediately, you spot two pairs of boots on the ground, mud now
+dried onto the wooden boards underneath.''')
             else:
                 print(pc.zone.summary)
             farmhouseCloset1(pc)
@@ -228,7 +246,12 @@ alone. It is quiet.\n''')
 
         elif(pc.zone.zoneID == 4):
             if (pc.globalStatus["farmhouseSittingRoom first time"] == True):
-                print("This sitting room would come off as still, and almost peaceful, were it not for the tumbled pile of books in the corner, or the scattered dust, dashed from the fireplace. A pair of comfy looking chairs sit cozily huddled in the center, facing that fireplace. The stairs spiral up behind them. The kitchen isn't too far away.")
+                print('''This sitting room would come off as still, and almost peaceful,
+were it not for the tumbled pile of books in the corner, or the
+scattered dust, dashed from the fireplace. A pair of comfy
+looking chairs sit cozily huddled in the center, facing that
+fireplace. The stairs spiral up behind them. The kitchen isn't
+too far away.''')
             else:
                 print(pc.zone.summary)
             farmhouseSittingRoom(pc)
@@ -236,7 +259,9 @@ alone. It is quiet.\n''')
 
         elif(pc.zone.zoneID == 5):
             if (pc.globalStatus["farmhouseStairsInside first time"] == True):
-                print("This spiral staircase with a tight railing feels solid under your feet, yet its boards creak nonetheless. It leads up to the second floor.")
+                print('''This spiral staircase with a tight railing feels solid under
+your feet, yet its boards creak nonetheless. It leads up to
+the second floor.''')
             else:
                 print(pc.zone.summary)
             farmhouseStairsInside(pc)
@@ -244,7 +269,10 @@ alone. It is quiet.\n''')
 
         elif(pc.zone.zoneID == 6):
             if (pc.globalStatus["farmhouseHallway first time"] == True):
-                print("Light spills in from the wide rippled windows, motes of dust floating through the hall. Two doors on either side of the hallway. The first door on the left is open, and it seems to be a bedroom.")
+                print('''Light spills in from the wide rippled windows, motes of dust
+floating through the hall. Two doors on either side of the
+hallway. The first door on the left is open, and it seems
+to be a bedroom.''')
             else:
                 print(pc.zone.summary)
             farmhouseHallway(pc)
@@ -260,7 +288,11 @@ alone. It is quiet.\n''')
 
         elif(pc.zone.zoneID == 8):
             if (pc.globalStatus["farmhouseMasterBedroom first time"] == True):
-                print("This room seems untouched, unlike much of the rest of the house. The bed is neatly made, and there is a footlocker, shut. There are shelves with books and knick-knacks, and a mounted brass telescope pointing out the window, and up at the sky. To the right is another door leading to an adjacent room.")
+                print('''This room seems untouched, unlike much of the rest of the
+house. The bed is neatly made, and there is a footlocker, shut.
+There are shelves with books and knick-knacks, and a mounted
+brass telescope pointing out the window, and up at the sky. To
+the right is another door leading to an adjacent room.''')
             else:
                 print(pc.zone.summary)
             farmhouseMasterBedroom(pc)
