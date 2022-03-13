@@ -62,7 +62,7 @@ class Item:
             self.description = "A handbound leather journal which shines with a magical spark. The cover is emblazoned with a drawing of an eye."
 
         elif(self.itemID == 5):
-            self.name = "Gold coin"
+            self.name = "Gold Coin"
             self.value = 1
             self.equippable = False
             self.armor = False
@@ -92,7 +92,7 @@ class Item:
             self.description = "An oil lantern which can easily be lit, the flame is protected by glass windows."
 
         elif(self.itemID == 8):
-            self.name = "Hidden Note"
+            self.name = "Hidden Note 1"
             self.value = 0
             self.equippable = False
             self.armor = False
@@ -102,6 +102,36 @@ class Item:
             self.description = "A torn page of a journal, hurriedly documenting magical features of some sort of stairway. It appears to indicate that this stairway exists and does not exist at the same time; or perhaps it exists in a parallel dimension."
 
         elif(self.itemID == 9):
+            self.name = "Hidden Note 2"
+            self.value = 0
+            self.equippable = False
+            self.armor = False
+            self.weapon = False
+            self.magic = False
+            self.use = False
+            self.description = "A drawing of a spiral, with evenly spaced segments, terminating in a circle which takes up half the page. Around it are a sunburts of branching lines... They almost seem to be the stocks of plants, spread away from the circle and its captivating spiral. There is a single word written on this note: 'Amaze'."
+
+        elif(self.itemID == 10):
+            self.name = "Hidden Note 3"
+            self.value = 0
+            self.equippable = False
+            self.armor = False
+            self.weapon = False
+            self.magic = False
+            self.use = False
+            self.description = "This note is a hastily sketched drawing of a wall of corn."
+
+        elif(self.itemID == 11):
+            self.name = "Letter from Alys"
+            self.value = 0
+            self.equippable = False
+            self.armor = False
+            self.weapon = False
+            self.magic = False
+            self.use = False
+            self.description = "'To whoever finds this, consider this my last will and testement. Things are different. It's hard to know anymore which side I'm on. I thought that I could control things when I first found it, but that quickly proved foolish.'"
+
+        elif(self.itemID == 12):
             self.name = "Sword"
             self.value = 5
             self.equippable = True
@@ -112,7 +142,7 @@ class Item:
             self.use = "equip"
             self.description = "A simple shortsword, handmade, but not by any expert. The blade is sharp, but crudely assymetrical."
 
-        elif(self.itemID == 10):
+        elif(self.itemID == 13):
             self.name = "Pitchfork"
             self.value = 2
             self.equippable = True
@@ -123,7 +153,7 @@ class Item:
             self.use = "equip"
             self.description = "A well-used iron pitchfork on a long wooden handle. The wood is warn and grimy with age."
 
-        elif(self.itemID == 11):
+        elif(self.itemID == 14):
             self.name = "Liquid Darkness"
             self.value = 100
             self.equippable = False

@@ -311,44 +311,44 @@ alone. It is quiet.\n''')
         ### PRAIRIE ZONES ###-------------------------------------------------------------------- -|
 
         elif(pc.zone.zoneID == 14):
-            if (pc.globalStatus["Backyard first time"] == True):
+            if (pc.globalStatus["prairieBackyard first time"] == True):
                 print("")
             else:
                 print(pc.zone.summary)
             prairieBackyard(pc)
-            pc.globalStatus["Backyard first time"] = False
+            pc.globalStatus["prairieBackyard first time"] = False
 
         elif(pc.zone.zoneID == 15):
-            if (pc.globalStatus["Well first time"] == True):
+            if (pc.globalStatus["prairieWell first time"] == True):
                 print("")
             else:
                 print(pc.zone.summary)
             prairieWell(pc)
-            pc.globalStatus["Well first time"] = False
+            pc.globalStatus["prairieWell first time"] = False
 
         elif(pc.zone.zoneID == 16):
-            if (pc.globalStatus["Shed Exterior first time"] == True):
+            if (pc.globalStatus["prairieShedExterior first time"] == True):
                 print("")
             else:
                 print(pc.zone.summary)
             prairieShedExterior(pc)
-            pc.globalStatus["Shed Exterior first time"] = False
+            pc.globalStatus["prairieShedExterior first time"] = False
 
         elif(pc.zone.zoneID == 17):
-            if (pc.globalStatus["Shed Interior first time"] == True):
+            if (pc.globalStatus["prairieShedInterior first time"] == True):
                 print("")
             else:
                 print(pc.zone.summary)
             prairieShedInterior(pc)
-            pc.globalStatus["Shed Interior first time"] = False
+            pc.globalStatus["prairieShedInterior first time"] = False
 
         elif(pc.zone.zoneID == 18):
-            if (pc.globalStatus["Outhouse first time"] == True):
+            if (pc.globalStatus["prairieOuthouse first time"] == True):
                 print("")
             else:
                 print(pc.zone.summary)
             prairieOuthouse(pc)
-            pc.globalStatus["Outhouse first time"] = False
+            pc.globalStatus["prairieOuthouse first time"] = False
 
 
 
@@ -805,25 +805,42 @@ def newGame():
 
         ### ITEMS TAKEN
         # f"{Item(itemID).name} taken" as format
+        "Alcohol taken": False,
         "Emerald Medallion taken": False,
         "Fancy Hat taken": False,
+        "Gold Coin taken": False,
+        "Hidden Note 1 taken": False,
+        "Hidden Note 2 taken": False,
+        "Hidden Note 3 taken": False,
+        "Lantern taken": False,
+        "Letter from Alys": False,
+        "Liquid Darkness": False,
         "Muddy Boots taken": False,
+        "Pitchfork": False,
+        "Spellbook taken": False,
+        "Sword taken": False,
 
         ### EXAMINED
         # f"{location or item} examined" as format
         "farmhouseCloset1 Box examined": False,
         "farmhouseKitchen examined": False,
+        "farmhouseSittingRoom examined": False,
 
         ### STATUS EFFECTS
-        "Staircase Visible": False,
+        # toggle effects
         "Damage Enchanted": False,
+        "Darkvision": False,
+        "Lantern Lit": False,
+
+        # environment effects
         "Dark": False,
         "Dark Place": False,
-        "Lantern Lit": False,
-        "Darkvision": False,
+        "Staircase Visible": False,
 
-        ### GAME WON
-        "Game Won": False
+        ### GAME END
+        "Game Won": False,
+        "Game Over": False
+
     }
 
     # Creates new inventory with note object

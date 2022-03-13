@@ -34,6 +34,7 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [x] Organize globalStatus entires
 - [ ] Create more globalStatus entries as needed
 - [ ] Write out the story more thoroughly in a secret canon piece.
+- [ ] Fix problem with globalStatus not updating properly (still need to identify)
 
 
 
