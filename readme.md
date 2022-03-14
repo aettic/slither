@@ -31,6 +31,19 @@ Like with Bloodborne java, there will be a player character object which is pass
 This is a zork-like text-based adventure game. It contains a global status system to track world changes consistently. It uses a numbered option based system for acting. The story is homebrew High Fantasy, taking place in a land called Aetrynos. Distinct from Javaborne, this game is designed with a single "doSomething()" function which can handle all locations and all actions. This, paired with the system of selection and options rooted inside the player's active zone itself allows for a smooth, single system which can handle and parse many different things. The engine utilizes object-oriented-programming to handle creating the necessary entities and objects which interact in the game (Player, creature, items, zones, etc.)
 
 ## To Do (Development)
+- [ ] Create a combine(item, item) method
+- [ ] Construct a puzzle using items (Alcohol, alchemical stuff, blowing something up?)
+- [ ] Put a Grue in Dark spots (cellar, loft)
+- [ ] Create Dark timer for Grue attack - 2 rounds
+- [ ] Create Matches timer
+- [ ] Finish combat options
+- [ ] Write out the rest of the zones
+- [ ] Create more globalStatus entries as needed
+- [ ] Write out the story more thoroughly in a secret canon piece.
+- [ ] Fix problem with globalStatus not updating properly (still need to identify)
+- [ ] Build NPC objects with interactive dialogue capacity (model after combat)
+
+## Done
 - [x] Create a useItem method in player.py (now contains equip, toggle, and spell)
 - [x] Actually use item.py before getting too carried away
 - [x] Test save state works
@@ -40,17 +53,7 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [x] build creature objects for combat
 - [x] Complete location globalStatus entries
 - [x] Organize globalStatus entires
-
-- [ ] Create a combine(item, item) method
-- [ ] Construct a puzzle using items (Alcohol, alchemical stuff, blowing something up?)
-- [ ] Put a Grue in Dark spots (cellar, loft) (Add Dark timer - 2 rounds))
-- [ ] Finish combat options
-- [ ] Complete Beast itemDrops
-- [ ] Write out the rest of the zones
-- [ ] Create more globalStatus entries as needed
-- [ ] Write out the story more thoroughly in a secret canon piece.
-- [ ] Fix problem with globalStatus not updating properly (still need to identify)
-- [ ] Build NPC objects with interactive dialogue capacity (model after combat)
+- [x] Complete the Beast itemDrops
 
 
 

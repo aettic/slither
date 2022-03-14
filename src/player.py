@@ -3,6 +3,8 @@ import random
 from zones import Zone
 import json
 from item import Item
+import os
+import sys
 
 class Player:
     def __init__(self, playerDict):
@@ -93,8 +95,9 @@ class Player:
 
 
     def toggle(self, item):
-        if(item.itemID == 7):
 
+        # Lantern
+        if(item.itemID == 7):
             if (self.globalStatus["Darkvision"] == True):
                 print("You can already see in the dark.")
             else:
@@ -110,20 +113,47 @@ class Player:
 
                 else:
                     print("You extinguish the flame.")
-                    pc.globalStatus["Lantern Lit"] = False
-                    if(pc.globalStatus["Dark"] == False and pc.globalStatus["Dark Place"] == True):
-                        pc.globalStatus["Dark"] = True
+                    self.globalStatus["Lantern Lit"] = False
+                    if(self.globalStatus["Dark"] == False and pc.globalStatus["Dark Place"] == True):
+                        self.globalStatus["Dark"] = True
                         print("The darkness returns, be careful...")
+
+        # Matches
+        elif(item.itemID == 15):
+            if(self.globalStatus["Match Lit"] == False):
+                print("You light a match.")
+                self.globalStatus["Match Lit"] = true
+                self.globalStatus["Dark"] = False
+                self.globalStatus["Matches timer"] = 3
+            else:
+                print("You put out the match")
+                if(self.globalStatus["Dark Place"] == True):
+                    self.globalStatus["Dark"] = True
+                self.globalStatus["Match Lit"] = False
 
         else:
             print("Not yet made")
+
+
+    def accessInventory(self):
+        print("\t# INVENTORY #")
+        for itemID in self.inventory:
+            print(f"\n{Item(itemID).name}:")
+            print(Item(itemID).description)
+
+        print(f"Select an item to use [1 - {len(self.inventory)}]")
+        choice = int(input())
+
+
+
+
 
 
     def saveState(self):
         saveDict = {
             "name": self.name,
             "isAlive": self.isAlive,
-            "zoneID": self.zone.zoneID,
+            "zoneID": self.zoneID,
             "maxHP": self.maxHP,
             "currentHP": self.currentHP,
             "globalStatus": self.globalStatus,
@@ -136,5 +166,8 @@ class Player:
 
         saveJson = json.dumps(saveDict, indent = 2)
 
-        with open("saves/gameSave.json", 'w') as file:
+        project = os.path.dirname(os.path.dirname(__file__))
+        print(project)
+
+        with open(f"{project}/saves/gameSave.json", 'w') as file:
             file.write(saveJson)

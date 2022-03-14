@@ -20,7 +20,15 @@ class Zone:
             self.items.clear()
             self.items = [1]
             if(pc.globalStatus["Fancy Hat taken"] == False):
-                self.options = ["Walk West toward the house", "Walk North along the road", "Walk South along the road", "Pickup the hat", "Look at your inventory", "Look around the area", "Save the game"]
+                self.options = [
+                    "Walk West toward the house",
+                    "Walk North along the road",
+                    "Walk South along the road",
+                    "Pickup the hat",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
 
                 self.selection = {
                     1: {
@@ -48,7 +56,14 @@ class Zone:
                     }
                 }
             elif(pc.globalStatus["Fancy Hat taken"] == True):
-                self.options = ["Walk West toward the house", "Walk North along the road", "Walk South along the road", "Look at your inventory", "Look around the area", "Save the game"]
+                self.options = [
+                    "Walk West toward the house",
+                    "Walk North along the road",
+                    "Walk South along the road",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
 
                 self.selection = {
                     1: {
@@ -78,10 +93,21 @@ class Zone:
         ### FARMHOUSE ###------------------------------------------------------------------------ -|
 
         elif (self.zoneID == 1):  # farmhouse front entrance
-            self.summary = "A residence sits before you. Behind the house in an open prairie are a barn, a shed, an outhouse, and a well. To the North, the property unfolds into a corn field."
+            self.summary = '''You stand in front of the farmstead home, darkened with abandon.
+Behind the farm is a prairie with several structures including
+a well, an outhouse, a shed, and a large barn. On the far North
+of the property is a large cornfield.'''
             self.description = "A looming log farmhouse, nearly a two-story cabin, complete with thatched gable roofing, stands firm in front of you, here in the center of this farm property. The sun threatens to set behind it, inching closer every moment. Behind the house, a smattering of structures dot the property: A stone well close by; a farm tool shed, a cramped looking outhouse, and a large barn which dwarfs the house itself, even from so far away. The gently rolling landscape surrounding the house is comprised of wheats and grasses, with a couple small plots of beans, cabbages, and other low crops. In the distance a scarecrow watches plaintively over the crops. The Northern edge of the property fades into a dense and tall corn field. The whole property is surrounded on the outskirts by darkened and misty woods."
             self.items.clear()
-            self.options = ["Enter the house", "Walk into the backyard", "Travel to the corn field", "Return to the road", "Look at your inventory", "Look around the area", "Save the game"]
+            self.options = [
+                "Enter the house",
+                "Walk into the backyard",
+                "Travel to the corn field",
+                "Return to the road",
+                "Look at your inventory",
+                "Look around the area",
+                "Save the game"
+            ]
 
             self.selection = {
                 1: {
@@ -113,11 +139,18 @@ class Zone:
 
         elif (self.zoneID == 2):  # inside farmhouse - kitchen
             self.summary = "The house is dark. You stand in the kitchen, which also serves as a dining room. There is a closet to your right, a great room behind a wall straight ahead, and a staircase at the far back of this floor leading up."
-            self.description = "Only the dim evening light spills in from the windows on the West side of the wall. It appears that this place was left in a hurry. The tell-tale signs of a struggle can be seen about the room."
+            self.description = "Only the dim evening light spills in from the windows on the West side of the wall. It appears that this place was left in a hurry. The tell-tale signs of a struggle can be seen about the room. There are unlit candles on the table and around the room."
             self.items.clear()
 
             if(pc.globalStatus["farmhouseKitchen examined"] == False):
-                self.options = ["Into the sitting room", "Open the closet", "Head back outside", "Look at your inventory", "Look around the area", "Save the game"]
+                self.options = [
+                    "Into the sitting room",
+                    "Open the closet",
+                    "Head back outside",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
 
                 self.selection = {
                     1: {
@@ -143,7 +176,15 @@ class Zone:
                     }
                 }
             else:
-                self.options = ["Into the sitting room", "Open the closet", "Head back outside", "Examine the signs of struggle", "Look at your inventory", "Look around the area", "Save the game"]
+                self.options = [
+                    "Into the sitting room",
+                    "Open the closet",
+                    "Head back outside",
+                    "Examine the signs of struggle",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
 
                 self.selection = {
                     1: {
@@ -159,7 +200,7 @@ class Zone:
                         "moveTo": 1
                     },
                     4: {
-                        "do": "You look around the room, examining the chaos and bedlam. Silverware and dishes lie scattered haphazardly. A tea kettle is overturned on the floor, a small puddle of brown tea gathered around it. It is no longer warm. A fight happened here. Is Alys okay?"
+                        "do": "You look around the room, examining the chaos and bedlam. Silverware and dishes lie scattered haphazardly. A tea kettle is overturned on the floor, a small puddle of brown tea gathered around it. It is no longer warm. A fight happened here. Is Alys okay? You can see the footprints came from the sitting room."
                     },
                     5: {
                         "pack": "You look into your backpack, remembering your note"
@@ -179,167 +220,216 @@ class Zone:
             self.items.clear()
             self.items = [2, 3]
 
-
-            if(pc.globalStatus["Muddy Boots taken"] == False and pc.globalStatus["farmhouseCloset1 Box examined"] == False):
-                self.options = ["Head back to the kitchen", "Go to the sitting room", "Take the boots", "Look in the box", "Look at your inventory", "Look around the area", "Save the game"]
-
-                self.selection = {
-                    1: {
-                        "do": "You close the closet door, and walk back to the kitchen",
-                        "moveTo": 1
-                    },
-                    2: {
-                        "do": "You close the closet door and head into the sitting room",
-                        "moveTo": 4
-                    },
-                    3: {
-                        "do": "You grab the boots and put them on, dried mud is crusted on the sides, but they're comfortable",
-                        "takeItem": "Muddy Boots"
-                    },
-                    4: {
-                        "do": "You pull the box down and open it up, inside is a small crystal trinket in the shape of a hexagon",
-                        "examine": "farmhouseCloset1 Box"
-                    },
-                    5: {
-                        "pack": "You look into your backpack, remembering your note"
-                    },
-                    6: {
-                        "do": self.description
-                    },
-                    7: {
-                        "save": "saveGame"
+            if(pc.globalStatus["Muddy Boots taken"] == False):
+                if(pc.globalStatus["farmhouseCloset1 Box examined"] == False):
+                    self.options = [
+                        "Head back to the kitchen",
+                        "Go to the sitting room",
+                        "Take the boots",
+                        "Look in the box",
+                        "Look at your inventory",
+                        "Look around the area",
+                        "Save the game"
+                    ]
+                    self.selection = {
+                        1: {
+                            "do": "You close the closet door, and walk back to the kitchen",
+                            "moveTo": 2
+                        },
+                        2: {
+                            "do": "You close the closet door and head into the sitting room",
+                            "moveTo": 4
+                        },
+                        3: {
+                            "do": "You grab the boots and put them on, dried mud is crusted on the sides, but they're comfortable",
+                            "takeItem": 2
+                        },
+                        4: {
+                            "do": "You pull the box down and open it up, inside is a small crystal trinket in the shape of a hexagon",
+                            "examine": "farmhouseCloset1 Box"
+                        },
+                        5: {
+                            "pack": "You look into your backpack, remembering your note"
+                        },
+                        6: {
+                            "do": self.description
+                        },
+                        7: {
+                            "save": "saveGame"
+                        }
                     }
-                }
-            elif(pc.globalStatus["Muddy Boots taken"] == True and pc.globalStatus["farmhouseCloset1 Box examined"] == False):
-                self.options = ["Head back to the kitchen", "Go to the sitting room", "Look in the box", "Look at your inventory", "Look around the area", "Save the game"]
+                elif(pc.globalStatus["farmhouseCloset1 Box examined"] == True):
+                    if(pc.globalStatus["Emerald Medallion taken"] == False):
+                        self.options = [
+                            "Head back to the kitchen",
+                            "Go to the sitting room",
+                            "Take the boots",
+                            "Take the Medallion",
+                            "Look at your inventory",
+                            "Look around the area",
+                            "Save the game"
+                        ]
 
-                self.selection = {
-                    1: {
-                        "do": "You close the closet door, and walk back to the kitchen",
-                        "moveTo": 1
-                    },
-                    2: {
-                        "do": "You close the closet door and head into the sitting room",
-                        "moveTo": 4
-                    },
-                    3: {
-                        "do": "You pull the box down and open it up, inside is a small crystal trinket in the shape of a hexagon",
-                        "examine": "farmhouseCloset1 Box"
-                    },
-                    4: {
-                        "pack": "You look into your backpack, remembering your note"
-                    },
-                    5: {
-                        "do": self.description
-                    },
-                    6: {
-                        "save": "saveGame"
-                    }
-                }
-            elif(pc.globalStatus["Muddy Boots taken"] == False and pc.globalStatus["farmhouseCloset1 Box examined"] == True and pc.globalStatus["Emerald Medallion taken"] == False):
-                self.options = ["Head back to the kitchen", "Go to the sitting room", "Take the boots", "Take the Medallion", "Look at your inventory", "Look around the area", "Save the game"]
+                        self.selection = {
+                            1: {
+                                "do": "You close the closet door, and walk back to the kitchen",
+                                "moveTo": 2
+                            },
+                            2: {
+                                "do": "You close the closet door and head into the sitting room",
+                                "moveTo": 4
+                            },
+                            3: {
+                                "do": "You grab the boots and put them on, dried mud is crusted on the sides, but they're comfortable",
+                                "takeItem": 2
+                            },
+                            4: {
+                                "do": "You gently lift the delicate charm out of the box, it is on a silver chain. You put it in your pack.",
+                                "takeItem": 3
+                            },
+                            5: {
+                                "pack": "You look into your backpack, remembering your note"
+                            },
+                            6: {
+                                "do": self.description
+                            },
+                            7: {
+                                "save": "saveGame"
+                            }
+                        }
 
-                self.selection = {
-                    1: {
-                        "do": "You close the closet door, and walk back to the kitchen",
-                        "moveTo": 1
-                    },
-                    2: {
-                        "do": "You close the closet door and head into the sitting room",
-                        "moveTo": 4
-                    },
-                    3: {
-                        "do": "You grab the boots and put them on, dried mud is crusted on the sides, but they're comfortable",
-                        "takeItem": "Muddy Boots"
-                    },
-                    4: {
-                        "do": "You gently lift the delicate charm out of the box, it is on a silver chain. You put it in your pack.",
-                        "takeItem": "Emerald Medallion"
-                    },
-                    5: {
-                        "pack": "You look into your backpack, remembering your note"
-                    },
-                    6: {
-                        "do": self.description
-                    },
-                    7: {
-                        "save": "saveGame"
-                    }
-                }
-            elif(pc.globalStatus["Muddy Boots taken"] == False and pc.globalStatus["farmhouseCloset1 Box examined"] == True and pc.globalStatus["Emerald Medallion taken"] == True):
-                self.options = ["Head back to the kitchen", "Go to the sitting room", "Take the boots", "Look at your inventory", "Look around the area", "Save the game"]
+                    elif(pc.globalStatus["Emerald Medallion taken"] == True):
+                        self.options = [
+                            "Head back to the kitchen",
+                            "Go to the sitting room",
+                            "Take the boots",
+                            "Look at your inventory",
+                            "Look around the area",
+                            "Save the game"
+                        ]
 
-                self.selection = {
-                    1: {
-                        "do": "You close the closet door, and walk back to the kitchen",
-                        "moveTo": 1
-                    },
-                    2: {
-                        "do": "You close the closet door and head into the sitting room",
-                        "moveTo": 4
-                    },
-                    3: {
-                        "do": "You grab the boots and put them on, dried mud is crusted on the sides, but they're comfortable",
-                        "takeItem": "Muddy Boots"
-                    },
-                    4: {
-                        "pack": "You look into your backpack, remembering your note"
-                    },
-                    5: {
-                        "do": self.description
-                    },
-                    6: {
-                        "save": "saveGame"
-                    }
-                }
-            elif(pc.globalStatus["Muddy Boots taken"] == True and pc.globalStatus["farmhouseCloset1 Box examined"] == True and pc.globalStatus["Emerald Medallion taken"] == False):
-                self.options = ["Head back to the kitchen", "Go to the sitting room", "Take the Medallion", "Look at your inventory", "Look around the area", "Save the game"]
+                        self.selection = {
+                            1: {
+                                "do": "You close the closet door, and walk back to the kitchen",
+                                "moveTo": 2
+                            },
+                            2: {
+                                "do": "You close the closet door and head into the sitting room",
+                                "moveTo": 4
+                            },
+                            3: {
+                                "do": "You grab the boots and put them on, dried mud is crusted on the sides, but they're comfortable",
+                                "takeItem": 2
+                            },
+                            4: {
+                                "pack": "You look into your backpack, remembering your note"
+                            },
+                            5: {
+                                "do": self.description
+                            },
+                            6: {
+                                "save": "saveGame"
+                            }
+                        }
 
-                self.selection = {
-                    1: {
-                        "do": "You close the closet door, and walk back to the kitchen",
-                        "moveTo": 1
-                    },
-                    2: {
-                        "do": "You close the closet door and head into the sitting room",
-                        "moveTo": 4
-                    },
-                    3: {
-                        "do": "You gently lift the delicate charm out of the box, it is on a silver chain. You put it in your pack.",
-                        "takeItem": "Emerald Medallion"
-                    },
-                    4: {
-                        "pack": "You look into your backpack, remembering your note"
-                    },
-                    5: {
-                        "do": self.description
-                    },
-                    6: {
-                        "save": "saveGame"
-                    }
-                }
-            elif(pc.globalStatus["Muddy Boots taken"] == True and pc.globalStatus["farmhouseCloset1 Box examined"] == True and pc.globalStatus["Emerald Medallion taken"] == True):
-                self.options = ["Head back to the kitchen", "Go to the sitting room", "Look at your inventory", "Look around the area", "Save the game"]
 
-                self.selection = {
-                    1: {
-                        "do": "You close the closet door, and walk back to the kitchen",
-                        "moveTo": 1
-                    },
-                    2: {
-                        "do": "You close the closet door and head into the sitting room",
-                        "moveTo": 4
-                    },
-                    3: {
-                        "pack": "You look into your backpack, remembering your note"
-                    },
-                    4: {
-                        "do": self.description
-                    },
-                    5: {
-                        "save": "saveGame"
+            elif(pc.globalStatus["Muddy Boots taken"] == True):
+                if(pc.globalStatus["farmhouseCloset1 Box examined"] == False):
+                    self.options = [
+                        "Head back to the kitchen",
+                        "Go to the sitting room",
+                        "Look in the box",
+                        "Look at your inventory",
+                        "Look around the area",
+                        "Save the game"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You close the closet door, and walk back to the kitchen",
+                            "moveTo": 2
+                        },
+                        2: {
+                            "do": "You close the closet door and head into the sitting room",
+                            "moveTo": 4
+                        },
+                        3: {
+                            "do": "You pull the box down and open it up, inside is a small crystal trinket in the shape of a hexagon",
+                            "examine": "farmhouseCloset1 Box"
+                        },
+                        4: {
+                            "pack": "You look into your backpack, remembering your note"
+                        },
+                        5: {
+                            "do": self.description
+                        },
+                        6: {
+                            "save": "saveGame"
+                        }
                     }
-                }
+                elif(pc.globalStatus["farmhouseCloset1 Box examined"] == True):
+                    if(pc.globalStatus["Emerald Medallion taken"] == False):
+                        self.options = [
+                            "Head back to the kitchen",
+                            "Go to the sitting room",
+                            "Take the Medallion",
+                            "Look at your inventory",
+                            "Look around the area",
+                            "Save the game"
+                        ]
+
+                        self.selection = {
+                            1: {
+                                "do": "You close the closet door, and walk back to the kitchen",
+                                "moveTo": 2
+                            },
+                            2: {
+                                "do": "You close the closet door and head into the sitting room",
+                                "moveTo": 4
+                            },
+                            3: {
+                                "do": "You gently lift the delicate charm out of the box, it is on a silver chain. You put it in your pack.",
+                                "takeItem": 3
+                            },
+                            4: {
+                                "pack": "You look into your backpack, remembering your note"
+                            },
+                            5: {
+                                "do": self.description
+                            },
+                            6: {
+                                "save": "saveGame"
+                            }
+                        }
+                    elif(pc.globalStatus["Emerald Medallion taken"] == True):
+                        self.options = [
+                            "Head back to the kitchen",
+                            "Go to the sitting room",
+                            "Look at your inventory",
+                            "Look around the area",
+                            "Save the game"
+                        ]
+
+                        self.selection = {
+                            1: {
+                                "do": "You close the closet door, and walk back to the kitchen",
+                                "moveTo": 2
+                            },
+                            2: {
+                                "do": "You close the closet door and head into the sitting room",
+                                "moveTo": 4
+                            },
+                            3: {
+                                "pack": "You look into your backpack, remembering your note"
+                            },
+                            4: {
+                                "do": self.description
+                            },
+                            5: {
+                                "save": "saveGame"
+                            }
+                        }
+
 
         elif (self.zoneID == 4):  # farmhouseSittingRoom
             self.summary = "This sitting room features two chairs positioned before a stout fireplace, blackened with use. Behind the chairs, a staircase climbs to the second floor. The kitchen and closet aren't far away."
@@ -347,7 +437,13 @@ class Zone:
             self.items.clear()
 
             if(pc.globalStatus["farmhouseSittingRoom examined"] == False):
-                self.options = ["Climb the stairs", "Head back to the kitchen", "Look at your inventory", "Look around the area", "Save the game"]
+                self.options = [
+                    "Climb the stairs",
+                    "Head back to the kitchen",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
 
                 self.selection = {
                     1: {
@@ -370,7 +466,14 @@ class Zone:
                     }
                 }
             else:
-                self.options = ["Climb the stairs", "Head back to the kitchen", "Examine the fireplace", "Look at your inventory", "Look around the area", "Save the game"]
+                self.options = [
+                    "Climb the stairs",
+                    "Head back to the kitchen",
+                    "Examine the fireplace",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
 
                 self.selection = {
                     1: {
@@ -382,13 +485,15 @@ class Zone:
                         "moveTo": 2
                     },
                     3: {
-                        "do"
+                        "do": "Ash seems to have spewn from the fireplace outward, and has coated the floor and even the bottoms of the chairs. Little clawed footprints can be made out in the ash, coming from the fireplace, and leading out of the sitting room. Following the tracks, you can see multiple sets, heading toward the kitchen at the front of the house.",
+                        "examine": "farmhouseSittingRoom Fireplace"
                     },
                     4: {
                         "pack": "You look into your backpack, remembering your note"
                     },
                     5: {
-                        "do": self.description
+                        "do": self.description,
+                        "examine": "farmhouseSittingRoom"
                     },
                     6: {
                         "save": "saveGame"
@@ -396,7 +501,42 @@ class Zone:
                 }
 
         elif (self.zoneID == 5):  # farmhouseStairsInside
-            print(f"zone {zoneID}")
+            self.summary = ""
+            self.description = ""
+            self.items.clear()
+            self.options = [
+                "Into the sitting room",
+                "Open the closet",
+                "Head back outside",
+                "Look at your inventory",
+                "Look around the area",
+                "Save the game"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You traverse the creaking floor and head into the sitting room",
+                    "moveTo": 4
+                },
+                2: {
+                    "do": "You walk over to the closet door and pull it open",
+                    "moveTo": 3
+                },
+                3: {
+                    "do": "You step back outside the house",
+                    "moveTo": 1
+                },
+                4: {
+                    "pack": "You look into your backpack, remembering your note"
+                },
+                5: {
+                    "do": self.description
+                },
+                6: {
+                    "save": "saveGame"
+                }
+            }
+
         elif (self.zoneID == 6):  # farmhouseHallway
             print(f"zone {zoneID}")
         elif (self.zoneID == 7):  # farmhouseCloset2

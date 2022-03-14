@@ -13,6 +13,7 @@ from creature import Creature
 import math
 import json
 import random
+import os
 
 def printTitle():
     print(f'\033[{random.choice([31, 32, 33, 34, 35, 36, 37, 38, 39])}m' + '''
@@ -20,7 +21,7 @@ def printTitle():
 ██ ▄▄▄ █ ███▄██▄ ▄█ ████ ▄▄█ ▄▄▀████ ▄▄▄█ ▄▄▀█ ▄▄▄██▄██ ▄▄▀█ ▄▄██
 ██▄▄▄▀▀█ ███ ▄██ ██ ▄▄ █ ▄▄█ ▀▀▄████ ▄▄▄█ ██ █ █▄▀██ ▄█ ██ █ ▄▄██
 ██ ▀▀▀ █▄▄█▄▄▄██▄██▄██▄█▄▄▄█▄█▄▄████ ▀▀▀█▄██▄█▄▄▄▄█▄▄▄█▄██▄█▄▄▄██
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ v0.1.3 ▀▀▀▀
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ v0.1.4 ▀▀▀▀
 
    db     888888  888888  88""Yb  Yb  dY  88b 88   dP"Yb   .dP"Y8
   dPYb    88__      88    88__dP   YbdY   88Yb88  dY   Yb  `Ybo.
@@ -33,7 +34,7 @@ def doSomething(pc):
     zoneStart = pc.zone.zoneID
     # print(pc.zone.summary)
 
-    while(zoneStart == pc.zone.zoneID):
+    while(zoneStart == pc.zoneID):
         pc.zone = Zone(zoneStart, pc)
 
         print("")
@@ -54,12 +55,10 @@ def doSomething(pc):
                     pc.globalStatus[f"{Item(whatHappens[key]).name} taken"] = True
                     break
                 elif(key == "moveTo"):
-                    pc.zone.zoneID = whatHappens[key]
+                    pc.zoneID = whatHappens[key]
                 elif(key == "pack"):
                     print(whatHappens[key])
-                    for item in pc.inventory:
-                        print(f"\n{Item(item).name}:")
-                        print(Item(item).description)
+                    pc.accessInventory()
                 elif(key == "examine"):
                     print(whatHappens[key])
                     pc.globalStatus[f"{whatHappens[key]} examined"] = True
@@ -140,9 +139,9 @@ def gameloop(pc):
     running = pc.isAlive
 
     # GAME START - should only play when game is launched
-    pc.zone = Zone(pc.zoneID, pc)
     while(running):
 
+        pc.zone = Zone(pc.zoneID, pc)
         # each loop statement will play every time one enters that room. The descriptions should be split in two: first time, and post-acquaintance.
 
 
@@ -214,10 +213,7 @@ a recent past, one which you do not remember. Something happened
 here. Where did she go? You recall Alys' note, which you have
 tucked away in your backpack.''')
             else:
-                print('''You stand in front of the farmstead home, darkened with abandon.
-Behind the farm is a prairie with several structures including
-a well, an outhouse, a shed, and a large barn. On the far North
-of the property is a large cornfield.''')
+                print(pc.zone.summary)
             farmhouseFront(pc)
             pc.globalStatus["farmhouseFront first time"] = False
 
@@ -333,6 +329,11 @@ the right is another door leading to an adjacent room.''')
         elif(pc.zone.zoneID == 13):
             if (pc.globalStatus["farmhouseCellar first time"] == True):
                 print("Cold and somewhat damp, this stone cellar seems like a well-deserved escape from the moderate heat of the summer day.")
+                if(pc.globalStatus["Dark"] == True):
+                    print("It is dark...")
+                    # pc.timer(3)
+                else:
+                    print("A faint glow illuminates this cellar. It is bright enough to get around safely.")
             else:
                 print(pc.zone.summary)
             farmhouseCellar(pc)
@@ -397,6 +398,7 @@ the right is another door leading to an adjacent room.''')
 
 def dirtRoad(pc):
     pc.zone = Zone(0, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
 
     pass
@@ -413,6 +415,7 @@ def dirtRoad(pc):
 
 def farmhouseFront(pc):
     pc.zone = Zone(1, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
 
     # Looming farmhouse
@@ -420,6 +423,7 @@ def farmhouseFront(pc):
 
 def farmhouseKitchen(pc):
     pc.zone = Zone(2, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
 
     # Dark kitchen, remnants of food recently abandoned.
@@ -428,6 +432,7 @@ def farmhouseKitchen(pc):
 
 def farmhouseCloset1(pc):
     pc.zone = Zone(3, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
 
     # Small front closet with work clothes and warm clothes (women's)
@@ -437,6 +442,7 @@ def farmhouseCloset1(pc):
 
 def farmhouseSittingRoom(pc):
     pc.zone = Zone(4, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
 
     # Smoldering embers of a fire. A couple books. More signs of struggle. Weapon missing from wall.
@@ -446,15 +452,17 @@ def farmhouseSittingRoom(pc):
 
 def farmhouseStairsInside(pc):
     pc.zone = Zone(5, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # Leads between first and second floors
     # Cycle: walk up or down the Stairs
 
 def farmhouseHallway(pc):
     pc.zone = Zone(6, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # Open hallway split in two, chest at far End
     # Cycle: Master, Guest, Closet, Storage, examine chest
     # Items in chest: Spellbook (need Int 12)
@@ -462,15 +470,17 @@ def farmhouseHallway(pc):
 
 def farmhouseCloset2(pc):
     pc.zone = Zone(7, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # Small closet with more clothes
     # Cycle: Back to Hallway
 
 def farmhouseMasterBedroom(pc):
     pc.zone = Zone(8, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # Comfortable bed, fireplace directly above lower floor's fireplace. Chest of belongings (expensive stuff has been taken), more signs of Struggle
     # Cycle: Back to Hallway, to Study
     # Item: Alcohol
@@ -478,15 +488,17 @@ def farmhouseMasterBedroom(pc):
 
 def farmhouseGuestBedroom(pc):
     pc.zone = Zone(9, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # Smaller bed, towels, sheets, pillows
     # Cycle: Back to Hallway, To Storage
 
 def farmhouseStudy(pc):
     pc.zone = Zone(10, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # Desk with books, chair, and small lantern. Bookshelf. Surprisingly in tact.
     # Cycle: Back to Master Bedroom
     # Items: Lantern, note
@@ -494,8 +506,9 @@ def farmhouseStudy(pc):
 
 def farmhouseStorage(pc):
     pc.zone = Zone(11, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # Extra sheets, bedspread stuff
     # Cycle: back to Guest bedroom
     # Item: Sheets (puzzle item)
@@ -503,16 +516,18 @@ def farmhouseStorage(pc):
 
 def farmhouseStairsCellar(pc):
     pc.zone = Zone(12, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # Stairs outside protected by a door
     # Cycle: Into Cellar, out to prairieBackyard, open / close the door
     # GS: Door opened (can be closed)
 
 def farmhouseCellar(pc):
     pc.zone = Zone(13, pc)
+    pc.globalStatus["Dark Place"] = True
     doSomething(pc)
-    pass
+
     # Dark, cold, and grey stone. Underground. No light at all. Jarred foods, gunpowder, alchmical ingredients and utensils
     # Cycle: Back to Stairs
     # Items: Gunpowder (puzzel item)
@@ -521,21 +536,22 @@ def farmhouseCellar(pc):
 
 
 
-
 ### PRAIRIE
 
 def prairieBackyard(pc):
     pc.zone = Zone(14, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # Open, view of scarecrow, leads to all other places (HUB)
     # Cycle: Well, Shed, Outhouse, barnFront, House Front, Cellar stairs, Cornfield
     # GS: Bloodtrail examined (look)
 
 def prairieWell(pc):
     pc.zone = Zone(15, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # Large handbuilt stone well. Tented roof. Rope pulley system for bucket. Water inside.
     # Cycle: Backyard, barnBack, outhouse, shed
     # Item: Bucket of water (puzzle item)
@@ -543,15 +559,17 @@ def prairieWell(pc):
 
 def prairieShedExterior(pc):
     pc.zone = Zone(16, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # Dingy shack with sloped roof
     # Cycle: Enter shed, back to Backyard, Well, Outhouse, BarnFront
 
 def prairieShedInterior(pc):
     pc.zone = Zone(17, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # Filled with tools
     # Cycle: Shed exterior
     # Item: Tool of some kind?
@@ -559,11 +577,11 @@ def prairieShedInterior(pc):
 
 def prairieOuthouse(pc):
     pc.zone = Zone(18, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # It's an outhouse.
     # Cycle: Backyard, Well, Shed
-
 
 
 
@@ -572,15 +590,17 @@ def prairieOuthouse(pc):
 
 def barnFront(pc):
     pc.zone = Zone(19, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # Same materials and style as house, Open windows high up, Large barn doors
     # Cycle: barnInterior, barnBack, Backyard, Well, Shed
 
 def barnInterior(pc):
     pc.zone = Zone(20, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # Floor made of hard packed dirt with scattered hay. A trail of blood leads out of one of the stables. Pitchfork on a support beam. No animals.
     # Cycle: barnFront, barnBack, barnStable, barnLoft
     # Item: Pitchfork (weapon)
@@ -588,24 +608,27 @@ def barnInterior(pc):
 
 def barnLoft(pc):
     pc.zone = Zone(21, pc)
+    pc.globalStatus["Dark Place"] = True
     doSomething(pc)
-    pass
+
     # Upper area, accessible by ladder from barnInterior. Stray cat startled and reflexes
     # Cycle: barnInterior
     # GS: Cat fled
 
 def barnBack(pc):
     pc.zone = Zone(22, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # Outside the barn's back door, blood trail passs around the edges of the fields all the way to the cornfieldEdge
     # Cycle: barnInterior, barnStable, prairieBackyard
     # GS: Bloodtrail examined (automatically True)
 
 def barnStable(pc):
     pc.zone = Zone(23, pc)
+    pc.globalStatus["Dark Place"] = False
     doSomething(pc)
-    pass
+
     # The rear of the interior, no animals present, but one stable shows clear signs of a struggle. Bloodtrail leads from the stable out into barnBack, and then prairieBackyard, as well as to cornfieldEdge
     # Cycle: barnBack, barnInterior
     # GS: Bloodtrail examined (automatically True)
@@ -614,7 +637,6 @@ def barnStable(pc):
 
 
 ### CORNFIELD
-
 
 def cornfieldEdge(pc):
     pc.zone = Zone(24, pc)
@@ -631,7 +653,6 @@ def cornfieldThick(pc):
     # First step into the corn. The corn is thicker and harder to move through
     # Cycle: Back to cornfieldEdge, forward to cornfieldTangle
 
-
 def cornfieldTangle(pc):
     pc.zone = Zone(26, pc)
     doSomething(pc)
@@ -639,7 +660,6 @@ def cornfieldTangle(pc):
     # The corn is dense, and tangled, but there is a flash of movement
     # Cycle: Back to cornfieldThick. following the movement leads to cornfieldMazeStart.
     # GS: Flash of movement
-
 
 def cornfieldMazeStart(pc):
     pc.zone = Zone(27, pc)
@@ -845,10 +865,10 @@ def newGame():
         "Hidden Note 2 taken": False,
         "Hidden Note 3 taken": False,
         "Lantern taken": False,
-        "Letter from Alys": False,
-        "Liquid Darkness": False,
+        "Letter from Alys taken": False,
+        "Liquid Darkness taken": False,
         "Muddy Boots taken": False,
-        "Pitchfork": False,
+        "Pitchfork taken": False,
         "Spellbook taken": False,
         "Sword taken": False,
 
@@ -857,6 +877,7 @@ def newGame():
         "farmhouseCloset1 Box examined": False,
         "farmhouseKitchen examined": False,
         "farmhouseSittingRoom examined": False,
+        "farmhouseSittingRoom Fireplace examined": False,
 
         ### STATUS EFFECTS
         # toggle effects
@@ -913,10 +934,12 @@ if __name__ == "__main__":
     # version 0.1.3
     printTitle()
 
+    project = "/Users/k0njur3r/Projects/slither"
+
     # Start menu for selecting gameStart option (new / continue)
     startOption = gameStart()
     if(startOption == "CONTINUE"):
-        with open("saves/gameSave.json", encoding="utf-8") as file:
+        with open(f"{project}/saves/gameSave.json", encoding="utf-8") as file:
             continuePlayer = json.load(file)
         pc = Player(continuePlayer)
     else:
