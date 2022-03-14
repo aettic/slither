@@ -501,13 +501,12 @@ of the property is a large cornfield.'''
                 }
 
         elif (self.zoneID == 5):  # farmhouseStairsInside
-            self.summary = ""
-            self.description = ""
+            self.summary = "These simple stairs spiral up counter-clockwise, leading between the ground floor and upper floor."
+            self.description = "Solid wooden boards fan out from a sturdy central support pillar which runs the height of the house, from ground to roof. The stairs creak gently. The back wall is decorated with a handful of portraits: A beautiful woman you know to be Alys, a young man who must be her son, and another man who you remember as her late husband. A crest of the Astranos family featuring thirteen stars around a circular labyrinth design with a heart at the center."
             self.items.clear()
             self.options = [
-                "Into the sitting room",
-                "Open the closet",
-                "Head back outside",
+                "Down to the ground floor sitting room",
+                "Up the stairs into the hallway",
                 "Look at your inventory",
                 "Look around the area",
                 "Save the game"
@@ -515,30 +514,219 @@ of the property is a large cornfield.'''
 
             self.selection = {
                 1: {
-                    "do": "You traverse the creaking floor and head into the sitting room",
+                    "do": "You climb down the stairs and end up back in the sitting room",
                     "moveTo": 4
                 },
                 2: {
-                    "do": "You walk over to the closet door and pull it open",
-                    "moveTo": 3
+                    "do": "You ascend, spilling out into an upstairs hallway",
+                    "moveTo": 6
                 },
                 3: {
-                    "do": "You step back outside the house",
-                    "moveTo": 1
-                },
-                4: {
                     "pack": "You look into your backpack, remembering your note"
                 },
-                5: {
+                4: {
                     "do": self.description
                 },
-                6: {
+                5: {
                     "save": "saveGame"
                 }
             }
 
         elif (self.zoneID == 6):  # farmhouseHallway
-            print(f"zone {zoneID}")
+            self.summary = "A hallway with two doors on either side."
+            self.description = "This hallway is quite plain, with two doors on either side and a large chest at the far end, resting beneath a stained glass window depicting a scene of meteors gliding downward at an angle, fiery tails trailing behind."
+            self.items.clear()
+            self.items = [4]
+
+            if(pc.globalStatus["farmhouseHallway examined"] == False):
+                self.options = [
+                    "Back to the stairs",
+                    "First door on the left",
+                    "First door on the right",
+                    "Second door on the left",
+                    "Second door on the right",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You climb down the stairs and end up back in the sitting room",
+                        "moveTo": 5
+                    },
+                    2: {
+                        "do": "You enter the first door on the left, a Master Bedroom",
+                        "moveTo": 8
+                    },
+                    3: {
+                        "do": "You enter the second door on the left, a Study",
+                        "moveTo": 10
+                    },
+                    4: {
+                        "do": "You enter the first door on the right, a Storage room",
+                        "moveTo": 11
+                    },
+                    5: {
+                        "do": "You enter the second door on the right, a Bedroom",
+                        "moveTo": 9
+                    },
+                    6: {
+                        "pack": "You look into your backpack, remembering your note"
+                    },
+                    7: {
+                        "do": self.description,
+                        "examine": "farmhouseHallway"
+                    },
+                    8: {
+                        "save": "saveGame"
+                    }
+                }
+            elif(pc.globalStatus["farmhouseHallway examined"] == True):
+                if(pc.globalStatus["farmhouseHallway Chest examined"] == False):
+                    self.options = [
+                        "Back to the stairs",
+                        "First door on the left",
+                        "First door on the right",
+                        "Second door on the left",
+                        "Second door on the right",
+                        "Open the chest and look inside",
+                        "Look at your inventory",
+                        "Look around the area",
+                        "Save the game"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You climb down the stairs and end up back in the sitting room",
+                            "moveTo": 5
+                        },
+                        2: {
+                            "do": "You enter the first door on the left, a Master Bedroom",
+                            "moveTo": 8
+                        },
+                        3: {
+                            "do": "You enter the second door on the left, a Study",
+                            "moveTo": 10
+                        },
+                        4: {
+                            "do": "You enter the first door on the right, a Storage room",
+                            "moveTo": 11
+                        },
+                        5: {
+                            "do": "You enter the second door on the right, a Bedroom",
+                            "moveTo": 9
+                        },
+                        6: {
+                            "do": "You open up the large chest and peek inside. There is an ornate looking book with a gem set in the cover.",
+                            "examine": "farmhouseHallway Chest"
+                        },
+                        7: {
+                            "pack": "You look into your backpack, remembering your note"
+                        },
+                        8: {
+                            "do": self.description,
+                            "examine": "farmhouseHallway"
+                        },
+                        9: {
+                            "save": "saveGame"
+                        }
+                    }
+                elif(pc.globalStatus["farmhouseHallway Chest examined"] == True):
+                    if(pc.globalStatus["Spellbook taken"] == False):
+                        self.options = [
+                            "Back to the stairs",
+                            "First door on the left",
+                            "First door on the right",
+                            "Second door on the left",
+                            "Second door on the right",
+                            "Take the book",
+                            "Look at your inventory",
+                            "Look around the area",
+                            "Save the game"
+                        ]
+
+                        self.selection = {
+                            1: {
+                                "do": "You climb down the stairs and end up back in the sitting room",
+                                "moveTo": 5
+                            },
+                            2: {
+                                "do": "You enter the first door on the left, a Master Bedroom",
+                                "moveTo": 8
+                            },
+                            3: {
+                                "do": "You enter the second door on the left, a Study",
+                                "moveTo": 10
+                            },
+                            4: {
+                                "do": "You enter the first door on the right, a Storage room",
+                                "moveTo": 11
+                            },
+                            5: {
+                                "do": "You enter the second door on the right, a Bedroom",
+                                "moveTo": 9
+                            },
+                            6: {
+                                "do": "You take the arcane looking tome, and place it gently with your things.",
+                                "takeItem": 4
+                            },
+                            7: {
+                                "pack": "You look into your backpack, remembering your note"
+                            },
+                            8: {
+                                "do": self.description,
+                                "examine": "farmhouseHallway"
+                            },
+                            9: {
+                                "save": "saveGame"
+                            }
+                        }
+                    elif(pc.globalStatus["Spellbook taken"] == True):
+                        self.options = [
+                            "Back to the stairs",
+                            "First door on the left",
+                            "First door on the right",
+                            "Second door on the left",
+                            "Second door on the right",
+                            "Look at your inventory",
+                            "Look around the area",
+                            "Save the game"
+                        ]
+
+                        self.selection = {
+                            1: {
+                                "do": "You climb down the stairs and end up back in the sitting room",
+                                "moveTo": 5
+                            },
+                            2: {
+                                "do": "You enter the first door on the left, a Master Bedroom",
+                                "moveTo": 8
+                            },
+                            3: {
+                                "do": "You enter the second door on the left, a Study",
+                                "moveTo": 10
+                            },
+                            4: {
+                                "do": "You enter the first door on the right, a Storage room",
+                                "moveTo": 11
+                            },
+                            5: {
+                                "do": "You enter the second door on the right, a Bedroom",
+                                "moveTo": 9
+                            },
+                            6: {
+                                "pack": "You look into your backpack, remembering your note"
+                            },
+                            7: {
+                                "do": self.description,
+                                "examine": "farmhouseHallway"
+                            },
+                            8: {
+                                "save": "saveGame"
+                            }
+                        }
+
         elif (self.zoneID == 7):  # farmhouseCloset2
             print(f"zone {zoneID}")
         elif (self.zoneID == 8):  # farmhouseMasterBedroom

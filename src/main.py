@@ -26,7 +26,7 @@ def printTitle():
    db     888888  888888  88""Yb  Yb  dY  88b 88   dP"Yb   .dP"Y8
   dPYb    88__      88    88__dP   YbdY   88Yb88  dY   Yb  `Ybo.
  dP__Yb   88""      88    88"Yb     88    88 Y88  Yb   dY    `Y8b
-dP""""Yb  888888    88    88  Yb    88    88  Y8   YbodP   8bodP'''
+dP""""Yb  888888    88    88  Yb    88    88  Y8   YbodP   '8bodP'''
 + '\n \033[0m')
 
 
@@ -60,7 +60,6 @@ def doSomething(pc):
                     print(whatHappens[key])
                     pc.accessInventory()
                 elif(key == "examine"):
-                    print(whatHappens[key])
                     pc.globalStatus[f"{whatHappens[key]} examined"] = True
                 elif(key == "save"):
                     print("The game will be saved")
@@ -875,6 +874,8 @@ def newGame():
         ### EXAMINED
         # f"{location or item} examined" as format
         "farmhouseCloset1 Box examined": False,
+        "farmhouseHallway examined": False,
+        "farmhouseHallway Chest examined": False,
         "farmhouseKitchen examined": False,
         "farmhouseSittingRoom examined": False,
         "farmhouseSittingRoom Fireplace examined": False,

@@ -31,29 +31,30 @@ Like with Bloodborne java, there will be a player character object which is pass
 This is a zork-like text-based adventure game. It contains a global status system to track world changes consistently. It uses a numbered option based system for acting. The story is homebrew High Fantasy, taking place in a land called Aetrynos. Distinct from Javaborne, this game is designed with a single "doSomething()" function which can handle all locations and all actions. This, paired with the system of selection and options rooted inside the player's active zone itself allows for a smooth, single system which can handle and parse many different things. The engine utilizes object-oriented-programming to handle creating the necessary entities and objects which interact in the game (Player, creature, items, zones, etc.)
 
 ## To Do (Development)
-- [ ] Create a combine(item, item) method
+- [ ] Build NPC objects with interactive dialogue capacity (model after combat)
 - [ ] Construct a puzzle using items (Alcohol, alchemical stuff, blowing something up?)
-- [ ] Put a Grue in Dark spots (cellar, loft)
+- [ ] Create a combine(item, item) method
 - [ ] Create Dark timer for Grue attack - 2 rounds
+- [ ] Create more globalStatus entries as needed
 - [ ] Create Matches timer
 - [ ] Finish combat options
-- [ ] Write out the rest of the zones
-- [ ] Create more globalStatus entries as needed
-- [ ] Write out the story more thoroughly in a secret canon piece.
 - [ ] Fix problem with globalStatus not updating properly (still need to identify)
-- [ ] Build NPC objects with interactive dialogue capacity (model after combat)
+- [ ] Put a Grue in Dark spots (cellar, loft)
+- [ ] Write out the rest of the zones
 
 ## Done
-- [x] Create a useItem method in player.py (now contains equip, toggle, and spell)
 - [x] Actually use item.py before getting too carried away
-- [x] Test save state works
 - [x] Build load state function
-- [x] build combat system
-- [x] build magic system
-- [x] build creature objects for combat
+- [x] Build combat system
+- [x] Build magic system
+- [x] Build creature objects for combat
 - [x] Complete location globalStatus entries
-- [x] Organize globalStatus entires
 - [x] Complete the Beast itemDrops
+- [x] Create a useItem method in player.py (now contains equip, toggle, and spell)
+- [x] Organize globalStatus entires
+- [x] Test save state works
+- [x] Write out the story more thoroughly in a secret canon piece.
+
 
 
 
@@ -65,7 +66,9 @@ When you arrive at her farm, you find that she is gone. Where did Alys go?
 
 For weeks, Alys had been on the verge of unlocking the secrets of an entrance to the Faewilds, or the Underworld which is located very near to her farm. In fact it's located inside her corn field. However, it's not always there. This entrance is a spiral staircase leading underground, but it simply does not always exist. It can only be seen or experienced with the proper alignment of the stars. One of these alignments happened within the last few weeks, and Alys stumbled upon this entrance by accident. She ventured in, and found herself caught in the mystical and timeless world of the Fairies and the Goblins. They did not take too kindly to her presence, and chased her out.
 
-This prompted Alys to work tirelessly on figuring out what alignment caused this entrance to manifest tangibly in her world, and what she could do magically to open it once again. This was a dangerous game she began playing, and it cost her her son's life. He was killed by Goblins who ransacked her farm, and stole her animals. Dareth was her only son, and helped her considerably on the farm. The night of the same day that the Goblins attacked, she was spirited away by elementals and fae, and taken down into their Underworld. There, she is a prisoner, experiencing that mystical and unforgiving place of insanity without the reliable rising and setting of the sun.
+This prompted Alys to work tirelessly on figuring out what alignment caused this entrance to manifest tangibly in her world, and what she could do magically to open it once again. This was a dangerous game she began playing, and it cost her her son's life. He was killed by Goblins who ransacked her farm, and stole her animals. Dareth was her only son, and helped her considerably on the farm. The night of the same day that the Goblins attacked, she was spirited away by elementals and fae, and taken down into their Underworld.
+
+There, she is a prisoner, experiencing that mystical and unforgiving place of insanity without the reliable rising and setting of the sun. She has undergone torture as the Fae scholars try desperately to figure out how she discovered them. She stands resolute, and they aren't happy.
 
 You must explore her abandoned farm, and discover clues that lead to finding and opening the gate, and venture into the Underworld to rescue her.
 
