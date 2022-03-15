@@ -125,7 +125,7 @@ ditch just off the road, you spot a tiny hat.'''
 
         ### FARMHOUSE ###------------------------------------------------------------------------ -|
 
-        elif (self.zoneID == 1):  # farmhouse front entrance
+        elif (self.zoneID == 1):  # farmhouseFront entrance
             self.summary = '''You stand in front of the farmstead home, darkened with abandon.
 Behind the farm is a prairie with several structures including
 a well, an outhouse, a shed, and a large barn. On the far North
@@ -172,7 +172,7 @@ the outskirts by darkened and misty woods.'''
                 },
                 5: {
                     "do": self.description,
-                    "examine": "dirtRoad"
+                    "examine": "farmhouseFront"
                 },
                 6: {
                     "menu": "menu"
@@ -195,9 +195,8 @@ room. There are unlit candles on the table and around the room.'''
                     "Into the sitting room",
                     "Open the closet",
                     "Head back outside",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -214,14 +213,11 @@ room. There are unlit candles on the table and around the room.'''
                         "moveTo": 1
                     },
                     4: {
-                        "pack": "You look into your backpack"
-                    },
-                    5: {
                         "do": self.description,
                         "examine": "farmhouseKitchen"
                     },
-                    6: {
-                        "save": "saveGame"
+                    5: {
+                        "menu": "menu"
                     }
                 }
             elif(pc.globalStatus["farmhouseKitchen examined"] == True):
@@ -230,9 +226,8 @@ room. There are unlit candles on the table and around the room.'''
                     "Open the closet",
                     "Head back outside",
                     "Examine the signs of struggle",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -252,13 +247,10 @@ room. There are unlit candles on the table and around the room.'''
                         "do": "You look around the room, examining the chaos and bedlam. Silverware and dishes lie scattered haphazardly. A tea kettle is overturned on the floor, a small puddle of brown tea gathered around it. It is no longer warm. A fight happened here. Is Alys okay? You can see the footprints came from the sitting room."
                     },
                     5: {
-                        "pack": "You look into your backpack"
-                    },
-                    6: {
                         "do": self.description
                     },
-                    7: {
-                        "save": "saveGame"
+                    6: {
+                        "menu": "menu"
                     }
                 }
 
@@ -280,9 +272,8 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
                         "Go to the sitting room",
                         "Take the boots",
                         "Look in the box",
-                        "Look at your inventory",
                         "Look around the area",
-                        "Save the game"
+                        "Player Menu"
                     ]
                     self.selection = {
                         1: {
@@ -302,13 +293,10 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
                             "examine": "farmhouseCloset1 Box"
                         },
                         5: {
-                            "pack": "You look into your backpack"
-                        },
-                        6: {
                             "do": self.description
                         },
-                        7: {
-                            "save": "saveGame"
+                        6: {
+                            "menu": "menu"
                         }
                     }
                 elif(pc.globalStatus["farmhouseCloset1 Box examined"] == True):
@@ -318,9 +306,8 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
                             "Go to the sitting room",
                             "Take the boots",
                             "Take the Medallion",
-                            "Look at your inventory",
                             "Look around the area",
-                            "Save the game"
+                            "Player Menu"
                         ]
 
                         self.selection = {
@@ -341,13 +328,10 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
                                 "takeItem": 3
                             },
                             5: {
-                                "pack": "You look into your backpack"
-                            },
-                            6: {
                                 "do": self.description
                             },
-                            7: {
-                                "save": "saveGame"
+                            6: {
+                                "menu": "menu"
                             }
                         }
 
@@ -356,9 +340,8 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
                             "Head back to the kitchen",
                             "Go to the sitting room",
                             "Take the boots",
-                            "Look at your inventory",
                             "Look around the area",
-                            "Save the game"
+                            "Player Menu"
                         ]
 
                         self.selection = {
@@ -375,13 +358,10 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
                                 "takeItem": 2
                             },
                             4: {
-                                "pack": "You look into your backpack"
-                            },
-                            5: {
                                 "do": self.description
                             },
-                            6: {
-                                "save": "saveGame"
+                            5: {
+                                "menu": "menu"
                             }
                         }
 
@@ -392,9 +372,8 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
                         "Head back to the kitchen",
                         "Go to the sitting room",
                         "Look in the box",
-                        "Look at your inventory",
                         "Look around the area",
-                        "Save the game"
+                        "Player Menu"
                     ]
 
                     self.selection = {
@@ -411,13 +390,10 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
                             "examine": "farmhouseCloset1 Box"
                         },
                         4: {
-                            "pack": "You look into your backpack"
-                        },
-                        5: {
                             "do": self.description
                         },
-                        6: {
-                            "save": "saveGame"
+                        5: {
+                            "menu": "menu"
                         }
                     }
                 elif(pc.globalStatus["farmhouseCloset1 Box examined"] == True):
@@ -426,9 +402,8 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
                             "Head back to the kitchen",
                             "Go to the sitting room",
                             "Take the Medallion",
-                            "Look at your inventory",
                             "Look around the area",
-                            "Save the game"
+                            "Player Menu"
                         ]
 
                         self.selection = {
@@ -445,22 +420,18 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
                                 "takeItem": 3
                             },
                             4: {
-                                "pack": "You look into your backpack"
-                            },
-                            5: {
                                 "do": self.description
                             },
-                            6: {
-                                "save": "saveGame"
+                            5: {
+                                "menu": "menu"
                             }
                         }
                     elif(pc.globalStatus["Emerald Medallion taken"] == True):
                         self.options = [
                             "Head back to the kitchen",
                             "Go to the sitting room",
-                            "Look at your inventory",
                             "Look around the area",
-                            "Save the game"
+                            "Player Menu"
                         ]
 
                         self.selection = {
@@ -473,13 +444,10 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
                                 "moveTo": 4
                             },
                             3: {
-                                "pack": "You look into your backpack"
-                            },
-                            4: {
                                 "do": self.description
                             },
-                            5: {
-                                "save": "saveGame"
+                            4: {
+                                "menu": "menu"
                             }
                         }
 
@@ -499,9 +467,8 @@ in the ash are tiny footprints...'''
                 self.options = [
                     "Climb the stairs",
                     "Head back to the kitchen",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -514,14 +481,11 @@ in the ash are tiny footprints...'''
                         "moveTo": 2
                     },
                     3: {
-                        "pack": "You look into your backpack"
-                    },
-                    4: {
                         "do": self.description,
                         "examine": "farmhouseSittingRoom"
                     },
-                    5: {
-                        "save": "saveGame"
+                    4: {
+                        "menu": "menu"
                     }
                 }
             else:
@@ -529,9 +493,8 @@ in the ash are tiny footprints...'''
                     "Climb the stairs",
                     "Head back to the kitchen",
                     "Examine the fireplace",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -553,14 +516,11 @@ the house.''',
                         "examine": "farmhouseSittingRoom Fireplace"
                     },
                     4: {
-                        "pack": "You look into your backpack"
-                    },
-                    5: {
                         "do": self.description,
                         "examine": "farmhouseSittingRoom"
                     },
-                    6: {
-                        "save": "saveGame"
+                    5: {
+                        "menu": "menu"
                     }
                 }
 
@@ -579,9 +539,8 @@ at the center.'''
             self.options = [
                 "Down to the ground floor sitting room",
                 "Up the stairs into the hallway",
-                "Look at your inventory",
                 "Look around the area",
-                "Save the game"
+                "Player Menu"
             ]
 
             self.selection = {
@@ -594,13 +553,10 @@ at the center.'''
                     "moveTo": 6
                 },
                 3: {
-                    "pack": "You look into your backpack"
-                },
-                4: {
                     "do": self.description
                 },
-                5: {
-                    "save": "saveGame"
+                4: {
+                    "menu": "menu"
                 }
             }
 
@@ -620,9 +576,8 @@ tails trailing behind.'''
                     "First door on the right",
                     "Second door on the left",
                     "Second door on the right",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -647,14 +602,11 @@ tails trailing behind.'''
                         "moveTo": 9
                     },
                     6: {
-                        "pack": "You look into your backpack"
-                    },
-                    7: {
                         "do": self.description,
                         "examine": "farmhouseHallway"
                     },
-                    8: {
-                        "save": "saveGame"
+                    7: {
+                        "menu": "menu"
                     }
                 }
             elif(pc.globalStatus["farmhouseHallway examined"] == True):
@@ -666,9 +618,8 @@ tails trailing behind.'''
                         "Second door on the left",
                         "Second door on the right",
                         "Open the chest and look inside",
-                        "Look at your inventory",
                         "Look around the area",
-                        "Save the game"
+                        "Player Menu"
                     ]
 
                     self.selection = {
@@ -698,14 +649,11 @@ looking book with a gem set in the cover.''',
                             "examine": "farmhouseHallway Chest"
                         },
                         7: {
-                            "pack": "You look into your backpack"
-                        },
-                        8: {
                             "do": self.description,
                             "examine": "farmhouseHallway"
                         },
-                        9: {
-                            "save": "saveGame"
+                        8: {
+                            "menu": "menu"
                         }
                     }
                 elif(pc.globalStatus["farmhouseHallway Chest examined"] == True):
@@ -717,9 +665,8 @@ looking book with a gem set in the cover.''',
                             "Second door on the left",
                             "Second door on the right",
                             "Take the book",
-                            "Look at your inventory",
                             "Look around the area",
-                            "Save the game"
+                            "Player Menu"
                         ]
 
                         self.selection = {
@@ -749,14 +696,11 @@ things.''',
                                 "takeItem": 4
                             },
                             7: {
-                                "pack": "You look into your backpack"
-                            },
-                            8: {
                                 "do": self.description,
                                 "examine": "farmhouseHallway"
                             },
-                            9: {
-                                "save": "saveGame"
+                            8: {
+                                "menu": "menu"
                             }
                         }
                     elif(pc.globalStatus["Spellbook taken"] == True):
@@ -766,9 +710,8 @@ things.''',
                             "First door on the right",
                             "Second door on the left",
                             "Second door on the right",
-                            "Look at your inventory",
                             "Look around the area",
-                            "Save the game"
+                            "Player Menu"
                         ]
 
                         self.selection = {
@@ -793,14 +736,11 @@ things.''',
                                 "moveTo": 9
                             },
                             6: {
-                                "pack": "You look into your backpack"
-                            },
-                            7: {
                                 "do": self.description,
                                 "examine": "farmhouseHallway"
                             },
-                            8: {
-                                "save": "saveGame"
+                            7: {
+                                "menu": "menu"
                             }
                         }
 
@@ -815,9 +755,8 @@ near the top, is a box of matches.'''
             if(pc.globalStatus["farmhouseCloset2 examined"] == False):
                 self.options = [
                     "Close the closet door",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -826,14 +765,11 @@ near the top, is a box of matches.'''
                         "moveTo": 6
                     },
                     2: {
-                        "pack": "You look into your backpack"
-                    },
-                    3: {
                         "do": self.description,
                         "examine": "farmhouseCloset2"
                     },
-                    4: {
-                        "save": "saveGame"
+                    3: {
+                        "menu": "menu"
                     }
                 }
             else:
@@ -841,9 +777,8 @@ near the top, is a box of matches.'''
                     self.options = [
                         "Close the closet door",
                         "Take the matches",
-                        "Look at your inventory",
                         "Look around the area",
-                        "Save the game"
+                        "Player Menu"
                     ]
 
                     self.selection = {
@@ -856,22 +791,18 @@ near the top, is a box of matches.'''
                             "takeItem": 15,
                         },
                         3: {
-                            "pack": "You look into your backpack"
-                        },
-                        4: {
                             "do": self.description,
                             "examine": "farmhouseCloset2"
                         },
-                        5: {
-                            "save": "saveGame"
+                        4: {
+                            "menu": "menu"
                         }
                     }
                 else:
                     self.options = [
                         "Close the closet door",
-                        "Look at your inventory",
                         "Look around the area",
-                        "Save the game"
+                        "Player Menu"
                     ]
 
                     self.selection = {
@@ -880,14 +811,11 @@ near the top, is a box of matches.'''
                             "moveTo": 6
                         },
                         2: {
-                            "pack": "You look into your backpack"
-                        },
-                        3: {
                             "do": self.description,
                             "examine": "farmhouseCloset2"
                         },
-                        4: {
-                            "save": "saveGame"
+                        3: {
+                            "menu": "menu"
                         }
                     }
 
@@ -903,9 +831,8 @@ and a brass telescope pointed out the window, toward the sky.'''
                 self.options = [
                     "Exit the room",
                     "Go to the study",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -918,14 +845,11 @@ and a brass telescope pointed out the window, toward the sky.'''
                         "moveTo": 10
                     },
                     3: {
-                        "pack": "You look into your backpack"
-                    },
-                    4: {
                         "do": self.description,
                         "examine": "farmhouseMasterBedroom"
                     },
-                    5: {
-                        "save": "saveGame"
+                    4: {
+                        "menu": "menu"
                     }
                 }
             else:
@@ -934,9 +858,8 @@ and a brass telescope pointed out the window, toward the sky.'''
                         "Exit the room",
                         "Go to the study",
                         "Peer through the telescope",
-                        "Look at your inventory",
                         "Look around the area",
-                        "Save the game"
+                        "Player Menu"
                     ]
 
                     self.selection = {
@@ -957,14 +880,11 @@ leaving a hole in the shape of a perfect circle!''',
                             "examine": "Telescope"
                         },
                         4: {
-                            "pack": "You look into your backpack"
-                        },
-                        5: {
                             "do": self.description,
                             "examine": "farmhouseMasterBedroom"
                         },
-                        6: {
-                            "save": "saveGame"
+                        5: {
+                            "menu": "menu"
                         }
                     }
                 elif(pc.globalStatus["Telescope examined"] == True):
@@ -972,9 +892,8 @@ leaving a hole in the shape of a perfect circle!''',
                         "Exit the room",
                         "Go to the study",
                         "Peer through the telescope",
-                        "Look at your inventory",
                         "Look around the area",
-                        "Save the game"
+                        "Player Menu"
                     ]
 
                     self.selection = {
@@ -992,14 +911,11 @@ amazing, but all you see are the clouds in the sky, drifting
 out of view.'''
                         },
                         4: {
-                            "pack": "You look into your backpack"
-                        },
-                        5: {
                             "do": self.description,
                             "examine": "farmhouseMasterBedroom"
                         },
-                        6: {
-                            "save": "saveGame"
+                        5: {
+                            "menu": "menu"
                         }
                     }
 
@@ -1019,9 +935,8 @@ it could be removed.'''
                 self.options = [
                     "Exit the room",
                     "Open the storage room",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -1034,14 +949,11 @@ it could be removed.'''
                         "moveTo": 11
                     },
                     3: {
-                        "pack": "You look into your backpack"
-                    },
-                    4: {
                         "do": self.description,
                         "examine": "farmhouseGuestBedroom"
                     },
-                    5: {
-                        "save": "saveGame"
+                    4: {
+                        "menu": "menu"
                     }
                 }
             else:
@@ -1049,9 +961,8 @@ it could be removed.'''
                     "Exit the bedroom",
                     "Open the Storage Room",
                     "Take the sword",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -1060,18 +971,15 @@ it could be removed.'''
                         "moveTo": 6
                     },
                     2: {
-                        "do": "",
+                        "do": "You enter the connected storage room",
                         "moveTo": 11
                     },
-                    4: {
-                        "pack": "You look into your backpack"
-                    },
-                    5: {
+                    3: {
                         "do": self.description,
                         "examine": "farmhouseGuestBedroom"
                     },
-                    6: {
-                        "save": "saveGame"
+                    4: {
+                        "menu": "menu"
                     }
                 }
 
@@ -1093,9 +1001,8 @@ written theories and worries.'''
                 self.options = [
                     "Return to the Bedroom",
                     "Read papers",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 if(pc.globalStatus["Match Lit"] == False and pc.globalStatus["Lantern Lit"] == False):
@@ -1108,14 +1015,11 @@ written theories and worries.'''
                             "do": "It is too dark to make out what the notes say clearly"
                         },
                         3: {
-                            "pack": "You look into your backpack"
-                        },
-                        4: {
                             "do": self.description,
                             "examine": "farmhouseStudy"
                         },
-                        5: {
-                            "save": "saveGame"
+                        4: {
+                            "menu": "menu"
                         }
                     }
                 elif(pc.globalStatus["Match Lit"] == True or pc.globalStatus["Lantern Lit"] == True):
@@ -1129,14 +1033,11 @@ written theories and worries.'''
                             "examine": "Study Notes"
                         },
                         3: {
-                            "pack": "You look into your backpack"
-                        },
-                        4: {
                             "do": self.description,
                             "examine": "farmhouseStudy"
                         },
-                        5: {
-                            "save": "saveGame"
+                        4: {
+                            "menu": "menu"
                         }
                     }
             elif(pc.globalStatus["farmhouseStudy examined"] == True):
@@ -1144,9 +1045,8 @@ written theories and worries.'''
                     "Return to the Bedroom",
                     "Pick up the Lantern",
                     "Read the papers",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
 
@@ -1164,14 +1064,11 @@ written theories and worries.'''
                             "do": "It is too dark to make out what the notes say clearly"
                         },
                         4: {
-                            "pack": "You look into your backpack"
-                        },
-                        5: {
                             "do": self.description,
                             "examine": "farmhouseStudy"
                         },
-                        6: {
-                            "save": "saveGame"
+                        5: {
+                            "menu": "menu"
                         }
                     }
                 elif(pc.globalStatus["Match Lit"] == True or pc.globalStatus["Lantern Lit"] == True):
@@ -1188,14 +1085,11 @@ written theories and worries.'''
                             "do": "You read the notes."
                         },
                         4: {
-                            "pack": "You look into your backpack"
-                        },
-                        5: {
                             "do": self.description,
                             "examine": "farmhouseStudy"
                         },
-                        6: {
-                            "save": "saveGame"
+                        5: {
+                            "menu": "menu"
                         }
                     }
 
@@ -1208,9 +1102,8 @@ written theories and worries.'''
                 self.options = [
                     "option",
                     "option",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -1223,14 +1116,11 @@ written theories and worries.'''
                         "moveTo": 0
                     },
                     3: {
-                        "pack": "You look into your backpack"
-                    },
-                    4: {
                         "do": self.description,
                         "examine": "farmhouseStorage"
                     },
-                    5: {
-                        "save": "saveGame"
+                    4: {
+                        "menu": "menu"
                     }
                 }
             else:
@@ -1238,9 +1128,8 @@ written theories and worries.'''
                     "option",
                     "option",
                     "option",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -1257,14 +1146,11 @@ written theories and worries.'''
                         "moveTo": 0
                     },
                     4: {
-                        "pack": "You look into your backpack"
-                    },
-                    5: {
                         "do": self.description,
                         "examine": "farmhouseStorage"
                     },
-                    6: {
-                        "save": "saveGame"
+                    5: {
+                        "menu": "menu"
                     }
                 }
 
@@ -1277,9 +1163,8 @@ written theories and worries.'''
                 self.options = [
                     "option",
                     "option",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -1292,14 +1177,11 @@ written theories and worries.'''
                         "moveTo": 0
                     },
                     3: {
-                        "pack": "You look into your backpack"
-                    },
-                    4: {
                         "do": self.description,
                         "examine": "farmhouseStairsCellar"
                     },
-                    5: {
-                        "save": "saveGame"
+                    4: {
+                        "menu": "menu"
                     }
                 }
             else:
@@ -1307,9 +1189,8 @@ written theories and worries.'''
                     "option",
                     "option",
                     "option",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -1326,14 +1207,11 @@ written theories and worries.'''
                         "moveTo": 0
                     },
                     4: {
-                        "pack": "You look into your backpack"
-                    },
-                    5: {
                         "do": self.description,
                         "examine": "farmhouseStairsCellar"
                     },
-                    6: {
-                        "save": "saveGame"
+                    5: {
+                        "menu": "menu"
                     }
                 }
 
@@ -1346,9 +1224,8 @@ written theories and worries.'''
                 self.options = [
                     "option",
                     "option",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -1361,14 +1238,11 @@ written theories and worries.'''
                         "moveTo": 0
                     },
                     3: {
-                        "pack": "You look into your backpack"
-                    },
-                    4: {
                         "do": self.description,
                         "examine": "farmhouseCellar"
                     },
-                    5: {
-                        "save": "saveGame"
+                    4: {
+                        "menu": "menu"
                     }
                 }
             else:
@@ -1376,9 +1250,8 @@ written theories and worries.'''
                     "option",
                     "option",
                     "option",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -1395,17 +1268,11 @@ written theories and worries.'''
                         "moveTo": 0
                     },
                     4: {
-                        "pack": "You look into your backpack"
-                    },
-                    5: {
                         "do": self.description,
-
-
-
                         "examine": "farmhouseCellar"
                     },
-                    6: {
-                        "save": "saveGame"
+                    5: {
+                        "menu": "menu"
                     }
                 }
 
