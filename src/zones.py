@@ -15,19 +15,27 @@ class Zone:
         ### DIRT ROAD ###------------------------------------------------------------------------ -|
 
         if (self.zoneID == 0):  # starting zone (dirtRoad)
-            self.summary = "You stand just off a dirt road. The road continues North and South. There is a farm to the West. Past the farmhouse can be seen a barn, and two small buildings."
-            self.description = "You are standing just off a dirt road which stretches onward for what seems like miles to the North and South. The sun hangs overhead, slowly dipping toward the horizon behind a steady farm. Several structures dot the property, including a house, a barn, and a couple ancilliary buildings. Behind you, across the road, a wide field of beans stretches far into the distance, abutting a misty thicket of wood. Tucked into the sparse grass, in the ditch just off the road, you spot a tiny hat."
+            self.summary = '''You stand just off a dirt road. The road continues North and
+South. There is a farm to the West. Past the farmhouse can be
+seen a barn, and two small buildings.'''
+            self.description = '''You are standing just off a dirt road which stretches onward
+for what seems like miles to the North and South. The sun hangs
+overhead, slowly dipping toward the horizon behind a steady farm.
+Several structures dot the property, including a house, a barn,
+and a couple ancilliary buildings. Behind you, across the road,
+a wide field of beans stretches far into the distance, abutting
+a misty thicket of wood. Tucked into the sparse grass, in the
+ditch just off the road, you spot a tiny hat.'''
             self.items.clear()
             self.items = [1]
-            if(pc.globalStatus["Fancy Hat taken"] == False):
+
+            if(pc.globalStatus["dirtRoad examined"] == False):
                 self.options = [
                     "Walk West toward the house",
                     "Walk North along the road",
                     "Walk South along the road",
-                    "Pickup the hat",
-                    "Look at your inventory",
                     "Look around the area",
-                    "Save the game"
+                    "Player Menu"
                 ]
 
                 self.selection = {
@@ -42,50 +50,75 @@ class Zone:
                         "do": "You walk down the road, but decide to head back",
                     },
                     4: {
-                        "do": "You pick up the small hat",
-                        "takeItem": 1
+                        "do": self.description,
+                        "examine": "dirtRoad"
                     },
                     5: {
-                        "pack": "You look into your backpack"
-                    },
-                    6: {
-                        "do": self.description
-                    },
-                    7: {
-                        "save": "saveGame"
+                        "menu": "menu"
                     }
                 }
-            elif(pc.globalStatus["Fancy Hat taken"] == True):
-                self.options = [
-                    "Walk West toward the house",
-                    "Walk North along the road",
-                    "Walk South along the road",
-                    "Look at your inventory",
-                    "Look around the area",
-                    "Save the game"
-                ]
+            else:
+                if(pc.globalStatus["Fancy Hat taken"] == False):
+                    self.options = [
+                        "Walk West toward the house",
+                        "Walk North along the road",
+                        "Walk South along the road",
+                        "Pickup the hat",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
 
-                self.selection = {
-                    1: {
-                        "do": "You walk toward the house",
-                        "moveTo": 1,
-                    },
-                    2: {
-                        "do": "You walk up the road, but decide to head back",
-                    },
-                    3: {
-                        "do": "You walk down the road, but decide to head back",
-                    },
-                    4: {
-                        "pack": "You look into your backpack"
-                    },
-                    5: {
-                        "do": self.description
-                    },
-                    6: {
-                        "save": "saveGame"
+                    self.selection = {
+                        1: {
+                            "do": "You walk toward the house",
+                            "moveTo": 1,
+                        },
+                        2: {
+                            "do": "You walk up the road, but decide to head back",
+                        },
+                        3: {
+                            "do": "You walk down the road, but decide to head back",
+                        },
+                        4: {
+                            "do": "You pick up the small hat",
+                            "takeItem": 1
+                        },
+                        5: {
+                            "do": self.description,
+                            "examine": "dirtRoad"
+                        },
+                        6: {
+                            "menu": "menu"
+                        }
                     }
-                }
+                elif(pc.globalStatus["Fancy Hat taken"] == True):
+                    self.options = [
+                        "Walk West toward the house",
+                        "Walk North along the road",
+                        "Walk South along the road",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You walk toward the house",
+                            "moveTo": 1,
+                        },
+                        2: {
+                            "do": "You walk up the road, but decide to head back",
+                        },
+                        3: {
+                            "do": "You walk down the road, but decide to head back",
+                        },
+                        4: {
+                            "do": self.description,
+                            "examine": "dirtRoad"
+                        },
+                        5: {
+                            "menu": "menu"
+                        }
+                    }
 
 
 
@@ -97,16 +130,27 @@ class Zone:
 Behind the farm is a prairie with several structures including
 a well, an outhouse, a shed, and a large barn. On the far North
 of the property is a large cornfield.'''
-            self.description = "A looming log farmhouse, nearly a two-story cabin, complete with thatched gable roofing, stands firm in front of you, here in the center of this farm property. The sun threatens to set behind it, inching closer every moment. Behind the house, a smattering of structures dot the property: A stone well close by; a farm tool shed, a cramped looking outhouse, and a large barn which dwarfs the house itself, even from so far away. The gently rolling landscape surrounding the house is comprised of wheats and grasses, with a couple small plots of beans, cabbages, and other low crops. In the distance a scarecrow watches plaintively over the crops. The Northern edge of the property fades into a dense and tall corn field. The whole property is surrounded on the outskirts by darkened and misty woods."
+            self.description = '''A looming log farmhouse, nearly a two-story cabin, complete
+with thatched gable roofing, stands firm in front of you, here
+in the center of this farm property. The sun threatens to set
+behind it, inching closer every moment. Behind the house, a
+smattering of structures dot the property: A stone well close by;
+a farm tool shed, a cramped looking outhouse, and a large barn
+which dwarfs the house itself, even from so far away. The gently
+rolling landscape surrounding the house is comprised of wheats
+and grasses, with a couple small plots of beans, cabbages, and
+other low crops. In the distance a scarecrow watches plaintively
+over the crops. The Northern edge of the property fades into a
+dense and tall corn field. The whole property is surrounded on
+the outskirts by darkened and misty woods.'''
             self.items.clear()
             self.options = [
                 "Enter the house",
                 "Walk into the backyard",
                 "Travel to the corn field",
                 "Return to the road",
-                "Look at your inventory",
                 "Look around the area",
-                "Save the game"
+                "Player Menu"
             ]
 
             self.selection = {
@@ -127,19 +171,23 @@ of the property is a large cornfield.'''
                     "moveTo": 0
                 },
                 5: {
-                    "pack": "You look into your backpack, remembering your note"
+                    "do": self.description,
+                    "examine": "dirtRoad"
                 },
                 6: {
-                    "do": self.description
-                },
-                7: {
-                    "save": "saveGame"
+                    "menu": "menu"
                 }
             }
 
         elif (self.zoneID == 2):  # inside farmhouse - kitchen
-            self.summary = "The house is dark. You stand in the kitchen, which also serves as a dining room. There is a closet to your right, a great room behind a wall straight ahead, and a staircase at the far back of this floor leading up."
-            self.description = "Only the dim evening light spills in from the windows on the West side of the wall. It appears that this place was left in a hurry. The tell-tale signs of a struggle can be seen about the room. There are unlit candles on the table and around the room."
+            self.summary = '''The house is dark. You stand in the kitchen, which also serves as
+a dining room. There is a closet to your right, a great room
+behind a wall straight ahead, and a staircase at the far back
+of this floor leading up.'''
+            self.description = '''Only the dim evening light spills in from the windows on the
+West side of the wall. It appears that this place was left in
+a hurry. The tell-tale signs of a struggle can be seen about the
+room. There are unlit candles on the table and around the room.'''
             self.items.clear()
 
             if(pc.globalStatus["farmhouseKitchen examined"] == False):
@@ -166,16 +214,17 @@ of the property is a large cornfield.'''
                         "moveTo": 1
                     },
                     4: {
-                        "pack": "You look into your backpack, remembering your note"
+                        "pack": "You look into your backpack"
                     },
                     5: {
-                        "do": self.description
+                        "do": self.description,
+                        "examine": "farmhouseKitchen"
                     },
                     6: {
                         "save": "saveGame"
                     }
                 }
-            else:
+            elif(pc.globalStatus["farmhouseKitchen examined"] == True):
                 self.options = [
                     "Into the sitting room",
                     "Open the closet",
@@ -203,7 +252,7 @@ of the property is a large cornfield.'''
                         "do": "You look around the room, examining the chaos and bedlam. Silverware and dishes lie scattered haphazardly. A tea kettle is overturned on the floor, a small puddle of brown tea gathered around it. It is no longer warm. A fight happened here. Is Alys okay? You can see the footprints came from the sitting room."
                     },
                     5: {
-                        "pack": "You look into your backpack, remembering your note"
+                        "pack": "You look into your backpack"
                     },
                     6: {
                         "do": self.description
@@ -215,8 +264,12 @@ of the property is a large cornfield.'''
 
 
         elif (self.zoneID == 3):  # farmhouseCloset1
-            self.summary = "A dusty front closet, muddy boots on the ground, a couple thick coats, and some overalls."
-            self.description = "A wooden dowel supports a handful of coats, a pair of hide overalls, and a nice shawl tucked behind the rest of the clothes. There is a shelf, upon which rests a small box. On the floor are two pairs of muddy boots. One pair looks like it could fit you."
+            self.summary = '''A dusty front closet, muddy boots on the ground, a couple thick
+coats, and some overalls.'''
+            self.description = '''A wooden dowel supports a handful of coats, a pair of hide
+overalls, and a nice shawl tucked behind the rest of the clothes.
+There is a shelf, upon which rests a small box. On the floor are
+two pairs of muddy boots. One pair looks like it could fit you.'''
             self.items.clear()
             self.items = [2, 3]
 
@@ -241,7 +294,7 @@ of the property is a large cornfield.'''
                             "moveTo": 4
                         },
                         3: {
-                            "do": "You grab the boots and put them on, dried mud is crusted on the sides, but they're comfortable",
+                            "do": "You take the pair of boots you think should fit you, scraping off some of the mud.",
                             "takeItem": 2
                         },
                         4: {
@@ -249,7 +302,7 @@ of the property is a large cornfield.'''
                             "examine": "farmhouseCloset1 Box"
                         },
                         5: {
-                            "pack": "You look into your backpack, remembering your note"
+                            "pack": "You look into your backpack"
                         },
                         6: {
                             "do": self.description
@@ -288,7 +341,7 @@ of the property is a large cornfield.'''
                                 "takeItem": 3
                             },
                             5: {
-                                "pack": "You look into your backpack, remembering your note"
+                                "pack": "You look into your backpack"
                             },
                             6: {
                                 "do": self.description
@@ -322,7 +375,7 @@ of the property is a large cornfield.'''
                                 "takeItem": 2
                             },
                             4: {
-                                "pack": "You look into your backpack, remembering your note"
+                                "pack": "You look into your backpack"
                             },
                             5: {
                                 "do": self.description
@@ -358,7 +411,7 @@ of the property is a large cornfield.'''
                             "examine": "farmhouseCloset1 Box"
                         },
                         4: {
-                            "pack": "You look into your backpack, remembering your note"
+                            "pack": "You look into your backpack"
                         },
                         5: {
                             "do": self.description
@@ -392,7 +445,7 @@ of the property is a large cornfield.'''
                                 "takeItem": 3
                             },
                             4: {
-                                "pack": "You look into your backpack, remembering your note"
+                                "pack": "You look into your backpack"
                             },
                             5: {
                                 "do": self.description
@@ -420,7 +473,7 @@ of the property is a large cornfield.'''
                                 "moveTo": 4
                             },
                             3: {
-                                "pack": "You look into your backpack, remembering your note"
+                                "pack": "You look into your backpack"
                             },
                             4: {
                                 "do": self.description
@@ -432,8 +485,14 @@ of the property is a large cornfield.'''
 
 
         elif (self.zoneID == 4):  # farmhouseSittingRoom
-            self.summary = "This sitting room features two chairs positioned before a stout fireplace, blackened with use. Behind the chairs, a staircase climbs to the second floor. The kitchen and closet aren't far away."
-            self.description = "A pair of comfortable looking chairs face a fireplace, taking up the body of the room. Around the edges are a basket with some books. The fireplace seems to have exploded outward, as ash is scattered in a burst toward the chairs. Upon closer inspection, in the ash are tiny footprints..."
+            self.summary = '''This sitting room features two chairs positioned before a stout
+fireplace, blackened with use. Behind the chairs, a staircase
+climbs to the second floor. The kitchen and closet aren't far away.'''
+            self.description = '''A pair of comfortable looking chairs face a fireplace, taking up
+the body of the room. Around the edges are a basket with some
+books. The fireplace seems to have exploded outward, as ash is
+scattered in a burst toward the chairs. Upon closer inspection,
+in the ash are tiny footprints...'''
             self.items.clear()
 
             if(pc.globalStatus["farmhouseSittingRoom examined"] == False):
@@ -455,7 +514,7 @@ of the property is a large cornfield.'''
                         "moveTo": 2
                     },
                     3: {
-                        "pack": "You look into your backpack, remembering your note"
+                        "pack": "You look into your backpack"
                     },
                     4: {
                         "do": self.description,
@@ -485,11 +544,16 @@ of the property is a large cornfield.'''
                         "moveTo": 2
                     },
                     3: {
-                        "do": "Ash seems to have spewn from the fireplace outward, and has coated the floor and even the bottoms of the chairs. Little clawed footprints can be made out in the ash, coming from the fireplace, and leading out of the sitting room. Following the tracks, you can see multiple sets, heading toward the kitchen at the front of the house.",
+                        "do": '''Ash seems to have spewn from the fireplace outward, and has coated
+the floor and even the bottoms of the chairs. Little clawed
+footprints can be made out in the ash, coming from the fireplace,
+and leading out of the sitting room. Following the tracks, you
+can see multiple sets, heading toward the kitchen at the front of
+the house.''',
                         "examine": "farmhouseSittingRoom Fireplace"
                     },
                     4: {
-                        "pack": "You look into your backpack, remembering your note"
+                        "pack": "You look into your backpack"
                     },
                     5: {
                         "do": self.description,
@@ -501,8 +565,16 @@ of the property is a large cornfield.'''
                 }
 
         elif (self.zoneID == 5):  # farmhouseStairsInside
-            self.summary = "These simple stairs spiral up counter-clockwise, leading between the ground floor and upper floor."
-            self.description = "Solid wooden boards fan out from a sturdy central support pillar which runs the height of the house, from ground to roof. The stairs creak gently. The back wall is decorated with a handful of portraits: A beautiful woman you know to be Alys, a young man who must be her son, and another man who you remember as her late husband. A crest of the Astranos family featuring thirteen stars around a circular labyrinth design with a heart at the center."
+            self.summary = '''These simple stairs spiral up counter-clockwise, leading between the
+ground floor and upper floor.'''
+            self.description = '''Solid wooden boards fan out from a sturdy central support pillar
+which runs the height of the house, from ground to roof. The
+stairs creak gently. The back wall is decorated with a handful
+of portraits: A beautiful woman you know to be Alys, a young
+man who must be her son, and another man who you remember as
+her late husband. A crest of the Astranos family featuring
+thirteen stars around a circular labyrinth design with a heart
+at the center.'''
             self.items.clear()
             self.options = [
                 "Down to the ground floor sitting room",
@@ -522,7 +594,7 @@ of the property is a large cornfield.'''
                     "moveTo": 6
                 },
                 3: {
-                    "pack": "You look into your backpack, remembering your note"
+                    "pack": "You look into your backpack"
                 },
                 4: {
                     "do": self.description
@@ -534,7 +606,10 @@ of the property is a large cornfield.'''
 
         elif (self.zoneID == 6):  # farmhouseHallway
             self.summary = "A hallway with two doors on either side."
-            self.description = "This hallway is quite plain, with two doors on either side and a large chest at the far end, resting beneath a stained glass window depicting a scene of meteors gliding downward at an angle, fiery tails trailing behind."
+            self.description = '''This hallway is quite plain, with two doors on either side and a
+large chest at the far end, resting beneath a stained glass window
+depicting a scene of meteors gliding downward at an angle, fiery
+tails trailing behind.'''
             self.items.clear()
             self.items = [4]
 
@@ -572,7 +647,7 @@ of the property is a large cornfield.'''
                         "moveTo": 9
                     },
                     6: {
-                        "pack": "You look into your backpack, remembering your note"
+                        "pack": "You look into your backpack"
                     },
                     7: {
                         "do": self.description,
@@ -618,11 +693,12 @@ of the property is a large cornfield.'''
                             "moveTo": 9
                         },
                         6: {
-                            "do": "You open up the large chest and peek inside. There is an ornate looking book with a gem set in the cover.",
+                            "do": '''You open up the large chest and peek inside. There is an ornate
+looking book with a gem set in the cover.''',
                             "examine": "farmhouseHallway Chest"
                         },
                         7: {
-                            "pack": "You look into your backpack, remembering your note"
+                            "pack": "You look into your backpack"
                         },
                         8: {
                             "do": self.description,
@@ -668,11 +744,12 @@ of the property is a large cornfield.'''
                                 "moveTo": 9
                             },
                             6: {
-                                "do": "You take the arcane looking tome, and place it gently with your things.",
+                                "do": '''You take the arcane looking tome, and place it gently with your
+things.''',
                                 "takeItem": 4
                             },
                             7: {
-                                "pack": "You look into your backpack, remembering your note"
+                                "pack": "You look into your backpack"
                             },
                             8: {
                                 "do": self.description,
@@ -716,7 +793,7 @@ of the property is a large cornfield.'''
                                 "moveTo": 9
                             },
                             6: {
-                                "pack": "You look into your backpack, remembering your note"
+                                "pack": "You look into your backpack"
                             },
                             7: {
                                 "do": self.description,
@@ -728,19 +805,609 @@ of the property is a large cornfield.'''
                         }
 
         elif (self.zoneID == 7):  # farmhouseCloset2
-            print(f"zone {zoneID}")
+            self.summary = "A simple closet, full of clothes, sheets, and other odds and ends."
+            self.description = '''This closet is full of linens, shirts and trousers, and some
+extra blankets Nothing terrible interesting. On a small shelf
+near the top, is a box of matches.'''
+            self.items.clear()
+            self.items = [15]
+
+            if(pc.globalStatus["farmhouseCloset2 examined"] == False):
+                self.options = [
+                    "Close the closet door",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You close the closet door and head back to the hall",
+                        "moveTo": 6
+                    },
+                    2: {
+                        "pack": "You look into your backpack"
+                    },
+                    3: {
+                        "do": self.description,
+                        "examine": "farmhouseCloset2"
+                    },
+                    4: {
+                        "save": "saveGame"
+                    }
+                }
+            else:
+                if(pc.globalStatus["Matches taken"] == False):
+                    self.options = [
+                        "Close the closet door",
+                        "Take the matches",
+                        "Look at your inventory",
+                        "Look around the area",
+                        "Save the game"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You close the closet door and head back to the hall",
+                            "moveTo": 6
+                        },
+                        2: {
+                            "do": "You take the box of matches",
+                            "takeItem": 15,
+                        },
+                        3: {
+                            "pack": "You look into your backpack"
+                        },
+                        4: {
+                            "do": self.description,
+                            "examine": "farmhouseCloset2"
+                        },
+                        5: {
+                            "save": "saveGame"
+                        }
+                    }
+                else:
+                    self.options = [
+                        "Close the closet door",
+                        "Look at your inventory",
+                        "Look around the area",
+                        "Save the game"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You close the closet door and head back to the hall",
+                            "moveTo": 6
+                        },
+                        2: {
+                            "pack": "You look into your backpack"
+                        },
+                        3: {
+                            "do": self.description,
+                            "examine": "farmhouseCloset2"
+                        },
+                        4: {
+                            "save": "saveGame"
+                        }
+                    }
+
         elif (self.zoneID == 8):  # farmhouseMasterBedroom
-            print(f"zone {zoneID}")
+            self.summary = "A large bedroom, with a wide bed on an ornately carved frame."
+            self.description = '''The room is cozy and modest, but not small. The bed is clearly
+well taken care of, and of fine craftsmanship. About the room are
+a handful of odds and ends, including some books upon a shelf,
+and a brass telescope pointed out the window, toward the sky.'''
+            self.items.clear()
+
+            if(pc.globalStatus["farmhouseMasterBedroom examined"] == False):
+                self.options = [
+                    "Exit the room",
+                    "Go to the study",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You leave the room and return to the hall",
+                        "moveTo": 6
+                    },
+                    2: {
+                        "do": "You open the door on the far end, and enter the study",
+                        "moveTo": 10
+                    },
+                    3: {
+                        "pack": "You look into your backpack"
+                    },
+                    4: {
+                        "do": self.description,
+                        "examine": "farmhouseMasterBedroom"
+                    },
+                    5: {
+                        "save": "saveGame"
+                    }
+                }
+            else:
+                if(pc.globalStatus["Telescope examined"] == False):
+                    self.options = [
+                        "Exit the room",
+                        "Go to the study",
+                        "Peer through the telescope",
+                        "Look at your inventory",
+                        "Look around the area",
+                        "Save the game"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "Exit the room",
+                            "moveTo": 6
+                        },
+                        2: {
+                            "do": "Open the door on the far end",
+                            "moveTo": 10
+                        },
+                        3: {
+                            "do": '''You scoot over to the telescope and look through it. It is
+pointed at the blue sky. Gentle clouds roll by. As you gaze
+through the glass, you see what appears to be a ball of green
+fire cruise smoothly across the scene, piercing a cloud and
+leaving a hole in the shape of a perfect circle!''',
+                            "examine": "Telescope"
+                        },
+                        4: {
+                            "pack": "You look into your backpack"
+                        },
+                        5: {
+                            "do": self.description,
+                            "examine": "farmhouseMasterBedroom"
+                        },
+                        6: {
+                            "save": "saveGame"
+                        }
+                    }
+                elif(pc.globalStatus["Telescope examined"] == True):
+                    self.options = [
+                        "Exit the room",
+                        "Go to the study",
+                        "Peer through the telescope",
+                        "Look at your inventory",
+                        "Look around the area",
+                        "Save the game"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "Exit the room",
+                            "moveTo": 6
+                        },
+                        2: {
+                            "do": "Open the door on the far end",
+                            "moveTo": 10
+                        },
+                        3: {
+                            "do": '''You look through the brass tube again, hoping to see something
+amazing, but all you see are the clouds in the sky, drifting
+out of view.'''
+                        },
+                        4: {
+                            "pack": "You look into your backpack"
+                        },
+                        5: {
+                            "do": self.description,
+                            "examine": "farmhouseMasterBedroom"
+                        },
+                        6: {
+                            "save": "saveGame"
+                        }
+                    }
+
         elif (self.zoneID == 9):  # farmhouseGuestBedroom
-            print(f"zone {zoneID}")
+            self.summary = "A small bedroom, decorated with a variety of hand drawn sketches."
+            self.description = '''This bedroom is smaller than the one across the hall, and seems
+like it might belong to Alys' son, Dareth. The walls are covered
+in pages of parchment, each with different unique drawings made
+in what appear to be charcoal in some cases, and ink in others.
+The back wall is one large mural, drawn across a grid of pages
+that covers the entire wall, including behind the bed. Above the
+bed is a sword, mounted to a plaque on the wall. It looks like
+it could be removed.'''
+            self.items.clear()
+
+            if(pc.globalStatus["farmhouseGuestBedroom examined"] == False):
+                self.options = [
+                    "Exit the room",
+                    "Open the storage room",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You return to the hallway",
+                        "moveTo": 6
+                    },
+                    2: {
+                        "do": "You enter the connected storage room",
+                        "moveTo": 11
+                    },
+                    3: {
+                        "pack": "You look into your backpack"
+                    },
+                    4: {
+                        "do": self.description,
+                        "examine": "farmhouseGuestBedroom"
+                    },
+                    5: {
+                        "save": "saveGame"
+                    }
+                }
+            else:
+                self.options = [
+                    "Exit the bedroom",
+                    "Open the Storage Room",
+                    "Take the sword",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You leave the bedroom and return to the hallway",
+                        "moveTo": 6
+                    },
+                    2: {
+                        "do": "",
+                        "moveTo": 11
+                    },
+                    4: {
+                        "pack": "You look into your backpack"
+                    },
+                    5: {
+                        "do": self.description,
+                        "examine": "farmhouseGuestBedroom"
+                    },
+                    6: {
+                        "save": "saveGame"
+                    }
+                }
+
         elif (self.zoneID == 10):  # farmhouseStudy
-            print(f"zone {zoneID}")
+            self.summary = '''The centerpiece of this study is its wide desk. The area is poorly
+lit by a thin window above the desk. Papers are littered all over
+the desk, and some on the floor.'''
+            self.description = '''This cramped space seems well-used. A wide, but shallow desk
+abuts the wooden wall, and the room is dimly lit by the evening
+sky through a thin window above the desk. Two unlit candles in
+sconces flank the door on either side. On top of the desk is a
+black iron lantern with glass cage. You can also see that notes
+are scattered about. Each contains formulae, sketches, and hastily
+written theories and worries.'''
+            self.items.clear()
+            self.items = [7]
+
+            if(pc.globalStatus["farmhouseStudy examined"] == False):
+                self.options = [
+                    "Return to the Bedroom",
+                    "Read papers",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
+
+                if(pc.globalStatus["Match Lit"] == False and pc.globalStatus["Lantern Lit"] == False):
+                    self.selection = {
+                        1: {
+                            "do": "You leave the study, closing the door behind you.",
+                            "moveTo": 8
+                        },
+                        2: {
+                            "do": "It is too dark to make out what the notes say clearly"
+                        },
+                        3: {
+                            "pack": "You look into your backpack"
+                        },
+                        4: {
+                            "do": self.description,
+                            "examine": "farmhouseStudy"
+                        },
+                        5: {
+                            "save": "saveGame"
+                        }
+                    }
+                elif(pc.globalStatus["Match Lit"] == True or pc.globalStatus["Lantern Lit"] == True):
+                    self.selection = {
+                        1: {
+                            "do": "You leave the study, closing the door behind you.",
+                            "moveTo": 8
+                        },
+                        2: {
+                            "do": "You read the notes.",
+                            "examine": "Study Notes"
+                        },
+                        3: {
+                            "pack": "You look into your backpack"
+                        },
+                        4: {
+                            "do": self.description,
+                            "examine": "farmhouseStudy"
+                        },
+                        5: {
+                            "save": "saveGame"
+                        }
+                    }
+            elif(pc.globalStatus["farmhouseStudy examined"] == True):
+                self.options = [
+                    "Return to the Bedroom",
+                    "Pick up the Lantern",
+                    "Read the papers",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
+
+
+                if(pc.globalStatus["Match Lit"] == False and pc.globalStatus["Lantern Lit"] == False):
+                    self.selection = {
+                        1: {
+                            "do": "You leave the study, closing the door behind you.",
+                            "moveTo": 8
+                        },
+                        2: {
+                            "do": "You pick up the iron Lantern, its wick still in good shape.",
+                            "takeItem": 7
+                        },
+                        3: {
+                            "do": "It is too dark to make out what the notes say clearly"
+                        },
+                        4: {
+                            "pack": "You look into your backpack"
+                        },
+                        5: {
+                            "do": self.description,
+                            "examine": "farmhouseStudy"
+                        },
+                        6: {
+                            "save": "saveGame"
+                        }
+                    }
+                elif(pc.globalStatus["Match Lit"] == True or pc.globalStatus["Lantern Lit"] == True):
+                    self.selection = {
+                        1: {
+                            "do": "You leave the study, closing the door behind you.",
+                            "moveTo": 8
+                        },
+                        2: {
+                            "do": "You pick up the iron Lantern, its wick still in good shape.",
+                            "takeItem": 7
+                        },
+                        3: {
+                            "do": "You read the notes."
+                        },
+                        4: {
+                            "pack": "You look into your backpack"
+                        },
+                        5: {
+                            "do": self.description,
+                            "examine": "farmhouseStudy"
+                        },
+                        6: {
+                            "save": "saveGame"
+                        }
+                    }
+
         elif (self.zoneID == 11):  # farmhouseStorage
-            print(f"zone {zoneID}")
+            self.summary = "."
+            self.description = '''.'''
+            self.items.clear()
+
+            if(pc.globalStatus["farmhouseStorage examined"] == False):
+                self.options = [
+                    "option",
+                    "option",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "",
+                        "moveTo": 0
+                    },
+                    2: {
+                        "do": "",
+                        "moveTo": 0
+                    },
+                    3: {
+                        "pack": "You look into your backpack"
+                    },
+                    4: {
+                        "do": self.description,
+                        "examine": "farmhouseStorage"
+                    },
+                    5: {
+                        "save": "saveGame"
+                    }
+                }
+            else:
+                self.options = [
+                    "option",
+                    "option",
+                    "option",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "",
+                        "moveTo": 0
+                    },
+                    2: {
+                        "do": "",
+                        "moveTo": 0
+                    },
+                    3: {
+                        "do": "",
+                        "moveTo": 0
+                    },
+                    4: {
+                        "pack": "You look into your backpack"
+                    },
+                    5: {
+                        "do": self.description,
+                        "examine": "farmhouseStorage"
+                    },
+                    6: {
+                        "save": "saveGame"
+                    }
+                }
+
         elif (self.zoneID == 12):  # farmhouseStairsCellar
-            print(f"zone {zoneID}")
+            self.summary = "."
+            self.description = '''.'''
+            self.items.clear()
+
+            if(pc.globalStatus["farmhouseStairsCellar examined"] == False):
+                self.options = [
+                    "option",
+                    "option",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "",
+                        "moveTo": 0
+                    },
+                    2: {
+                        "do": "",
+                        "moveTo": 0
+                    },
+                    3: {
+                        "pack": "You look into your backpack"
+                    },
+                    4: {
+                        "do": self.description,
+                        "examine": "farmhouseStairsCellar"
+                    },
+                    5: {
+                        "save": "saveGame"
+                    }
+                }
+            else:
+                self.options = [
+                    "option",
+                    "option",
+                    "option",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "",
+                        "moveTo": 0
+                    },
+                    2: {
+                        "do": "",
+                        "moveTo": 0
+                    },
+                    3: {
+                        "do": "",
+                        "moveTo": 0
+                    },
+                    4: {
+                        "pack": "You look into your backpack"
+                    },
+                    5: {
+                        "do": self.description,
+                        "examine": "farmhouseStairsCellar"
+                    },
+                    6: {
+                        "save": "saveGame"
+                    }
+                }
+
         elif (self.zoneID == 13):  # farmhouseCellar
-            print(f"zone {zoneID}")
+            self.summary = "."
+            self.description = '''.'''
+            self.items.clear()
+
+            if(pc.globalStatus["farmhouseCellar examined"] == False):
+                self.options = [
+                    "option",
+                    "option",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "",
+                        "moveTo": 0
+                    },
+                    2: {
+                        "do": "",
+                        "moveTo": 0
+                    },
+                    3: {
+                        "pack": "You look into your backpack"
+                    },
+                    4: {
+                        "do": self.description,
+                        "examine": "farmhouseCellar"
+                    },
+                    5: {
+                        "save": "saveGame"
+                    }
+                }
+            else:
+                self.options = [
+                    "option",
+                    "option",
+                    "option",
+                    "Look at your inventory",
+                    "Look around the area",
+                    "Save the game"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "",
+                        "moveTo": 0
+                    },
+                    2: {
+                        "do": "",
+                        "moveTo": 0
+                    },
+                    3: {
+                        "do": "",
+                        "moveTo": 0
+                    },
+                    4: {
+                        "pack": "You look into your backpack"
+                    },
+                    5: {
+                        "do": self.description,
+
+
+
+                        "examine": "farmhouseCellar"
+                    },
+                    6: {
+                        "save": "saveGame"
+                    }
+                }
 
 
 

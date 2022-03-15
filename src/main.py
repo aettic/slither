@@ -72,6 +72,8 @@ def doSomething(pc):
                     print("Which item do you want to use?")
                     itemChoice = int(input())
                     pc.useItem(itemChoice)
+                elif(key == "menu"):
+                    pc.menu()
                 else:
                     print("Invalid selection.")
                     break
@@ -148,14 +150,18 @@ def gameloop(pc):
 
         if(pc.zone.zoneID == 0):  # dirt road
             if (pc.globalStatus["Game Start"] == True):
-                print("\nGAME START\n")
+                print("\n\t# Press ENTER to start\n")
+                input()
 
                 print('''Years ago, when you lived in the town of Almyth, there was a
-strong sense of community. In many ways, it felt like you
+Strong sense of community. In many ways, it felt like you
 mattered to the people you called friends, the people you called
 neighbors. They were family. After you moved out, heading toward
 bigger and better things in the city of Cormandyr, there was a
 sense of betrayal.\n''')
+
+                print("\t# Press ENTER to continue")
+                input()
 
                 print('''Yes, certainly a sense that your trust had been abused by
 those who you called family, who no longer kept in touch. But
@@ -165,16 +171,20 @@ with - and mostly because she always returned your notes,
 always... - was Alys Astranos. So named because of her family's
 ties to staring up at the stars, and wondering.\n''')
 
+                print("\t# Press ENTER to continue")
+                input()
+
                 print('''Alys and her son worked their family's last farm, her
-parents had both gone years ago, and the two of them were
-all that remained of their Night-intoxicated family. She
+parents had both gone years ago, and her husband had left for
+the war, but has not returned and the two of them were
+all that remained of their nightsky-infatuated family. She
 made a point to always return your letters, and in some
 ways you felt it was because she was growing lonely. Her
 son, Dareth, was a good lad, but surely you'd get sick of
-anyone you were stuck with. In one of her notes a year
-ago, Alys informed you that the boy's father enlisted and
-went galavanting off with other men with swords and too
-much gumption. He never returned.\n''')
+anyone you were stuck with.\n''')
+
+                print("\t# Press ENTER to continue")
+                input()
 
                 print('''About a week ago, you received the most recent letter from
 Alys, one that you'd almost hope hadn't been written. In it,
@@ -183,16 +193,33 @@ out to the countryside and visit her. She had so much to show
 you! She was on the verge of unlocking some kind of great
 discovery, and she wanted to share this with you, her friend.\n''')
 
+                print("\t# Press ENTER to continue")
+                input()
+
                 print('''With some hesitation, but a sense of wonder about you, you
 organized to take a carriage out of the city to her farm in
 the countryside. The carriage ride was bumpy after a while as
 the even cobbled roads unfurled into haphazard dirt trails
 beaten by wagon tracks and horseshoes.\n''')
 
+                print("\t# Press ENTER to continue")
+                input()
+
+                print('''After a while, your driver yells back to you that you've
+arrived, and nestled on the side of the road you cannot miss
+the quaint farmstead that lies before you.\n''')
+
+                print("\t# Press ENTER to continue")
+                input()
+
                 print('''The carriage drops you off, and the dust drifts thoughtlessly
 into the air leaving a stream of beige behind the team of
 horses and their dark wagon as the driver leaves you here
 alone. It is quiet.\n''')
+
+                print("\t# Press ENTER to continue")
+                input()
+
             else:
                 print("The road still lies barren and empty. The dust has settled.")
             dirtRoad(pc)
@@ -219,7 +246,7 @@ tucked away in your backpack.''')
         elif(pc.zone.zoneID == 2):
             if (pc.globalStatus["farmhouseKitchen first time"] == True):
                 print('''The door creaks open as you enter the kitchen of this home. The
-dry light of evening gently illuminating a diner table that is
+dry light of evening gently illuminating a dinner table that is
 still set, plates with only scraps of food left, silverware
 scattered around, and even on the ground. Past the dining room
 table is a sitting room, and to the right is a closet door. The
@@ -231,9 +258,9 @@ far back of this floor is home to a staircase heading upstairs.''')
 
         elif(pc.zone.zoneID == 3):
             if (pc.globalStatus["farmhouseCloset1 first time"] == True):
-                print('''You pull open the closet door, which squeaks with rusty hinges.
-Immediately, you spot two pairs of boots on the ground, mud now
-dried onto the wooden boards underneath.''')
+                print('''The door squeaks with rusty hinges. Immediately, you spot two
+pairs of boots on the ground, mud now dried onto the wooden
+boards underneath.''')
             else:
                 print(pc.zone.summary)
             farmhouseCloset1(pc)
@@ -264,10 +291,10 @@ the second floor.''')
 
         elif(pc.zone.zoneID == 6):
             if (pc.globalStatus["farmhouseHallway first time"] == True):
-                print('''Light spills in from the wide rippled windows, motes of dust
-floating through the hall. Two doors on either side of the
-hallway. The first door on the left is open, and it seems
-to be a bedroom.''')
+                print('''Light filters in from stained glass windows at either end of the
+hall, colored by the glass, motes of dust floating through
+the hall. Two doors on either side of the hallway. The first
+door on the left is open, and it seems to be a bedroom.''')
             else:
                 print(pc.zone.summary)
             farmhouseHallway(pc)
@@ -284,7 +311,8 @@ to be a bedroom.''')
         elif(pc.zone.zoneID == 8):
             if (pc.globalStatus["farmhouseMasterBedroom first time"] == True):
                 print('''This room seems untouched, unlike much of the rest of the
-house. The bed is neatly made, and there is a footlocker, shut.
+house. The bed is neatly made; a wide matress resting on an
+ornately carved wooden frame, and there is a footlocker, shut.
 There are shelves with books and knick-knacks, and a mounted
 brass telescope pointing out the window, and up at the sky. To
 the right is another door leading to an adjacent room.''')
@@ -295,7 +323,9 @@ the right is another door leading to an adjacent room.''')
 
         elif(pc.zone.zoneID == 9):
             if (pc.globalStatus["farmhouseGuestBedroom first time"] == True):
-                print("Another bedroom, This one decorated with more reckless abandon, clothes thrown into a corner, indicative of laziness, not of a struggle. There is a sword mounted over the bed.")
+                print('''Another bedroom, This one decorated with more reckless
+abandon, clothes thrown into a corner, indicative of laziness,
+not of a struggle. There is a sword mounted over the bed.''')
             else:
                 print(pc.zone.summary)
             farmhouseGuestBedroom(pc)
@@ -303,7 +333,10 @@ the right is another door leading to an adjacent room.''')
 
         elif(pc.zone.zoneID == 10):
             if (pc.globalStatus["farmhouseStudy first time"] == True):
-                print("This room is darker than the bedroom itself, and contains one large desk pressed up against the solid wooden wall. A narrow window lets light in from the North. On the desk is a lantern, and several handwritten notes.")
+                print('''This room is darker than the bedroom itself, and contains one
+large desk pressed up against the solid wooden wall. A narrow
+window lets light in from the North. On the desk is a lantern,
+and several handwritten notes.''')
             else:
                 print(pc.zone.summary)
             farmhouseStudy(pc)
@@ -311,7 +344,8 @@ the right is another door leading to an adjacent room.''')
 
         elif(pc.zone.zoneID == 11):
             if (pc.globalStatus["farmhouseStorage first time"] == True):
-                print("Not much in here but blankets, pillows, sheets, and bags of hay and feathers - probably used for stuffing.")
+                print('''Not much in here but blankets, pillows, sheets, and bags of hay
+and feathers - probably used for stuffing.''')
             else:
                 print(pc.zone.summary)
             farmhouseStorage(pc)
@@ -319,7 +353,8 @@ the right is another door leading to an adjacent room.''')
 
         elif(pc.zone.zoneID == 12):
             if (pc.globalStatus["farmhouseStairsCellar first time"] == True):
-                print("A wooden doubledoor rests over the cellar stairs, at a slight angle, foretelling the imminent descent.")
+                print('''A wooden doubledoor rests over the cellar stairs, at a slight
+angle, foretelling the imminent descent.''')
             else:
                 print(pc.zone.summary)
             farmhouseStairsCellar(pc)
@@ -327,7 +362,8 @@ the right is another door leading to an adjacent room.''')
 
         elif(pc.zone.zoneID == 13):
             if (pc.globalStatus["farmhouseCellar first time"] == True):
-                print("Cold and somewhat damp, this stone cellar seems like a well-deserved escape from the moderate heat of the summer day.")
+                print('''Cold and somewhat damp, this stone cellar seems like a well-
+deserved escape from the moderate heat of the summer day.''')
                 if(pc.globalStatus["Dark"] == True):
                     print("It is dark...")
                     # pc.timer(3)
@@ -740,7 +776,7 @@ def cornfieldMazeCenter(pc):
 
 
 def newGame():
-    statsTuple = ("str", "dex", "int", "con")
+    statsTuple = ("Str", "Dex", "Int", "Con")
     pointsLeft = 10
     creationRunning = True
 
@@ -760,10 +796,10 @@ def newGame():
     ### Create and spend points on stats
     # starting base stats
     stats = {
-        "str": 8,  # strength and damage
-        "dex": 8,  # maneuverability and reflexes
-        "int": 8,  # perception and understanding
-        "con": 8  # health and resillience
+        "Str": 8,  # strength and damage
+        "Dex": 8,  # maneuverability and reflexes
+        "Int": 8,  # perception and understanding
+        "Con": 8  # health and resillience
     }
 
     # Additional point allocation, based on pointsLeft
@@ -791,17 +827,17 @@ def newGame():
             print(f"Current {i}: {stats[i]}. No more points to spend.")
 
     # Calculate derived stats (maxHP, currentHP, and damage)
-    maxHP = stats["con"] + 2
+    maxHP = stats["Con"] + 2
     currentHP = int(maxHP)
-    damage = math.ceil(stats["str"] / 5)
-    magic = math.ceil((stats["int"] / 2) - 4)
+    damage = math.ceil(stats["Str"] / 5)
+    magic = math.ceil((stats["Int"] / 2) - 4)
+    defense = 0
 
     # equippable slots
-    weapon = "bare hands"
-    armor = ""
+    weapon = []
+    armor = []
 
-
-    # Set initial globalStatus variables to define the original values of a new game. These will get changed as the game is played, and should remain consistent throughout the whole game. ALL new globalStatus variables need to be published here first, and updated anywhere that they ought to be updated.
+    # Set initial globalStatus variables to define the original values of a new game. These will get changed as the game is played, and should remain consistent throughout the whole game. ALL new globalStatus variables need to be published here first, and updated anywhere that they ought to be updated. All "first time" start at True, and as a general rule all "examine" and "talen" start at False. The appropriate user actions will change them as necessary.
     globalStatus = {
         # organize by category, and then by alphabetical
 
@@ -873,18 +909,27 @@ def newGame():
 
         ### EXAMINED
         # f"{location or item} examined" as format
+        "dirtRoad examined": False,
         "farmhouseCloset1 Box examined": False,
+        "farmhouseCloset2 Box examined": False,
+        "farmhouseGuestBedroom examined": False,
         "farmhouseHallway examined": False,
         "farmhouseHallway Chest examined": False,
         "farmhouseKitchen examined": False,
+        "farmhouseMasterBedroom examined": False,
         "farmhouseSittingRoom examined": False,
         "farmhouseSittingRoom Fireplace examined": False,
+        "farmhouseStudy examined": False,
+        "farmhouseStorage examined": False,
+        "Study Notes examined": False,
+        "Telescope examined": False,
 
         ### STATUS EFFECTS
         # toggle effects
         "Damage Enchanted": False,
         "Darkvision": False,
         "Lantern Lit": False,
+        "Match Lit": False,
 
         # environment effects
         "Dark": False,
@@ -898,8 +943,8 @@ def newGame():
     }
 
     # Creates new inventory with note object
-    # inventory = [0, 7, 9, 1, 11]  # testing all item types
-    inventory = [0]  # only note
+    inventory = [0, 7, 9, 1, 12, 14, 15]  # testing all item types
+    # inventory = [0]  # only note
 
     # Define newPlayer dictionary in same format as load, then return it.
     newPlayer = {
@@ -913,6 +958,7 @@ def newGame():
         "globalStatus": globalStatus,
         "inventory": inventory,
         "armor": armor,
+        "defense": defense,
         "weapon": weapon,
         "magic": magic
     }
@@ -935,12 +981,10 @@ if __name__ == "__main__":
     # version 0.1.3
     printTitle()
 
-    project = "/Users/k0njur3r/Projects/slither"
-
     # Start menu for selecting gameStart option (new / continue)
     startOption = gameStart()
     if(startOption == "CONTINUE"):
-        with open(f"{project}/saves/gameSave.json", encoding="utf-8") as file:
+        with open("saves/gameSave.json", encoding="utf-8") as file:
             continuePlayer = json.load(file)
         pc = Player(continuePlayer)
     else:

@@ -20,6 +20,8 @@ class Player:
         self.stats = playerDict["stats"]
         self.inventory = playerDict["inventory"]
         self.weapon = playerDict["weapon"]
+        self.armor = playerDict["armor"]
+        self.defense = playerDict["defense"]
         self.magic = playerDict["magic"]
 
         # Create Zone object using given zoneID
@@ -55,11 +57,10 @@ class Player:
             print("You have perished.\n\n\t # GAME OVER #")
 
 
-    def useItem(self, itemChoice):
-        itemID = self.inventory[int(itemChoice) - 1]
+    def useItem(self, itemID):
 
         item = Item(itemID)
-        if item.use != False:
+        if(item.use != False):
             if(item.use == "equip" and item.equippable == True):
                 self.equipItem(item)
             elif(item.use == "spell"):
@@ -70,11 +71,13 @@ class Player:
     def equipItem(self, item):
         if(item.armor == True):
             self.armor.append(item.itemID)
+            self.defense += item.armorBonus
         elif(item.weapon == True):
-            self.weapon = item.name
+            self.weapon.append(item.itemID)
             self.damage += item.damageBonus
         else:
             print("Not yet made")
+        self.inventory.pop(self.inventory.index(item.itemID))
 
     def castSpell(self, item):
         if(item.itemID == 3):
@@ -112,9 +115,9 @@ class Player:
                         self.globalStatus["Dark"] = False
 
                 else:
-                    print("You extinguish the flame.")
+                    print("You extinguish the Lantern's flame.")
                     self.globalStatus["Lantern Lit"] = False
-                    if(self.globalStatus["Dark"] == False and pc.globalStatus["Dark Place"] == True):
+                    if(self.globalStatus["Dark"] == False and self.globalStatus["Dark Place"] == True):
                         self.globalStatus["Dark"] = True
                         print("The darkness returns, be careful...")
 
@@ -122,7 +125,7 @@ class Player:
         elif(item.itemID == 15):
             if(self.globalStatus["Match Lit"] == False):
                 print("You light a match.")
-                self.globalStatus["Match Lit"] = true
+                self.globalStatus["Match Lit"] = True
                 self.globalStatus["Dark"] = False
                 self.globalStatus["Matches timer"] = 3
             else:
@@ -138,17 +141,60 @@ class Player:
     def accessInventory(self):
         print("\t# INVENTORY #")
         for itemID in self.inventory:
-            print(f"\n{Item(itemID).name}:")
+            print(f"\n{self.inventory.index(itemID) + 1}: {Item(itemID).name}")
             print(Item(itemID).description)
 
-        print(f"Select an item to use [1 - {len(self.inventory)}]")
-        choice = int(input())
+        print(f"\nSelect an item to use [1 - {len(self.inventory)}]")
+        choice = input()
+        if (choice == ""):
+            print("")
+        else:
+            self.useItem(self.inventory[int(choice) - 1])
+
+    def viewEquipment(self):
+        if(len(self.weapon) < 1):
+            print(f"Wielding: Bare Fists (damage: {self.damage})")
+        else:
+            print(f"Wielding: {Item(self.weapon[0]).name} (damage: {self.damage})")
+
+        if(len(self.armor) < 1):
+            print("Wearing: Clothes")
+        else:
+            print(f"Wearing: {Item(self.armor[0]).name}")
+
+
+    def viewStats(self):
+        print(f"HP: {self.currentHP} / {self.maxHP}")
+        for stat in self.stats:
+            print(f"{stat}: {self.stats[stat]}")
+        print(f"Damage: {self.damage}")
+        print(f"Magic: {self.magic}")
+
+
+    # Open a menu to interact with player character
+    def menu(self):
+        print("\t# MENU #")
+        print("1 - Inventory")
+        print("2 - Stats")
+        print("3 - Equipment")
+        print("4 - Save Game")
+        print("ENTER - Return to Game")
+        choice = input()
+
+        if (int(choice) == 1):
+            self.accessInventory()
+        elif (int(choice) == 2):
+            self.viewStats()
+        elif (int(choice) == 3):
+            self.viewEquipment()
+        elif (int(choice) == 4):
+            self.saveState()
+        else:
+            print("")
 
 
 
-
-
-
+    # Save the current game state as a JSON file. Unencrypted and editable.
     def saveState(self):
         saveDict = {
             "name": self.name,
@@ -166,8 +212,5 @@ class Player:
 
         saveJson = json.dumps(saveDict, indent = 2)
 
-        project = os.path.dirname(os.path.dirname(__file__))
-        print(project)
-
-        with open(f"{project}/saves/gameSave.json", 'w') as file:
+        with open("saves/gameSave.json", 'w') as file:
             file.write(saveJson)
