@@ -996,6 +996,7 @@ are scattered about. Each contains formulae, sketches, and hastily
 written theories and worries.'''
             self.items.clear()
             self.items = [7]
+            pc.globalStatus["Dark"] = True
 
             if(pc.globalStatus["farmhouseStudy examined"] == False):
                 self.options = [
@@ -1005,7 +1006,7 @@ written theories and worries.'''
                     "Player Menu"
                 ]
 
-                if(pc.globalStatus["Match Lit"] == False and pc.globalStatus["Lantern Lit"] == False):
+                if(pc.globalStatus["Dark"] == True):
                     self.selection = {
                         1: {
                             "do": "You leave the study, closing the door behind you.",
@@ -1022,7 +1023,7 @@ written theories and worries.'''
                             "menu": "menu"
                         }
                     }
-                elif(pc.globalStatus["Match Lit"] == True or pc.globalStatus["Lantern Lit"] == True):
+                else:
                     self.selection = {
                         1: {
                             "do": "You leave the study, closing the door behind you.",
@@ -1050,7 +1051,7 @@ written theories and worries.'''
                 ]
 
 
-                if(pc.globalStatus["Match Lit"] == False and pc.globalStatus["Lantern Lit"] == False):
+                if(pc.globalStatus["Dark"] == True):
                     self.selection = {
                         1: {
                             "do": "You leave the study, closing the door behind you.",
@@ -1071,7 +1072,7 @@ written theories and worries.'''
                             "menu": "menu"
                         }
                     }
-                elif(pc.globalStatus["Match Lit"] == True or pc.globalStatus["Lantern Lit"] == True):
+                else:
                     self.selection = {
                         1: {
                             "do": "You leave the study, closing the door behind you.",
@@ -1216,65 +1217,170 @@ written theories and worries.'''
                 }
 
         elif (self.zoneID == 13):  # farmhouseCellar
-            self.summary = "."
-            self.description = '''.'''
+
+            self.summary = "This is a dank and darkened cellar."
+            self.description = '''The cellar contains a variety of preserved meats, canned fruits and pickled vegetables. In one corner, '''
             self.items.clear()
 
+            if(pc.globalStatus["Match Lit"] == False and pc.globalStatus["Lantern Lit"] == False):
+                pc.globalStatus["Dark"] = True
+
+
             if(pc.globalStatus["farmhouseCellar examined"] == False):
+
+
                 self.options = [
-                    "option",
-                    "option",
+                    "Climb back out of the cellar",
                     "Look around the area",
                     "Player Menu"
                 ]
-
-                self.selection = {
-                    1: {
-                        "do": "",
-                        "moveTo": 0
-                    },
-                    2: {
-                        "do": "",
-                        "moveTo": 0
-                    },
-                    3: {
-                        "do": self.description,
-                        "examine": "farmhouseCellar"
-                    },
-                    4: {
-                        "menu": "menu"
+                if(pc.globalStatus["Dark"] == True):
+                    self.selection = {
+                        1: {
+                            "do": "You climb back out of the cellar, surfacing above ground",
+                            "moveTo": 12
+                        },
+                        2: {
+                            "do": "It is too dark to look around. You hear faint noises in the dark."
+                        },
+                        3: {
+                            "menu": "menu"
+                        }
                     }
-                }
+                else:
+
+                    self.selection = {
+                        1: {
+                            "do": "You climb back out of the cellar, surfacing above ground",
+                            "moveTo": 12
+                        },
+                        2: {
+                            "do": self.description,
+                            "examine": "farmhouseCellar"
+                        },
+                        3: {
+                            "menu": "menu"
+                        }
+                    }
             else:
-                self.options = [
-                    "option",
-                    "option",
-                    "option",
-                    "Look around the area",
-                    "Player Menu"
-                ]
-
-                self.selection = {
-                    1: {
-                        "do": "",
-                        "moveTo": 0
-                    },
-                    2: {
-                        "do": "",
-                        "moveTo": 0
-                    },
-                    3: {
-                        "do": "",
-                        "moveTo": 0
-                    },
-                    4: {
-                        "do": self.description,
-                        "examine": "farmhouseCellar"
-                    },
-                    5: {
-                        "menu": "menu"
+                if(pc.globalStatus["Dark"] == True):
+                    self.options = [
+                        "Climb back out of the cellar",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+                    self.selection = {
+                        1: {
+                            "do": "You climb back out of the cellar, surfacing above ground",
+                            "moveTo": 12
+                        },
+                        2: {
+                            "do": "It is too dark to look around. You hear faint noises in the dark."
+                        },
+                        3: {
+                            "menu": "menu"
+                        }
                     }
-                }
+                else:
+                    if(pc.globalStatus["Alchemical Powder taken"] == False):
+                        if(pc.globalStatus["Hidden Note 2 taken"] == False):
+                            self.options = [
+                                "Climb back out of the cellar",
+                                "Take the alchemical powder",
+                                "Grab the note",
+                                "Look around the area",
+                                "Player Menu"
+                            ]
+                            self.selection = {
+                                1: {
+                                    "do": "You climb back out of the cellar, surfacing above ground",
+                                    "moveTo": 12
+                                },
+                                2: {
+                                    "do": "You grab the packet of Alchemical Powder",
+                                    "takeItem": 16
+                                },
+                                3: {
+                                    "do": "You take the note",
+                                    "takeItem": 9
+                                },
+                                4: {
+                                    "do": self.description,
+                                    "examine": "farmhouseCellar"
+                                },
+                                5: {
+                                    "menu": "menu"
+                                }
+                            }
+                        else:
+                            self.options = [
+                                "Climb back out of the cellar",
+                                "Take the alchemical powder",
+                                "Look around the area",
+                                "Player Menu"
+                            ]
+                            self.selection = {
+                                1: {
+                                    "do": "You climb back out of the cellar, surfacing above ground",
+                                    "moveTo": 12
+                                },
+                                2: {
+                                    "do": "You grab the packet of Alchemical Powder",
+                                    "takeItem": 16
+                                },
+                                3: {
+                                    "do": self.description,
+                                    "examine": "farmhouseCellar"
+                                },
+                                4: {
+                                    "menu": "menu"
+                                }
+                            }
+                    elif(pc.globalStatus["Alchemical Powder taken"] == True):
+                        if(pc.globalStatus["Hidden Note 2 taken"] == False):
+                            self.options = [
+                                "Climb back out of the cellar",
+                                "Grab the note",
+                                "Look around the area",
+                                "Player Menu"
+                            ]
+                            self.selection = {
+                                1: {
+                                    "do": "You climb back out of the cellar, surfacing above ground",
+                                    "moveTo": 12
+                                },
+                                2: {
+                                    "do": "You take the note",
+                                    "takeItem": 9
+                                },
+                                3: {
+                                    "do": self.description,
+                                    "examine": "farmhouseCellar"
+                                },
+                                4: {
+                                    "menu": "menu"
+                                }
+                            }
+                        else:
+                            self.options = [
+                                "Climb back out of the cellar",
+                                "Look around the area",
+                                "Player Menu"
+                            ]
+                            self.selection = {
+                                1: {
+                                    "do": "You climb back out of the cellar, surfacing above ground",
+                                    "moveTo": 12
+                                },
+                                2: {
+                                    "do": self.description,
+                                    "examine": "farmhouseCellar"
+                                },
+                                3: {
+                                    "menu": "menu"
+                                }
+                            }
+
 
 
 

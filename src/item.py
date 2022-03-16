@@ -154,3 +154,33 @@ and you can feel immense power eminating from its core.'''
             self.lightSource = True
             self.description = '''A wooden match with a tip dipped in a dark red flamable
 concoction. Strike anywhere.'''
+
+        elif(self.itemID == 16):
+            self.name = "Alchemical Powder"
+            self.value = 3
+            self.use = "combine"
+            self.combine = [17, 18]
+            self.description = '''A paper packet filled with a mysterious black powder with a sheen
+like onyx or moonstone.'''
+
+        elif(self.itemID == 17):
+            self.name = "Glass Jar"
+            self.value = 1
+            self.use = "combine"
+            self.combine = [16, 18]
+            self.description = '''A simple glass jar with an airtight lid.'''
+
+        elif(self.itemID == 18):
+            self.name = "Acrid Solution"
+            self.value = 2
+            self.use = "combine"
+            self.combine = [16, 17]
+            self.description = '''A pungent and caustic solution, it may react violently with other
+chemicals.'''
+
+        elif(self.itemID == 19):
+            self.name = "Jar Bomb"
+            self.value = 2
+            self.use = "spell"
+            self.spell = "You shake the jar and throw it! After a few seconds, it explodes!"
+            self.description = '''A very dangerous homemade bomb. It could be useful.'''

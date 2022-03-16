@@ -23,21 +23,15 @@ class Player:
         self.armor = playerDict["armor"]
         self.defense = playerDict["defense"]
         self.magic = playerDict["magic"]
+        self.timer = playerDict["timer"]
 
         # Create Zone object using given zoneID
         self.zone = Zone(self.zoneID, self)
 
 
 
-    def printStats(self):
-        print("\n # FINAL STATS #")
 
-        for i in statsTuple:
-            print(f"{i}: {self.stats[i]}")
-
-        print(f"Base Damage: {self.damage}")
-        print(f"HP: {self.maxHP}")
-
+    ### |- ------ COMBAT ------------------------------------------------------------------------ -|
 
     def attack(self, creature):
         damage = random.randrange(self.damage)
@@ -57,8 +51,11 @@ class Player:
             print("You have perished.\n\n\t # GAME OVER #")
 
 
-    def useItem(self, itemID):
 
+
+    ### |- ------ ITEM INTERACTIONS ------------------------------------------------------------- -|
+
+    def useItem(self, itemID):
         item = Item(itemID)
         if(item.use != False):
             if(item.use == "equip" and item.equippable == True):
@@ -67,17 +64,23 @@ class Player:
                 self.castSpell(item)
             elif(item.use == "toggle"):
                 self.toggle(item)
+            elif(item.use == "combine"):
+                self.combine(item)
+
 
     def equipItem(self, item):
         if(item.armor == True):
             self.armor.append(item.itemID)
             self.defense += item.armorBonus
+            print(f"You don the {item.name}")
         elif(item.weapon == True):
             self.weapon.append(item.itemID)
             self.damage += item.damageBonus
+            print(f"You wield the {item.name}")
         else:
             print("Not yet made")
         self.inventory.pop(self.inventory.index(item.itemID))
+
 
     def castSpell(self, item):
         if(item.itemID == 3):
@@ -93,12 +96,28 @@ class Player:
             self.magic += item.magicBonus
             print(item.spell)
             self.globalStatus["Darkvision"] = True
+        elif(item.itemID == 19):
+            print("How do you use the jar bomb?")
+            print("1 - Throw")
+            print("2 - Roll")
+            print("3 - Shake and Hold")
+            choice = input()
+            if(int(choice) == 1):
+                print("you throw the bomb and it shatters, the ingredients burn up.")
+            elif(int(choice) == 2):
+                print('''You gently roll the jar toward your target, which mixes it together,
+and it explodes!''')
+            elif(int(choice) == 3):
+                print('''You shake the jar and hold onto it, it explodes in your hand,
+shattered splinters of glass and alchemical fire engulf you.\n\n\t# GAME OVER #\n''')
+                self.isAlive = False
+            self.inventory.pop(self.inventory.index(item.itemID))
+
         else:
             print("Not yet made")
 
 
     def toggle(self, item):
-
         # Lantern
         if(item.itemID == 7):
             if (self.globalStatus["Darkvision"] == True):
@@ -113,7 +132,6 @@ class Player:
                     elif(self.globalStatus["Dark"] == True and self.globalStatus["Dark Place"] == False and self.globalStatus["Darkvision"] == False):
                         print("Your immediate area is illuminated.")
                         self.globalStatus["Dark"] = False
-
                 else:
                     print("You extinguish the Lantern's flame.")
                     self.globalStatus["Lantern Lit"] = False
@@ -133,17 +151,39 @@ class Player:
                 if(self.globalStatus["Dark Place"] == True):
                     self.globalStatus["Dark"] = True
                 self.globalStatus["Match Lit"] = False
-
         else:
             print("Not yet made")
 
 
-    def accessInventory(self):
+    def combine(self, item):
+        combineCount = 0
+        for i in item.combine:
+            if i in self.inventory:
+                combineCount += 1
+        if (combineCount == 2):
+            if(item.itemID == 16 or item.itemID == 17 or item.itemID == 18):
+                print('''You add the powder to the glass jar, and then pour in the caustic
+liquid solution, and shut the lid tight. If you shake this, it
+will explode soon after.''')
+                self.inventory.pop(self.inventory.index(16))
+                self.inventory.pop(self.inventory.index(17))
+                self.inventory.pop(self.inventory.index(18))
+                self.inventory.append(19)
+        elif (combineCount < 2):
+            print("You do not have enough to make this item useful. Keep looking.")
+        else:
+            print("WIP")
+
+
+
+
+    ### |- ------ VIEW FUNCTIONS ---------------------------------------------------------------- -|
+
+    def viewInventory(self):
         print("\t# INVENTORY #")
         for itemID in self.inventory:
             print(f"\n{self.inventory.index(itemID) + 1}: {Item(itemID).name}")
             print(Item(itemID).description)
-
         print(f"\nSelect an item to use [1 - {len(self.inventory)}]")
         choice = input()
         if (choice == ""):
@@ -151,12 +191,12 @@ class Player:
         else:
             self.useItem(self.inventory[int(choice) - 1])
 
+
     def viewEquipment(self):
         if(len(self.weapon) < 1):
             print(f"Wielding: Bare Fists (damage: {self.damage})")
         else:
             print(f"Wielding: {Item(self.weapon[0]).name} (damage: {self.damage})")
-
         if(len(self.armor) < 1):
             print("Wearing: Clothes")
         else:
@@ -164,12 +204,16 @@ class Player:
 
 
     def viewStats(self):
-        print(f"HP: {self.currentHP} / {self.maxHP}")
+        print(f"\n\t# STATS #\nHP: {self.currentHP} / {self.maxHP}")
         for stat in self.stats:
             print(f"{stat}: {self.stats[stat]}")
         print(f"Damage: {self.damage}")
         print(f"Magic: {self.magic}")
 
+
+
+
+    ### |- ------ PLAYER MENU ------------------------------------------------------------------- -|
 
     # Open a menu to interact with player character
     def menu(self):
@@ -182,7 +226,7 @@ class Player:
         choice = input()
 
         if (int(choice) == 1):
-            self.accessInventory()
+            self.viewInventory()
         elif (int(choice) == 2):
             self.viewStats()
         elif (int(choice) == 3):
@@ -191,7 +235,6 @@ class Player:
             self.saveState()
         else:
             print("")
-
 
 
     # Save the current game state as a JSON file. Unencrypted and editable.

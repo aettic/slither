@@ -35,7 +35,12 @@ def doSomething(pc):
     # print(pc.zone.summary)
 
     while(zoneStart == pc.zoneID):
+
         pc.zone = Zone(zoneStart, pc)
+
+        if (pc.isAlive == False):
+            running = False
+            break
 
         print("")
         for i in pc.zone.options:
@@ -58,7 +63,7 @@ def doSomething(pc):
                     pc.zoneID = whatHappens[key]
                 elif(key == "pack"):
                     print(whatHappens[key])
-                    pc.accessInventory()
+                    pc.viewInventory()
                 elif(key == "examine"):
                     pc.globalStatus[f"{whatHappens[key]} examined"] = True
                 elif(key == "save"):
@@ -82,6 +87,14 @@ def doSomething(pc):
         except KeyError:
             print("Please enter a valid selection.")
 
+        if(pc.globalStatus["Dark"] == True):
+            pc.timer += 1
+        else:
+            pc.timer = 0
+
+        if(pc.timer == 3):
+            grue = Creature("Grue")
+            combat(pc, grue)
 
 def combat(pc, enemy):
     combatRunning = True
@@ -111,12 +124,7 @@ def combat(pc, enemy):
                 print("You stand firm")
                 enemy.attack(pc)
             elif(choice == 3):
-                print("You stand firm")
-                for item in pc.inventory:
-                    print(f"\n{pc.inventory.index(item) + 1}: {Item(item).name}: ")
-                    print(Item(item).description)
-                itemChoice = input()
-                pc.useItem(itemChoice)
+                pc.viewInventory()
             elif(choice == 4):
                 print("You stand firm")
             elif(choice == 5):
@@ -128,9 +136,7 @@ def combat(pc, enemy):
             print(f"YOU[{pc.currentHP}], IT[{enemy.currentHP}]")
             print(pc.damage)
 
-            if(pc.isAlive and enemy.isAlive):
-                combatRunning = True
-            else:
+            if(not pc.isAlive or not enemy.isAlive):
                 combatRunning = False
 
         except ValueError:
@@ -141,6 +147,9 @@ def gameloop(pc):
 
     # GAME START - should only play when game is launched
     while(running):
+        if (pc.isAlive == False):
+            running = False
+            break
 
         pc.zone = Zone(pc.zoneID, pc)
         # each loop statement will play every time one enters that room. The descriptions should be split in two: first time, and post-acquaintance.
@@ -376,6 +385,7 @@ deserved escape from the moderate heat of the summer day.''')
 
 
 
+
         ### PRAIRIE ZONES ###-------------------------------------------------------------------- -|
 
         elif(pc.zone.zoneID == 14):
@@ -422,7 +432,8 @@ deserved escape from the moderate heat of the summer day.''')
 
 
 
-        else:  # kill game
+        # kill game
+        else:
             running = False
 
 
@@ -791,7 +802,7 @@ def newGame():
     isAlive = True
 
     # Set currentZone to 0 for game opening
-    startingZoneID = 0
+    startingZoneID = 13
 
     ### Create and spend points on stats
     # starting base stats
@@ -892,6 +903,7 @@ def newGame():
 
         ### ITEMS TAKEN
         # f"{Item(itemID).name} taken" as format
+        "Alchemical Powder taken": False,
         "Alcohol taken": False,
         "Emerald Medallion taken": False,
         "Fancy Hat taken": False,
@@ -910,6 +922,7 @@ def newGame():
         ### EXAMINED
         # f"{location or item} examined" as format
         "dirtRoad examined": False,
+        "farmhouseCellar examined": False,
         "farmhouseCloset1 Box examined": False,
         "farmhouseCloset2 Box examined": False,
         "farmhouseGuestBedroom examined": False,
@@ -919,6 +932,7 @@ def newGame():
         "farmhouseMasterBedroom examined": False,
         "farmhouseSittingRoom examined": False,
         "farmhouseSittingRoom Fireplace examined": False,
+        "farmhouseStairsCellar examined": False,
         "farmhouseStudy examined": False,
         "farmhouseStorage examined": False,
         "Study Notes examined": False,
@@ -943,8 +957,11 @@ def newGame():
     }
 
     # Creates new inventory with note object
-    inventory = [0, 7, 9, 1, 12, 14, 15]  # testing all item types
+    # inventory = [0, 7, 9, 1, 12, 14, 15]  # testing all item types
     # inventory = [0]  # only note
+    inventory = [0, 7, 12, 16, 17, 18] # testing bomb
+
+    timer = 0
 
     # Define newPlayer dictionary in same format as load, then return it.
     newPlayer = {
@@ -960,7 +977,8 @@ def newGame():
         "armor": armor,
         "defense": defense,
         "weapon": weapon,
-        "magic": magic
+        "magic": magic,
+        "timer": timer
     }
     return newPlayer
 
@@ -989,6 +1007,8 @@ if __name__ == "__main__":
         pc = Player(continuePlayer)
     else:
         pc = Player(newGame())
+
+    pc.viewStats()
 
 
     #goblin = Creature("Goblin")
