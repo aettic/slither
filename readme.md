@@ -32,14 +32,11 @@ This is a zork-like text-based adventure game. It contains a global status syste
 
 ## To Do (Development)
 - [ ] Build NPC objects with interactive dialogue capacity (model after combat)
-- [ ] Construct a puzzle using items (Alcohol, alchemical stuff, blowing something up?)
-- [ ] Create a combine(item, item) method
-- [ ] Create Dark timer for Grue attack - 2 rounds
+- [1] Construct a puzzle using items (Alcohol, alchemical stuff, blowing something up?)
 - [ ] Create more globalStatus entries as needed
 - [ ] Create Matches timer
 - [ ] Finish combat options
-- [ ] Fix problem with globalStatus not updating properly (still need to identify)
-- [ ] Put a Grue in Dark spots (cellar, loft)
+- [1] Put a Grue in Dark spots (cellar, loft)
 - [ ] Write out the rest of the zones
 
 ## Done
@@ -50,7 +47,10 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [x] Build creature objects for combat
 - [x] Complete location globalStatus entries
 - [x] Complete the Beast itemDrops
-- [x] Create a useItem method in player.py (now contains equip, toggle, and spell)
+- [x] Create a combine(item) method
+- [x] Create a useItem method in player.py (now contains equip, toggle, and spell, and combine)
+- [x] Create Dark timer for Grue attack - 3 rounds
+- [x] Fix problem with globalStatus not updating properly (still need to identify)
 - [x] Organize globalStatus entires
 - [x] Test save state works
 - [x] Write out the story more thoroughly in a secret canon piece.
