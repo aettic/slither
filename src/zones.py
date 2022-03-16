@@ -125,7 +125,7 @@ ditch just off the road, you spot a tiny hat.'''
 
         ### FARMHOUSE ###------------------------------------------------------------------------ -|
 
-        elif (self.zoneID == 1):  # farmhouseFront entrance
+        elif (self.zoneID == 1):  # farmhouseFront entrance (HUB FRONT)
             self.summary = '''You stand in front of the farmstead home, darkened with abandon.
 Behind the farm is a prairie with several structures including
 a well, an outhouse, a shed, and a large barn. On the far North
@@ -147,6 +147,7 @@ the outskirts by darkened and misty woods.'''
             self.options = [
                 "Enter the house",
                 "Walk into the backyard",
+                "Check out the cellar doors",
                 "Travel to the corn field",
                 "Return to the road",
                 "Look around the area",
@@ -160,21 +161,25 @@ the outskirts by darkened and misty woods.'''
                 },
                 2: {
                     "do": "You skirt the side of the house and walk into the prairie behind the house",
-                    "moveTo": 3
+                    "moveTo": 14
                 },
                 3: {
-                    "do": "You depart the house and head North, toward the wall of green corn stalks",
-                    "moveTo": 8
+                    "do": "You walk around the side of the house and to the cellar doors",
+                    "moveTo": 12
                 },
                 4: {
+                    "do": "You depart the house and head North, toward the wall of green corn stalks",
+                    "moveTo": 24
+                },
+                5: {
                     "do": "You decide to head back toward the dirt road.",
                     "moveTo": 0
                 },
-                5: {
+                6: {
                     "do": self.description,
                     "examine": "farmhouseFront"
                 },
-                6: {
+                7: {
                     "menu": "menu"
                 }
             }
@@ -573,8 +578,8 @@ tails trailing behind.'''
                 self.options = [
                     "Back to the stairs",
                     "First door on the left",
-                    "First door on the right",
                     "Second door on the left",
+                    "First door on the right",
                     "Second door on the right",
                     "Look around the area",
                     "Player Menu"
@@ -761,8 +766,8 @@ near the top, is a box of matches.'''
 
                 self.selection = {
                     1: {
-                        "do": "You close the closet door and head back to the hall",
-                        "moveTo": 6
+                        "do": "You close the closet door.",
+                        "moveTo": 9
                     },
                     2: {
                         "do": self.description,
@@ -783,8 +788,8 @@ near the top, is a box of matches.'''
 
                     self.selection = {
                         1: {
-                            "do": "You close the closet door and head back to the hall",
-                            "moveTo": 6
+                            "do": "You close the closet door.",
+                            "moveTo": 9
                         },
                         2: {
                             "do": "You take the box of matches",
@@ -807,8 +812,8 @@ near the top, is a box of matches.'''
 
                     self.selection = {
                         1: {
-                            "do": "You close the closet door and head back to the hall",
-                            "moveTo": 6
+                            "do": "You close the closet door.",
+                            "moveTo": 9
                         },
                         2: {
                             "do": self.description,
@@ -864,11 +869,11 @@ and a brass telescope pointed out the window, toward the sky.'''
 
                     self.selection = {
                         1: {
-                            "do": "Exit the room",
+                            "do": "You leave the room and return to the hall",
                             "moveTo": 6
                         },
                         2: {
-                            "do": "Open the door on the far end",
+                            "do": "You open the door on the far end, and enter the study",
                             "moveTo": 10
                         },
                         3: {
@@ -887,7 +892,7 @@ leaving a hole in the shape of a perfect circle!''',
                             "menu": "menu"
                         }
                     }
-                elif(pc.globalStatus["Telescope examined"] == True):
+                else:
                     self.options = [
                         "Exit the room",
                         "Go to the study",
@@ -930,6 +935,7 @@ that covers the entire wall, including behind the bed. Above the
 bed is a sword, mounted to a plaque on the wall. It looks like
 it could be removed.'''
             self.items.clear()
+            self.items = [12]
 
             if(pc.globalStatus["farmhouseGuestBedroom examined"] == False):
                 self.options = [
@@ -945,8 +951,8 @@ it could be removed.'''
                         "moveTo": 6
                     },
                     2: {
-                        "do": "You enter the connected storage room",
-                        "moveTo": 11
+                        "do": "You open the closet door",
+                        "moveTo": 7
                     },
                     3: {
                         "do": self.description,
@@ -957,31 +963,61 @@ it could be removed.'''
                     }
                 }
             else:
-                self.options = [
-                    "Exit the bedroom",
-                    "Open the Storage Room",
-                    "Take the sword",
-                    "Look around the area",
-                    "Player Menu"
-                ]
+                if(pc.globalStatus["Sword taken"] == False):
+                    self.options = [
+                        "Exit the bedroom",
+                        "Open the Storage Room",
+                        "Take the sword",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
 
-                self.selection = {
-                    1: {
-                        "do": "You leave the bedroom and return to the hallway",
-                        "moveTo": 6
-                    },
-                    2: {
-                        "do": "You enter the connected storage room",
-                        "moveTo": 11
-                    },
-                    3: {
-                        "do": self.description,
-                        "examine": "farmhouseGuestBedroom"
-                    },
-                    4: {
-                        "menu": "menu"
+                    self.selection = {
+                        1: {
+                            "do": "You leave the bedroom and return to the hallway",
+                            "moveTo": 6
+                        },
+                        2: {
+                            "do": "You open the closet door",
+                            "moveTo": 7
+                        },
+                        3: {
+                            "do": "You take down the sword from its mount.",
+                            "takeItem": 12
+                        },
+                        4: {
+                            "do": self.description,
+                            "examine": "farmhouseGuestBedroom"
+                        },
+                        5: {
+                            "menu": "menu"
+                        }
                     }
-                }
+                else:
+                    self.options = [
+                        "Exit the bedroom",
+                        "Open the Storage Room",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You leave the bedroom and return to the hallway",
+                            "moveTo": 6
+                        },
+                        2: {
+                            "do": "You open the closet door",
+                            "moveTo": 7
+                        },
+                        3: {
+                            "do": self.description,
+                            "examine": "farmhouseGuestBedroom"
+                        },
+                        4: {
+                            "menu": "menu"
+                        }
+                    }
 
         elif (self.zoneID == 10):  # farmhouseStudy
             self.summary = '''The centerpiece of this study is its wide desk. The area is poorly
@@ -1001,6 +1037,7 @@ written theories and worries.'''
             if(pc.globalStatus["farmhouseStudy examined"] == False):
                 self.options = [
                     "Return to the Bedroom",
+                    "Exit to the hallway",
                     "Read papers",
                     "Look around the area",
                     "Player Menu"
@@ -1013,13 +1050,17 @@ written theories and worries.'''
                             "moveTo": 8
                         },
                         2: {
-                            "do": "It is too dark to make out what the notes say clearly"
+                            "do": "You leave the study, closing the door behind you.",
+                            "moveTo": 6
                         },
                         3: {
+                            "do": "It is too dark to make out what the notes say clearly"
+                        },
+                        4: {
                             "do": self.description,
                             "examine": "farmhouseStudy"
                         },
-                        4: {
+                        5: {
                             "menu": "menu"
                         }
                     }
@@ -1030,205 +1071,254 @@ written theories and worries.'''
                             "moveTo": 8
                         },
                         2: {
+                            "do": "You leave the study, closing the door behind you.",
+                            "moveTo": 6
+                        },
+                        3: {
                             "do": "You read the notes.",
                             "examine": "Study Notes"
                         },
-                        3: {
+                        4: {
                             "do": self.description,
                             "examine": "farmhouseStudy"
                         },
-                        4: {
+                        5: {
                             "menu": "menu"
                         }
                     }
             elif(pc.globalStatus["farmhouseStudy examined"] == True):
-                self.options = [
-                    "Return to the Bedroom",
-                    "Pick up the Lantern",
-                    "Read the papers",
-                    "Look around the area",
-                    "Player Menu"
-                ]
-
-
                 if(pc.globalStatus["Dark"] == True):
-                    self.selection = {
-                        1: {
-                            "do": "You leave the study, closing the door behind you.",
-                            "moveTo": 8
-                        },
-                        2: {
-                            "do": "You pick up the iron Lantern, its wick still in good shape.",
-                            "takeItem": 7
-                        },
-                        3: {
-                            "do": "It is too dark to make out what the notes say clearly"
-                        },
-                        4: {
-                            "do": self.description,
-                            "examine": "farmhouseStudy"
-                        },
-                        5: {
-                            "menu": "menu"
+                    if(pc.globalStatus["Lantern taken"] == False):
+                        self.options = [
+                            "Return to the Bedroom",
+                            "Exit to the hallway",
+                            "Pick up the Lantern",
+                            "Read the papers",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+                        self.selection = {
+                            1: {
+                                "do": "You leave the study, closing the door behind you.",
+                                "moveTo": 8
+                            },
+                            2: {
+                                "do": "You leave the study, closing the door behind you.",
+                                "moveTo": 6
+                            },
+                            3: {
+                                "do": "You pick up the iron Lantern, its wick still in good shape.",
+                                "takeItem": 7
+                            },
+                            4: {
+                                "do": "It is too dark to make out what the notes say clearly"
+                            },
+                            5: {
+                                "do": self.description,
+                                "examine": "farmhouseStudy"
+                            },
+                            6: {
+                                "menu": "menu"
+                            }
                         }
-                    }
+                    else:
+                        self.options = [
+                            "Return to the Bedroom",
+                            "Exit to the hallway",
+                            "Read the papers",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+                        self.selection = {
+                            1: {
+                                "do": "You leave the study, closing the door behind you.",
+                                "moveTo": 8
+                            },
+                            2: {
+                                "do": "You leave the study, closing the door behind you.",
+                                "moveTo": 6
+                            },
+                            3: {
+                                "do": "It is too dark to make out what the notes say clearly"
+                            },
+                            4: {
+                                "do": self.description,
+                                "examine": "farmhouseStudy"
+                            },
+                            5: {
+                                "menu": "menu"
+                            }
+                        }
                 else:
-                    self.selection = {
-                        1: {
-                            "do": "You leave the study, closing the door behind you.",
-                            "moveTo": 8
-                        },
-                        2: {
-                            "do": "You pick up the iron Lantern, its wick still in good shape.",
-                            "takeItem": 7
-                        },
-                        3: {
-                            "do": "You read the notes."
-                        },
-                        4: {
-                            "do": self.description,
-                            "examine": "farmhouseStudy"
-                        },
-                        5: {
-                            "menu": "menu"
+                    if(pc.globalStatus["Lantern taken"] == False):
+                        self.options = [
+                            "Return to the Bedroom",
+                            "Exit to the hallway",
+                            "Pick up the Lantern",
+                            "Read the papers",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+                        self.selection = {
+                            1: {
+                                "do": "You leave the study, closing the door behind you.",
+                                "moveTo": 8
+                            },
+                            2: {
+                                "do": "You leave the study, closing the door behind you.",
+                                "moveTo": 6
+                            },
+                            3: {
+                                "do": "You pick up the iron Lantern, its wick still in good shape.",
+                                "takeItem": 7
+                            },
+                            4: {
+                                "do": '''The notes appear to be a hodgepodge assortment of twisted
+    ramblings and chaotic theories and worries. A few mention a "door."'''
+                            },
+                            5: {
+                                "do": self.description,
+                                "examine": "farmhouseStudy"
+                            },
+                            6: {
+                                "menu": "menu"
+                            }
                         }
-                    }
+                    else:
+                        self.options = [
+                            "Return to the Bedroom",
+                            "Exit to the hallway",
+                            "Read the papers",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+                        self.selection = {
+                            1: {
+                                "do": "You leave the study, closing the door behind you.",
+                                "moveTo": 8
+                            },
+                            2: {
+                                "do": "You leave the study, closing the door behind you.",
+                                "moveTo": 6
+                            },
+                            3: {
+                                "do": '''The notes appear to be a hodgepodge assortment of twisted
+    ramblings and chaotic theories and worries. A few mention a "door."'''
+                            },
+                            4: {
+                                "do": self.description,
+                                "examine": "farmhouseStudy"
+                            },
+                            5: {
+                                "menu": "menu"
+                            }
+                        }
 
         elif (self.zoneID == 11):  # farmhouseStorage
-            self.summary = "."
-            self.description = '''.'''
+            self.summary = '''This small storage room seems to contain a variety of items useful
+around the house.'''
+            self.description = '''Inside this storage room are bags of hay and feathers, likely
+used for stuffing; extra pillows; sheets; a small wooden box containing some personal belongings
+which likely belong to Alys' son, Dareth. There is an ITEM in the box.'''
             self.items.clear()
 
             if(pc.globalStatus["farmhouseStorage examined"] == False):
                 self.options = [
-                    "option",
-                    "option",
+                    "Close the door",
                     "Look around the area",
                     "Player Menu"
                 ]
 
                 self.selection = {
                     1: {
-                        "do": "",
-                        "moveTo": 0
+                        "do": "You close the door and return to the hallway",
+                        "moveTo": 6
                     },
                     2: {
-                        "do": "",
-                        "moveTo": 0
-                    },
-                    3: {
                         "do": self.description,
                         "examine": "farmhouseStorage"
                     },
-                    4: {
+                    3: {
                         "menu": "menu"
                     }
                 }
             else:
                 self.options = [
-                    "option",
-                    "option",
-                    "option",
+                    "Close the door",
+                    "Take the ITEM - WIP",
                     "Look around the area",
                     "Player Menu"
                 ]
 
                 self.selection = {
                     1: {
-                        "do": "",
-                        "moveTo": 0
+                        "do": "You close the door and return to the hallway",
+                        "moveTo": 6
                     },
                     2: {
-                        "do": "",
-                        "moveTo": 0
+                        "do": "You take the ITEM - WIP",
+                        "takeItem": "WIP"
                     },
                     3: {
-                        "do": "",
-                        "moveTo": 0
-                    },
-                    4: {
                         "do": self.description,
                         "examine": "farmhouseStorage"
                     },
-                    5: {
+                    4: {
                         "menu": "menu"
                     }
                 }
 
         elif (self.zoneID == 12):  # farmhouseStairsCellar
-            self.summary = "."
-            self.description = '''.'''
+            self.summary = "Double doors lay closed over the entrance to the cellar."
+            self.description = '''Heavy looking wooden doors stand resolute, shut tight
+over the entrance to the cellar. The wooden doors are carved with
+a large symbol, circular, with interconnected knots, and thirteen
+stars sround the edge. In the center is an ornate labyrinth.'''
             self.items.clear()
 
-            if(pc.globalStatus["farmhouseStairsCellar examined"] == False):
-                self.options = [
-                    "option",
-                    "option",
-                    "Look around the area",
-                    "Player Menu"
-                ]
+            self.options = [
+                "Open the doors and descend",
+                "Head back to the prairie",
+                "Walk toward the front of the house",
+                "Look around the area",
+                "Player Menu"
+            ]
 
-                self.selection = {
-                    1: {
-                        "do": "",
-                        "moveTo": 0
-                    },
-                    2: {
-                        "do": "",
-                        "moveTo": 0
-                    },
-                    3: {
-                        "do": self.description,
-                        "examine": "farmhouseStairsCellar"
-                    },
-                    4: {
-                        "menu": "menu"
-                    }
+            self.selection = {
+                1: {
+                    "do": '''You pull open the heavy wooden doors, and climb down the stairs
+into the darkened cellar.''',
+                    "moveTo": 13
+                },
+                2: {
+                    "do": '''You leave the cellar doors and head toward the backyard.''',
+                    "moveTo": 13
+                },
+                3: {
+                    "do": '''You leave the cellar doors and return to the front of the house.''',
+                    "moveTo": 1
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "farmhouseStairsCellar"
+                },
+                5: {
+                    "menu": "menu"
                 }
-            else:
-                self.options = [
-                    "option",
-                    "option",
-                    "option",
-                    "Look around the area",
-                    "Player Menu"
-                ]
-
-                self.selection = {
-                    1: {
-                        "do": "",
-                        "moveTo": 0
-                    },
-                    2: {
-                        "do": "",
-                        "moveTo": 0
-                    },
-                    3: {
-                        "do": "",
-                        "moveTo": 0
-                    },
-                    4: {
-                        "do": self.description,
-                        "examine": "farmhouseStairsCellar"
-                    },
-                    5: {
-                        "menu": "menu"
-                    }
-                }
+            }
 
         elif (self.zoneID == 13):  # farmhouseCellar
 
             self.summary = "This is a dank and darkened cellar."
             self.description = '''The cellar contains a variety of preserved meats, canned fruits and pickled vegetables. In one corner, '''
             self.items.clear()
+            self.items = [9, 16]
 
             if(pc.globalStatus["Match Lit"] == False and pc.globalStatus["Lantern Lit"] == False):
                 pc.globalStatus["Dark"] = True
 
 
             if(pc.globalStatus["farmhouseCellar examined"] == False):
-
-
                 self.options = [
                     "Climb back out of the cellar",
                     "Look around the area",
@@ -1384,11 +1474,73 @@ written theories and worries.'''
 
 
 
-
         ### PRAIRIE ###------------------------------------------------------------------------ -|
 
-        elif (self.zoneID == 14):  # prairieBackyard
-            print(f"zone {zoneID}")
+        elif (self.zoneID == 14):  # prairieBackyard (HUB)
+            self.summary = '''An open prairie with a small garden. To the south is a barn, and
+nearby are an outhouse, a shed, and a well. To the north is the
+dense cornfield.'''
+            self.description = '''The garden contains a variety of produce, as well as autumn
+flowers and a handful of decorative gourds growing, ready for
+harvest soon.'''
+            self.items.clear()
+            self.items = [5]
+
+            self.options = [
+                "Walk to the Barn",
+                "Head to the Outhouse",
+                "Go to the Shed",
+                "Walk to the Well",
+                "Head North to the Cornfield",
+                "Walk back to the front of the house",
+                "Head to the cellar doors",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": '''You stroll over to the Barn.''',
+                    "moveTo": 19
+                },
+                2: {
+                    "do": '''You take a few steps and end up at the Outhouse.''',
+                    "moveTo": 18
+                },
+                3: {
+                    "do": '''You walk over to the Shed.''',
+                    "moveTo": 16
+                },
+                4: {
+                    "do": '''You look into the Well.''',
+                    "moveTo": 15
+                },
+                5: {
+                    "do": '''You start walking North, toward the cornfield.''',
+                    "moveTo": 24
+                },
+                6: {
+                    "do": '''You return to the front of the house.''',
+                    "moveTo": 1
+                },
+                7: {
+                    "do": '''You walk around the side of the house to the cellar doors.''',
+                    "moveTo": 12
+                },
+                8: {
+                    "do": self.description,
+                    "examine": "farmhouseStairsCellar"
+                },
+                9: {
+                    "menu": "menu"
+                }
+            }
+
+
+
+
+        # |- --- ### PRAIRIE ZONES -------------------------------------------------------------- -|
+
         elif (self.zoneID == 15):  # prairieWell
             print(f"zone {zoneID}")
         elif (self.zoneID == 16):  # prairieShedExterior
@@ -1397,6 +1549,58 @@ written theories and worries.'''
             print(f"zone {zoneID}")
         elif (self.zoneID == 18):  # prairieOuthouse
             print(f"zone {zoneID}")
+
+
+
+
+        # |- --- ### BARN ----------------------------------------------------------------------- -|
+
+        elif (self.zoneID == 19):  # barnFront
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 20):  # barnInterior
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 21):  # barnLoft
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 22):  # barnBack
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 23):  # barnStable
+            print(f"zone {zoneID}")
+
+
+
+
+        # |- --- ### CORNFIELD ------------------------------------------------------------------ -|
+
+        elif (self.zoneID == 24):  # cornfieldEdge
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 25):  # cornfieldThick
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 26):  # cornfieldTangle
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 27):  # cornfieldMazeStart
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 28):  # cornfieldMaze1
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 29):  # cornfieldMaze2
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 30):  # cornfieldMaze3
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 31):  # cornfieldMaze4
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 32):  # cornfieldMaze5
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 33):  # cornfieldMaze6
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 34):  # cornfieldMaze7
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 35):  # cornfieldMaze8
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 36):  # cornfieldMaze9
+            print(f"zone {zoneID}")
+        elif (self.zoneID == 37):  # cornfieldMazeCenter
+            print(f"zone {zoneID}")
+
+
         else:
             print(f"No zone")
 

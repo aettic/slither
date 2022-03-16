@@ -43,12 +43,23 @@ class Player:
             print(f"The {creature.type} evades your attack.")
 
 
-
     def takeDamage(self, damage):
         self.currentHP -= damage
         if(self.currentHP <= 0):
             self.isAlive = False
             print("You have perished.\n\n\t # GAME OVER #")
+
+
+    def intimidate(self, enemy):
+        intimidation = (self.stats["Str"] + self.stats["Con"]) - 15 #min 1, max 11
+        intimidateFactor = math.ceil(random.randrange(intimidation))
+        if(intimidateFactor > (math.ceil(enemy.maxHP / 2))):
+            print(f"The {enemy.type} is scared by your terrifying visage, and scurries away!")
+            return False
+        else:
+            print(f"The {enemy.type} is not bothered by your attempts at being frightening...")
+            enemy.attack(self)
+            return True
 
 
 

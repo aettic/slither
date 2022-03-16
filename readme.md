@@ -4,6 +4,8 @@ The goal of this application is to serve as a playground for building python cod
 
 So far, Atom seems to be very versatile.  
 
+
+
 ## Files
 
 #### main.py
@@ -24,20 +26,27 @@ Creates creature objects to be used for combat. Includes elements like HP, item 
 #### npc.py
 Used to generate non-player character objects which can be interacted with, including dialogue options, and globalStatus booleans which can allow for choices to seriously affect the way the game plays.
 
+
+
 ## Planning the game
 Like with Bloodborne java, there will be a player character object which is passed through to each of the sections of the game. Each section will be governed by switch:case, and will trigger a zone. Each zone (like rooms in Bloodborne) will contain items, descriptions, and any interactive features. The player character will contain information relevant to the player's stats, and items, etc. But will also contain the global status dictionary so that rooms can remain consistent.
+
+
 
 ## The Slither Engine so far
 This is a zork-like text-based adventure game. It contains a global status system to track world changes consistently. It uses a numbered option based system for acting. The story is homebrew High Fantasy, taking place in a land called Aetrynos. Distinct from Javaborne, this game is designed with a single "doSomething()" function which can handle all locations and all actions. This, paired with the system of selection and options rooted inside the player's active zone itself allows for a smooth, single system which can handle and parse many different things. The engine utilizes object-oriented-programming to handle creating the necessary entities and objects which interact in the game (Player, creature, items, zones, etc.)
 
 ## To Do (Development)
 - [ ] Build NPC objects with interactive dialogue capacity (model after combat)
-- [1] Construct a puzzle using items (Alcohol, alchemical stuff, blowing something up?)
 - [ ] Create more globalStatus entries as needed
 - [ ] Create Matches timer
 - [ ] Finish combat options
+- [ ] Fix closet entrance from Master bedroom
+- [ ] Move Lantern to Shed
 - [1] Put a Grue in Dark spots (cellar, loft)
-- [ ] Write out the rest of the zones
+- [ ] Write out Prairie Zones
+- [ ] Write out Barn Zones
+- [ ] Write out Cornfield Zones
 
 ## Done
 - [x] Actually use item.py before getting too carried away
@@ -47,15 +56,15 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [x] Build creature objects for combat
 - [x] Complete location globalStatus entries
 - [x] Complete the Beast itemDrops
-- [x] Create a combine(item) method
+- [x] Construct a puzzle using items (Alchemical Powder, Glass Jar, Acrid Solution)
+- [x] Create a combine method
 - [x] Create a useItem method in player.py (now contains equip, toggle, and spell, and combine)
 - [x] Create Dark timer for Grue attack - 3 rounds
-- [x] Fix problem with globalStatus not updating properly (still need to identify)
+- [x] Fix problem with globalStatus not updating properly (had to do with How python uses boolean)
 - [x] Organize globalStatus entires
 - [x] Test save state works
+- [x] Write out Farmhouse Zones
 - [x] Write out the story more thoroughly in a secret canon piece.
-
-
 
 
 
@@ -71,6 +80,8 @@ This prompted Alys to work tirelessly on figuring out what alignment caused this
 There, she is a prisoner, experiencing that mystical and unforgiving place of insanity without the reliable rising and setting of the sun. She has undergone torture as the Fae scholars try desperately to figure out how she discovered them. She stands resolute, and they aren't happy.
 
 You must explore her abandoned farm, and discover clues that lead to finding and opening the gate, and venture into the Underworld to rescue her.
+
+
 
 ## Gameplay
 

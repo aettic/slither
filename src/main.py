@@ -92,9 +92,11 @@ def doSomething(pc):
         else:
             pc.timer = 0
 
-        if(pc.timer == 3):
+        if(pc.timer == 4):
             grue = Creature("Grue")
             combat(pc, grue)
+
+        pc.globalStatus["Dark"] = False
 
 def combat(pc, enemy):
     combatRunning = True
@@ -122,14 +124,19 @@ def combat(pc, enemy):
                 enemy.attack(pc)
             elif(choice == 2):
                 print("You stand firm")
+                pc.defense += 3
                 enemy.attack(pc)
+                pc.defense -= 3
             elif(choice == 3):
                 pc.viewInventory()
+                enemy.attack(pc)
             elif(choice == 4):
-                print("You stand firm")
+                print("You attempt to scare off the creature")
+                combatRunning = pc.intimidate(enemy)
             elif(choice == 5):
                 print("You flee the combat")
                 combatRunning = False
+
             else:
                 print("WIP")
 
@@ -153,6 +160,8 @@ def gameloop(pc):
 
         pc.zone = Zone(pc.zoneID, pc)
         # each loop statement will play every time one enters that room. The descriptions should be split in two: first time, and post-acquaintance.
+
+
 
 
         ### STARTING ZONE ###-------------------------------------------------------------------- -|
@@ -802,7 +811,7 @@ def newGame():
     isAlive = True
 
     # Set currentZone to 0 for game opening
-    startingZoneID = 13
+    startingZoneID = 0
 
     ### Create and spend points on stats
     # starting base stats
@@ -958,8 +967,8 @@ def newGame():
 
     # Creates new inventory with note object
     # inventory = [0, 7, 9, 1, 12, 14, 15]  # testing all item types
-    # inventory = [0]  # only note
-    inventory = [0, 7, 12, 16, 17, 18] # testing bomb
+    inventory = [0]  # only note
+    # inventory = [0, 7, 12, 16, 17, 18] # testing bomb
 
     timer = 0
 
