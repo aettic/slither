@@ -42,6 +42,7 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [ ] Create Matches timer
 - [ ] Finish combat options
 - [ ] Fix closet entrance from Master bedroom
+- [ ] Look into combining all possible movements into one function - pc.moveTo(Zone) or something
 - [ ] Move Lantern to Shed
 - [1] Put a Grue in Dark spots (cellar, loft)
 - [ ] Write out Prairie Zones

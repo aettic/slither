@@ -21,7 +21,7 @@ def printTitle():
 ██ ▄▄▄ █ ███▄██▄ ▄█ ████ ▄▄█ ▄▄▀████ ▄▄▄█ ▄▄▀█ ▄▄▄██▄██ ▄▄▀█ ▄▄██
 ██▄▄▄▀▀█ ███ ▄██ ██ ▄▄ █ ▄▄█ ▀▀▄████ ▄▄▄█ ██ █ █▄▀██ ▄█ ██ █ ▄▄██
 ██ ▀▀▀ █▄▄█▄▄▄██▄██▄██▄█▄▄▄█▄█▄▄████ ▀▀▀█▄██▄█▄▄▄▄█▄▄▄█▄██▄█▄▄▄██
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ v0.1.4 ▀▀▀▀
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ v0.1.5 ▀▀▀▀
 
    db     888888  888888  88""Yb  Yb  dY  88b 88   dP"Yb   .dP"Y8
   dPYb    88__      88    88__dP   YbdY   88Yb88  dY   Yb  `Ybo.
@@ -87,7 +87,7 @@ def doSomething(pc):
         except KeyError:
             print("Please enter a valid selection.")
 
-        if(pc.globalStatus["Dark"] == True):
+        if(pc.globalStatus["Dark"] == True and pc.globalStatus["Dark Place"] == True):
             pc.timer += 1
         else:
             pc.timer = 0
@@ -851,7 +851,7 @@ def newGame():
     currentHP = int(maxHP)
     damage = math.ceil(stats["Str"] / 5)
     magic = math.ceil((stats["Int"] / 2) - 4)
-    defense = 0
+    defense = math.ceil((stats["Dex"] / 5) - 1)
 
     # equippable slots
     weapon = []
@@ -859,7 +859,7 @@ def newGame():
 
     # Set initial globalStatus variables to define the original values of a new game. These will get changed as the game is played, and should remain consistent throughout the whole game. ALL new globalStatus variables need to be published here first, and updated anywhere that they ought to be updated. All "first time" start at True, and as a general rule all "examine" and "talen" start at False. The appropriate user actions will change them as necessary.
     globalStatus = {
-        # organize by category, and then by alphabetical
+        # organize by category, and then label, alphabetically
 
         ### GAME CORE
         "Game Start": True,
@@ -923,6 +923,7 @@ def newGame():
         "Lantern taken": False,
         "Letter from Alys taken": False,
         "Liquid Darkness taken": False,
+        "Matches taken": False,
         "Muddy Boots taken": False,
         "Pitchfork taken": False,
         "Spellbook taken": False,
@@ -933,7 +934,7 @@ def newGame():
         "dirtRoad examined": False,
         "farmhouseCellar examined": False,
         "farmhouseCloset1 Box examined": False,
-        "farmhouseCloset2 Box examined": False,
+        "farmhouseCloset2 examined": False,
         "farmhouseGuestBedroom examined": False,
         "farmhouseHallway examined": False,
         "farmhouseHallway Chest examined": False,
@@ -944,6 +945,11 @@ def newGame():
         "farmhouseStairsCellar examined": False,
         "farmhouseStudy examined": False,
         "farmhouseStorage examined": False,
+        "prairieBackyard examined": False,
+        "prairieOuthouse examined": False,
+        "prairieShedExterior examined": False,
+        "prairieShedInterior examined": False,
+        "prairieWell examined": False,
         "Study Notes examined": False,
         "Telescope examined": False,
 

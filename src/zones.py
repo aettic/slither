@@ -619,8 +619,8 @@ tails trailing behind.'''
                     self.options = [
                         "Back to the stairs",
                         "First door on the left",
-                        "First door on the right",
                         "Second door on the left",
+                        "First door on the right",
                         "Second door on the right",
                         "Open the chest and look inside",
                         "Look around the area",
@@ -666,8 +666,8 @@ looking book with a gem set in the cover.''',
                         self.options = [
                             "Back to the stairs",
                             "First door on the left",
-                            "First door on the right",
                             "Second door on the left",
+                            "First door on the right",
                             "Second door on the right",
                             "Take the book",
                             "Look around the area",
@@ -712,8 +712,8 @@ things.''',
                         self.options = [
                             "Back to the stairs",
                             "First door on the left",
-                            "First door on the right",
                             "Second door on the left",
+                            "First door on the right",
                             "Second door on the right",
                             "Look around the area",
                             "Player Menu"
@@ -1093,7 +1093,7 @@ written theories and worries.'''
                             "Return to the Bedroom",
                             "Exit to the hallway",
                             "Pick up the Lantern",
-                            "Read the papers",
+                            "Read the letter",
                             "Look around the area",
                             "Player Menu"
                         ]
@@ -1173,8 +1173,7 @@ written theories and worries.'''
                                 "takeItem": 7
                             },
                             4: {
-                                "do": '''The notes appear to be a hodgepodge assortment of twisted
-    ramblings and chaotic theories and worries. A few mention a "door."'''
+                                "do": Item(11).read
                             },
                             5: {
                                 "do": self.description,
@@ -1202,8 +1201,7 @@ written theories and worries.'''
                                 "moveTo": 6
                             },
                             3: {
-                                "do": '''The notes appear to be a hodgepodge assortment of twisted
-    ramblings and chaotic theories and worries. A few mention a "door."'''
+                                "do": Item(11).read
                             },
                             4: {
                                 "do": self.description,
@@ -1221,6 +1219,7 @@ around the house.'''
 used for stuffing; extra pillows; sheets; a small wooden box containing some personal belongings
 which likely belong to Alys' son, Dareth. There is an ITEM in the box.'''
             self.items.clear()
+            self.items = [9]
 
             if(pc.globalStatus["farmhouseStorage examined"] == False):
                 self.options = [
@@ -1243,30 +1242,51 @@ which likely belong to Alys' son, Dareth. There is an ITEM in the box.'''
                     }
                 }
             else:
-                self.options = [
-                    "Close the door",
-                    "Take the ITEM - WIP",
-                    "Look around the area",
-                    "Player Menu"
-                ]
+                if(pc.globalStatus["Hidden Note 2 taken"] == False):
+                    self.options = [
+                        "Close the door",
+                        "Take the Note",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
 
-                self.selection = {
-                    1: {
-                        "do": "You close the door and return to the hallway",
-                        "moveTo": 6
-                    },
-                    2: {
-                        "do": "You take the ITEM - WIP",
-                        "takeItem": "WIP"
-                    },
-                    3: {
-                        "do": self.description,
-                        "examine": "farmhouseStorage"
-                    },
-                    4: {
-                        "menu": "menu"
+                    self.selection = {
+                        1: {
+                            "do": "You close the door and return to the hallway",
+                            "moveTo": 6
+                        },
+                        2: {
+                            "do": "You take the note",
+                            "takeItem": 9
+                        },
+                        3: {
+                            "do": self.description,
+                            "examine": "farmhouseStorage"
+                        },
+                        4: {
+                            "menu": "menu"
+                        }
                     }
-                }
+                else:
+                    self.options = [
+                        "Close the door",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You close the door and return to the hallway",
+                            "moveTo": 6
+                        },
+                        2: {
+                            "do": self.description,
+                            "examine": "farmhouseStorage"
+                        },
+                        3: {
+                            "menu": "menu"
+                        }
+                    }
 
         elif (self.zoneID == 12):  # farmhouseStairsCellar
             self.summary = "Double doors lay closed over the entrance to the cellar."
@@ -1486,55 +1506,162 @@ harvest soon.'''
             self.items.clear()
             self.items = [5]
 
-            self.options = [
-                "Walk to the Barn",
-                "Head to the Outhouse",
-                "Go to the Shed",
-                "Walk to the Well",
-                "Head North to the Cornfield",
-                "Walk back to the front of the house",
-                "Head to the cellar doors",
-                "Look around the area",
-                "Player Menu"
-            ]
+            if(pc.globalStatus["prairieBackyard examined"] == False):
+                self.options = [
+                    "Walk to the Barn",
+                    "Head to the Outhouse",
+                    "Go to the Shed",
+                    "Walk to the Well",
+                    "Head North to the Cornfield",
+                    "Walk back to the front of the house",
+                    "Head to the cellar doors",
+                    "Look around the area",
+                    "Player Menu"
+                ]
 
-            self.selection = {
-                1: {
-                    "do": '''You stroll over to the Barn.''',
-                    "moveTo": 19
-                },
-                2: {
-                    "do": '''You take a few steps and end up at the Outhouse.''',
-                    "moveTo": 18
-                },
-                3: {
-                    "do": '''You walk over to the Shed.''',
-                    "moveTo": 16
-                },
-                4: {
-                    "do": '''You look into the Well.''',
-                    "moveTo": 15
-                },
-                5: {
-                    "do": '''You start walking North, toward the cornfield.''',
-                    "moveTo": 24
-                },
-                6: {
-                    "do": '''You return to the front of the house.''',
-                    "moveTo": 1
-                },
-                7: {
-                    "do": '''You walk around the side of the house to the cellar doors.''',
-                    "moveTo": 12
-                },
-                8: {
-                    "do": self.description,
-                    "examine": "farmhouseStairsCellar"
-                },
-                9: {
-                    "menu": "menu"
+                self.selection = {
+                    1: {
+                        "do": '''You stroll over to the Barn.''',
+                        "moveTo": 19
+                    },
+                    2: {
+                        "do": '''You take a few steps and end up at the Outhouse.''',
+                        "moveTo": 18
+                    },
+                    3: {
+                        "do": '''You walk over to the Shed.''',
+                        "moveTo": 16
+                    },
+                    4: {
+                        "do": '''You look into the Well.''',
+                        "moveTo": 15
+                    },
+                    5: {
+                        "do": '''You start walking North, toward the cornfield.''',
+                        "moveTo": 24
+                    },
+                    6: {
+                        "do": '''You return to the front of the house.''',
+                        "moveTo": 1
+                    },
+                    7: {
+                        "do": '''You walk around the side of the house to the cellar doors.''',
+                        "moveTo": 12
+                    },
+                    8: {
+                        "do": self.description,
+                        "examine": "farmhouseStairsCellar"
+                    },
+                    9: {
+                        "menu": "menu"
+                    }
                 }
-            }
+            else:
+                if(pc.globalStatus["Gold Coin taken"] == False):
+                    self.options = [
+                        "Walk to the Barn",
+                        "Head to the Outhouse",
+                        "Go to the Shed",
+                        "Walk to the Well",
+                        "Head North to the Cornfield",
+                        "Walk back to the front of the house",
+                        "Head to the cellar doors",
+                        "Pick up the coin",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": '''You stroll over to the Barn.''',
+                            "moveTo": 19
+                        },
+                        2: {
+                            "do": '''You take a few steps and end up at the Outhouse.''',
+                            "moveTo": 18
+                        },
+                        3: {
+                            "do": '''You walk over to the Shed.''',
+                            "moveTo": 16
+                        },
+                        4: {
+                            "do": '''You look into the Well.''',
+                            "moveTo": 15
+                        },
+                        5: {
+                            "do": '''You start walking North, toward the cornfield.''',
+                            "moveTo": 24
+                        },
+                        6: {
+                            "do": '''You return to the front of the house.''',
+                            "moveTo": 1
+                        },
+                        7: {
+                            "do": '''You walk around the side of the house to the cellar doors.''',
+                            "moveTo": 12
+                        },
+                        8: {
+                            "do": "You bend down and pick up the coin, it's unlike normal coins you have seen.",
+                            "takeItem": 5
+                        },
+                        9: {
+                            "do": self.description,
+                            "examine": "farmhouseStairsCellar"
+                        },
+                        10: {
+                            "menu": "menu"
+                        }
+                    }
+                else:
+                    self.options = [
+                        "Walk to the Barn",
+                        "Head to the Outhouse",
+                        "Go to the Shed",
+                        "Walk to the Well",
+                        "Head North to the Cornfield",
+                        "Walk back to the front of the house",
+                        "Head to the cellar doors",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": '''You stroll over to the Barn.''',
+                            "moveTo": 19
+                        },
+                        2: {
+                            "do": '''You take a few steps and end up at the Outhouse.''',
+                            "moveTo": 18
+                        },
+                        3: {
+                            "do": '''You walk over to the Shed.''',
+                            "moveTo": 16
+                        },
+                        4: {
+                            "do": '''You look into the Well.''',
+                            "moveTo": 15
+                        },
+                        5: {
+                            "do": '''You start walking North, toward the cornfield.''',
+                            "moveTo": 24
+                        },
+                        6: {
+                            "do": '''You return to the front of the house.''',
+                            "moveTo": 1
+                        },
+                        7: {
+                            "do": '''You walk around the side of the house to the cellar doors.''',
+                            "moveTo": 12
+                        },
+                        8: {
+                            "do": self.description,
+                            "examine": "farmhouseStairsCellar"
+                        },
+                        9: {
+                            "menu": "menu"
+                        }
+                    }
 
 
 

@@ -28,9 +28,9 @@ of black silk with green embroidery.'''
         elif(self.itemID == 2):
             self.name = "Muddy Boots"
             self.value = 2
-            self.equippable = True
             self.armor = True
             self.armorBonus = 1
+            self.use = "equip"
             self.description = "A pair of slightly muddy work boots."
 
         elif(self.itemID == 3):
@@ -38,7 +38,7 @@ of black silk with green embroidery.'''
             self.value = 7
             self.magic = True
             self.magicBonus = 2
-            self.statRequired = {"int": 8}
+            self.statRequired = {"Int": 10}
             self.use = "spell"
             self.spell = '''Rubbing the emerald medallion causes green magical sparks, and has
 revealed something hidden. You also feel invigorated.'''
@@ -52,7 +52,7 @@ though you're sure it's not moving.'''
             self.value = 10
             self.magic = True
             self.magicBonus = 2
-            self.statRequired = {"int": 12}
+            self.statRequired = {"Int": 12}
             self.use = "spell"
             self.spell = "" # WIP
             self.description = '''A handbound leather journal which shines with a magical spark.
@@ -82,29 +82,36 @@ glass windows.'''
         elif(self.itemID == 8):
             self.name = "Hidden Note 1"
             self.value = 0
-            self.description = '''A torn page of a journal, hurriedly documenting magical features
+            self.use = "read"
+            self.read = '''A torn page of a journal, hurriedly documenting magical features
 of some sort of stairway. It appears to indicate that this
 stairway exists and does not exist at the same time; or perhaps
 it exists in a parallel dimension.'''
+            self.description = "A strange drawing found by the well."
 
         elif(self.itemID == 9):
             self.name = "Hidden Note 2"
             self.value = 0
-            self.description = '''A drawing of a spiral, with evenly spaced segments, terminating
+            self.use = "read"
+            self.read = '''A drawing of a spiral, with evenly spaced segments, terminating
 in a circle which takes up half the page. Around it are a
 sunburts of branching lines... They almost seem to be plants,
 spread away from the circle and its captivating spiral.
 There is a single word written on this note: 'Amaze'.'''
+            self.description = '''A strange drawing found in a storage closet.'''
 
         elif(self.itemID == 10):
             self.name = "Hidden Note 3"
             self.value = 0
-            self.description = "This note is a hastily sketched drawing of a wall of corn."
+            self.use = "read"
+            self.read = "This note is a hastily sketched drawing of a wall of corn."
+            self.description = "A strange drawing found in the Barn Loft."
 
         elif(self.itemID == 11):
             self.name = "Letter from Alys"
             self.value = 0
-            self.description = """'To whoever finds this, consider this my last will and testement.
+            self.use = "read"
+            self.read = """'To whoever finds this, consider this my last will and testement.
 Things are different. It's hard to know which side I'm on anymore.
 I thought that I could control things when I first found it, but
 that quickly proved foolish. Whether by starlight or stubbornness,
@@ -113,11 +120,11 @@ Perhaps it is that I do not want to close it. I have become
 enthralled by the mysterious forces that live down there, but
 I'm also terrified for my life. Please do not look for me. Seal
 the door if you can, and try to forget this place.'"""
+            self.description = "A letter written by Alys, found in her Study."
 
         elif(self.itemID == 12):
             self.name = "Sword"
             self.value = 5
-            self.equippable = True
             self.weapon = True
             self.damageBonus = 4
             self.use = "equip"
@@ -127,7 +134,6 @@ is sharp, but crudely assymetrical.'''
         elif(self.itemID == 13):
             self.name = "Pitchfork"
             self.value = 2
-            self.equippable = True
             self.weapon = True
             self.damageBonus = 1
             self.use = "equip"

@@ -44,7 +44,7 @@ class Player:
 
 
     def takeDamage(self, damage):
-        self.currentHP -= damage
+        self.currentHP -= (damage - self.defense)
         if(self.currentHP <= 0):
             self.isAlive = False
             print("You have perished.\n\n\t # GAME OVER #")
@@ -69,14 +69,19 @@ class Player:
     def useItem(self, itemID):
         item = Item(itemID)
         if(item.use != False):
-            if(item.use == "equip" and item.equippable == True):
+            if(item.use == "equip"):
                 self.equipItem(item)
             elif(item.use == "spell"):
-                self.castSpell(item)
+                if(self.stats["Int"] >= item.statRequired["Int"]):
+                    self.castSpell(item)
+                else:
+                    print("You do not have a high enough Intelligence score.")
             elif(item.use == "toggle"):
                 self.toggle(item)
             elif(item.use == "combine"):
                 self.combine(item)
+            elif(item.use == "read"):
+                print(item.read)
 
 
     def equipItem(self, item):
@@ -219,6 +224,7 @@ will explode soon after.''')
         for stat in self.stats:
             print(f"{stat}: {self.stats[stat]}")
         print(f"Damage: {self.damage}")
+        print(f"Defense: {self.defense}")
         print(f"Magic: {self.magic}")
 
 
