@@ -40,14 +40,14 @@ ditch just off the road, you spot a tiny hat.'''
 
                 self.selection = {
                     1: {
-                        "do": "You walk toward the house",
+                        "do": "You walk toward the house.",
                         "moveTo": 1,
                     },
                     2: {
-                        "do": "You walk up the road, but decide to head back",
+                        "do": "You walk up the road, but decide to head back.",
                     },
                     3: {
-                        "do": "You walk down the road, but decide to head back",
+                        "do": "You walk down the road, but decide to head back.",
                     },
                     4: {
                         "do": self.description,
@@ -70,17 +70,17 @@ ditch just off the road, you spot a tiny hat.'''
 
                     self.selection = {
                         1: {
-                            "do": "You walk toward the house",
+                            "do": "You walk toward the house.",
                             "moveTo": 1,
                         },
                         2: {
-                            "do": "You walk up the road, but decide to head back",
+                            "do": "You walk up the road, but decide to head back.",
                         },
                         3: {
-                            "do": "You walk down the road, but decide to head back",
+                            "do": "You walk down the road, but decide to head back.",
                         },
                         4: {
-                            "do": "You pick up the small hat",
+                            "do": "You pick up the small hat.",
                             "takeItem": 1
                         },
                         5: {
@@ -102,14 +102,14 @@ ditch just off the road, you spot a tiny hat.'''
 
                     self.selection = {
                         1: {
-                            "do": "You walk toward the house",
+                            "do": "You walk toward the house.",
                             "moveTo": 1,
                         },
                         2: {
-                            "do": "You walk up the road, but decide to head back",
+                            "do": "You walk up the road, but decide to head back.",
                         },
                         3: {
-                            "do": "You walk down the road, but decide to head back",
+                            "do": "You walk down the road, but decide to head back.",
                         },
                         4: {
                             "do": self.description,
@@ -156,19 +156,19 @@ the outskirts by darkened and misty woods.'''
 
             self.selection = {
                 1: {
-                    "do": "You walk inside the farmhouse through the porch door",
+                    "do": "You walk inside the farmhouse through the porch door.",
                     "moveTo": 2
                 },
                 2: {
-                    "do": "You skirt the side of the house and walk into the prairie behind the house",
+                    "do": "You skirt the side of the house and walk into the prairie behind the house.",
                     "moveTo": 14
                 },
                 3: {
-                    "do": "You walk around the side of the house and to the cellar doors",
+                    "do": "You walk around the side of the house and to the cellar doors.",
                     "moveTo": 12
                 },
                 4: {
-                    "do": "You depart the house and head North, toward the wall of green corn stalks",
+                    "do": "You depart the house and head North, toward the wall of green corn stalks.",
                     "moveTo": 24
                 },
                 5: {
@@ -206,15 +206,15 @@ room. There are unlit candles on the table and around the room.'''
 
                 self.selection = {
                     1: {
-                        "do": "You traverse the creaking floor and head into the sitting room",
+                        "do": "You traverse the creaking floor and head into the sitting room.",
                         "moveTo": 4
                     },
                     2: {
-                        "do": "You walk over to the closet door and pull it open",
+                        "do": "You walk over to the closet door and pull it open.",
                         "moveTo": 3
                     },
                     3: {
-                        "do": "You step back outside the house",
+                        "do": "You step back outside the house.",
                         "moveTo": 1
                     },
                     4: {
@@ -237,19 +237,23 @@ room. There are unlit candles on the table and around the room.'''
 
                 self.selection = {
                     1: {
-                        "do": "You traverse the creaking floor and head into the sitting room",
+                        "do": "You traverse the creaking floor and head into the sitting room.",
                         "moveTo": 4
                     },
                     2: {
-                        "do": "You walk over to the closet door and pull it open",
+                        "do": "You walk over to the closet door and pull it open.",
                         "moveTo": 3
                     },
                     3: {
-                        "do": "You step back outside the house",
+                        "do": "You step back outside the house.",
                         "moveTo": 1
                     },
                     4: {
-                        "do": "You look around the room, examining the chaos and bedlam. Silverware and dishes lie scattered haphazardly. A tea kettle is overturned on the floor, a small puddle of brown tea gathered around it. It is no longer warm. A fight happened here. Is Alys okay? You can see the footprints came from the sitting room."
+                        "do": '''You look around the room, examining the chaos and bedlam. Silver-
+ware and dishes lie scattered haphazardly. A tea kettle is over-
+turned on the floor, a small puddle of brown tea gathered around
+it. It is no longer warm. A fight happened here. Is Alys okay?
+You can see the footprints came from the sitting room.'''
                     },
                     5: {
                         "do": self.description
@@ -282,19 +286,21 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
                     ]
                     self.selection = {
                         1: {
-                            "do": "You close the closet door, and walk back to the kitchen",
+                            "do": "You close the closet door, and walk back to the kitchen.",
                             "moveTo": 2
                         },
                         2: {
-                            "do": "You close the closet door and head into the sitting room",
+                            "do": "You close the closet door and head into the sitting room.",
                             "moveTo": 4
                         },
                         3: {
-                            "do": "You take the pair of boots you think should fit you, scraping off some of the mud.",
+                            "do": '''You grab the boots and put them on, dried mud is crusted on the
+sides, but they're comfortable.''',
                             "takeItem": 2
                         },
                         4: {
-                            "do": "You pull the box down and open it up, inside is a small crystal trinket in the shape of a hexagon",
+                            "do": '''You pull the box down and open it up, inside is a small crystal
+trinket in the shape of a hexagon.''',
                             "examine": "farmhouseCloset1 Box"
                         },
                         5: {
@@ -317,19 +323,21 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
 
                         self.selection = {
                             1: {
-                                "do": "You close the closet door, and walk back to the kitchen",
+                                "do": "You close the closet door, and walk back to the kitchen.",
                                 "moveTo": 2
                             },
                             2: {
-                                "do": "You close the closet door and head into the sitting room",
+                                "do": "You close the closet door and head into the sitting room.",
                                 "moveTo": 4
                             },
                             3: {
-                                "do": "You grab the boots and put them on, dried mud is crusted on the sides, but they're comfortable",
+                                "do": '''You grab the boots and put them on, dried mud is crusted on the
+sides, but they're comfortable.''',
                                 "takeItem": 2
                             },
                             4: {
-                                "do": "You gently lift the delicate charm out of the box, it is on a silver chain. You put it in your pack.",
+                                "do": '''You gently lift the delicate charm out of the box, it is on a
+silver chain. You put it in your pack.''',
                                 "takeItem": 3
                             },
                             5: {
@@ -351,15 +359,16 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
 
                         self.selection = {
                             1: {
-                                "do": "You close the closet door, and walk back to the kitchen",
+                                "do": "You close the closet door, and walk back to the kitchen.",
                                 "moveTo": 2
                             },
                             2: {
-                                "do": "You close the closet door and head into the sitting room",
+                                "do": "You close the closet door and head into the sitting room.",
                                 "moveTo": 4
                             },
                             3: {
-                                "do": "You grab the boots and put them on, dried mud is crusted on the sides, but they're comfortable",
+                                "do": '''You grab the boots and put them on, dried mud is crusted on the
+sides, but they're comfortable.''',
                                 "takeItem": 2
                             },
                             4: {
@@ -391,7 +400,8 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
                             "moveTo": 4
                         },
                         3: {
-                            "do": "You pull the box down and open it up, inside is a small crystal trinket in the shape of a hexagon",
+                            "do": '''You pull the box down and open it up, inside is a small crystal
+trinket in the shape of a hexagon.''',
                             "examine": "farmhouseCloset1 Box"
                         },
                         4: {
@@ -421,7 +431,8 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
                                 "moveTo": 4
                             },
                             3: {
-                                "do": "You gently lift the delicate charm out of the box, it is on a silver chain. You put it in your pack.",
+                                "do": '''You gently lift the delicate charm out of the box, it is on a
+silver chain. You put it in your pack.''',
                                 "takeItem": 3
                             },
                             4: {
@@ -441,11 +452,11 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
 
                         self.selection = {
                             1: {
-                                "do": "You close the closet door, and walk back to the kitchen",
+                                "do": "You close the closet door, and walk back to the kitchen.",
                                 "moveTo": 2
                             },
                             2: {
-                                "do": "You close the closet door and head into the sitting room",
+                                "do": "You close the closet door and head into the sitting room.",
                                 "moveTo": 4
                             },
                             3: {
@@ -508,7 +519,7 @@ in the ash are tiny footprints...'''
                         "moveTo": 5
                     },
                     2: {
-                        "do": "You venture back to the kitchen",
+                        "do": "You venture back to the kitchen.",
                         "moveTo": 2
                     },
                     3: {
@@ -550,11 +561,11 @@ at the center.'''
 
             self.selection = {
                 1: {
-                    "do": "You climb down the stairs and end up back in the sitting room",
+                    "do": "You climb down the stairs and end up back in the sitting room.",
                     "moveTo": 4
                 },
                 2: {
-                    "do": "You ascend, spilling out into an upstairs hallway",
+                    "do": "You ascend, spilling out into an upstairs hallway.",
                     "moveTo": 6
                 },
                 3: {
@@ -587,23 +598,23 @@ tails trailing behind.'''
 
                 self.selection = {
                     1: {
-                        "do": "You climb down the stairs and end up back in the sitting room",
+                        "do": "You climb down the stairs and end up back in the sitting room.",
                         "moveTo": 5
                     },
                     2: {
-                        "do": "You enter the first door on the left, a Master Bedroom",
+                        "do": "You enter the first door on the left, a Master Bedroom.",
                         "moveTo": 8
                     },
                     3: {
-                        "do": "You enter the second door on the left, a Study",
+                        "do": "You enter the second door on the left, a Study.",
                         "moveTo": 10
                     },
                     4: {
-                        "do": "You enter the first door on the right, a Storage room",
+                        "do": "You enter the first door on the right, a Storage room.",
                         "moveTo": 11
                     },
                     5: {
-                        "do": "You enter the second door on the right, a Bedroom",
+                        "do": "You enter the second door on the right, a Bedroom.",
                         "moveTo": 9
                     },
                     6: {
@@ -629,23 +640,23 @@ tails trailing behind.'''
 
                     self.selection = {
                         1: {
-                            "do": "You climb down the stairs and end up back in the sitting room",
+                            "do": "You climb down the stairs and end up back in the sitting room.",
                             "moveTo": 5
                         },
                         2: {
-                            "do": "You enter the first door on the left, a Master Bedroom",
+                            "do": "You enter the first door on the left, a Master Bedroom.",
                             "moveTo": 8
                         },
                         3: {
-                            "do": "You enter the second door on the left, a Study",
+                            "do": "You enter the second door on the left, a Study.",
                             "moveTo": 10
                         },
                         4: {
-                            "do": "You enter the first door on the right, a Storage room",
+                            "do": "You enter the first door on the right, a Storage room.",
                             "moveTo": 11
                         },
                         5: {
-                            "do": "You enter the second door on the right, a Bedroom",
+                            "do": "You enter the second door on the right, a Bedroom.",
                             "moveTo": 9
                         },
                         6: {
@@ -676,23 +687,23 @@ looking book with a gem set in the cover.''',
 
                         self.selection = {
                             1: {
-                                "do": "You climb down the stairs and end up back in the sitting room",
+                                "do": "You climb down the stairs and end up back in the sitting room.",
                                 "moveTo": 5
                             },
                             2: {
-                                "do": "You enter the first door on the left, a Master Bedroom",
+                                "do": "You enter the first door on the left, a Master Bedroom.",
                                 "moveTo": 8
                             },
                             3: {
-                                "do": "You enter the second door on the left, a Study",
+                                "do": "You enter the second door on the left, a Study.",
                                 "moveTo": 10
                             },
                             4: {
-                                "do": "You enter the first door on the right, a Storage room",
+                                "do": "You enter the first door on the right, a Storage room.",
                                 "moveTo": 11
                             },
                             5: {
-                                "do": "You enter the second door on the right, a Bedroom",
+                                "do": "You enter the second door on the right, a Bedroom.",
                                 "moveTo": 9
                             },
                             6: {
@@ -721,23 +732,23 @@ things.''',
 
                         self.selection = {
                             1: {
-                                "do": "You climb down the stairs and end up back in the sitting room",
+                                "do": "You climb down the stairs and end up back in the sitting room.",
                                 "moveTo": 5
                             },
                             2: {
-                                "do": "You enter the first door on the left, a Master Bedroom",
+                                "do": "You enter the first door on the left, a Master Bedroom.",
                                 "moveTo": 8
                             },
                             3: {
-                                "do": "You enter the second door on the left, a Study",
+                                "do": "You enter the second door on the left, a Study.",
                                 "moveTo": 10
                             },
                             4: {
-                                "do": "You enter the first door on the right, a Storage room",
+                                "do": "You enter the first door on the right, a Storage room.",
                                 "moveTo": 11
                             },
                             5: {
-                                "do": "You enter the second door on the right, a Bedroom",
+                                "do": "You enter the second door on the right, a Bedroom.",
                                 "moveTo": 9
                             },
                             6: {
@@ -792,7 +803,7 @@ near the top, is a box of matches.'''
                             "moveTo": 9
                         },
                         2: {
-                            "do": "You take the box of matches",
+                            "do": "You take the box of matches.",
                             "takeItem": 15,
                         },
                         3: {
@@ -842,11 +853,11 @@ and a brass telescope pointed out the window, toward the sky.'''
 
                 self.selection = {
                     1: {
-                        "do": "You leave the room and return to the hall",
+                        "do": "You leave the room and return to the hall.",
                         "moveTo": 6
                     },
                     2: {
-                        "do": "You open the door on the far end, and enter the study",
+                        "do": "You open the door on the far end, and enter the study.",
                         "moveTo": 10
                     },
                     3: {
@@ -869,11 +880,11 @@ and a brass telescope pointed out the window, toward the sky.'''
 
                     self.selection = {
                         1: {
-                            "do": "You leave the room and return to the hall",
+                            "do": "You leave the room and return to the hall.",
                             "moveTo": 6
                         },
                         2: {
-                            "do": "You open the door on the far end, and enter the study",
+                            "do": "You open the door on the far end, and enter the study.",
                             "moveTo": 10
                         },
                         3: {
@@ -903,11 +914,11 @@ leaving a hole in the shape of a perfect circle!''',
 
                     self.selection = {
                         1: {
-                            "do": "Exit the room",
+                            "do": "You leave the room and return to the hall.",
                             "moveTo": 6
                         },
                         2: {
-                            "do": "Open the door on the far end",
+                            "do": "You open the door on the far end, and enter the study.",
                             "moveTo": 10
                         },
                         3: {
@@ -940,18 +951,18 @@ it could be removed.'''
             if(pc.globalStatus["farmhouseGuestBedroom examined"] == False):
                 self.options = [
                     "Exit the room",
-                    "Open the storage room",
+                    "Open the closet door",
                     "Look around the area",
                     "Player Menu"
                 ]
 
                 self.selection = {
                     1: {
-                        "do": "You return to the hallway",
+                        "do": "You leave the bedroom and return to the hallway.",
                         "moveTo": 6
                     },
                     2: {
-                        "do": "You open the closet door",
+                        "do": "You open the closet door.",
                         "moveTo": 7
                     },
                     3: {
@@ -966,7 +977,7 @@ it could be removed.'''
                 if(pc.globalStatus["Sword taken"] == False):
                     self.options = [
                         "Exit the bedroom",
-                        "Open the Storage Room",
+                        "Open the closet door",
                         "Take the sword",
                         "Look around the area",
                         "Player Menu"
@@ -974,11 +985,11 @@ it could be removed.'''
 
                     self.selection = {
                         1: {
-                            "do": "You leave the bedroom and return to the hallway",
+                            "do": "You leave the bedroom and return to the hallway.",
                             "moveTo": 6
                         },
                         2: {
-                            "do": "You open the closet door",
+                            "do": "You open the closet door.",
                             "moveTo": 7
                         },
                         3: {
@@ -996,18 +1007,18 @@ it could be removed.'''
                 else:
                     self.options = [
                         "Exit the bedroom",
-                        "Open the Storage Room",
+                        "Open the closet door",
                         "Look around the area",
                         "Player Menu"
                     ]
 
                     self.selection = {
                         1: {
-                            "do": "You leave the bedroom and return to the hallway",
+                            "do": "You leave the bedroom and return to the hallway.",
                             "moveTo": 6
                         },
                         2: {
-                            "do": "You open the closet door",
+                            "do": "You open the closet door.",
                             "moveTo": 7
                         },
                         3: {
@@ -1032,7 +1043,8 @@ are scattered about. Each contains formulae, sketches, and hastily
 written theories and worries.'''
             self.items.clear()
             self.items = [7]
-            pc.globalStatus["Dark"] = True
+            if(pc.globalStatus["Match Lit"] == False and pc.globalStatus["Lantern Lit"] == False):
+                pc.globalStatus["Dark"] = True
 
             if(pc.globalStatus["farmhouseStudy examined"] == False):
                 self.options = [
@@ -1054,7 +1066,7 @@ written theories and worries.'''
                             "moveTo": 6
                         },
                         3: {
-                            "do": "It is too dark to make out what the notes say clearly"
+                            "do": "It is too dark to make out what the notes say clearly."
                         },
                         4: {
                             "do": self.description,
@@ -1076,7 +1088,7 @@ written theories and worries.'''
                         },
                         3: {
                             "do": "You read the notes.",
-                            "examine": "Study Notes"
+                            "read": Item(11).read
                         },
                         4: {
                             "do": self.description,
@@ -1111,7 +1123,7 @@ written theories and worries.'''
                                 "takeItem": 7
                             },
                             4: {
-                                "do": "It is too dark to make out what the notes say clearly"
+                                "do": "It is too dark to make out what the notes say clearly."
                             },
                             5: {
                                 "do": self.description,
@@ -1139,7 +1151,7 @@ written theories and worries.'''
                                 "moveTo": 6
                             },
                             3: {
-                                "do": "It is too dark to make out what the notes say clearly"
+                                "do": "It is too dark to make out what the notes say clearly."
                             },
                             4: {
                                 "do": self.description,
@@ -1173,7 +1185,8 @@ written theories and worries.'''
                                 "takeItem": 7
                             },
                             4: {
-                                "do": Item(11).read
+                                "do": "You read the notes.",
+                                "read": Item(11).read
                             },
                             5: {
                                 "do": self.description,
@@ -1201,7 +1214,8 @@ written theories and worries.'''
                                 "moveTo": 6
                             },
                             3: {
-                                "do": Item(11).read
+                                "do": "You read the notes.",
+                                "read": Item(11).read
                             },
                             4: {
                                 "do": self.description,
@@ -1230,7 +1244,7 @@ which likely belong to Alys' son, Dareth. There is an ITEM in the box.'''
 
                 self.selection = {
                     1: {
-                        "do": "You close the door and return to the hallway",
+                        "do": "You close the door and return to the hallway.",
                         "moveTo": 6
                     },
                     2: {
@@ -1252,11 +1266,11 @@ which likely belong to Alys' son, Dareth. There is an ITEM in the box.'''
 
                     self.selection = {
                         1: {
-                            "do": "You close the door and return to the hallway",
+                            "do": "You close the door and return to the hallway.",
                             "moveTo": 6
                         },
                         2: {
-                            "do": "You take the note",
+                            "do": "You take the note.",
                             "takeItem": 9
                         },
                         3: {
@@ -1276,7 +1290,7 @@ which likely belong to Alys' son, Dareth. There is an ITEM in the box.'''
 
                     self.selection = {
                         1: {
-                            "do": "You close the door and return to the hallway",
+                            "do": "You close the door and return to the hallway.",
                             "moveTo": 6
                         },
                         2: {
@@ -1330,7 +1344,12 @@ into the darkened cellar.''',
         elif (self.zoneID == 13):  # farmhouseCellar
 
             self.summary = "This is a dank and darkened cellar."
-            self.description = '''The cellar contains a variety of preserved meats, canned fruits and pickled vegetables. In one corner, '''
+            self.description = '''The cellar contains a variety of preserved meats, canned fruits
+and pickled vegetables. In one corner, there are a number of
+alchemical instruments and tools, likely used by Alys in her
+experiments. A packet of black powder lies on a workbench in this
+area. Along a wall, tucked under a jar of canned beats, you find
+a small note.'''
             self.items.clear()
             self.items = [9, 16]
 
@@ -1347,7 +1366,7 @@ into the darkened cellar.''',
                 if(pc.globalStatus["Dark"] == True):
                     self.selection = {
                         1: {
-                            "do": "You climb back out of the cellar, surfacing above ground",
+                            "do": "You climb back out of the cellar, surfacing above ground.",
                             "moveTo": 12
                         },
                         2: {
@@ -1361,7 +1380,7 @@ into the darkened cellar.''',
 
                     self.selection = {
                         1: {
-                            "do": "You climb back out of the cellar, surfacing above ground",
+                            "do": "You climb back out of the cellar, surfacing above ground.",
                             "moveTo": 12
                         },
                         2: {
@@ -1381,7 +1400,7 @@ into the darkened cellar.''',
                     ]
                     self.selection = {
                         1: {
-                            "do": "You climb back out of the cellar, surfacing above ground",
+                            "do": "You climb back out of the cellar, surfacing above ground.",
                             "moveTo": 12
                         },
                         2: {
@@ -1403,15 +1422,15 @@ into the darkened cellar.''',
                             ]
                             self.selection = {
                                 1: {
-                                    "do": "You climb back out of the cellar, surfacing above ground",
+                                    "do": "You climb back out of the cellar, surfacing above ground.",
                                     "moveTo": 12
                                 },
                                 2: {
-                                    "do": "You grab the packet of Alchemical Powder",
+                                    "do": "You grab the packet of Alchemical Powder.",
                                     "takeItem": 16
                                 },
                                 3: {
-                                    "do": "You take the note",
+                                    "do": "You take the note.",
                                     "takeItem": 9
                                 },
                                 4: {
@@ -1431,11 +1450,11 @@ into the darkened cellar.''',
                             ]
                             self.selection = {
                                 1: {
-                                    "do": "You climb back out of the cellar, surfacing above ground",
+                                    "do": "You climb back out of the cellar, surfacing above ground.",
                                     "moveTo": 12
                                 },
                                 2: {
-                                    "do": "You grab the packet of Alchemical Powder",
+                                    "do": "You grab the packet of Alchemical Powder.",
                                     "takeItem": 16
                                 },
                                 3: {
@@ -1456,11 +1475,11 @@ into the darkened cellar.''',
                             ]
                             self.selection = {
                                 1: {
-                                    "do": "You climb back out of the cellar, surfacing above ground",
+                                    "do": "You climb back out of the cellar, surfacing above ground.",
                                     "moveTo": 12
                                 },
                                 2: {
-                                    "do": "You take the note",
+                                    "do": "You take the note.",
                                     "takeItem": 9
                                 },
                                 3: {
@@ -1479,7 +1498,7 @@ into the darkened cellar.''',
                             ]
                             self.selection = {
                                 1: {
-                                    "do": "You climb back out of the cellar, surfacing above ground",
+                                    "do": "You climb back out of the cellar, surfacing above ground.",
                                     "moveTo": 12
                                 },
                                 2: {

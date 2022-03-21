@@ -23,7 +23,9 @@ class Player:
         self.armor = playerDict["armor"]
         self.defense = playerDict["defense"]
         self.magic = playerDict["magic"]
-        self.timer = playerDict["timer"]
+        self.darknessTimer = playerDict["darknessTimer"]
+        self.matchTimer = playerDict["matchTimer"]
+        self.experience = playerDict["experience"]
 
         # Create Zone object using given zoneID
         self.zone = Zone(self.zoneID, self)
@@ -161,7 +163,7 @@ shattered splinters of glass and alchemical fire engulf you.\n\n\t# GAME OVER #\
                 print("You light a match.")
                 self.globalStatus["Match Lit"] = True
                 self.globalStatus["Dark"] = False
-                self.globalStatus["Matches timer"] = 3
+                self.matchTimer = 0
             else:
                 print("You put out the match")
                 if(self.globalStatus["Dark Place"] == True):
@@ -196,11 +198,11 @@ will explode soon after.''')
     ### |- ------ VIEW FUNCTIONS ---------------------------------------------------------------- -|
 
     def viewInventory(self):
-        print("\t# INVENTORY #")
+        print("\n\t# INVENTORY #")
         for itemID in self.inventory:
             print(f"\n{self.inventory.index(itemID) + 1}: {Item(itemID).name}")
             print(Item(itemID).description)
-        print(f"\nSelect an item to use [1 - {len(self.inventory)}]")
+        print(f"\n:: SELECT AN ITEM TO USE :: [1 - {len(self.inventory)}] (ENTER to exit menu)")
         choice = input()
         if (choice == ""):
             print("")
@@ -209,6 +211,7 @@ will explode soon after.''')
 
 
     def viewEquipment(self):
+        print("\n\t# EQUIPMENT #")
         if(len(self.weapon) < 1):
             print(f"Wielding: Bare Fists (damage: {self.damage})")
         else:
@@ -234,7 +237,7 @@ will explode soon after.''')
 
     # Open a menu to interact with player character
     def menu(self):
-        print("\t# MENU #")
+        print("\n\t# MENU #")
         print("1 - Inventory")
         print("2 - Stats")
         print("3 - Equipment")
@@ -249,6 +252,7 @@ will explode soon after.''')
         elif (int(choice) == 3):
             self.viewEquipment()
         elif (int(choice) == 4):
+            print("\n\t# GAME SAVED #")
             self.saveState()
         else:
             print("")
@@ -267,10 +271,15 @@ will explode soon after.''')
             "stats": self.stats,
             "inventory": self.inventory,
             "weapon": self.weapon,
-            "magic": self.magic
+            "armor": self.armor,
+            "defense": self.defense,
+            "magic": self.magic,
+            "darknessTimer": self.darknessTimer,
+            "matchTimer": self.matchTimer,
+            "experience": self.experience
         }
 
         saveJson = json.dumps(saveDict, indent = 2)
 
-        with open("saves/gameSave.json", 'w') as file:
+        with open("src/saves/gameSave.json", 'w') as file:
             file.write(saveJson)

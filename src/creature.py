@@ -53,8 +53,8 @@ class Creature:
         damage = random.randrange(self.damage)
         pc.takeDamage(damage)
         print(f"The {self.type} attacks with a {random.choice(self.weapons)}.")
-        if(damage > 0):
-            print(f"The {self.type} deals {damage} damage.")
+        if(damage - pc.defense > 0):
+            print(f"The {self.type} deals {damage - pc.defense} damage.")
         else:
             print(f"You evade the attack.")
 

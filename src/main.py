@@ -45,54 +45,51 @@ def doSomething(pc):
         print("")
         for i in pc.zone.options:
             print(f"{pc.zone.options.index(i) + 1}: {i}")
-        # print(pc.zone.options)
-        print("\nWhat do you do?");
 
         try:
-            choice = int(input())
+            choice = int(input("\nWhat do you do?\n> "))
 
             whatHappens = pc.zone.selection[choice]
             for key in whatHappens:
                 if(key == "do"):
                     print(whatHappens[key])
+                elif(key == "examine"):
+                    pc.globalStatus[f"{whatHappens[key]} examined"] = True
+                elif(key == "moveTo"):
+                    pc.zoneID = whatHappens[key]
+                elif(key == "read"):
+                    print(whatHappens[key])
                 elif(key == "takeItem"):
                     pc.inventory.append(pc.zone.items.pop(pc.zone.items.index(whatHappens[key])))
                     pc.globalStatus[f"{Item(whatHappens[key]).name} taken"] = True
                     break
-                elif(key == "moveTo"):
-                    pc.zoneID = whatHappens[key]
-                elif(key == "pack"):
-                    print(whatHappens[key])
-                    pc.viewInventory()
-                elif(key == "examine"):
-                    pc.globalStatus[f"{whatHappens[key]} examined"] = True
-                elif(key == "save"):
-                    print("The game will be saved")
-                    pc.saveState()
-                elif(key == "useItem"):
-                    for item in pc.inventory:
-                        print(f"\n{item}: {Item(item).name}: ")
-                        print(Item(item).description)
-
-                    print("Which item do you want to use?")
-                    itemChoice = int(input())
-                    pc.useItem(itemChoice)
                 elif(key == "menu"):
                     pc.menu()
                 else:
-                    print("Invalid selection.")
+                    print("\n\t:: INVALID SELECTION ::")
                     break
         except ValueError:
-            print("Please enter a valid selection.")
+            print("\n\t:: PLEASE ENTER A VALID SELECTION ::")
         except KeyError:
-            print("Please enter a valid selection.")
+            print("\n\t:: PLEASE ENTER A VALID SELECTION ::")
+
+        # timers
+        if(pc.globalStatus["Match Lit"] == True):
+            pc.matchTimer += 1
+        else:
+            pc.matchTimer = 0
+
+        if(pc.matchTimer == 5):
+            pc.globalStatus["Match Lit"] = False
+            print("The match burns up, and its light and warmth are gone.")
+            pc.matchTimer = 0
 
         if(pc.globalStatus["Dark"] == True and pc.globalStatus["Dark Place"] == True):
-            pc.timer += 1
+            pc.darknessTimer += 1
         else:
-            pc.timer = 0
+            pc.darknessTimer = 0
 
-        if(pc.timer == 4):
+        if(pc.darknessTimer == 3):
             grue = Creature("Grue")
             combat(pc, grue)
 
@@ -102,7 +99,8 @@ def combat(pc, enemy):
     combatRunning = True
 
     # introduce enemy
-    print(f"A {enemy.type} has appeared, {enemy.description}.")
+    print("\n\t# ENCOUNTER #")
+    print(f"\nA {enemy.type} has appeared, {enemy.description}.")
 
     while(combatRunning):
 
@@ -114,16 +112,14 @@ def combat(pc, enemy):
         print("5 - Run and hide")
 
         # take user selection
-        print("What do you do?")
-
         try:
-            choice = int(input())
+            choice = int(input("\nWhat do you do?\n> "))
 
             if (choice == 1):
                 pc.attack(enemy)
                 enemy.attack(pc)
             elif(choice == 2):
-                print("You stand firm")
+                print("You stand firm.")
                 pc.defense += 3
                 enemy.attack(pc)
                 pc.defense -= 3
@@ -131,17 +127,16 @@ def combat(pc, enemy):
                 pc.viewInventory()
                 enemy.attack(pc)
             elif(choice == 4):
-                print("You attempt to scare off the creature")
+                print("You attempt to scare off the creature.")
                 combatRunning = pc.intimidate(enemy)
             elif(choice == 5):
-                print("You flee the combat")
+                print("You flee the combat.")
                 combatRunning = False
 
             else:
                 print("WIP")
 
-            print(f"YOU[{pc.currentHP}], IT[{enemy.currentHP}]")
-            print(pc.damage)
+            print(f"\n{pc.name}: [{pc.currentHP} / {pc.maxHP}], {enemy.type}: [{enemy.currentHP} / {enemy.maxHP}]")
 
             if(not pc.isAlive or not enemy.isAlive):
                 combatRunning = False
@@ -168,8 +163,7 @@ def gameloop(pc):
 
         if(pc.zone.zoneID == 0):  # dirt road
             if (pc.globalStatus["Game Start"] == True):
-                print("\n\t# Press ENTER to start\n")
-                input()
+                input("\n\t# ENTER TO START GAME #")
 
                 print('''Years ago, when you lived in the town of Almyth, there was a
 Strong sense of community. In many ways, it felt like you
@@ -177,9 +171,7 @@ mattered to the people you called friends, the people you called
 neighbors. They were family. After you moved out, heading toward
 bigger and better things in the city of Cormandyr, there was a
 sense of betrayal.\n''')
-
-                print("\t# Press ENTER to continue")
-                input()
+                input("\t# ENTER TO CONTINUE #")
 
                 print('''Yes, certainly a sense that your trust had been abused by
 those who you called family, who no longer kept in touch. But
@@ -188,9 +180,7 @@ ever write? Of course not. The only person you kept in touch
 with - and mostly because she always returned your notes,
 always... - was Alys Astranos. So named because of her family's
 ties to staring up at the stars, and wondering.\n''')
-
-                print("\t# Press ENTER to continue")
-                input()
+                input("\t# ENTER TO CONTINUE #")
 
                 print('''Alys and her son worked their family's last farm, her
 parents had both gone years ago, and her husband had left for
@@ -200,9 +190,7 @@ made a point to always return your letters, and in some
 ways you felt it was because she was growing lonely. Her
 son, Dareth, was a good lad, but surely you'd get sick of
 anyone you were stuck with.\n''')
-
-                print("\t# Press ENTER to continue")
-                input()
+                input("\t# ENTER TO CONTINUE #")
 
                 print('''About a week ago, you received the most recent letter from
 Alys, one that you'd almost hope hadn't been written. In it,
@@ -210,33 +198,25 @@ she seemed nearly desparate, and implored you to travel back
 out to the countryside and visit her. She had so much to show
 you! She was on the verge of unlocking some kind of great
 discovery, and she wanted to share this with you, her friend.\n''')
-
-                print("\t# Press ENTER to continue")
-                input()
+                input("\t# ENTER TO CONTINUE #")
 
                 print('''With some hesitation, but a sense of wonder about you, you
 organized to take a carriage out of the city to her farm in
 the countryside. The carriage ride was bumpy after a while as
 the even cobbled roads unfurled into haphazard dirt trails
 beaten by wagon tracks and horseshoes.\n''')
-
-                print("\t# Press ENTER to continue")
-                input()
+                input("\t# ENTER TO CONTINUE #")
 
                 print('''After a while, your driver yells back to you that you've
 arrived, and nestled on the side of the road you cannot miss
 the quaint farmstead that lies before you.\n''')
-
-                print("\t# Press ENTER to continue")
-                input()
+                input("\t# ENTER TO CONTINUE #")
 
                 print('''The carriage drops you off, and the dust drifts thoughtlessly
 into the air leaving a stream of beige behind the team of
 horses and their dark wagon as the driver leaves you here
 alone. It is quiet.\n''')
-
-                print("\t# Press ENTER to continue")
-                input()
+                input("\t# ENTER TO CONTINUE #")
 
             else:
                 print("The road still lies barren and empty. The dust has settled.")
@@ -247,6 +227,7 @@ alone. It is quiet.\n''')
         ### FARMHOUSE ZONES ###------------------------------------------------------------------ -|
 
         elif(pc.zone.zoneID == 1):
+            print("\n\t# FARMHOUSE #")
             if (pc.globalStatus["farmhouseFront first time"] == True):
                 print('''Before you stands a looming farmhouse, drab in its aged appearance.
 The darkened logs and fogged windows belie the tales of magic
@@ -262,6 +243,7 @@ tucked away in your backpack.''')
             pc.globalStatus["farmhouseFront first time"] = False
 
         elif(pc.zone.zoneID == 2):
+            print("\n\t# KITCHEN #")
             if (pc.globalStatus["farmhouseKitchen first time"] == True):
                 print('''The door creaks open as you enter the kitchen of this home. The
 dry light of evening gently illuminating a dinner table that is
@@ -275,6 +257,7 @@ far back of this floor is home to a staircase heading upstairs.''')
             pc.globalStatus["farmhouseKitchen first time"] = False
 
         elif(pc.zone.zoneID == 3):
+            print("\n\t# FRONT CLOSET #")
             if (pc.globalStatus["farmhouseCloset1 first time"] == True):
                 print('''The door squeaks with rusty hinges. Immediately, you spot two
 pairs of boots on the ground, mud now dried onto the wooden
@@ -285,6 +268,7 @@ boards underneath.''')
             pc.globalStatus["farmhouseCloset1 first time"] = False
 
         elif(pc.zone.zoneID == 4):
+            print("\n\t# SITTING ROOM #")
             if (pc.globalStatus["farmhouseSittingRoom first time"] == True):
                 print('''This sitting room would come off as still, and almost peaceful,
 were it not for the tumbled pile of books in the corner, or the
@@ -298,6 +282,7 @@ too far away.''')
             pc.globalStatus["farmhouseSittingRoom first time"] = False
 
         elif(pc.zone.zoneID == 5):
+            print("\n\t# FARMHOUSE STAIRS #")
             if (pc.globalStatus["farmhouseStairsInside first time"] == True):
                 print('''This spiral staircase with a tight railing feels solid under
 your feet, yet its boards creak nonetheless. It leads up to
@@ -308,6 +293,7 @@ the second floor.''')
             pc.globalStatus["farmhouseStairsInside first time"] = False
 
         elif(pc.zone.zoneID == 6):
+            print("\n\t# UPSTAIRS HALLWAY #")
             if (pc.globalStatus["farmhouseHallway first time"] == True):
                 print('''Light filters in from stained glass windows at either end of the
 hall, colored by the glass, motes of dust floating through
@@ -319,6 +305,7 @@ door on the left is open, and it seems to be a bedroom.''')
             pc.globalStatus["farmhouseHallway first time"] = False
 
         elif(pc.zone.zoneID == 7):
+            print("\n\t# BEDROOM CLOSET #")
             if (pc.globalStatus["farmhouseCloset2 first time"] == True):
                 print("This closet is narrow, packed with a variety of clothes and sheets.")
             else:
@@ -327,6 +314,7 @@ door on the left is open, and it seems to be a bedroom.''')
             pc.globalStatus["farmhouseCloset2 first time"] = False
 
         elif(pc.zone.zoneID == 8):
+            print("\n\t# ALYS' BEDROOM #")
             if (pc.globalStatus["farmhouseMasterBedroom first time"] == True):
                 print('''This room seems untouched, unlike much of the rest of the
 house. The bed is neatly made; a wide matress resting on an
@@ -340,16 +328,19 @@ the right is another door leading to an adjacent room.''')
             pc.globalStatus["farmhouseMasterBedroom first time"] = False
 
         elif(pc.zone.zoneID == 9):
+            print("\n\t# DARETH'S BEDROOM #")
             if (pc.globalStatus["farmhouseGuestBedroom first time"] == True):
                 print('''Another bedroom, This one decorated with more reckless
 abandon, clothes thrown into a corner, indicative of laziness,
-not of a struggle. There is a sword mounted over the bed.''')
+not of a struggle. There is a door on one side, likely a closet.
+There is also a sword mounted over the bed.''')
             else:
                 print(pc.zone.summary)
             farmhouseGuestBedroom(pc)
             pc.globalStatus["farmhouseGuestBedroom first time"] = False
 
         elif(pc.zone.zoneID == 10):
+            print("\n\t# STUDY #")
             if (pc.globalStatus["farmhouseStudy first time"] == True):
                 print('''This room is darker than the bedroom itself, and contains one
 large desk pressed up against the solid wooden wall. A narrow
@@ -361,6 +352,7 @@ and several handwritten notes.''')
             pc.globalStatus["farmhouseStudy first time"] = False
 
         elif(pc.zone.zoneID == 11):
+            print("\n\t# STORAGE CLOSET #")
             if (pc.globalStatus["farmhouseStorage first time"] == True):
                 print('''Not much in here but blankets, pillows, sheets, and bags of hay
 and feathers - probably used for stuffing.''')
@@ -370,6 +362,7 @@ and feathers - probably used for stuffing.''')
             pc.globalStatus["farmhouseStorage first time"] = False
 
         elif(pc.zone.zoneID == 12):
+            print("\n\t# STAIRS TO THE CELLAR #")
             if (pc.globalStatus["farmhouseStairsCellar first time"] == True):
                 print('''A wooden doubledoor rests over the cellar stairs, at a slight
 angle, foretelling the imminent descent.''')
@@ -379,16 +372,20 @@ angle, foretelling the imminent descent.''')
             pc.globalStatus["farmhouseStairsCellar first time"] = False
 
         elif(pc.zone.zoneID == 13):
+            print("\n\t# FARMHOUSE CELLAR #")
             if (pc.globalStatus["farmhouseCellar first time"] == True):
                 print('''Cold and somewhat damp, this stone cellar seems like a well-
 deserved escape from the moderate heat of the summer day.''')
                 if(pc.globalStatus["Dark"] == True):
                     print("It is dark...")
-                    # pc.timer(3)
                 else:
                     print("A faint glow illuminates this cellar. It is bright enough to get around safely.")
             else:
                 print(pc.zone.summary)
+                if(pc.globalStatus["Dark"] == True):
+                    print("It is dark...")
+                else:
+                    print("A faint glow illuminates this cellar. It is bright enough to get around safely.")
             farmhouseCellar(pc)
             pc.globalStatus["farmhouseCellar first time"] = False
 
@@ -398,6 +395,7 @@ deserved escape from the moderate heat of the summer day.''')
         ### PRAIRIE ZONES ###-------------------------------------------------------------------- -|
 
         elif(pc.zone.zoneID == 14):
+            print("\n\t# BACKYARD PRAIRIE #")
             if (pc.globalStatus["prairieBackyard first time"] == True):
                 print("")
             else:
@@ -406,6 +404,7 @@ deserved escape from the moderate heat of the summer day.''')
             pc.globalStatus["prairieBackyard first time"] = False
 
         elif(pc.zone.zoneID == 15):
+            print("\n\t# WELL #")
             if (pc.globalStatus["prairieWell first time"] == True):
                 print("")
             else:
@@ -414,6 +413,7 @@ deserved escape from the moderate heat of the summer day.''')
             pc.globalStatus["prairieWell first time"] = False
 
         elif(pc.zone.zoneID == 16):
+            print("\n\t# SHED #")
             if (pc.globalStatus["prairieShedExterior first time"] == True):
                 print("")
             else:
@@ -422,6 +422,7 @@ deserved escape from the moderate heat of the summer day.''')
             pc.globalStatus["prairieShedExterior first time"] = False
 
         elif(pc.zone.zoneID == 17):
+            print("\n\t# INSIDE THE SHED #")
             if (pc.globalStatus["prairieShedInterior first time"] == True):
                 print("")
             else:
@@ -430,6 +431,7 @@ deserved escape from the moderate heat of the summer day.''')
             pc.globalStatus["prairieShedInterior first time"] = False
 
         elif(pc.zone.zoneID == 18):
+            print("\n\t# OUTHOUSE #")
             if (pc.globalStatus["prairieOuthouse first time"] == True):
                 print("")
             else:
@@ -439,6 +441,53 @@ deserved escape from the moderate heat of the summer day.''')
 
 
 
+
+        ### BARN ZONES ###----------------------------------------------------------------------- -|
+
+        elif(pc.zone.zoneID == 19):
+            print("\n\t# FRONT OF THE BARN #")
+            if (pc.globalStatus["barnFront first time"] == True):
+                print("")
+            else:
+                print(pc.zone.summary)
+            barnFront(pc)
+            pc.globalStatus["barnFront first time"] = False
+
+        elif(pc.zone.zoneID == 20):
+            print("\n\t# INSIDE THE BARN #")
+            if (pc.globalStatus["barnInterior first time"] == True):
+                print("")
+            else:
+                print(pc.zone.summary)
+            barnInterior(pc)
+            pc.globalStatus["barnInterior first time"] = False
+
+        elif(pc.zone.zoneID == 21):
+            print("\n\t# BARN LOFT #")
+            if (pc.globalStatus["barnLoft first time"] == True):
+                print("")
+            else:
+                print(pc.zone.summary)
+            barnLoft(pc)
+            pc.globalStatus["barnLoft first time"] = False
+
+        elif(pc.zone.zoneID == 22):
+            print("\n\t# BACK OF THE BARN #")
+            if (pc.globalStatus["barnBack first time"] == True):
+                print("")
+            else:
+                print(pc.zone.summary)
+            barnBack(pc)
+            pc.globalStatus["barnBack first time"] = False
+
+        elif(pc.zone.zoneID == 23):
+            print("\n\t# STABLE #")
+            if (pc.globalStatus["barnStable first time"] == True):
+                print("")
+            else:
+                print(pc.zone.summary)
+            barnStable(pc)
+            pc.globalStatus["barnStable first time"] = False
 
 
         # kill game
@@ -804,7 +853,7 @@ def newGame():
     print("Welcome to to the land of Aetrynos. Who are you? ")
 
     # Set name
-    name = input()
+    name = input("> ")
     print(f"Hello, {name}. You have a pool of ten points to spend to increase your stats.")
 
     # Set player to Alive
@@ -830,7 +879,7 @@ def newGame():
                 if (pointsLeft > 0):
                     print(f"\nCurrent {i}: {stats[i]}. Add [0 - {pointsLeft}]: ")
                     try:
-                        readIn = int(input())
+                        readIn = int(input("> "))
                         if (readIn <= pointsLeft and readIn >= 0):
                             stats[i] += readIn
                             pointsLeft -= readIn
@@ -852,6 +901,7 @@ def newGame():
     damage = math.ceil(stats["Str"] / 5)
     magic = math.ceil((stats["Int"] / 2) - 4)
     defense = math.ceil((stats["Dex"] / 5) - 1)
+    experience = pointsLeft * 10
 
     # equippable slots
     weapon = []
@@ -931,6 +981,25 @@ def newGame():
 
         ### EXAMINED
         # f"{location or item} examined" as format
+        "barnFront examined": False,
+        "barnInterior examined": False,
+        "barnLoft examined": False,
+        "barnBack examined": False,
+        "barnStable examined": False,
+        "cornfieldEdge examined": False,
+        "cornfieldMaze1 examined": False,
+        "cornfieldMaze2 examined": False,
+        "cornfieldMaze3 examined": False,
+        "cornfieldMaze4 examined": False,
+        "cornfieldMaze5 examined": False,
+        "cornfieldMaze6 examined": False,
+        "cornfieldMaze7 examined": False,
+        "cornfieldMaze8 examined": False,
+        "cornfieldMaze9 examined": False,
+        "cornfieldMazeCenter examined": False,
+        "cornfieldMazeStart examined": False,
+        "cornfieldThick examined": False,
+        "cornfieldTangle examined": False,
         "dirtRoad examined": False,
         "farmhouseCellar examined": False,
         "farmhouseCloset1 Box examined": False,
@@ -959,6 +1028,7 @@ def newGame():
         "Darkvision": False,
         "Lantern Lit": False,
         "Match Lit": False,
+        "Matches timer": 0,
 
         # environment effects
         "Dark": False,
@@ -972,35 +1042,39 @@ def newGame():
     }
 
     # Creates new inventory with note object
+    inventory = [0]  # only Note from Alys
     # inventory = [0, 7, 9, 1, 12, 14, 15]  # testing all item types
-    inventory = [0]  # only note
     # inventory = [0, 7, 12, 16, 17, 18] # testing bomb
 
-    timer = 0
+    # Timers
+    darknessTimer = 0  # timer for rounds spent in darkness
+    matchTimer = 0  # timer for rounds with match lit
 
     # Define newPlayer dictionary in same format as load, then return it.
     newPlayer = {
-        "name": name,
-        "isAlive": isAlive,
-        "zoneID": startingZoneID,
-        "stats": stats,
-        "maxHP": maxHP,
-        "currentHP": currentHP,
-        "damage": damage,
-        "globalStatus": globalStatus,
-        "inventory": inventory,
-        "armor": armor,
-        "defense": defense,
-        "weapon": weapon,
-        "magic": magic,
-        "timer": timer
+        "name": name,  # the player's name
+        "isAlive": isAlive,  # the player starts alive, if this becomes false, Game Over
+        "zoneID": startingZoneID,  # Choose where play starts (release: 0)
+        "stats": stats,  # the player's stats / attributes (STR, DEX, INT, CON)
+        "maxHP": maxHP,  # the player's maximum HP, based on CON
+        "currentHP": currentHP,  # current HP, starts the same as Max
+        "damage": damage,  # the player's base damage range, determined by STR
+        "globalStatus": globalStatus,  # a huge dictionary of all GS booleans
+        "inventory": inventory,  # the starting inventory (release: 0)
+        "armor": armor,  # player's armor (release: 0 - Clothes)
+        "defense": defense,  # the player's defenses, based on DEX
+        "weapon": weapon,  # the player's weapon (release: 0 - Bare fitst)
+        "magic": magic,  # the player's magical attunement, based on INT
+        "darknessTimer": darknessTimer,  # used for measuring time spent in the dark
+        "matchTimer": matchTimer,  # used to track how long a match is burning
+        "experience": experience  # running experience points for advancement and leveling up
     }
     return newPlayer
 
 
 def gameStart():
     print("\t\t\t  1 - NEW GAME\n\t\t\t  2 - CONTINUE\n")
-    choice = int(input())
+    choice = int(input("> "))
 
     if(choice == 2):
         return "CONTINUE"
@@ -1017,7 +1091,7 @@ if __name__ == "__main__":
     # Start menu for selecting gameStart option (new / continue)
     startOption = gameStart()
     if(startOption == "CONTINUE"):
-        with open("saves/gameSave.json", encoding="utf-8") as file:
+        with open("src/saves/gameSave.json", encoding="utf-8") as file:
             continuePlayer = json.load(file)
         pc = Player(continuePlayer)
     else:

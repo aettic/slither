@@ -1,8 +1,6 @@
 # Slither
 
-The goal of this application is to serve as a playground for building python code and experimenting with the Atom text editor.  
-
-So far, Atom seems to be very versatile.  
+This application started as a playground to test out python development in Atom text editor. It has now become a text-based adventure game engine. There are a lot of plans for what this can become, but I'm trying to take things one bit at a time, and have fun doing it. At present, the scope for completion is to create a demo, which is Act I of a text-based game called Aetrynos, which takes place in the titular world, in a small country-side. There are rough plans for three acts, the latter two of which will hopefully build onto the mechanics of the first act. The first act is called "The Farm", and takes place, you guessed it, on a farm.
 
 
 
@@ -36,15 +34,25 @@ Like with Bloodborne java, there will be a player character object which is pass
 ## The Slither Engine so far
 This is a zork-like text-based adventure game. It contains a global status system to track world changes consistently. It uses a numbered option based system for acting. The story is homebrew High Fantasy, taking place in a land called Aetrynos. Distinct from Javaborne, this game is designed with a single "doSomething()" function which can handle all locations and all actions. This, paired with the system of selection and options rooted inside the player's active zone itself allows for a smooth, single system which can handle and parse many different things. The engine utilizes object-oriented-programming to handle creating the necessary entities and objects which interact in the game (Player, creature, items, zones, etc.)
 
+
+
 ## To Do (Development)
+- [ ] Alchemical Jar Bomb: Add descriptive information for fragility
 - [ ] Build NPC objects with interactive dialogue capacity (model after combat)
+- [ ] Construct a puzzle using items (Alchemical Powder, Glass Jar, Acrid Solution)
 - [ ] Create more globalStatus entries as needed
-- [ ] Create Matches timer
+- [ ] Design spell(s) for Spellbook
 - [ ] Finish combat options
-- [ ] Fix closet entrance from Master bedroom
+- [ ] Finish equipment (equip, unequip, with inventory access, also bare fists)
+- [ ] Finish Jar Bomb spell effects for damage
+- [ ] Finish Jar Bomb spell effects for environment puzzle
 - [ ] Look into combining all possible movements into one function - pc.moveTo(Zone) or something
-- [ ] Move Lantern to Shed
-- [1] Put a Grue in Dark spots (cellar, loft)
+- [ ] Move Lantern to Shed (Once shed is built, maybe replace lantern with something in study)
+- [ ] Put a Grue in the Barn Loft
+- [~] Reformat all flavor text and results / separate properly from commands
+- [ ] Write out Prairie First Time text
+- [ ] Write out Barn First Time text
+- [ ] Write out Cornfield First Time text
 - [ ] Write out Prairie Zones
 - [ ] Write out Barn Zones
 - [ ] Write out Cornfield Zones
@@ -55,17 +63,60 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [x] Build combat system
 - [x] Build magic system
 - [x] Build creature objects for combat
+- [x] Check lighting and timer in the Cellar
 - [x] Complete location globalStatus entries
 - [x] Complete the Beast itemDrops
-- [x] Construct a puzzle using items (Alchemical Powder, Glass Jar, Acrid Solution)
 - [x] Create a combine method
 - [x] Create a useItem method in player.py (now contains equip, toggle, and spell, and combine)
-- [x] Create Dark timer for Grue attack - 3 rounds
+- [x] Create Dark timer for Grue attack - 2 rounds
+- [x] Create Matches timer - 5 rounds
+- [x] Fix closet entrance from Master bedroom
+- [x] Fix the cellar's descriptions
+- [x] Fix the lighting problem in the Study (if matches / lantern lit: dark is True)
+- [x] Fix the options for consistency in farmhouseStudy and farmhouseCloset2
 - [x] Fix problem with globalStatus not updating properly (had to do with How python uses boolean)
 - [x] Organize globalStatus entires
+- [x] Put a Grue in Cellar
 - [x] Test save state works
 - [x] Write out Farmhouse Zones
 - [x] Write out the story more thoroughly in a secret canon piece.
+
+
+
+## Puzzles
+
+#### Alchemical Bomb
+A glass jar bomb will explode if rolled.
+The jar can only be used once, which means it has to be an optional puzzle.
+It can either lead to some special item, information, or a location.
+Wherever it leads, if it is central to the story, it must be accessible via other methods.
+If it's not pertinent to the story, it can be nearly anything.
+Wherever the bomb is used, it should be rolled, and hopefully rolled under some kind of small hole, that's big enough for the jar, and to look through, but too small to enter.
+
+
+
+
+
+
+
+## Style Guide
+Various types of information should be laid out consistently.
+
+#### Alerts
+All caps, inside double colons, one carriage return, one tab. ("\n\t:: ALERT ::")
+
+#### Notification
+All caps, inside scores, one carriage return, one tab. ("\n\t# NOTIFICATION #")
+
+#### Prompts
+A chevron immediately following the prompt text, one space after. ("\nPrompt text\n> ")
+
+#### Choices
+Numbered, starting with 1, following a colon. ("1: Choice")
+Choices should be followed by a prompt, and preceded by a notification.
+
+#### Descriptions, Results, and Summaries
+Appropriate capitalization and punctuation, carriage return before. ("\nThis is a sentence.")
 
 
 
@@ -84,7 +135,7 @@ You must explore her abandoned farm, and discover clues that lead to finding and
 
 
 
-## Gameplay
+## Gameplay (SPOILERS)
 
 #### Act I (In Development)
 **The Farm**
@@ -98,4 +149,4 @@ Upon entering the staircase, one is transported down into the underworld. This w
 
 #### Act III (Dreaming)
 **The Fairy City**
-The cave opens up into a grand hollow world, complete with artificial light from a sun that never sets - just circles around the illusory horizon endlessly. Fauna and flora dot the landscape, as does a thriving but foreign fairy world. There is a small fairy city to explore and get lost in, it is dangerous, but exploration provides more unique options for combat and for interacting with the world around you (magical elements like Darkvision, etc.) Alys is being held hostage in a fairy jail near the far end of the city. She can be rescued once discovered, as long as one has found the required tools and tricks, or made the right friends.
+The cave opens up into a grand hollow world, complete with artificial light from a sun that never sets - just circles around the illusory horizon endlessly. Fauna and flora dot the landscape, as does a thriving but foreign fairy world. There is a small fairy city to explore and get lost in, it is dangerous, but exploration provides more unique options for combat and for interacting with the world around you (magical elements like Darkvision, etc. - maybe teleporting? Maybe seeing through walls? Maybe growing in size?) Alys is being held hostage in a fairy jail near the far end of the city. She can be rescued once discovered, as long as one has found the required tools and tricks, or made the right friends.
