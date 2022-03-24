@@ -107,29 +107,76 @@ class Player:
             self.globalStatus["Staircase Visible"] = True
         elif(item.itemID == 4):
             self.magic += item.magicBonus
-            self.damage += item.magicBonus
-            print(item.spell)
             self.globalStatus["Damage Enchanted"] = True
+            print("\n\t# CHOOSE A SPELL #")
+            print("1: Astral Crown")
+            print("2: Miraculous Recovery")
+            print("3: Subtle Steps")
+            choice = input("> ")
+            if(choice == 1):
+                if(self.magic >= item.spell["Astral Crown"]["magic"]):
+                    print(item.spell["Astral Crown"]["description"])
+                    self.damage += item.spell["Astral Crown"]["effect"]
+                    self.defense += item.spell["Astral Crown"]["effect"]
+                    self.magic -= item.spell["Astral Crown"]["magic"]
+                else:
+                    print("You attempt to cast the spell, but nothing happens.")
+            elif(choice == 2):
+                if(self.magic >= item.spell["Miraculous Recovery"]["magic"]):
+                    print(item.spell["Miraculous Recovery"]["description"])
+                    self.currentHP += item.spell["Miraculous Recovery"]["effect"]
+                    self.magic -= item.spell["Fireball"]["magic"]
+                else:
+                    print("You attempt to cast the spell, but nothing happens.")
+            elif(choice == 3):
+                if(self.magic >= item.spell["Subtle Steps"]["magic"]):
+                    print(item.spell["Subtle Steps"]["description"])
+                    self.globalStatus["Stealthy"] = item.spell["Subtle Steps"]["effect"]
+                    self.magic -= item.spell["Fireball"]["magic"]
+                else:
+                    print("You attempt to cast the spell, but nothing happens.")
+
+
         elif(item.itemID == 11):
             self.magic += item.magicBonus
             print(item.spell)
             self.globalStatus["Darkvision"] = True
         elif(item.itemID == 19):
-            print("How do you use the jar bomb?")
-            print("1 - Throw")
-            print("2 - Roll")
-            print("3 - Shake and Hold")
-            choice = input()
-            if(int(choice) == 1):
-                print("you throw the bomb and it shatters, the ingredients burn up.")
-            elif(int(choice) == 2):
-                print('''You gently roll the jar toward your target, which mixes it together,
-and it explodes!''')
-            elif(int(choice) == 3):
-                print('''You shake the jar and hold onto it, it explodes in your hand,
-shattered splinters of glass and alchemical fire engulf you.\n\n\t# GAME OVER #\n''')
-                self.isAlive = False
+            if (self.zoneID == 15):
+                print("How do you use the jar bomb?")
+                print("1: Throw")
+                print("2: Roll")
+                print("3: Shake and Drop")
+                choice = input("> ")
+                if(int(choice) == 1):
+                    print("you throw the bomb and it shatters, the ingredients burn up.")
+                elif(int(choice) == 2):
+                    print('''You gently roll the jar toward your target, which mixes it together,
+    and it explodes!''')
+                elif(int(choice) == 3):
+                    print('''You gently shake up the mixture, and can feel the pressure as the
+concoction expands. You quickly let it down, to drop down the well
+shaft. It explodes! The smell of sulfur and stardust fills your
+nostrils...''')
+                    self.globalStatus["prairieWell obstruction destroyed"] = True
+            else:
+                print("How do you use the jar bomb?")
+                print("1: Throw")
+                print("2: Roll")
+                print("3: Shake and Hold")
+                choice = input("> ")
+                if(int(choice) == 1):
+                    print("you throw the bomb and it shatters, the ingredients burn up.")
+                elif(int(choice) == 2):
+                    print('''You gently roll the jar toward your target, which mixes it together,
+    and it explodes!''')
+                elif(int(choice) == 3):
+                    print('''You shake the jar and hold onto it, it explodes in your hand,
+    shattered splinters of glass and alchemical fire engulf you.\n\n\t# GAME OVER #\n''')
+                    self.isAlive = False
             self.inventory.pop(self.inventory.index(item.itemID))
+        elif(item.itemID == 20):
+            print(item.spell)
 
         else:
             print("Not yet made")
@@ -202,8 +249,8 @@ will explode soon after.''')
         for itemID in self.inventory:
             print(f"\n{self.inventory.index(itemID) + 1}: {Item(itemID).name}")
             print(Item(itemID).description)
-        print(f"\n:: SELECT AN ITEM TO USE :: [1 - {len(self.inventory)}] (ENTER to exit menu)")
-        choice = input()
+        print(f"\n# SELECT AN ITEM TO USE [1 - {len(self.inventory)}] (ENTER to exit menu) #")
+        choice = input("> ")
         if (choice == ""):
             print("")
         else:
@@ -238,12 +285,12 @@ will explode soon after.''')
     # Open a menu to interact with player character
     def menu(self):
         print("\n\t# MENU #")
-        print("1 - Inventory")
-        print("2 - Stats")
-        print("3 - Equipment")
-        print("4 - Save Game")
+        print("1: Inventory")
+        print("2: Stats")
+        print("3: Equipment")
+        print("4: Save Game")
         print("ENTER - Return to Game")
-        choice = input()
+        choice = input("> ")
 
         if (int(choice) == 1):
             self.viewInventory()

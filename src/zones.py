@@ -1515,7 +1515,7 @@ a small note.'''
 
         ### PRAIRIE ###------------------------------------------------------------------------ -|
 
-        elif (self.zoneID == 14):  # prairieBackyard (HUB)
+        elif (self.zoneID == 14):  # prairieBackyard / Garden (HUB)
             self.summary = '''An open prairie with a small garden. To the south is a barn, and
 nearby are an outhouse, a shed, and a well. To the north is the
 dense cornfield.'''
@@ -1552,7 +1552,7 @@ harvest soon.'''
                         "moveTo": 16
                     },
                     4: {
-                        "do": '''You look into the Well.''',
+                        "do": '''You head to the Well.''',
                         "moveTo": 15
                     },
                     5: {
@@ -1569,7 +1569,7 @@ harvest soon.'''
                     },
                     8: {
                         "do": self.description,
-                        "examine": "farmhouseStairsCellar"
+                        "examine": "prairieBackyard"
                     },
                     9: {
                         "menu": "menu"
@@ -1604,7 +1604,7 @@ harvest soon.'''
                             "moveTo": 16
                         },
                         4: {
-                            "do": '''You look into the Well.''',
+                            "do": '''You head to the Well.''',
                             "moveTo": 15
                         },
                         5: {
@@ -1625,7 +1625,7 @@ harvest soon.'''
                         },
                         9: {
                             "do": self.description,
-                            "examine": "farmhouseStairsCellar"
+                            "examine": "prairieBackyard"
                         },
                         10: {
                             "menu": "menu"
@@ -1658,7 +1658,7 @@ harvest soon.'''
                             "moveTo": 16
                         },
                         4: {
-                            "do": '''You look into the Well.''',
+                            "do": '''You head to the Well.''',
                             "moveTo": 15
                         },
                         5: {
@@ -1675,7 +1675,7 @@ harvest soon.'''
                         },
                         8: {
                             "do": self.description,
-                            "examine": "farmhouseStairsCellar"
+                            "examine": "prairieBackyard"
                         },
                         9: {
                             "menu": "menu"
@@ -1683,12 +1683,190 @@ harvest soon.'''
                     }
 
 
-
-
-        # |- --- ### PRAIRIE ZONES -------------------------------------------------------------- -|
-
         elif (self.zoneID == 15):  # prairieWell
-            print(f"zone {zoneID}")
+            self.summary = '''In the midst of the open field is a medium sized well made of stone, with a tented roof and strong wooden frame.'''
+            self.description = '''This well sits not too far from the house, in the open field of
+the praririe. From here, you can see the back of the Barn, the
+Shed, the Outhouse, and the garden. The well itself looks
+handmade. There is a rope pulley system attached to the roofing,
+clearly for hoisting and lowering a bucket for water.'''
+            self.items.clear()
+            self.items = [20]
+
+            if(pc.globalStatus["prairieWell examined"] == False):
+                self.options = [
+                    "Walk to the back of the Barn",
+                    "Head to the Outhouse",
+                    "Go to the Shed",
+                    "Walk to the Garden",
+                    "Look around the area",
+                    "Player Menu"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": '''You head to the Barn's rear entrance.''',
+                        "moveTo": 22
+                    },
+                    2: {
+                        "do": '''You walk back toward the Outhouse.''',
+                        "moveTo": 18
+                    },
+                    3: {
+                        "do": '''You walk over to the Shed.''',
+                        "moveTo": 16
+                    },
+                    4: {
+                        "do": '''You turn back toward the garden.''',
+                        "moveTo": 14
+                    },
+                    5: {
+                        "do": self.description,
+                        "examine": "prairieWell"
+                    },
+                    6: {
+                        "menu": "menu"
+                    }
+                }
+            else:
+                if(pc.globalStatus["prairieWell obstruction destroyed"] == False):
+                    self.options = [
+                        "Walk to the back of the Barn",
+                        "Head to the Outhouse",
+                        "Go to the Shed",
+                        "Walk to the Garden",
+                        "Pull the rope",
+                        "Peer into the Well",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": '''You head to the Barn's rear entrance.''',
+                            "moveTo": 22
+                        },
+                        2: {
+                            "do": '''You walk back toward the Outhouse.''',
+                            "moveTo": 18
+                        },
+                        3: {
+                            "do": '''You walk over to the Shed.''',
+                            "moveTo": 16
+                        },
+                        4: {
+                            "do": '''You turn back toward the garden.''',
+                            "moveTo": 14
+                        },
+                        5: {
+                            "do": '''You pull the rope to hoist the bucket up, but something blocks its path, and it is stuck.'''
+                        },
+                        6: {
+                            "do": '''You take a look down into the well. Some sort of stony obstruction
+seems to be lodged halfway down.'''
+                        },
+                        7: {
+                            "do": self.description,
+                            "examine": "prairieWell"
+                        },
+                        8: {
+                            "menu": "menu"
+                        }
+                    }
+                else:
+                    if(pc.globalStatus["Emerald Merkaba taken"] == False):
+                        self.options = [
+                            "Walk to the back of the Barn",
+                            "Head to the Outhouse",
+                            "Go to the Shed",
+                            "Walk to the Garden",
+                            "Pull the rope",
+                            "Peer into the Well",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+
+                        self.selection = {
+                            1: {
+                                "do": '''You head to the Barn's rear entrance.''',
+                                "moveTo": 22
+                            },
+                            2: {
+                                "do": '''You walk back toward the Outhouse.''',
+                                "moveTo": 18
+                            },
+                            3: {
+                                "do": '''You walk over to the Shed.''',
+                                "moveTo": 16
+                            },
+                            4: {
+                                "do": '''You turn back toward the garden.''',
+                                "moveTo": 14
+                            },
+                            5: {
+                                "do": '''You pull the rope to hoist the bucket, which comes up with ease.
+The bucket is filled with some water, and sitting at the bottom is a glimmering green stone object.''',
+                                "takeItem": 20
+                            },
+                            6: {
+                                "do": '''You take a look down into the well. It is now clear of any
+obstructions, and you can see a bucket below. Inside the bucket
+you can make out some water, and a shining green stone.''',
+                                "examine": "prairieWell Inside"
+                            },
+                            7: {
+                                "do": self.description,
+                                "examine": "prairieWell"
+                            },
+                            8: {
+                                "menu": "menu"
+                            }
+                        }
+                    else:
+                        self.options = [
+                            "Walk to the back of the Barn",
+                            "Head to the Outhouse",
+                            "Go to the Shed",
+                            "Walk to the Garden",
+                            "Peer into the Well",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+
+                        self.selection = {
+                            1: {
+                                "do": '''You head to the Barn's rear entrance.''',
+                                "moveTo": 22
+                            },
+                            2: {
+                                "do": '''You walk back toward the Outhouse.''',
+                                "moveTo": 18
+                            },
+                            3: {
+                                "do": '''You walk over to the Shed.''',
+                                "moveTo": 16
+                            },
+                            4: {
+                                "do": '''You turn back toward the garden.''',
+                                "moveTo": 14
+                            },
+                            5: {
+                                "do": '''You take a look down into the well. It is now clear of any
+obstructions, and you can see a bucket below. Inside the bucket
+you can make out some water, and a shining green stone.''',
+                                "examine": "prairieWell Inside"
+                            },
+                            6: {
+                                "do": self.description,
+                                "examine": "prairieWell"
+                            },
+                            7: {
+                                "menu": "menu"
+                            }
+                        }
+
+
+
         elif (self.zoneID == 16):  # prairieShedExterior
             print(f"zone {zoneID}")
         elif (self.zoneID == 17):  # prairieShedInterior

@@ -21,7 +21,7 @@ def printTitle():
 ██ ▄▄▄ █ ███▄██▄ ▄█ ████ ▄▄█ ▄▄▀████ ▄▄▄█ ▄▄▀█ ▄▄▄██▄██ ▄▄▀█ ▄▄██
 ██▄▄▄▀▀█ ███ ▄██ ██ ▄▄ █ ▄▄█ ▀▀▄████ ▄▄▄█ ██ █ █▄▀██ ▄█ ██ █ ▄▄██
 ██ ▀▀▀ █▄▄█▄▄▄██▄██▄██▄█▄▄▄█▄█▄▄████ ▀▀▀█▄██▄█▄▄▄▄█▄▄▄█▄██▄█▄▄▄██
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ v0.1.5 ▀▀▀▀
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ v0.1.6 ▀▀▀▀
 
    db     888888  888888  88""Yb  Yb  dY  88b 88   dP"Yb   .dP"Y8
   dPYb    88__      88    88__dP   YbdY   88Yb88  dY   Yb  `Ybo.
@@ -100,7 +100,7 @@ def combat(pc, enemy):
 
     # introduce enemy
     print("\n\t# ENCOUNTER #")
-    print(f"\nA {enemy.type} has appeared, {enemy.description}.")
+    print(f"A {enemy.type} has appeared, {enemy.description}.")
 
     while(combatRunning):
 
@@ -158,6 +158,7 @@ def gameloop(pc):
 
 
 
+# |- ------ ROOM LOOPS -------------------------------------------------------------------------- -|
 
         ### STARTING ZONE ###-------------------------------------------------------------------- -|
 
@@ -165,7 +166,7 @@ def gameloop(pc):
             if (pc.globalStatus["Game Start"] == True):
                 input("\n\t# ENTER TO START GAME #")
 
-                print('''Years ago, when you lived in the town of Almyth, there was a
+                print('''\nYears ago, when you lived in the town of Almyth, there was a
 Strong sense of community. In many ways, it felt like you
 mattered to the people you called friends, the people you called
 neighbors. They were family. After you moved out, heading toward
@@ -173,7 +174,7 @@ bigger and better things in the city of Cormandyr, there was a
 sense of betrayal.\n''')
                 input("\t# ENTER TO CONTINUE #")
 
-                print('''Yes, certainly a sense that your trust had been abused by
+                print('''\nYes, certainly a sense that your trust had been abused by
 those who you called family, who no longer kept in touch. But
 also a sense that you were guilty of the same abuse. Did you
 ever write? Of course not. The only person you kept in touch
@@ -182,7 +183,7 @@ always... - was Alys Astranos. So named because of her family's
 ties to staring up at the stars, and wondering.\n''')
                 input("\t# ENTER TO CONTINUE #")
 
-                print('''Alys and her son worked their family's last farm, her
+                print('''\nAlys and her son worked their family's last farm, her
 parents had both gone years ago, and her husband had left for
 the war, but has not returned and the two of them were
 all that remained of their nightsky-infatuated family. She
@@ -192,7 +193,7 @@ son, Dareth, was a good lad, but surely you'd get sick of
 anyone you were stuck with.\n''')
                 input("\t# ENTER TO CONTINUE #")
 
-                print('''About a week ago, you received the most recent letter from
+                print('''\nAbout a week ago, you received the most recent letter from
 Alys, one that you'd almost hope hadn't been written. In it,
 she seemed nearly desparate, and implored you to travel back
 out to the countryside and visit her. She had so much to show
@@ -200,26 +201,26 @@ you! She was on the verge of unlocking some kind of great
 discovery, and she wanted to share this with you, her friend.\n''')
                 input("\t# ENTER TO CONTINUE #")
 
-                print('''With some hesitation, but a sense of wonder about you, you
+                print('''\nWith some hesitation, but a sense of wonder about you, you
 organized to take a carriage out of the city to her farm in
 the countryside. The carriage ride was bumpy after a while as
 the even cobbled roads unfurled into haphazard dirt trails
 beaten by wagon tracks and horseshoes.\n''')
                 input("\t# ENTER TO CONTINUE #")
 
-                print('''After a while, your driver yells back to you that you've
+                print('''\nAfter a while, your driver yells back to you that you've
 arrived, and nestled on the side of the road you cannot miss
 the quaint farmstead that lies before you.\n''')
                 input("\t# ENTER TO CONTINUE #")
 
-                print('''The carriage drops you off, and the dust drifts thoughtlessly
+                print('''\nThe carriage drops you off, and the dust drifts thoughtlessly
 into the air leaving a stream of beige behind the team of
 horses and their dark wagon as the driver leaves you here
 alone. It is quiet.\n''')
                 input("\t# ENTER TO CONTINUE #")
 
             else:
-                print("The road still lies barren and empty. The dust has settled.")
+                print("\nThe road still lies barren and empty. The dust has settled.")
             dirtRoad(pc)
             pc.globalStatus["Game Start"] = False
 
@@ -397,7 +398,14 @@ deserved escape from the moderate heat of the summer day.''')
         elif(pc.zone.zoneID == 14):
             print("\n\t# BACKYARD PRAIRIE #")
             if (pc.globalStatus["prairieBackyard first time"] == True):
-                print("")
+                print('''The backyard of the farmstead is a serene prairie which stretches
+out for an acre or more. It's huge, and spacious. On the far West
+side there is a small field which looks like it contains something
+low: beans, or cabbage perhaps. In the midst of the field you spot
+a figure... Upon closer inspection, that is a' scarecrow. You can
+better see the buildings you saw earlier: A shed, an outhouse, a
+well not too far away, and a great big barn. There is a garden
+nearby as well.''')
             else:
                 print(pc.zone.summary)
             prairieBackyard(pc)
@@ -406,7 +414,7 @@ deserved escape from the moderate heat of the summer day.''')
         elif(pc.zone.zoneID == 15):
             print("\n\t# WELL #")
             if (pc.globalStatus["prairieWell first time"] == True):
-                print("")
+                print('''.''')
             else:
                 print(pc.zone.summary)
             prairieWell(pc)
@@ -415,7 +423,7 @@ deserved escape from the moderate heat of the summer day.''')
         elif(pc.zone.zoneID == 16):
             print("\n\t# SHED #")
             if (pc.globalStatus["prairieShedExterior first time"] == True):
-                print("")
+                print('''.''')
             else:
                 print(pc.zone.summary)
             prairieShedExterior(pc)
@@ -424,7 +432,7 @@ deserved escape from the moderate heat of the summer day.''')
         elif(pc.zone.zoneID == 17):
             print("\n\t# INSIDE THE SHED #")
             if (pc.globalStatus["prairieShedInterior first time"] == True):
-                print("")
+                print('''.''')
             else:
                 print(pc.zone.summary)
             prairieShedInterior(pc)
@@ -433,7 +441,7 @@ deserved escape from the moderate heat of the summer day.''')
         elif(pc.zone.zoneID == 18):
             print("\n\t# OUTHOUSE #")
             if (pc.globalStatus["prairieOuthouse first time"] == True):
-                print("")
+                print('''.''')
             else:
                 print(pc.zone.summary)
             prairieOuthouse(pc)
@@ -447,7 +455,7 @@ deserved escape from the moderate heat of the summer day.''')
         elif(pc.zone.zoneID == 19):
             print("\n\t# FRONT OF THE BARN #")
             if (pc.globalStatus["barnFront first time"] == True):
-                print("")
+                print('''.''')
             else:
                 print(pc.zone.summary)
             barnFront(pc)
@@ -456,7 +464,7 @@ deserved escape from the moderate heat of the summer day.''')
         elif(pc.zone.zoneID == 20):
             print("\n\t# INSIDE THE BARN #")
             if (pc.globalStatus["barnInterior first time"] == True):
-                print("")
+                print('''.''')
             else:
                 print(pc.zone.summary)
             barnInterior(pc)
@@ -465,7 +473,7 @@ deserved escape from the moderate heat of the summer day.''')
         elif(pc.zone.zoneID == 21):
             print("\n\t# BARN LOFT #")
             if (pc.globalStatus["barnLoft first time"] == True):
-                print("")
+                print('''.''')
             else:
                 print(pc.zone.summary)
             barnLoft(pc)
@@ -474,7 +482,7 @@ deserved escape from the moderate heat of the summer day.''')
         elif(pc.zone.zoneID == 22):
             print("\n\t# BACK OF THE BARN #")
             if (pc.globalStatus["barnBack first time"] == True):
-                print("")
+                print('''.''')
             else:
                 print(pc.zone.summary)
             barnBack(pc)
@@ -483,7 +491,7 @@ deserved escape from the moderate heat of the summer day.''')
         elif(pc.zone.zoneID == 23):
             print("\n\t# STABLE #")
             if (pc.globalStatus["barnStable first time"] == True):
-                print("")
+                print('''.''')
             else:
                 print(pc.zone.summary)
             barnStable(pc)
@@ -498,6 +506,11 @@ deserved escape from the moderate heat of the summer day.''')
 
 
 
+
+
+
+# |- ------ ROOM FUNCTIONS ---------------------------------------------------------------------- -|
+
 ### DIRT ROAD
 
 def dirtRoad(pc):
@@ -510,9 +523,6 @@ def dirtRoad(pc):
     # Cycle: Walk toward house, walk north or south (null), pick up hat
     # Item: Fancy Hat
     # GS: Fancy Hat taken
-
-
-
 
 
 ### FARMHOUSE ROOMS
@@ -638,8 +648,6 @@ def farmhouseCellar(pc):
     # GS: Gunpowder taken
 
 
-
-
 ### PRAIRIE
 
 def prairieBackyard(pc):
@@ -688,8 +696,6 @@ def prairieOuthouse(pc):
     # Cycle: Backyard, Well, Shed
 
 
-
-
 ### BARN
 
 def barnFront(pc):
@@ -736,8 +742,6 @@ def barnStable(pc):
     # The rear of the interior, no animals present, but one stable shows clear signs of a struggle. Bloodtrail leads from the stable out into barnBack, and then prairieBackyard, as well as to cornfieldEdge
     # Cycle: barnBack, barnInterior
     # GS: Bloodtrail examined (automatically True)
-
-
 
 
 ### CORNFIELD
@@ -965,6 +969,7 @@ def newGame():
         "Alchemical Powder taken": False,
         "Alcohol taken": False,
         "Emerald Medallion taken": False,
+        "Emerald Merkaba taken": False,
         "Fancy Hat taken": False,
         "Gold Coin taken": False,
         "Hidden Note 1 taken": False,
@@ -1019,6 +1024,7 @@ def newGame():
         "prairieShedExterior examined": False,
         "prairieShedInterior examined": False,
         "prairieWell examined": False,
+        "prairieWell Inside": False,
         "Study Notes examined": False,
         "Telescope examined": False,
 
@@ -1028,11 +1034,12 @@ def newGame():
         "Darkvision": False,
         "Lantern Lit": False,
         "Match Lit": False,
-        "Matches timer": 0,
+        "Stelthy": False,
 
         # environment effects
         "Dark": False,
         "Dark Place": False,
+        "prairieWell obstruction destroyed": False,
         "Staircase Visible": False,
 
         ### GAME END
@@ -1042,9 +1049,9 @@ def newGame():
     }
 
     # Creates new inventory with note object
-    inventory = [0]  # only Note from Alys
+    # inventory = [0]  # only Note from Alys
     # inventory = [0, 7, 9, 1, 12, 14, 15]  # testing all item types
-    # inventory = [0, 7, 12, 16, 17, 18] # testing bomb
+    inventory = [0, 7, 12, 16, 17, 18] # testing bomb
 
     # Timers
     darknessTimer = 0  # timer for rounds spent in darkness

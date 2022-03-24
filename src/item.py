@@ -18,12 +18,14 @@ class Item:
             self.description = '''A small note from your friend pleading for you to visit her at
 her farm. She seemed desparate, which is not like Alys. But she
 also seemed excited, as if she was on the verge of a great discovery.'''
+            # location: Given to player at the start of the game
 
         elif(self.itemID == 1):
             self.name = "Fancy Hat"
             self.value = 5
             self.description = '''A small decorative hat, too small to wear. It is finely crafted
 of black silk with green embroidery.'''
+            # location: On the dirt road, hidden in a ditch
 
         elif(self.itemID == 2):
             self.name = "Muddy Boots"
@@ -32,6 +34,7 @@ of black silk with green embroidery.'''
             self.armorBonus = 1
             self.use = "equip"
             self.description = "A pair of slightly muddy work boots."
+            # location: Inside the kitchen closet in the farmhouse
 
         elif(self.itemID == 3):
             self.name = "Emerald Medallion"
@@ -46,23 +49,46 @@ revealed something hidden. You also feel invigorated.'''
 and strung on a silver chain Meant to be warn around the neck.
 It seems to have a subtle motion about it, as if vibrating,
 though you're sure it's not moving.'''
+            # location: Inside the kitchen closet in the farmhouse, hidden in a box
 
         elif(self.itemID == 4):
             self.name = "Spellbook"
             self.value = 10
             self.magic = True
             self.magicBonus = 2
-            self.statRequired = {"Int": 12}
+            self.statRequired = {"Int": 13}
             self.use = "spell"
-            self.spell = "" # WIP
+            self.spell = {
+                "Astral Crown": {
+                    "description": '''You evoke a thousand luminaries of the night sky, as green stars
+descend all around you and form a crown around your head.
+You feel empowered as the crown of stars fades around you.''',
+                    "effect": 4,
+                    "magic": 3
+                },
+                "Miraculous Recovery": {
+                    "description": '''The page of the book begins to glow in golden light, and you feel
+your will and vigor return to you.''',
+                    "effect": 5,
+                    "magic": 2
+                },
+                "Subtle Steps": {
+                    "description": '''A shroud of darkness envelopes you as your shadow fades and blends
+into the world around you. Suddenly, your footsteps are silent.''',
+                    "effect": True,
+                    "magic": 2
+                }
+            }
             self.description = '''A handbound leather journal which shines with a magical spark.
 The cover is emblazoned with a drawing of an eye, set with a gem.'''
+            # location: Inside the upstairs hallway, hidden in a chest
 
         elif(self.itemID == 5):
             self.name = "Gold Coin"
             self.value = 1
             self.description = '''A strange golden coin with a star on one side, and a tree on
 the other. Could be worth something.'''
+            # location: In the prairie, hidden on the ground, and dropped by Goblins
 
         elif(self.itemID == 6):
             self.name = "Alcohol"
@@ -70,6 +96,7 @@ the other. Could be worth something.'''
             self.use = "combine" # WIP
             self.description = '''A very high proof clear alcohol, its ornate crystal decanter
 belies the fact that it is too strong to drink.'''
+            # CHANGE THIS
 
         elif(self.itemID == 7):
             self.name = "Lantern"
@@ -78,6 +105,7 @@ belies the fact that it is too strong to drink.'''
             self.lightSource = True
             self.description = '''An oil lantern which can easily be lit, the flame is protected by
 glass windows.'''
+            # location: Found in the shed, on a hook
 
         elif(self.itemID == 8):
             self.name = "Hidden Note 1"
@@ -88,6 +116,7 @@ of some sort of stairway. It appears to indicate that this
 stairway exists and does not exist at the same time; or perhaps
 it exists in a parallel dimension.'''
             self.description = "A strange drawing found by the well."
+            # location: Tucked into the roofing of the well
 
         elif(self.itemID == 9):
             self.name = "Hidden Note 2"
@@ -99,6 +128,7 @@ sunburts of branching lines... They almost seem to be plants,
 spread away from the circle and its captivating spiral.
 There is a single word written on this note: 'Amaze'.'''
             self.description = '''A strange drawing found in a storage closet.'''
+            # location: Found in the storage closet in the upstairs hallway
 
         elif(self.itemID == 10):
             self.name = "Hidden Note 3"
@@ -106,6 +136,7 @@ There is a single word written on this note: 'Amaze'.'''
             self.use = "read"
             self.read = "This note is a hastily sketched drawing of a wall of corn."
             self.description = "A strange drawing found in the Barn Loft."
+            # location: Found in the barn loft, in a small desk
 
         elif(self.itemID == 11):
             self.name = "Letter from Alys"
@@ -121,6 +152,7 @@ enthralled by the mysterious forces that live down there, but
 I'm also terrified for my life. Please do not look for me. Seal
 the door if you can, and try to forget this place.'"""
             self.description = "A letter written by Alys, found in her Study."
+            # location: Found in the study on the desk, must be bright enough to read (not takeable)
 
         elif(self.itemID == 12):
             self.name = "Sword"
@@ -130,6 +162,7 @@ the door if you can, and try to forget this place.'"""
             self.use = "equip"
             self.description = '''A simple shortsword, handmade, but not by any expert. The blade
 is sharp, but crudely assymetrical.'''
+            # location: On a wall-mount in Dareth's room.
 
         elif(self.itemID == 13):
             self.name = "Pitchfork"
@@ -139,6 +172,7 @@ is sharp, but crudely assymetrical.'''
             self.use = "equip"
             self.description = '''A well-used iron pitchfork on a long wooden handle. The wood is
 warn and grimy with age.'''
+            # location: On a hook on a beam in the barnInterior
 
         elif(self.itemID == 14):
             self.name = "Liquid Darkness"
@@ -152,6 +186,7 @@ then it begins to fade back in, brighter than before. You can
 now see in the dark.'''
             self.description = '''A roiling and evanescent mass of pure shadow. It is weightless,
 and you can feel immense power eminating from its core.'''
+            # location: Only dropped by Grue when killed
 
         elif(self.itemID == 15):
             self.name = "Matches"
@@ -160,6 +195,7 @@ and you can feel immense power eminating from its core.'''
             self.lightSource = True
             self.description = '''A wooden match with a tip dipped in a dark red flamable
 concoction. Strike anywhere.'''
+            # location: Found in the closet, hidden under some sheets
 
         elif(self.itemID == 16):
             self.name = "Alchemical Powder"
@@ -168,6 +204,7 @@ concoction. Strike anywhere.'''
             self.combine = [17, 18]
             self.description = '''A paper packet filled with a mysterious black powder with a sheen
 like onyx or moonstone.'''
+            # location: Found in the cellar, in the corner with some other alchemical stuff
 
         elif(self.itemID == 17):
             self.name = "Glass Jar"
@@ -175,6 +212,7 @@ like onyx or moonstone.'''
             self.use = "combine"
             self.combine = [16, 18]
             self.description = '''A simple glass jar with an airtight lid.'''
+            # location: Found in the kitchen, on the table
 
         elif(self.itemID == 18):
             self.name = "Acrid Solution"
@@ -183,10 +221,46 @@ like onyx or moonstone.'''
             self.combine = [16, 17]
             self.description = '''A pungent and caustic solution, it may react violently with other
 chemicals.'''
+            # location: Inside the Shed, in some boxes, in a small metal container
 
         elif(self.itemID == 19):
             self.name = "Jar Bomb"
             self.value = 2
+            self.statRequired = {"Int": 9}
             self.use = "spell"
             self.spell = "You shake the jar and throw it! After a few seconds, it explodes!"
-            self.description = '''A very dangerous homemade bomb. It could be useful.'''
+            self.description = '''A very dangerous homemade bomb. It could be useful, but it is
+also quite fragile.'''
+            # location: Created from 16, 17, 18.
+
+        elif(self.itemID == 20):
+            self.name = "Emerald Merkaba"
+            self.value = 2
+            self.statRequired = {"Int": 11}
+            self.use = "spell"
+            self.spell = '''You twist the double pyramid structure, which seems to interlock
+and shift around itself. The inside glows a bright green, and the
+whole surface sparkles brilliantly. It becomes hot, and you feel
+almost as if it is on fire.'''
+            self.description = '''A mysterious green Merkaba shape, two pyramids intersecting to
+create a sort of star, it has a peculiar symmertry. The object
+seems to be a sort of device, and it is possible to twist the
+pyramids.'''
+            # location: Found in the water pale inside the well.
+
+
+
+
+
+
+
+        elif(self.itemID == 100):
+            self.name = "Template"
+            self.value = 0
+            self.description = '''.'''
+            # location:
+
+        else:
+            self.name = "Impossible Item"
+            self.value = 0
+            self.description = "Ceci n'est pas une item."
