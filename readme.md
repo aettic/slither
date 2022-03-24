@@ -37,15 +37,11 @@ This is a zork-like text-based adventure game. It contains a global status syste
 ---
 
 ## Development Progress
-#### To Do
-- [ ] Alchemical Jar Bomb: Add descriptive information for fragility
-- [ ] Build a way to light the candles in the study with the matches, so they stay lit
-- [ ] Build NPC objects with interactive dialogue capacity (model after combat)
-- [ ] Create more globalStatus entries as needed
+
+#### Priority To Do
 - [ ] Finish combat options
 - [ ] Finish equipment (equip, unequip, with inventory access, also bare fists)
 - [ ] Finish Jar Bomb spell effects for damage
-- [ ] Look into combining all possible movements into one function - pc.moveTo(Zone) or something
 - [ ] Move Lantern to Shed (Once shed is built, maybe replace lantern with something in study)
 - [ ] Put a Grue in the Barn Loft
 - [ ] Reformat all flavor text and results / separate properly from commands
@@ -56,8 +52,14 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [ ] Write out Barn Zones
 - [ ] Write out Cornfield Zones
 
+#### Extra To Do
+- [ ] Build a way to light the candles in the study with the matches, so they stay lit
+- [ ] Build NPC objects with interactive dialogue capacity (model after combat)
+- [ ] Look into combining all possible movements into one function - pc.moveTo(Zone) or something
+
 #### Done
 - [x] Actually use item.py before getting too carried away
+- [x] Alchemical Jar Bomb: Add descriptive information for fragility
 - [x] Build load state function
 - [x] Build combat system
 - [x] Build magic system
