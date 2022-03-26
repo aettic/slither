@@ -192,8 +192,10 @@ of this floor leading up.'''
             self.description = '''Only the dim evening light spills in from the windows on the
 West side of the wall. It appears that this place was left in
 a hurry. The tell-tale signs of a struggle can be seen about the
-room. There are unlit candles on the table and around the room.'''
+room. There are unlit candles on the table and around the room.
+There is a glass jar with lid sitting upright on the table.'''
             self.items.clear()
+            self.items = [17]
 
             if(pc.globalStatus["farmhouseKitchen examined"] == False):
                 self.options = [
@@ -225,43 +227,86 @@ room. There are unlit candles on the table and around the room.'''
                         "menu": "menu"
                     }
                 }
-            elif(pc.globalStatus["farmhouseKitchen examined"] == True):
-                self.options = [
-                    "Into the sitting room",
-                    "Open the closet",
-                    "Head back outside",
-                    "Examine the signs of struggle",
-                    "Look around the area",
-                    "Player Menu"
-                ]
+            else:
+                if(pc.globalStatus["Glass Jar taken"] == False):
+                    self.options = [
+                        "Into the sitting room",
+                        "Open the closet",
+                        "Head back outside",
+                        "Examine the signs of struggle",
+                        "Take the glass jar",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
 
-                self.selection = {
-                    1: {
-                        "do": "You traverse the creaking floor and head into the sitting room.",
-                        "moveTo": 4
-                    },
-                    2: {
-                        "do": "You walk over to the closet door and pull it open.",
-                        "moveTo": 3
-                    },
-                    3: {
-                        "do": "You step back outside the house.",
-                        "moveTo": 1
-                    },
-                    4: {
-                        "do": '''You look around the room, examining the chaos and bedlam. Silver-
+                    self.selection = {
+                        1: {
+                            "do": "You traverse the creaking floor and head into the sitting room.",
+                            "moveTo": 4
+                        },
+                        2: {
+                            "do": "You walk over to the closet door and pull it open.",
+                            "moveTo": 3
+                        },
+                        3: {
+                            "do": "You step back outside the house.",
+                            "moveTo": 1
+                        },
+                        4: {
+                            "do": '''You look around the room, examining the chaos and bedlam. Silver-
 ware and dishes lie scattered haphazardly. A tea kettle is over-
 turned on the floor, a small puddle of brown tea gathered around
 it. It is no longer warm. A fight happened here. Is Alys okay?
 You can see the footprints came from the sitting room.'''
-                    },
-                    5: {
-                        "do": self.description
-                    },
-                    6: {
-                        "menu": "menu"
+                        },
+                        5: {
+                            "do": '''You grab the glass jar, and slip it into your backpack.''',
+                            "takeItem": 17
+                        },
+                        6: {
+                            "do": self.description
+                        },
+                        7: {
+                            "menu": "menu"
+                        }
                     }
-                }
+                else:
+                    self.options = [
+                        "Into the sitting room",
+                        "Open the closet",
+                        "Head back outside",
+                        "Examine the signs of struggle",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You traverse the creaking floor and head into the sitting room.",
+                            "moveTo": 4
+                        },
+                        2: {
+                            "do": "You walk over to the closet door and pull it open.",
+                            "moveTo": 3
+                        },
+                        3: {
+                            "do": "You step back outside the house.",
+                            "moveTo": 1
+                        },
+                        4: {
+                            "do": '''You look around the room, examining the chaos and bedlam. Silver-
+ware and dishes lie scattered haphazardly. A tea kettle is over-
+turned on the floor, a small puddle of brown tea gathered around
+it. It is no longer warm. A fight happened here. Is Alys okay?
+You can see the footprints came from the sitting room.'''
+                        },
+                        5: {
+                            "do": self.description
+                        },
+                        6: {
+                            "menu": "menu"
+                        }
+                    }
 
 
         elif (self.zoneID == 3):  # farmhouseCloset1
@@ -1326,7 +1371,7 @@ into the darkened cellar.''',
                 },
                 2: {
                     "do": '''You leave the cellar doors and head toward the backyard.''',
-                    "moveTo": 13
+                    "moveTo": 14
                 },
                 3: {
                     "do": '''You leave the cellar doors and return to the front of the house.''',
@@ -1759,7 +1804,8 @@ clearly for hoisting and lowering a bucket for water.'''
                             "moveTo": 14
                         },
                         5: {
-                            "do": '''You pull the rope to hoist the bucket up, but something blocks its path, and it is stuck.'''
+                            "do": '''You pull the rope to hoist the bucket up, but something blocks
+its path, and it is stuck.'''
                         },
                         6: {
                             "do": '''You take a look down into the well. Some sort of stony obstruction
@@ -2150,36 +2196,35 @@ expect to find inside an outhouse. Nothing terrible exciting.'''
             self.items.clear()
             self.items = []
 
-            if(pc.globalStatus["prairieOuthouse examined"] == False):
-                self.options = [
-                    "Head to the shed",
-                    "Go to the well",
-                    "Return to the garden",
-                    "Look around the area",
-                    "Player Menu"
-                ]
+            self.options = [
+                "Head to the shed",
+                "Go to the well",
+                "Return to the garden",
+                "Look around the area",
+                "Player Menu"
+            ]
 
-                self.selection = {
-                    1: {
-                        "do": "You head back to the shed.",
-                        "moveTo": 16
-                    },
-                    2: {
-                        "do": "You walk over to the well.",
-                        "moveTo": 15
-                    },
-                    3: {
-                        "do": "You return back to the prairie garden.",
-                        "moveTo": 14
-                    },
-                    4: {
-                        "do": self.description,
-                        "examine": "prairieOuthouse"
-                    },
-                    5: {
-                        "menu": "menu"
-                    }
+            self.selection = {
+                1: {
+                    "do": "You head back to the shed.",
+                    "moveTo": 16
+                },
+                2: {
+                    "do": "You walk over to the well.",
+                    "moveTo": 15
+                },
+                3: {
+                    "do": "You return back to the prairie garden.",
+                    "moveTo": 14
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "prairieOuthouse"
+                },
+                5: {
+                    "menu": "menu"
                 }
+            }
 
 
 
