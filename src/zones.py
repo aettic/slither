@@ -1868,11 +1868,319 @@ you can make out some water, and a shining green stone.''',
 
 
         elif (self.zoneID == 16):  # prairieShedExterior
-            print(f"zone {zoneID}")
+            self.summary = '''A small, drab shed, still standing. It has a slanted roof, and a
+single door.'''
+            self.description = '''The Shed is built of different wood than the house and barn, and
+almost seems older. Perhaps it was already here. As if to
+emphasize its difference from the other buildings on this land,
+the shed is locked with a large metal padlock, which takes a key.'''
+            self.items.clear()
+            self.items = []
+
+            if(pc.globalStatus["prairieShedExterior examined"] == False):
+                self.options = [
+                    "Return to the Garden",
+                    "Head to the Well",
+                    "Walk over to the barn",
+                    "Head to the outhouse",
+                    "Open the shed door"
+                    "Look around the area",
+                    "Player Menu"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You head back toward the Garden, and its scarecrow.",
+                        "moveTo": 14
+                    },
+                    2: {
+                        "do": "You walk over to the stone water well.",
+                        "moveTo": 15
+                    },
+                    3: {
+                        "do": "You walk over to the large barn.",
+                        "moveTo": 19
+                    },
+                    4: {
+                        "do": "You walk behind the shed, toward the outhouse.",
+                        "moveTo": 18
+                    },
+                    5: {
+                        "do": '''You try to open the door, and discover it is locked. The padlock
+requires a key.''',
+                        "examine": "prairieShedExterior Lock"
+
+                    },
+                    6: {
+                        "do": self.description,
+                        "examine": "prairieShedExterior",
+                        "examine": "prairieShedExterior Lock"
+                    },
+                    7: {
+                        "menu": "menu"
+                    }
+                }
+            else:
+                if(pc.globalStatus["prairieShedExterior Lock unlocked"] == False):
+                    self.options = [
+                        "Return to the Garden",
+                        "Head to the Well",
+                        "Walk over to the barn",
+                        "Head to the outhouse",
+                        "Unlock the shed door"
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    if(21 in pc.inventory):
+                        self.selection = {
+                            1: {
+                                "do": "You head back toward the Garden, and its scarecrow.",
+                                "moveTo": 14
+                            },
+                            2: {
+                                "do": "You walk over to the stone water well.",
+                                "moveTo": 15
+                            },
+                            3: {
+                                "do": "You walk over to the large barn.",
+                                "moveTo": 19
+                            },
+                            4: {
+                                "do": "You walk behind the shed, toward the outhouse.",
+                                "moveTo": 18
+                            },
+                            5: {
+                                "do": '''You twist the key into the lock, and it pops open.''',
+                                "toggle": "prairieShedExterior Lock"
+
+                            },
+                            6: {
+                                "do": self.description,
+                                "examine": "prairieShedExterior",
+                                "examine": "prairieShedExterior Lock"
+                            },
+                            7: {
+                                "menu": "menu"
+                            }
+                        }
+                    elif(21 not in pc.inventory):
+                        self.selection = {
+                            1: {
+                                "do": "You head back toward the Garden, and its scarecrow.",
+                                "moveTo": 14
+                            },
+                            2: {
+                                "do": "You walk over to the stone water well.",
+                                "moveTo": 15
+                            },
+                            3: {
+                                "do": "You walk over to the large barn.",
+                                "moveTo": 19
+                            },
+                            4: {
+                                "do": "You walk behind the shed, toward the outhouse.",
+                                "moveTo": 18
+                            },
+                            5: {
+                                "do": '''You need a key to unlock this door.'''
+                            },
+                            6: {
+                                "do": self.description,
+                                "examine": "prairieShedExterior",
+                                "examine": "prairieShedExterior Lock"
+                            },
+                            7: {
+                                "menu": "menu"
+                            }
+                        }
+                else:
+                    self.options = [
+                        "Return to the Garden",
+                        "Head to the Well",
+                        "Walk over to the barn",
+                        "Head to the outhouse",
+                        "Open the unlocked shed door"
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You head back toward the Garden, and its scarecrow.",
+                            "moveTo": 14
+                        },
+                        2: {
+                            "do": "You walk over to the stone water well.",
+                            "moveTo": 15
+                        },
+                        3: {
+                            "do": "You walk over to the large barn.",
+                            "moveTo": 19
+                        },
+                        4: {
+                            "do": "You walk behind the shed, toward the outhouse.",
+                            "moveTo": 18
+                        },
+                        5: {
+                            "do": '''You open the door to the shed.''',
+                            "moveTo": 17
+                        },
+                        6: {
+                            "do": self.description,
+                            "examine": "prairieShedExterior",
+                            "examine": "prairieShedExterior Lock"
+                        },
+                        7: {
+                            "menu": "menu"
+                        }
+                    }
+
+
         elif (self.zoneID == 17):  # prairieShedInterior
-            print(f"zone {zoneID}")
+            self.summary = '''Inside the shed, there are a handful of tools, and boxes.'''
+            self.description = '''The dimly lit interior of this shed is crowded with items Some
+yard tools including hoes, rakes, saws, poles, and other strange
+implements you've never seen. On the floor is a stack of wide,
+flat wooden boxes, which seem sturdy, probably used to haul
+produce from the garden into the house.'''
+            self.items.clear()
+            self.items = [18]
+
+            if(pc.globalStatus["prairieShedInterior examined"] == False):
+                self.options = [
+                    "Close the shed door",
+                    "Look around the area",
+                    "Player Menu"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You close the door to the shed.",
+                        "moveTo": 16
+                    },
+                    2: {
+                        "do": self.description,
+                        "examine": "prairieShedInterior"
+                    },
+                    3: {
+                        "menu": "menu"
+                    }
+                }
+            else:
+                if(pc.globalStatus["prairieShedInterior Boxes examined"] == False):
+                    self.options = [
+                        "Close the shed door",
+                        "Look around some of the boxes",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You close the door to the shed.",
+                            "moveTo": 16
+                        },
+                        2: {
+                            "do": '''You take a closer look at the boxes, moving some aside, and
+you discover a small vial of some kind of blue liquid.''',
+                            "examine": "prairieShedInterior Boxes"
+                        },
+                        3: {
+                            "do": self.description,
+                            "examine": "prairieShedInterior"
+                        },
+                        4: {
+                            "menu": "menu"
+                        }
+                    }
+                else:
+                    if(pc.globalStatus["Acrid Solution taken"] == False):
+                        self.options = [
+                            "Close the shed door",
+                            "Take the vial of blue liquid",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+
+                        self.selection = {
+                            1: {
+                                "do": "You close the door to the shed.",
+                                "moveTo": 16
+                            },
+                            2: {
+                                "do": '''You slip the vial into your backpack.''',
+                                "takeItem": 18
+                            },
+                            3: {
+                                "do": self.description,
+                                "examine": "prairieShedInterior"
+                            },
+                            4: {
+                                "menu": "menu"
+                            }
+                        }
+                    else:
+                        self.options = [
+                            "Close the shed door",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+
+                        self.selection = {
+                            1: {
+                                "do": "You close the door to the shed.",
+                                "moveTo": 16
+                            },
+                            2: {
+                                "do": self.description,
+                                "examine": "prairieShedInterior"
+                            },
+                            3: {
+                                "menu": "menu"
+                            }
+                        }
+
         elif (self.zoneID == 18):  # prairieOuthouse
-            print(f"zone {zoneID}")
+            self.summary = '''A little outhouse, complete with moon cutout.'''
+            self.description = '''The outhouse is quaint and charming, a sure sign of country life,
+and a nice reprieve from the odd circumstances surrounding Alys'
+disappearance. Opening the door, you can see everything you'd
+expect to find inside an outhouse. Nothing terrible exciting.'''
+            self.items.clear()
+            self.items = []
+
+            if(pc.globalStatus["prairieOuthouse examined"] == False):
+                self.options = [
+                    "Head to the shed",
+                    "Go to the well",
+                    "Return to the garden",
+                    "Look around the area",
+                    "Player Menu"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You head back to the shed.",
+                        "moveTo": 16
+                    },
+                    2: {
+                        "do": "You walk over to the well.",
+                        "moveTo": 15
+                    },
+                    3: {
+                        "do": "You return back to the prairie garden.",
+                        "moveTo": 14
+                    },
+                    4: {
+                        "do": self.description,
+                        "examine": "prairieOuthouse"
+                    },
+                    5: {
+                        "menu": "menu"
+                    }
+                }
+
 
 
 
@@ -1903,30 +2211,149 @@ you can make out some water, and a shining green stone.''',
             print(f"zone {zoneID}")
         elif (self.zoneID == 27):  # cornfieldMazeStart
             print(f"zone {zoneID}")
-        elif (self.zoneID == 28):  # cornfieldMaze1
-            print(f"zone {zoneID}")
-        elif (self.zoneID == 29):  # cornfieldMaze2
-            print(f"zone {zoneID}")
-        elif (self.zoneID == 30):  # cornfieldMaze3
-            print(f"zone {zoneID}")
-        elif (self.zoneID == 31):  # cornfieldMaze4
-            print(f"zone {zoneID}")
-        elif (self.zoneID == 32):  # cornfieldMaze5
-            print(f"zone {zoneID}")
-        elif (self.zoneID == 33):  # cornfieldMaze6
-            print(f"zone {zoneID}")
-        elif (self.zoneID == 34):  # cornfieldMaze7
-            print(f"zone {zoneID}")
-        elif (self.zoneID == 35):  # cornfieldMaze8
-            print(f"zone {zoneID}")
-        elif (self.zoneID == 36):  # cornfieldMaze9
-            print(f"zone {zoneID}")
-        elif (self.zoneID == 37):  # cornfieldMazeCenter
-            print(f"zone {zoneID}")
+
+        elif (self.zoneID > 27):
+
+            if(pc.maze == 1):
+
+                if (self.zoneID == 28):  # cornfieldMaze1
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 29):  # cornfieldMaze2
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 30):  # cornfieldMaze3
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 31):  # cornfieldMaze4
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 32):  # cornfieldMaze5
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 33):  # cornfieldMaze6
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 34):  # cornfieldMaze7
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 35):  # cornfieldMaze8
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 36):  # cornfieldMaze9
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 37):  # cornfieldMaze10
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 38):  # cornfieldMaze11
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 39):  # cornfieldMaze12
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 40):  # cornfieldMaze13
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 41):  # cornfieldMaze14
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 42):  # cornfieldMaze15
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 43):  # cornfieldMaze16
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 44):  # cornfieldMaze17
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 45):  # cornfieldMaze18
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 46):  # cornfieldMaze19
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 47):  # cornfieldMaze20
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 48):  # cornfieldMazeCenter
+                    print(f"zone {zoneID}")
+
+            elif(pc.maze == 2):
+
+                if (self.zoneID == 28):  # cornfieldMaze1
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 29):  # cornfieldMaze2
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 30):  # cornfieldMaze3
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 31):  # cornfieldMaze4
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 32):  # cornfieldMaze5
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 33):  # cornfieldMaze6
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 34):  # cornfieldMaze7
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 35):  # cornfieldMaze8
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 36):  # cornfieldMaze9
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 37):  # cornfieldMaze10
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 38):  # cornfieldMaze11
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 39):  # cornfieldMaze12
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 40):  # cornfieldMaze13
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 41):  # cornfieldMaze14
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 42):  # cornfieldMaze15
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 43):  # cornfieldMaze16
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 44):  # cornfieldMaze17
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 45):  # cornfieldMaze18
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 46):  # cornfieldMaze19
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 47):  # cornfieldMaze20
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 48):  # cornfieldMazeCenter
+                    print(f"zone {zoneID}")
 
 
-        else:
-            print(f"No zone")
+            elif(pc.maze == 3):
+
+                if (self.zoneID == 28):  # cornfieldMaze1
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 29):  # cornfieldMaze2
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 30):  # cornfieldMaze3
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 31):  # cornfieldMaze4
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 32):  # cornfieldMaze5
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 33):  # cornfieldMaze6
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 34):  # cornfieldMaze7
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 35):  # cornfieldMaze8
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 36):  # cornfieldMaze9
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 37):  # cornfieldMaze10
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 38):  # cornfieldMaze11
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 39):  # cornfieldMaze12
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 40):  # cornfieldMaze13
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 41):  # cornfieldMaze14
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 42):  # cornfieldMaze15
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 43):  # cornfieldMaze16
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 44):  # cornfieldMaze17
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 45):  # cornfieldMaze18
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 46):  # cornfieldMaze19
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 47):  # cornfieldMaze20
+                    print(f"zone {zoneID}")
+                elif (self.zoneID == 48):  # cornfieldMazeCenter
+                    print(f"zone {zoneID}")
+
+
+
+        # else:
+        #     print(f"No zone")
 
 
 
@@ -1952,14 +2379,14 @@ you can make out some water, and a shining green stone.''',
         # Hallway splits floor in half. Left side is
         # Master bedroom and study. Right side is
         # Storage and
-        # Guest bedroom
+        # Smaller bedroom with closet
         # End of the hall opposite the stairs is a chest in front of a window
 
         ### Cellar
-        # open area, shelves on three sides. Storage, cold box type stuff, jam, gunpowder, alchemical stuff, etc. Secrets? Only accessible from outside, door is locked.
+        # open area, shelves on three sides. Storage, cold box type stuff, jam, gunpowder, alchemical stuff, etc. Secrets? Only accessible from outside, door is locked. Grue in dark.
 
     # BARN:
-    # This is a large barn, brown and angular, with a thatched roof. It was designed and built alongside the house, so it looks similar. Inside, the ground floor is dirt, packed, and covered with sparse hay. There is a loft which takes up half the fixe of the barn, and is used to store hay. There is a pitch fork hung on a support pillar. There are some stables and pens, none of which house animals anymore. Some of the doors are open. There is blood on the hay in one of the stables, and a scrap of clothing, covered in the same blood. Someone was killed here, and moved from the spot afterward.
+    # This is a large barn, brown and angular, with a thatched roof. It was designed and built alongside the house, so it looks similar. Inside, the ground floor is dirt, packed, and covered with sparse hay. There is a loft which takes up half the depth of the barn, and is used to store hay, though it is clearly also a hangout spot. There is a pitch fork hung on a support pillar. There are some stables and pens, none of which house animals anymore. Some of the doors are open. There is blood on the hay in one of the stables, and a scrap of clothing, covered in the same blood. Someone was killed here, and moved from the spot afterward.
 
     # FIELDS:
     # There are two fields, a cornfield to the North, and a wheat / grass field to the South and behind the house to the West. The latter is more of an open prairie, with patches of low wheat fields.
@@ -1968,7 +2395,7 @@ you can make out some water, and a shining green stone.''',
         # The corn is tall, taller than the player. After pushing into the field a ways, the players finds themselves in an honest-to-god corn maze. The maze twists and turns. As the player runs around, some random events happen, such as seeing a fairy or goblin, or hearing voices, or encountering items, etc. At the center of the maze is a spiral staircase leading into the ground.
 
         ### Prairie
-        # The Prairie spans a wide area, though it's not as large as the corn field. It houses the shed, outhouse, and well, but is largely aesthetic. In the field, on the ground, the player can find a shiny silver coin. There is an ominous scarecrow in the center of the field.
+        # The Prairie spans a wide area, though it's not as large as the corn field. It houses the shed, outhouse, and well, but is largely aesthetic. In the field, on the ground, the player can find a shiny gold coin. There is an ominous scarecrow in the center of the field.
 
         ### Outhouse
         # Very minimal. This is an outhouse, it has not been used recently. There is a crescent moon cut out in the door for light. Tacked to the door (on the outside) is a note that says the following in poorly written Common:

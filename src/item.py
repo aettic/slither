@@ -248,7 +248,11 @@ seems to be a sort of device, and it is possible to twist the
 pyramids.'''
             # location: Found in the water pale inside the well.
 
-
+        elif(self.itemID == 21):
+            self.name = "Brass Key"
+            self.value = 1
+            self.description = '''A simple brass key, with an engraving of a tree on the bow.'''
+            # location: On the floor in the Barn Stable, having fallen out of Dareth's pocket.
 
 
 

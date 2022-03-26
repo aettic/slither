@@ -22,6 +22,7 @@ class Creature:
             self.description = random.choice(descriptions)
             self.weapons = ["claw", "bite", "knife"]
             self.itemDrops = [5]  # gold coin
+            self.xp = 2
 
         elif (self.type == "Beast"):
 
@@ -35,6 +36,7 @@ class Creature:
             self.description = random.choice(descriptions)
             self.weapons = ["claw", "bite", "tail whip"]
             self.itemDrops = [5]  # gold coin
+            self.xp = 1
 
         elif (self.type == "Grue"):
 
@@ -48,6 +50,7 @@ class Creature:
             self.description = random.choice(descriptions)
             self.weapons = ["bite", "chomp", "eaten"]
             self.itemDrops = [11]  # liquid darkness
+            self.xp = 5
 
     def attack(self, pc):
         damage = random.randrange(self.damage)
@@ -63,3 +66,4 @@ class Creature:
         if(self.currentHP <= 0):
             self.isAlive = False
             print(f"The {self.type} falls, and drops a {random.choice(self.itemDrops)}.")
+            pc.experience += self.xp

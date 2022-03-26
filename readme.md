@@ -45,17 +45,27 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [ ] Move Lantern to Shed (Once shed is built, maybe replace lantern with something in study)
 - [ ] Put a Grue in the Barn Loft
 - [ ] Reformat all flavor text and results / separate properly from commands
-- [ ] Write out Prairie First Time text
-- [ ] Write out Barn First Time text
 - [ ] Write out Cornfield First Time text
+  - [ ] cornfieldMaze2 first time text
+  - [ ] cornfieldMaze3 first time text
+  - [ ] cornfieldMaze4 first time text
+  - [ ] cornfieldMaze5 first time text
+  - [ ] cornfieldMaze6 first time text
+  - [ ] cornfieldMaze7 first time text
+  - [ ] cornfieldMaze8 first time text
+  - [ ] cornfieldMaze9 first time text
+  - [ ] cornfieldTangle first time text
+  - [ ] cornfieldThick first time text
 - [ ] Write out Prairie Zones
 - [ ] Write out Barn Zones
 - [ ] Write out Cornfield Zones
 
 #### Extra To Do
+- [ ] Add Scarecrow to descriptions of the garden / prairieBackyard
 - [ ] Build a way to light the candles in the study with the matches, so they stay lit
 - [ ] Build NPC objects with interactive dialogue capacity (model after combat)
 - [ ] Look into combining all possible movements into one function - pc.moveTo(Zone) or something
+- [ ] Redesign doSomething choices to ALWAYS include moving backwards as number 1.
 
 #### Done
 - [x] Actually use item.py before getting too carried away
@@ -71,7 +81,10 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [x] Create a combine method
 - [x] Create a useItem method in player.py (now contains equip, toggle, and spell, and combine)
 - [x] Create Dark timer for Grue attack - 2 rounds
+- [x] Create end of game / game win screen
 - [x] Create Matches timer - 5 rounds
+- [x] Design basis for the Maze (20 zones)
+- [x] Design paths for each of three mazes
 - [x] Design spell(s) for Spellbook
 - [x] Finish Jar Bomb spell effects for environment puzzle
 - [x] Fix closet entrance from Master bedroom
@@ -83,6 +96,23 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [x] Put a Grue in Cellar
 - [x] Test save state works
 - [x] Write out Farmhouse Zones
+- [x] Write out Prairie First Time text
+  - [x] prairieBackyard first time text
+  - [x] prairieOuthouse first time text
+  - [x] prairieShedExterior first time text
+  - [x] prairieShedInterior first time text
+  - [x] prairieWell first time text
+- [x] Write out Barn First Time text
+  - [x] barnBack first time text
+  - [x] barnFront first time text
+  - [x] barnInterior first time text
+  - [x] barnLoft first time text
+  - [x] barnStable first time text
+- [ ] Write out Cornfield First Time text
+  - [x] cornfieldEdge first time text
+  - [x] cornfieldMazeCenter first time text
+  - [x] cornfieldMaze1 first time text
+
 - [x] Write out the story more thoroughly in a secret canon piece.
 
 ---
@@ -113,9 +143,23 @@ The cornfield is currently set up like this:
 - Maze 1 - 9 : Similar, but unique zones where progress is made.
 - Maze Center : The Goal, where the corn maze empties out into a crop circle, with a stone staircase leading down into the ground.
 
-Start - Left (1) - Right (4) - Straight (5) - Left (7) - Right (3) - Right (6) - Straight (Center)
-Start - Left (1) - Straight (2) - Right (4) - Straight (5) - Right (3) - Left (7) - Left (Center)
-Start - Right (1) - Left (4) - Right (5) - Right (7) - Straight (3) - Left (6) - Straight (Center)
+Pathways:
+
+ORANGE: S - 01 - 02 - 04 - 19 - 17 - 15 - 09 - 12 - 13 - 10 - 11 - 16 - 18 - 08 - C
+PURPLE: S - 01 - 05 - 06 - 08 - 11 - 10 - 09 - 12 - 15 - 17 - 07 - 04 - 05 - C
+GREEN:  S - 01 - 03 - 20 - 06 - 08 - 18 - 16 - 16 - 14 - 13 - 10 - 09 - 07 - C
+
+**Core concept for maze solution**
+The corn maze can be entered from the cornfieldEdge zone, which leads to cornfieldThick, and then cornfieldTangle, where the first glimpse of the Goblin is. Then, continuing, the player will reach cornfieldMazeStart. The only way forward from Start is to 1, always (zone 28), but from that point on there are choices. Depending on which maze path is randomly selected, different walls will be erected, so as to confuse the player, this way it will feel more like a true maze, with dead ends, and perhaps circuitous routes.
+
+The key to progressing is to move FROM a given room into its next room. For instance, in the Orange path, you move from S (0) to 1, and then from 1 to 2 (left), 3 (right), or 5 (up) If  you move to 2, then it progresses, but otherwise it does not. Even if you moved from, say, 1 to 5 to 4 to 2, it will not progress, it has to be from 1 to 2.
+
+The way this will be handled is with arrays / lists, and a solid int variable called progress:
+The Key path list which dictates what order things will need to go in. Progress will show where the player has reached so far. a "next" variable will show the ID of the next necessary zone. a position variable will track the index of the path key, so it will start at 0 and increment by 1 for each zone in the correct order entered.
+
+When the player enters cornfieldMazeStart, the progress variable becomes 27 (0, start). The Zone presents the player with the option to move forward. If they do, the progress variable is updated to the next number in line, 28 (1), and the "next" variable is updated to the next one in the list.
+
+
 
 ---
 

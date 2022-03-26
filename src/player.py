@@ -10,22 +10,24 @@ class Player:
     def __init__(self, playerDict):
 
         # initialize player values based on either newPlayer or loaded JSON data
-        self.name = playerDict["name"]
-        self.isAlive = playerDict["isAlive"]
-        self.zoneID = playerDict["zoneID"]
-        self.maxHP = playerDict["maxHP"]
-        self.currentHP = playerDict["currentHP"]
-        self.globalStatus = playerDict["globalStatus"]
-        self.damage = playerDict["damage"]
-        self.stats = playerDict["stats"]
-        self.inventory = playerDict["inventory"]
-        self.weapon = playerDict["weapon"]
         self.armor = playerDict["armor"]
-        self.defense = playerDict["defense"]
-        self.magic = playerDict["magic"]
+        self.currentHP = playerDict["currentHP"]
+        self.damage = playerDict["damage"]
         self.darknessTimer = playerDict["darknessTimer"]
-        self.matchTimer = playerDict["matchTimer"]
+        self.defense = playerDict["defense"]
         self.experience = playerDict["experience"]
+        self.globalStatus = playerDict["globalStatus"]
+        self.inventory = playerDict["inventory"]
+        self.isAlive = playerDict["isAlive"]
+        self.magic = playerDict["magic"]
+        self.matchTimer = playerDict["matchTimer"]
+        self.maxHP = playerDict["maxHP"]
+        self.maze = playerDict["maze"]
+        self.mazeKey = playerDict["mazeKey"]
+        self.name = playerDict["name"]
+        self.stats = playerDict["stats"]
+        self.weapon = playerDict["weapon"]
+        self.zoneID = playerDict["zoneID"]
 
         # Create Zone object using given zoneID
         self.zone = Zone(self.zoneID, self)
@@ -308,22 +310,24 @@ will explode soon after.''')
     # Save the current game state as a JSON file. Unencrypted and editable.
     def saveState(self):
         saveDict = {
-            "name": self.name,
-            "isAlive": self.isAlive,
-            "zoneID": self.zoneID,
-            "maxHP": self.maxHP,
-            "currentHP": self.currentHP,
-            "globalStatus": self.globalStatus,
-            "damage": self.damage,
-            "stats": self.stats,
-            "inventory": self.inventory,
-            "weapon": self.weapon,
             "armor": self.armor,
-            "defense": self.defense,
-            "magic": self.magic,
+            "currentHP": self.currentHP,
+            "damage": self.damage,
             "darknessTimer": self.darknessTimer,
+            "defense": self.defense,
+            "experience": self.experience,
+            "globalStatus": self.globalStatus,
+            "inventory": self.inventory,
+            "isAlive": self.isAlive,
+            "magic": self.magic,
             "matchTimer": self.matchTimer,
-            "experience": self.experience
+            "maxHP": self.maxHP,
+            "maze": self.maze,
+            "mazeKey": self.mazeKey,
+            "name": self.name,
+            "stats": self.stats,
+            "weapon": self.weapon,
+            "zoneID": self.zoneID
         }
 
         saveJson = json.dumps(saveDict, indent = 2)
