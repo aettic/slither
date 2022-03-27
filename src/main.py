@@ -500,9 +500,16 @@ the barn are four stables where horses might once have slept.''')
         elif(pc.zone.zoneID == 21):
             print("\n\t# BARN LOFT #")
             if (pc.globalStatus["barnLoft first time"] == True):
-                print('''The loft is dark, hay peeks out of the darkness and drifts back
+                if(pc.globalStatus["Dark"] == True):
+                    print('''The loft is dark, hay peeks out of the darkness and drifts back
 toward the deepest recesses, where you cannot see. The space
 large enough to move around, but it's too dark to make your way.''')
+                else:
+                    print('''Stacks of hay lie pressed up against the wall in this loft, and a
+small desk can be seen huddled in the far corner. As you walk
+around, the floor boards creak, and suddenly a black shape darts
+out from the hay! You've startled a stray cat, and it flees down
+the wall's support beams, and out of the barn.''')
             else:
                 print(pc.zone.summary)
             barnLoft(pc)
@@ -1382,6 +1389,7 @@ Any remaining points might be useful... later on...''')
 
     # Creates new inventory
     inventory = [0]  # only Note from Alys
+    # inventory = [0, 21]  # note and key
     # inventory = [0, 7, 9, 1, 12, 14, 15]  # testing all item types
     # inventory = [0, 7, 12, 16, 17, 18] # testing bomb
 
@@ -1532,13 +1540,13 @@ Any remaining points might be useful... later on...''')
         "Darkvision": False,
         "Lantern Lit": False,
         "Match Lit": False,
-        "prairieShedExterior Lock toggle": False,
         "Stelthy": False,
 
         # environment effects
         "Dark": False,
         "Dark Place": False,
-        "prairieWell obstruction destroyed": False,
+        "prairieShedExterior Unlocked toggle": False,
+        "prairieWell obstruction destroyed": False,        
         "Staircase Visible": False,
 
         ### GAME END

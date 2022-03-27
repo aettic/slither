@@ -56,7 +56,6 @@ This is a zork-like text-based adventure game. It contains a global status syste
   - [ ] cornfieldMaze9 first time text
   - [ ] cornfieldTangle first time text
   - [ ] cornfieldThick first time text
-- [ ] Write out Prairie Zones
 - [ ] Write out Barn Zones
 - [ ] Write out Cornfield Zones
 
@@ -64,8 +63,11 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [ ] Add Scarecrow to descriptions of the garden / prairieBackyard
 - [ ] Build a way to light the candles in the study with the matches, so they stay lit
 - [ ] Build NPC objects with interactive dialogue capacity (model after combat)
+- [ ] Burn down barn with matches?
+- [ ] Clean up code redundancy, especially in zones
 - [ ] Look into combining all possible movements into one function - pc.moveTo(Zone) or something
 - [ ] Redesign doSomething choices to ALWAYS include moving backwards as number 1.
+- [ ] Redesign menus to always include a movement option which opens a move menu for each room
 
 #### Done
 - [x] Actually use item.py before getting too carried away
@@ -102,6 +104,7 @@ This is a zork-like text-based adventure game. It contains a global status syste
   - [x] prairieShedExterior first time text
   - [x] prairieShedInterior first time text
   - [x] prairieWell first time text
+- [x] Write out Prairie Zones
 - [x] Write out Barn First Time text
   - [x] barnBack first time text
   - [x] barnFront first time text
@@ -112,6 +115,7 @@ This is a zork-like text-based adventure game. It contains a global status syste
   - [x] cornfieldEdge first time text
   - [x] cornfieldMazeCenter first time text
   - [x] cornfieldMaze1 first time text
+
 
 - [x] Write out the story more thoroughly in a secret canon piece.
 
@@ -149,6 +153,11 @@ ORANGE: S - 01 - 02 - 04 - 19 - 17 - 15 - 09 - 12 - 13 - 10 - 11 - 16 - 18 - 08 
 PURPLE: S - 01 - 05 - 06 - 08 - 11 - 10 - 09 - 12 - 15 - 17 - 07 - 04 - 05 - C
 GREEN:  S - 01 - 03 - 20 - 06 - 08 - 18 - 16 - 16 - 14 - 13 - 10 - 09 - 07 - C
 
+[27, 28, 29, 31, 46, 44, 42, 36, 39, 40, 37, 38, 43, 45, 35, 48],
+[27, 28, 32, 33, 35, 38, 37, 36, 39, 42, 44, 34, 31, 32, 48],
+[27, 28, 29, 47, 33, 35, 45, 43, 41, 40, 37, 36, 34, 48]
+
+
 **Core concept for maze solution**
 The corn maze can be entered from the cornfieldEdge zone, which leads to cornfieldThick, and then cornfieldTangle, where the first glimpse of the Goblin is. Then, continuing, the player will reach cornfieldMazeStart. The only way forward from Start is to 1, always (zone 28), but from that point on there are choices. Depending on which maze path is randomly selected, different walls will be erected, so as to confuse the player, this way it will feel more like a true maze, with dead ends, and perhaps circuitous routes.
 
@@ -179,13 +188,19 @@ A chevron immediately following the prompt text, one space after. Appropriate pu
 `("\nPrompt text: \n> ")`
 
 #### Choices
-Numbered, starting with 1, following a colon.
+Numbered, starting with 1, followed by a colon.
 Choices should be followed by a prompt, and preceded by a notification.  
+Item and zone names should be capitalized.
 `("1: Choice")`
 
 #### Descriptions, Results, and Summaries
 Appropriate capitalization and punctuation, carriage return before.  
-`("\nThis is a sentence.")`
+`("\nThis is a sentence.")`  
+Summaries should be short, as they will be displayed every time someone enters a space, after the first time. This should include a brief description of the most obvious elements of a space, as well as the immediately accessible zones around it.
+
+First Time text, or initial flavor text, is a longer version of the summary (which includes similar information) which is only displayed once: when the player first enters a space. This can be used for context-related descriptions, such as a one-time event happening, or to describe more specifically moving into a space from the only place you could get to it from. For instance, the inside stairs can only be accessed by the sitting room for the first time, so the First Time text takes that into consideration. But after this, it's possible to arrive there from upstairs or the ground floor, which means the Summary ought to be entrance-agnostic.
+
+Description text does not need to include movement directions; only a thorough description of the zone, and any items / interactables inside it.
 
 ---
 

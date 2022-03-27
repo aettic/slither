@@ -137,8 +137,9 @@ class Player:
                     self.magic -= item.spell["Fireball"]["magic"]
                 else:
                     print("You attempt to cast the spell, but nothing happens.")
-
-
+        elif(item.itemID == 6):
+            if(pc.zone.zoneID == )
+            self.inventory.pop(self.inventory.index(item.itemID))
         elif(item.itemID == 11):
             self.magic += item.magicBonus
             print(item.spell)

@@ -1082,12 +1082,12 @@ the desk, and some on the floor.'''
             self.description = '''This cramped space seems well-used. A wide, but shallow desk
 abuts the wooden wall, and the room is dimly lit by the evening
 sky through a thin window above the desk. Two unlit candles in
-sconces flank the door on either side. On top of the desk is a
-black iron lantern with glass cage. You can also see that notes
-are scattered about. Each contains formulae, sketches, and hastily
-written theories and worries.'''
+sconces flank the door on either side. A small bottle of black
+ink sits on the desk, next to a quill. You can also see that
+notes are scattered about. Each contains formulae, sketches, and
+hastily written theories and worries.'''
             self.items.clear()
-            self.items = [7]
+            self.items = [6]
             if(pc.globalStatus["Match Lit"] == False and pc.globalStatus["Lantern Lit"] == False):
                 pc.globalStatus["Dark"] = True
 
@@ -1145,11 +1145,11 @@ written theories and worries.'''
                     }
             elif(pc.globalStatus["farmhouseStudy examined"] == True):
                 if(pc.globalStatus["Dark"] == True):
-                    if(pc.globalStatus["Lantern taken"] == False):
+                    if(pc.globalStatus["Bottle of Ink taken"] == False):
                         self.options = [
                             "Return to the Bedroom",
                             "Exit to the hallway",
-                            "Pick up the Lantern",
+                            "Pick up the Bottle of Ink",
                             "Read the letter",
                             "Look around the area",
                             "Player Menu"
@@ -1164,8 +1164,9 @@ written theories and worries.'''
                                 "moveTo": 6
                             },
                             3: {
-                                "do": "You pick up the iron Lantern, its wick still in good shape.",
-                                "takeItem": 7
+                                "do": '''You pick up the ink bottle, and carefully place it in your pack,
+making sure it's closed..''',
+                                "takeItem": 6
                             },
                             4: {
                                 "do": "It is too dark to make out what the notes say clearly."
@@ -1211,7 +1212,7 @@ written theories and worries.'''
                         self.options = [
                             "Return to the Bedroom",
                             "Exit to the hallway",
-                            "Pick up the Lantern",
+                            "Pick up the Bottle of Ink",
                             "Read the papers",
                             "Look around the area",
                             "Player Menu"
@@ -1226,8 +1227,9 @@ written theories and worries.'''
                                 "moveTo": 6
                             },
                             3: {
-                                "do": "You pick up the iron Lantern, its wick still in good shape.",
-                                "takeItem": 7
+                                "do": '''You pick up the ink bottle, and carefully place it in your pack,
+making sure it's closed..''',
+                                "takeItem": 6
                             },
                             4: {
                                 "do": "You read the notes.",
@@ -1916,20 +1918,98 @@ you can make out some water, and a shining green stone.''',
         elif (self.zoneID == 16):  # prairieShedExterior
             self.summary = '''A small, drab shed, still standing. It has a slanted roof, and a
 single door.'''
-            self.description = '''The Shed is built of different wood than the house and barn, and
-almost seems older. Perhaps it was already here. As if to
-emphasize its difference from the other buildings on this land,
-the shed is locked with a large metal padlock, which takes a key.'''
             self.items.clear()
             self.items = []
 
-            if(pc.globalStatus["prairieShedExterior examined"] == False):
+            # IF THE SHED IS LOCKED
+            if(pc.globalStatus["prairieShedExterior Unlocked toggle"] == False):
+                self.description = '''The Shed is built of different wood than the house and barn, and
+almost seems older. Perhaps it was already here. As if to
+emphasize its difference from the other buildings on this land,
+the shed is locked with a large metal padlock, which takes a key.'''
                 self.options = [
                     "Return to the Garden",
                     "Head to the Well",
                     "Walk over to the barn",
                     "Head to the outhouse",
-                    "Open the shed door"
+                    "Unlock the shed door",
+                    "Look around the area",
+                    "Player Menu"
+                ]
+
+                if(21 in pc.inventory):
+
+                    self.selection = {
+                        1: {
+                            "do": "You head back toward the Garden, and its scarecrow.",
+                            "moveTo": 14
+                        },
+                        2: {
+                            "do": "You walk over to the stone water well.",
+                            "moveTo": 15
+                        },
+                        3: {
+                            "do": "You walk over to the large barn.",
+                            "moveTo": 19
+                        },
+                        4: {
+                            "do": "You walk behind the shed, toward the outhouse.",
+                            "moveTo": 18
+                        },
+                        5: {
+                            "do": '''You use the brass key that you found in the stable, and the door
+unlocks.''',
+                            "toggle": "prairieShedExterior Unlocked"
+
+                        },
+                        6: {
+                            "do": self.description,
+                            "examine": "prairieShedExterior"
+                        },
+                        7: {
+                            "menu": "menu"
+                        }
+                    }
+                else:
+                    self.selection = {
+                        1: {
+                            "do": "You head back toward the Garden, and its scarecrow.",
+                            "moveTo": 14
+                        },
+                        2: {
+                            "do": "You walk over to the stone water well.",
+                            "moveTo": 15
+                        },
+                        3: {
+                            "do": "You walk over to the large barn.",
+                            "moveTo": 19
+                        },
+                        4: {
+                            "do": "You walk behind the shed, toward the outhouse.",
+                            "moveTo": 18
+                        },
+                        5: {
+                            "do": '''You require a key to unlock this door. Try looking around.'''
+
+                        },
+                        6: {
+                            "do": self.description,
+                            "examine": "prairieShedExterior",
+                        },
+                        7: {
+                            "menu": "menu"
+                        }
+                    }
+            else:
+                self.description = '''The Shed is built of different wood than the house and barn, and
+almost seems older. Perhaps it was already here. This shed used
+to be locked, but the swings on the handle, not open.'''
+                self.options = [
+                    "Return to the Garden",
+                    "Head to the Well",
+                    "Walk over to the barn",
+                    "Head to the outhouse",
+                    "Open the shed door",
                     "Look around the area",
                     "Player Menu"
                 ]
@@ -1952,135 +2032,18 @@ the shed is locked with a large metal padlock, which takes a key.'''
                         "moveTo": 18
                     },
                     5: {
-                        "do": '''You try to open the door, and discover it is locked. The padlock
-requires a key.''',
-                        "examine": "prairieShedExterior Lock"
+                        "do": '''You pull the door open and step inside.''',
+                        "moveTo": 17
 
                     },
                     6: {
                         "do": self.description,
                         "examine": "prairieShedExterior",
-                        "examine": "prairieShedExterior Lock"
                     },
                     7: {
                         "menu": "menu"
                     }
                 }
-            else:
-                if(pc.globalStatus["prairieShedExterior Lock unlocked"] == False):
-                    self.options = [
-                        "Return to the Garden",
-                        "Head to the Well",
-                        "Walk over to the barn",
-                        "Head to the outhouse",
-                        "Unlock the shed door"
-                        "Look around the area",
-                        "Player Menu"
-                    ]
-
-                    if(21 in pc.inventory):
-                        self.selection = {
-                            1: {
-                                "do": "You head back toward the Garden, and its scarecrow.",
-                                "moveTo": 14
-                            },
-                            2: {
-                                "do": "You walk over to the stone water well.",
-                                "moveTo": 15
-                            },
-                            3: {
-                                "do": "You walk over to the large barn.",
-                                "moveTo": 19
-                            },
-                            4: {
-                                "do": "You walk behind the shed, toward the outhouse.",
-                                "moveTo": 18
-                            },
-                            5: {
-                                "do": '''You twist the key into the lock, and it pops open.''',
-                                "toggle": "prairieShedExterior Lock"
-
-                            },
-                            6: {
-                                "do": self.description,
-                                "examine": "prairieShedExterior",
-                                "examine": "prairieShedExterior Lock"
-                            },
-                            7: {
-                                "menu": "menu"
-                            }
-                        }
-                    elif(21 not in pc.inventory):
-                        self.selection = {
-                            1: {
-                                "do": "You head back toward the Garden, and its scarecrow.",
-                                "moveTo": 14
-                            },
-                            2: {
-                                "do": "You walk over to the stone water well.",
-                                "moveTo": 15
-                            },
-                            3: {
-                                "do": "You walk over to the large barn.",
-                                "moveTo": 19
-                            },
-                            4: {
-                                "do": "You walk behind the shed, toward the outhouse.",
-                                "moveTo": 18
-                            },
-                            5: {
-                                "do": '''You need a key to unlock this door.'''
-                            },
-                            6: {
-                                "do": self.description,
-                                "examine": "prairieShedExterior",
-                                "examine": "prairieShedExterior Lock"
-                            },
-                            7: {
-                                "menu": "menu"
-                            }
-                        }
-                else:
-                    self.options = [
-                        "Return to the Garden",
-                        "Head to the Well",
-                        "Walk over to the barn",
-                        "Head to the outhouse",
-                        "Open the unlocked shed door"
-                        "Look around the area",
-                        "Player Menu"
-                    ]
-
-                    self.selection = {
-                        1: {
-                            "do": "You head back toward the Garden, and its scarecrow.",
-                            "moveTo": 14
-                        },
-                        2: {
-                            "do": "You walk over to the stone water well.",
-                            "moveTo": 15
-                        },
-                        3: {
-                            "do": "You walk over to the large barn.",
-                            "moveTo": 19
-                        },
-                        4: {
-                            "do": "You walk behind the shed, toward the outhouse.",
-                            "moveTo": 18
-                        },
-                        5: {
-                            "do": '''You open the door to the shed.''',
-                            "moveTo": 17
-                        },
-                        6: {
-                            "do": self.description,
-                            "examine": "prairieShedExterior",
-                            "examine": "prairieShedExterior Lock"
-                        },
-                        7: {
-                            "menu": "menu"
-                        }
-                    }
 
 
         elif (self.zoneID == 17):  # prairieShedInterior
@@ -2091,33 +2054,13 @@ implements you've never seen. On the floor is a stack of wide,
 flat wooden boxes, which seem sturdy, probably used to haul
 produce from the garden into the house.'''
             self.items.clear()
-            self.items = [18]
+            self.items = [7, 18]
 
             if(pc.globalStatus["prairieShedInterior examined"] == False):
-                self.options = [
-                    "Close the shed door",
-                    "Look around the area",
-                    "Player Menu"
-                ]
-
-                self.selection = {
-                    1: {
-                        "do": "You close the door to the shed.",
-                        "moveTo": 16
-                    },
-                    2: {
-                        "do": self.description,
-                        "examine": "prairieShedInterior"
-                    },
-                    3: {
-                        "menu": "menu"
-                    }
-                }
-            else:
-                if(pc.globalStatus["prairieShedInterior Boxes examined"] == False):
+                if(pc.globalStatus["Lantern taken"] == False):
                     self.options = [
                         "Close the shed door",
-                        "Look around some of the boxes",
+                        "Take the Lantern",
                         "Look around the area",
                         "Player Menu"
                     ]
@@ -2128,9 +2071,8 @@ produce from the garden into the house.'''
                             "moveTo": 16
                         },
                         2: {
-                            "do": '''You take a closer look at the boxes, moving some aside, and
-you discover a small vial of some kind of blue liquid.''',
-                            "examine": "prairieShedInterior Boxes"
+                            "do": "You unhook the Lantern and fasten it to your bag.",
+                            "takeItem": 7
                         },
                         3: {
                             "do": self.description,
@@ -2141,10 +2083,32 @@ you discover a small vial of some kind of blue liquid.''',
                         }
                     }
                 else:
-                    if(pc.globalStatus["Acrid Solution taken"] == False):
+                    self.options = [
+                        "Close the shed door",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You close the door to the shed.",
+                            "moveTo": 16
+                        },
+                        2: {
+                            "do": self.description,
+                            "examine": "prairieShedInterior"
+                        },
+                        3: {
+                            "menu": "menu"
+                        }
+                    }
+            else:
+                if(pc.globalStatus["prairieShedInterior Boxes examined"] == False):
+                    if(pc.globalStatus["Lantern taken"] == False):
                         self.options = [
                             "Close the shed door",
-                            "Take the vial of blue liquid",
+                            "Take the Lantern",
+                            "Examine some of the boxes",
                             "Look around the area",
                             "Player Menu"
                         ]
@@ -2155,8 +2119,39 @@ you discover a small vial of some kind of blue liquid.''',
                                 "moveTo": 16
                             },
                             2: {
-                                "do": '''You slip the vial into your backpack.''',
-                                "takeItem": 18
+                                "do": "You unhook the Lantern and fasten it to your bag.",
+                                "takeItem": 7
+                            },
+                            3: {
+                                "do": '''You take a closer look at the boxes, moving some aside, and
+you discover a small vial of some kind of blue liquid.''',
+                                "examine": "prairieShedInterior Boxes"
+                            },
+                            4: {
+                                "do": self.description,
+                                "examine": "prairieShedInterior"
+                            },
+                            5: {
+                                "menu": "menu"
+                            }
+                        }
+                    else:
+                        self.options = [
+                            "Close the shed door",
+                            "Examine some of the boxes",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+
+                        self.selection = {
+                            1: {
+                                "do": "You close the door to the shed.",
+                                "moveTo": 16
+                            },
+                            2: {
+                                "do": '''You take a closer look at the boxes, moving some aside, and
+you discover a small vial of some kind of blue liquid.''',
+                                "examine": "prairieShedInterior Boxes"
                             },
                             3: {
                                 "do": self.description,
@@ -2166,29 +2161,113 @@ you discover a small vial of some kind of blue liquid.''',
                                 "menu": "menu"
                             }
                         }
-                    else:
-                        self.options = [
-                            "Close the shed door",
-                            "Look around the area",
-                            "Player Menu"
-                        ]
+                else:
+                    if(pc.globalStatus["Lantern taken"] == False):
+                        if(pc.globalStatus["Acrid Solution taken"] == False):
+                            self.options = [
+                                "Close the shed door",
+                                "Take the Lantern",
+                                "Take the vial of blue liquid",
+                                "Look around the area",
+                                "Player Menu"
+                            ]
 
-                        self.selection = {
-                            1: {
-                                "do": "You close the door to the shed.",
-                                "moveTo": 16
-                            },
-                            2: {
-                                "do": self.description,
-                                "examine": "prairieShedInterior"
-                            },
-                            3: {
-                                "menu": "menu"
+                            self.selection = {
+                                1: {
+                                    "do": "You close the door to the shed.",
+                                    "moveTo": 16
+                                },
+                                2: {
+                                    "do": "You unhook the Lantern and fasten it to your bag.",
+                                    "takeItem": 7
+                                },
+                                3: {
+                                    "do": '''You slip the vial into your backpack.''',
+                                    "takeItem": 18
+                                },
+                                4: {
+                                    "do": self.description,
+                                    "examine": "prairieShedInterior"
+                                },
+                                5: {
+                                    "menu": "menu"
+                                }
                             }
-                        }
+                        else:
+                            self.options = [
+                                "Close the shed door",
+                                "Take the Lantern",
+                                "Look around the area",
+                                "Player Menu"
+                            ]
+
+                            self.selection = {
+                                1: {
+                                    "do": "You close the door to the shed.",
+                                    "moveTo": 16
+                                },
+                                2: {
+                                    "do": "You unhook the Lantern and fasten it to your bag.",
+                                    "takeItem": 7
+                                },
+                                3: {
+                                    "do": self.description,
+                                    "examine": "prairieShedInterior"
+                                },
+                                4: {
+                                    "menu": "menu"
+                                }
+                            }
+                    else:
+                        if(pc.globalStatus["Acrid Solution taken"] == False):
+                            self.options = [
+                                "Close the shed door",
+                                "Take the vial of blue liquid",
+                                "Look around the area",
+                                "Player Menu"
+                            ]
+
+                            self.selection = {
+                                1: {
+                                    "do": "You close the door to the shed.",
+                                    "moveTo": 16
+                                },
+                                2: {
+                                    "do": '''You slip the vial into your backpack.''',
+                                    "takeItem": 18
+                                },
+                                3: {
+                                    "do": self.description,
+                                    "examine": "prairieShedInterior"
+                                },
+                                4: {
+                                    "menu": "menu"
+                                }
+                            }
+                        else:
+                            self.options = [
+                                "Close the shed door",
+                                "Look around the area",
+                                "Player Menu"
+                            ]
+
+                            self.selection = {
+                                1: {
+                                    "do": "You close the door to the shed.",
+                                    "moveTo": 16
+                                },
+                                2: {
+                                    "do": self.description,
+                                    "examine": "prairieShedInterior"
+                                },
+                                3: {
+                                    "menu": "menu"
+                                }
+                            }
 
         elif (self.zoneID == 18):  # prairieOuthouse
-            self.summary = '''A little outhouse, complete with moon cutout.'''
+            self.summary = '''A little outhouse, complete with moon cutout. From here you can
+reach the shed, the well, and the garden.'''
             self.description = '''The outhouse is quaint and charming, a sure sign of country life,
 and a nice reprieve from the odd circumstances surrounding Alys'
 disappearance. Opening the door, you can see everything you'd
@@ -2233,15 +2312,442 @@ expect to find inside an outhouse. Nothing terrible exciting.'''
         # |- --- ### BARN ----------------------------------------------------------------------- -|
 
         elif (self.zoneID == 19):  # barnFront
-            print(f"zone {zoneID}")
+            self.summary = '''The plain front of this barn. The doors stand open, just a crack,
+and in the distance you can see the backyard garden, the shed, and the well.'''
+            self.description = '''The paint has started to peel in places, but still seems fairly
+fresh over the door. The walls themselves are untreated, and raw,
+remeniscent of the trees at the edges of the property.'''
+            self.items.clear()
+            self.items = []
+
+            self.options = [
+                "Head back to the Gardens",
+                "Walk into the open barn",
+                "Walk over to the shed",
+                "Head to the back of the barn",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You turn back and return to the Garden.",
+                    "moveTo": 14
+                },
+                2: {
+                    "do": "You move through the open doors, into the barn.",
+                    "moveTo": 20
+                },
+                3: {
+                    "do": "You take the path over to the shed.",
+                    "moveTo": 16
+                },
+                4: {
+                    "do": "Walk around the barn to the rear",
+                    "moveTo": 22
+                },
+                5: {
+                    "do": self.description,
+                    "examine": "barnFront"
+                },
+                6: {
+                    "menu": "menu"
+                }
+            }
+
+
         elif (self.zoneID == 20):  # barnInterior
-            print(f"zone {zoneID}")
+            self.summary = '''The interior of the barn. There is a ladder to the loft, there
+are some stables in the back, and exits in the front and rear.'''
+            self.description = '''The dense smell of animal fur and waste hangs tightly to
+the air, though no animals are to be found. A pitchfork rests on
+a hook on one of the middle support pillars, its wrought iron the
+product of a local forge. Hay clings to its forks, and is litters
+the ground on all sides of the barn. The pens and styes are
+empty. Even the hen house is silent.'''
+            self.items.clear()
+            self.items = [13]
+
+            if(pc.globalStatus["barnInterior examined"] == False):
+                self.options = [
+                    "Exit the barn doors",
+                    "Explore the stable",
+                    "Climb the ladder",
+                    "Look around the area",
+                    "Player Menu"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You head back outside through the front doors.",
+                        "moveTo": 19
+                    },
+                    2: {
+                        "do": "You walk to the rear of the barn and check out the empty stables.",
+                        "moveTo": 23
+                    },
+                    3: {
+                        "do": "You climb the m2etal ladder and enter the hay loft.",
+                        "moveTo": 21
+                    },
+                    4: {
+                        "do": self.description,
+                        "examine": "barnInterior"
+                    },
+                    5: {
+                        "menu": "menu"
+                    }
+                }
+            else:
+                if(pc.globalStatus["Pitchfork taken"] == False):
+                    self.options = [
+                        "Exit the barn doors",
+                        "Explore the stable",
+                        "Climb the ladder",
+                        "Take the Pitchfork",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You head back outside through the front doors.",
+                            "moveTo": 19
+                        },
+                        2: {
+                            "do": "You walk to the rear of the barn and check out the empty stables.",
+                            "moveTo": 23
+                        },
+                        3: {
+                            "do": "You climb the m2etal ladder and enter the hay loft.",
+                            "moveTo": 21
+                        },
+                        4: {
+                            "do": "You lift the pitchfork off its hook, and strap it to your back.",
+                            "takeItem": 13
+                        },
+                        5: {
+                            "do": self.description,
+                            "examine": "barnInterior"
+                        },
+                        6: {
+                            "menu": "menu"
+                        }
+                    }
+                else:
+                    self.options = [
+                        "Exit the barn doors",
+                        "Explore the stable",
+                        "Climb the ladder",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You head back outside through the front doors.",
+                            "moveTo": 19
+                        },
+                        2: {
+                            "do": "You walk to the rear of the barn and check out the empty stables.",
+                            "moveTo": 23
+                        },
+                        3: {
+                            "do": "You climb the m2etal ladder and enter the hay loft.",
+                            "moveTo": 21
+                        },
+                        4: {
+                            "do": self.description,
+                            "examine": "barnInterior"
+                        },
+                        5: {
+                            "menu": "menu"
+                        }
+                    }
+
+
         elif (self.zoneID == 21):  # barnLoft
-            print(f"zone {zoneID}")
+            self.summary = '''This loft is quite dark without a light, and there are no windows...'''
+            self.description = '''The cozy loft is full up with hay, stacked in piles, but it is
+also home to a small workshop bench, and some minor crafts tools.
+It appears that someone used this spot to build things, and work
+on honing their craft skills. Leather and bits of metal litter
+the floor, mixed in with some of the hay, closer to the bench.'''
+            self.items.clear()
+            self.items = [13]
+
+            if(pc.globalStatus["Match Lit"] == False and pc.globalStatus["Lantern Lit"] == False):
+                pc.globalStatus["Dark"] = True
+
+            if(pc.globalStatus["barnLoft examined"] == False):
+                self.options = [
+                    "Climb back down the ladder",
+                    "Examine the workbench",
+                    "Look around the area",
+                    "Player Menu"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You head back outside through the front doors.",
+                        "moveTo": 19
+                    },
+                    2: {
+                        "do": "You take a closer look at the work bench, and you find a (WIP).",
+                        "moveTo": 23
+                    },
+                    4: {
+                        "do": "It is too dark to see.",
+                        "examine": "barnLoft"
+                    },
+                    5: {
+                        "menu": "menu"
+                    }
+                }
+            else:
+                if(pc.globalStatus["Pitchfork taken"] == False):
+                    self.options = [
+                        "Exit the barn doors",
+                        "Explore the stable",
+                        "Climb the ladder",
+                        "Take the Pitchfork",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You head back outside through the front doors.",
+                            "moveTo": 19
+                        },
+                        2: {
+                            "do": "You walk to the rear of the barn and check out the empty stables.",
+                            "moveTo": 23
+                        },
+                        3: {
+                            "do": "You climb the m2etal ladder and enter the hay loft.",
+                            "moveTo": 21
+                        },
+                        4: {
+                            "do": "You lift the pitchfork off its hook, and strap it to your back.",
+                            "takeItem": 13
+                        },
+                        5: {
+                            "do": self.description,
+                            "examine": "barnLoft"
+                        },
+                        6: {
+                            "menu": "menu"
+                        }
+                    }
+                else:
+                    self.options = [
+                        "Exit the barn doors",
+                        "Explore the stable",
+                        "Climb the ladder",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You head back outside through the front doors.",
+                            "moveTo": 19
+                        },
+                        2: {
+                            "do": "You walk to the rear of the barn and check out the empty stables.",
+                            "moveTo": 23
+                        },
+                        3: {
+                            "do": "You climb the m2etal ladder and enter the hay loft.",
+                            "moveTo": 21
+                        },
+                        4: {
+                            "do": self.description,
+                            "examine": "barnLoft"
+                        },
+                        5: {
+                            "menu": "menu"
+                        }
+                    }
+
+
         elif (self.zoneID == 22):  # barnBack
-            print(f"zone {zoneID}")
+            self.summary = '''The rear side of the barn. From here you can see the Well and Outhouse'''
+            self.description = '''Behind the barn, you are standing near the edge of the woods on the South end of the property. North of the barn you can see the rest of the property. On the ground, you see a trail of blood from the stable.'''
+            self.items.clear()
+            self.items = []
+
+            if(pc.globalStatus["barnBack examined"] == False):
+
+                self.options = [
+                    "Go inside the barn",
+                    "Head around to the front of the barn",
+                    "Walk over to the Outhouse",
+                    "Walk over to the Well",
+                    "Look around the area",
+                    "Player Menu"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You turn back and return to the Garden.",
+                        "moveTo": 23
+                    },
+                    2: {
+                        "do": "You walk around the barn to the front.",
+                        "moveTo": 19
+                    },
+                    3: {
+                        "do": "You take the path over to the Outhouse.",
+                        "moveTo": 18
+                    },
+                    4: {
+                        "do": "You head toward the Well.",
+                        "moveTo": 15
+                    },
+                    5: {
+                        "do": self.description,
+                        "examine": "barnBack"
+                    },
+                    6: {
+                        "menu": "menu"
+                    }
+                }
+
+            if(pc.globalStatus["barnBack examined"] == False):
+
+                self.options = [
+                    "Go inside the barn",
+                    "Head around to the front of the barn",
+                    "Walk over to the Outhouse",
+                    "Walk over to the Well",
+                    "Examine the bloodtrail",
+                    "Look around the area",
+                    "Player Menu"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You turn back and return to the Garden.",
+                        "moveTo": 23
+                    },
+                    2: {
+                        "do": "You walk around the barn to the front.",
+                        "moveTo": 19
+                    },
+                    3: {
+                        "do": "You take the path over to the Outhouse.",
+                        "moveTo": 18
+                    },
+                    4: {
+                        "do": "You head toward the Well.",
+                        "moveTo": 15
+                    },
+                    5: {
+                        "do": '''You bend down and take a closer look at the bloodtrail. It's
+dried, but it doesn't seem more than a day old, it's still red.
+You can tell that something - or someone - was dragged from the
+barn stable to the north. You also spot tiny footprints in some
+of the blood streaks. Looking in the distance, you see the wall
+of corn at the other end of the property.'''
+                    },
+                    6: {
+                        "do": self.description,
+                        "examine": "barnBack"
+                    },
+                    7: {
+                        "menu": "menu"
+                    }
+                }
+
         elif (self.zoneID == 23):  # barnStable
-            print(f"zone {zoneID}")
+            self.summary = '''The rear side of the barn. From here you can see the Well and Outhouse'''
+            self.description = '''Behind the barn, you are standing near the edge of the woods on
+the South end of the property. North of the barn you can see the
+rest of the property. On the ground, you see a trail of blood
+from the stable.'''
+            self.items.clear()
+            self.items = []
+
+            if(pc.globalStatus["barnBack examined"] == False):
+
+                self.options = [
+                    "Head back to the pens",
+                    "Walk out the back door",
+                    "Look around the area",
+                    "Player Menu"
+                ]
+
+                if(pc.globalStatus["barnBack examined"] == False):
+
+                    self.selection = {
+                        1: {
+                            "do": "You walk to the front side of the barn's interior.",
+                            "moveTo": 20
+                        },
+                        2: {
+                            "do": "You walk through the small door and outside the back of the barn.",
+                            "moveTo": 22
+                        },
+                        3: {
+                            "do": self.description,
+                            "examine": "barnBack"
+                        },
+                        4: {
+                            "menu": "menu"
+                        }
+                    }
+                else:
+
+                    self.options = [
+                        "Head back to the pens",
+                        "Walk out the back door",
+                        "Examine the first stall",
+                        "Examine the second stall",
+                        "Examine the third stall",
+                        "Examine the fourth stall",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You walk to the front side of the barn's interior.",
+                            "moveTo": 20
+                        },
+                        2: {
+                            "do": "You walk through the small door and outside the back of the barn.",
+                            "moveTo": 22
+                        },
+                        3: {
+                            "do": '''You open the door of the first stall and look inside. The ground
+is barren, except some hay, and you can see horse prints. A
+saddle rests on a hook at the back of the stall.'''
+                        },
+                        4: {
+                            "do": '''The door of the second stall was already open a crack. You push
+it the rest of the way, and see that the ground is empty, except
+for horse prints, and horseshoe marks. Some dark brown fur can
+also be seen on the ground, and caught into the wooden joints of
+the stall walls. A saddle rests on a hook at the back of the
+stall.'''
+                        },
+                        5: {
+                            "do": '''The third stall's door creaks as you push it open, and immediately you see blood on the ground. A faint trail leads out of the stables, out the back of the barn. It's sparse, but consistent. You also spot a key nearby the pool of drying blood.''',
+                            "examine": "barnStable stall3"
+                        },
+                        6: {
+                            "do": '''The fourth stall's door seems to be broken, and it's stuck shut. However, you can see the inside of the stall from above the doors, and it is empty.'''
+                        },
+                        7: {
+                            "do": self.description,
+                            "examine": "barnBack"
+                        },
+                        8: {
+                            "menu": "menu"
+                        }
+                    }
 
 
 
@@ -2394,6 +2900,74 @@ expect to find inside an outhouse. Nothing terrible exciting.'''
                     print(f"zone {zoneID}")
                 elif (self.zoneID == 48):  # cornfieldMazeCenter
                     print(f"zone {zoneID}")
+
+
+        elif(self.zoneID == 100):  # template
+            self.summary = '''Simple summary.'''
+            self.description = '''Complex Description for examination.'''
+            self.items.clear()
+            self.items = []
+
+            if(pc.globalStatus["template examined"] == False):
+                self.options = [
+                    "Move ",
+                    "Option",
+                    "Option",
+                    "Look around the area",
+                    "Player Menu"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You move.",
+                        "moveTo": 0
+                    },
+                    2: {
+
+                    },
+                    3: {
+
+                    },
+                    4: {
+                        "do": self.description,
+                        "examine": "template"
+                    },
+                    5: {
+                        "menu": "menu"
+                    }
+                }
+            else:
+                self.options = [
+                    "Move ",
+                    "Option",
+                    "Option",
+                    "Option",
+                    "Look around the area",
+                    "Player Menu"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You move.",
+                        "moveTo": 0
+                    },
+                    2: {
+
+                    },
+                    3: {
+
+                    },
+                    4: {
+
+                    },
+                    5: {
+                        "do": self.description,
+                        "examine": "template"
+                    },
+                    6: {
+                        "menu": "menu"
+                    }
+                }
 
 
 

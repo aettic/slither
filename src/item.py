@@ -91,12 +91,12 @@ the other. Could be worth something.'''
             # location: In the prairie, hidden on the ground, and dropped by Goblins
 
         elif(self.itemID == 6):
-            self.name = "Alcohol"
-            self.value = 2
-            self.use = "combine" # WIP
-            self.description = '''A very high proof clear alcohol, its ornate crystal decanter
-belies the fact that it is too strong to drink.'''
-            # CHANGE THIS
+            self.name = "Bottle of Ink"
+            self.value = 1
+            self.use = "spell"
+            self.description = '''A small, bulbous bottle of black ink, undoubtedly used for
+writing with a quill pen.'''
+            # location: The Study, upstairs, on the desk.
 
         elif(self.itemID == 7):
             self.name = "Lantern"
@@ -254,7 +254,11 @@ pyramids.'''
             self.description = '''A simple brass key, with an engraving of a tree on the bow.'''
             # location: On the floor in the Barn Stable, having fallen out of Dareth's pocket.
 
-
+        elif(self.itemID == 22):
+            self.name = "Template"
+            self.value = 0
+            self.description = '''.'''
+            # location:
 
 
 
