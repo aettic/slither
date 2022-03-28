@@ -39,7 +39,7 @@ class Player:
 
     def attack(self, creature):
         damage = random.randrange(self.damage)
-        creature.takeDamage(damage)
+        creature.takeDamage(damage, self)
         print(f"You attack with your {self.weapon}.")
         if(damage > 0):
             print(f"You deal {damage} damage. YOU[{self.currentHP}], IT[{creature.currentHP}]")
@@ -103,11 +103,10 @@ class Player:
 
 
     def castSpell(self, item):
-        if(item.itemID == 3):
+        if(item.itemID == 3):  # Emerald Pyramid Necklace Half
             self.magic += item.magicBonus
             print(item.spell)
-            self.globalStatus["Staircase Visible"] = True
-        elif(item.itemID == 4):
+        elif(item.itemID == 4):  # Spellbook
             self.magic += item.magicBonus
             self.globalStatus["Damage Enchanted"] = True
             print("\n\t# CHOOSE A SPELL #")
@@ -137,14 +136,14 @@ class Player:
                     self.magic -= item.spell["Fireball"]["magic"]
                 else:
                     print("You attempt to cast the spell, but nothing happens.")
-        elif(item.itemID == 6):
-            if(pc.zone.zoneID == )
+        elif(item.itemID == 6):  # Ink?
+            print(item.spell)
             self.inventory.pop(self.inventory.index(item.itemID))
-        elif(item.itemID == 11):
+        elif(item.itemID == 11):  # Liquid Darkness
             self.magic += item.magicBonus
             print(item.spell)
             self.globalStatus["Darkvision"] = True
-        elif(item.itemID == 19):
+        elif(item.itemID == 19):  # Jar Bomb
             if (self.zoneID == 15):
                 print("How do you use the jar bomb?")
                 print("1: Throw")
@@ -178,8 +177,11 @@ nostrils...''')
     shattered splinters of glass and alchemical fire engulf you.\n\n\t# GAME OVER #\n''')
                     self.isAlive = False
             self.inventory.pop(self.inventory.index(item.itemID))
-        elif(item.itemID == 20):
+        elif(item.itemID == 22):  # Emerald Merkaba Pendant
+            self.magic += item.magicBonus
+            self.globalStatus["Staircase Visible"] = True
             print(item.spell)
+
 
         else:
             print("Not yet made")
@@ -228,8 +230,8 @@ nostrils...''')
         for i in item.combine:
             if i in self.inventory:
                 combineCount += 1
-        if (combineCount == 2):
-            if(item.itemID == 16 or item.itemID == 17 or item.itemID == 18):
+        if(item.itemID == 16 or item.itemID == 17 or item.itemID == 18):
+            if (combineCount == 2):
                 print('''You add the powder to the glass jar, and then pour in the caustic
 liquid solution, and shut the lid tight. If you shake this, it
 will explode soon after.''')
@@ -237,8 +239,19 @@ will explode soon after.''')
                 self.inventory.pop(self.inventory.index(17))
                 self.inventory.pop(self.inventory.index(18))
                 self.inventory.append(19)
-        elif (combineCount < 2):
-            print("You do not have enough to make this item useful. Keep looking.")
+            elif (combineCount < 2):
+                print("You do not have enough to make this item useful. Keep looking.")
+
+        elif(item.itemID == 3 or item.itemID == 20):
+            if (combineCount == 1):
+                print('''You gently slide the emerald pyramids together, and they fit
+perfectly. You twist them clockwise, and they click together, and
+seem to become a single, solid crystal.''')
+                self.inventory.pop(self.inventory.index(3))
+                self.inventory.pop(self.inventory.index(20))
+                self.inventory.append(22)
+            else:
+                print("You do not have enough to make this item useful. Keep looking.")
         else:
             print("WIP")
 

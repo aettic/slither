@@ -21,7 +21,7 @@ def printTitle():
 ██ ▄▄▄ █ ███▄██▄ ▄█ ████ ▄▄█ ▄▄▀████ ▄▄▄█ ▄▄▀█ ▄▄▄██▄██ ▄▄▀█ ▄▄██
 ██▄▄▄▀▀█ ███ ▄██ ██ ▄▄ █ ▄▄█ ▀▀▄████ ▄▄▄█ ██ █ █▄▀██ ▄█ ██ █ ▄▄██
 ██ ▀▀▀ █▄▄█▄▄▄██▄██▄██▄█▄▄▄█▄█▄▄████ ▀▀▀█▄██▄█▄▄▄▄█▄▄▄█▄██▄█▄▄▄██
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ v0.1.7 ▀▀▀▀
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ v0.1.8 ▀▀▀▀
 
    db     888888  888888  88""Yb  Yb  dY  88b 88   dP"Yb   .dP"Y8
   dPYb    88__      88    88__dP   YbdY   88Yb88  dY   Yb  `Ybo.
@@ -375,6 +375,13 @@ and feathers - probably used for stuffing.''')
                 print('''A wooden doubledoor rests over the cellar stairs, at a slight
 angle, foretelling the imminent descent.''')
             else:
+                combatChance = random.randint(1, 100)
+                if(combatChance >= 85 and combatChance < 93):
+                    beast = Creature("Beast")
+                    combat(pc, beast)
+                elif(combatChance >= 93):
+                    goblin = Creature("Goblin")
+                    combat(pc, goblin)
                 print(pc.zone.summary)
             farmhouseStairsCellar(pc)
             pc.globalStatus["farmhouseStairsCellar first time"] = False
@@ -409,11 +416,18 @@ deserved escape from the moderate heat of the summer day.''')
 out for an acre or more. It's huge, and spacious. On the far West
 side there is a small field which looks like it contains something
 low: beans, or cabbage perhaps. In the midst of the field you spot
-a figure... Upon closer inspection, that is a' scarecrow. You can
+a figure... Upon closer inspection, that is a scarecrow. You can
 better see the buildings you saw earlier: A shed, an outhouse, a
 well not too far away, and a great big barn. There is a garden
 nearby as well.''')
             else:
+                combatChance = random.randint(1, 100)
+                if(combatChance >= 85 and combatChance < 93):
+                    beast = Creature("Beast")
+                    combat(pc, beast)
+                elif(combatChance >= 93):
+                    goblin = Creature("Goblin")
+                    combat(pc, goblin)
                 print(pc.zone.summary)
             prairieBackyard(pc)
             pc.globalStatus["prairieBackyard first time"] = False
@@ -426,6 +440,13 @@ manship, and quaint. The tented wooden roof bows with age, and
 the rope seems to hang taut, perhaps suspending a bucket. In
 the distance, you can see the shed, the outhouse, the garden,
 and the back of the barn.''')
+                print('''Suddenly, you spot something moving at the rim of the well. It
+becomes clear that something is climbing out of the well! Green
+clawed hands, large eyes and mouth, pointy ears... This can only
+be a Goblin. You've heard a lot about these, but never seen one.''')
+                pc.globalStatus["Goblin seen"] = True
+                goblin = Creature("Goblin")
+                combat(pc, goblin)
             else:
                 print(pc.zone.summary)
             prairieWell(pc)
@@ -438,6 +459,13 @@ and the back of the barn.''')
 yet it stands firm against the soft wind. You imagine you can
 hear its creaking bones. The door is held fast with a large lock.''')
             else:
+                combatChance = random.randint(1, 100)
+                if(combatChance >= 85 and combatChance < 93):
+                    beast = Creature("Beast")
+                    combat(pc, beast)
+                elif(combatChance >= 93):
+                    goblin = Creature("Goblin")
+                    combat(pc, goblin)
                 print(pc.zone.summary)
             prairieShedExterior(pc)
             pc.globalStatus["prairieShedExterior first time"] = False
@@ -461,6 +489,13 @@ used for hauling vegetables to and fro.''')
 overwhelming. This thin wooden building has a crescent moon cut
 out of the door to let light in when it's closed.''')
             else:
+                combatChance = random.randint(1, 100)
+                if(combatChance >= 85 and combatChance < 93):
+                    beast = Creature("Beast")
+                    combat(pc, beast)
+                elif(combatChance >= 93):
+                    goblin = Creature("Goblin")
+                    combat(pc, goblin)
                 print(pc.zone.summary)
             prairieOuthouse(pc)
             pc.globalStatus["prairieOuthouse first time"] = False
@@ -479,6 +514,13 @@ large double doors are painted tan, like the front foor of the
 farmstead. There are simple windows on either side of the door.
 One of the doors is open, and it is quiet inside.''')
             else:
+                combatChance = random.randint(1, 100)
+                if(combatChance >= 85 and combatChance < 93):
+                    beast = Creature("Beast")
+                    combat(pc, beast)
+                elif(combatChance >= 93):
+                    goblin = Creature("Goblin")
+                    combat(pc, goblin)
                 print(pc.zone.summary)
             barnFront(pc)
             pc.globalStatus["barnFront first time"] = False
@@ -537,6 +579,13 @@ There are hooks for leads, and there are saddles hung on the
 wall. Clearly nobody rode the horses out of here, unless they
 rode bareback.''')
             else:
+                combatChance = random.randint(1, 100)
+                if(combatChance >= 85 and combatChance < 93):
+                    beast = Creature("Beast")
+                    combat(pc, beast)
+                elif(combatChance >= 93):
+                    goblin = Creature("Goblin")
+                    combat(pc, goblin)
                 print(pc.zone.summary)
             barnStable(pc)
             pc.globalStatus["barnStable first time"] = False
@@ -1545,8 +1594,9 @@ Any remaining points might be useful... later on...''')
         # environment effects
         "Dark": False,
         "Dark Place": False,
+        "Goblin seen": False,
         "prairieShedExterior Unlocked toggle": False,
-        "prairieWell obstruction destroyed": False,        
+        "prairieWell obstruction destroyed": False,
         "Staircase Visible": False,
 
         ### GAME END

@@ -58,10 +58,11 @@ class Creature:
         print(f"The {self.type} attacks with a {random.choice(self.weapons)}.")
         if(damage - pc.defense > 0):
             print(f"The {self.type} deals {damage - pc.defense} damage.")
-        else:
+        elif (damage - pc.defense <= 0):
             print(f"You evade the attack.")
+        ### FIX THESE
 
-    def takeDamage(self, damage):
+    def takeDamage(self, damage, pc):
         self.currentHP -= damage
         if(self.currentHP <= 0):
             self.isAlive = False

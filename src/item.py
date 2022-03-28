@@ -37,18 +37,18 @@ of black silk with green embroidery.'''
             # location: Inside the kitchen closet in the farmhouse
 
         elif(self.itemID == 3):
-            self.name = "Emerald Medallion"
+            self.name = "Emerald Pyramid Medallion"
             self.value = 7
             self.magic = True
             self.magicBonus = 2
-            self.statRequired = {"Int": 10}
-            self.use = "spell"
-            self.spell = '''Rubbing the emerald medallion causes green magical sparks, and has
-revealed something hidden. You also feel invigorated.'''
-            self.description = '''A brilliantly faceted forest-green gem set in sterling silver
-and strung on a silver chain Meant to be warn around the neck.
-It seems to have a subtle motion about it, as if vibrating,
-though you're sure it's not moving.'''
+            self.use = "combine"
+            self.combine = [20]
+            self.description = '''A brilliantly faceted forest-green gem in the shape of a Pyramid
+strung on a silver chain and meant to be worn around the neck. It
+seems to have a subtle motion about it, as if vibrating, though
+you're sure it's not moving. There are a variety of complex
+looking slots around the edges, as if it is part of a larger
+whole. When worn, the pyramid points down.'''
             # location: Inside the kitchen closet in the farmhouse, hidden in a box
 
         elif(self.itemID == 4):
@@ -234,18 +234,12 @@ also quite fragile.'''
             # location: Created from 16, 17, 18.
 
         elif(self.itemID == 20):
-            self.name = "Emerald Merkaba"
-            self.value = 2
-            self.statRequired = {"Int": 11}
-            self.use = "spell"
-            self.spell = '''You twist the double pyramid structure, which seems to interlock
-and shift around itself. The inside glows a bright green, and the
-whole surface sparkles brilliantly. It becomes hot, and you feel
-almost as if it is on fire.'''
-            self.description = '''A mysterious green Merkaba shape, two pyramids intersecting to
-create a sort of star, it has a peculiar symmertry. The object
-seems to be a sort of device, and it is possible to twist the
-pyramids.'''
+            self.name = "Emerald Pyramid"
+            self.value = 5
+            self.use = "combine"
+            self.combine = [3]
+            self.description = '''A mysterious green pyramid shape, complete with intricate slots
+around its edges, it has a peculiar symmertry.'''
             # location: Found in the water pale inside the well.
 
         elif(self.itemID == 21):
@@ -255,10 +249,18 @@ pyramids.'''
             # location: On the floor in the Barn Stable, having fallen out of Dareth's pocket.
 
         elif(self.itemID == 22):
-            self.name = "Template"
-            self.value = 0
-            self.description = '''.'''
-            # location:
+            self.name = "Emerald Merkaba Pendant"
+            self.value = 50
+            self.statRequired = {"Int": 12}
+            self.use = "spell"
+            self.spell = '''You twist the double pyramid structure, which seems to interlock
+and shift around itself. The inside glows a bright green, and the
+whole surface sparkles brilliantly. It becomes hot, and you feel
+almost as if it is on fire, you can see sparks eminating from it
+like starlight. You feel as though it has revealed something
+hidden. You also feel invigorated.'''
+            self.description = '''A green Merkaba shaped pendant, about an inch and a half wide. The shape is a pair of pyramids, intersected, creating one three-dimensional star shape, with peculiar symmetry.'''
+            # location: created by combining 3 and 20. Requires 12 Int to combine, and use.
 
 
 

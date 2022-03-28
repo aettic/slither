@@ -2734,11 +2734,16 @@ the stall walls. A saddle rests on a hook at the back of the
 stall.'''
                         },
                         5: {
-                            "do": '''The third stall's door creaks as you push it open, and immediately you see blood on the ground. A faint trail leads out of the stables, out the back of the barn. It's sparse, but consistent. You also spot a key nearby the pool of drying blood.''',
+                            "do": '''The third stall's door creaks as you push it open, and
+immediately you see blood on the ground. A faint trail leads out
+of the stables, out the back of the barn. It's sparse, but
+consistent. You also spot a key nearby the pool of drying blood.''',
                             "examine": "barnStable stall3"
                         },
                         6: {
-                            "do": '''The fourth stall's door seems to be broken, and it's stuck shut. However, you can see the inside of the stall from above the doors, and it is empty.'''
+                            "do": '''The fourth stall's door seems to be broken, and it's stuck shut.
+However, you can see the inside of the stall from above the
+doors, and it is empty.'''
                         },
                         7: {
                             "do": self.description,
@@ -2751,7 +2756,7 @@ stall.'''
 
 
 
-
+ 
         # |- --- ### CORNFIELD ------------------------------------------------------------------ -|
 
         elif (self.zoneID == 24):  # cornfieldEdge
