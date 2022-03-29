@@ -2661,14 +2661,14 @@ of corn at the other end of the property.'''
                     }
                 }
 
-        elif (self.zoneID == 23):  # barnStable
+        elif (self.zoneID == 23):  # barnStable (WIP)
             self.summary = '''The rear side of the barn. From here you can see the Well and Outhouse'''
             self.description = '''Behind the barn, you are standing near the edge of the woods on
 the South end of the property. North of the barn you can see the
 rest of the property. On the ground, you see a trail of blood
 from the stable.'''
             self.items.clear()
-            self.items = []
+            self.items = [21]
 
             if(pc.globalStatus["barnBack examined"] == False):
 
@@ -2679,232 +2679,1034 @@ from the stable.'''
                     "Player Menu"
                 ]
 
-                if(pc.globalStatus["barnBack examined"] == False):
-
-                    self.selection = {
-                        1: {
-                            "do": "You walk to the front side of the barn's interior.",
-                            "moveTo": 20
-                        },
-                        2: {
-                            "do": "You walk through the small door and outside the back of the barn.",
-                            "moveTo": 22
-                        },
-                        3: {
-                            "do": self.description,
-                            "examine": "barnBack"
-                        },
-                        4: {
-                            "menu": "menu"
-                        }
+                self.selection = {
+                    1: {
+                        "do": "You walk to the front side of the barn's interior.",
+                        "moveTo": 20
+                    },
+                    2: {
+                        "do": "You walk through the small door and outside the back of the barn.",
+                        "moveTo": 22
+                    },
+                    3: {
+                        "do": self.description,
+                        "examine": "barnBack"
+                    },
+                    4: {
+                        "menu": "menu"
                     }
-                else:
+                }
+            else:
 
-                    self.options = [
-                        "Head back to the pens",
-                        "Walk out the back door",
-                        "Examine the first stall",
-                        "Examine the second stall",
-                        "Examine the third stall",
-                        "Examine the fourth stall",
-                        "Look around the area",
-                        "Player Menu"
-                    ]
+                self.options = [
+                    "Head back to the pens",
+                    "Walk out the back door",
+                    "Examine the first stall",
+                    "Examine the second stall",
+                    "Examine the third stall",
+                    "Examine the fourth stall",
+                    "Look around the area",
+                    "Player Menu"
+                ]
 
-                    self.selection = {
-                        1: {
-                            "do": "You walk to the front side of the barn's interior.",
-                            "moveTo": 20
-                        },
-                        2: {
-                            "do": "You walk through the small door and outside the back of the barn.",
-                            "moveTo": 22
-                        },
-                        3: {
-                            "do": '''You open the door of the first stall and look inside. The ground
+                self.selection = {
+                    1: {
+                        "do": "You walk to the front side of the barn's interior.",
+                        "moveTo": 20
+                    },
+                    2: {
+                        "do": "You walk through the small door and outside the back of the barn.",
+                        "moveTo": 22
+                    },
+                    3: {
+                        "do": '''You open the door of the first stall and look inside. The ground
 is barren, except some hay, and you can see horse prints. A
 saddle rests on a hook at the back of the stall.'''
-                        },
-                        4: {
-                            "do": '''The door of the second stall was already open a crack. You push
+                    },
+                    4: {
+                        "do": '''The door of the second stall was already open a crack. You push
 it the rest of the way, and see that the ground is empty, except
 for horse prints, and horseshoe marks. Some dark brown fur can
 also be seen on the ground, and caught into the wooden joints of
 the stall walls. A saddle rests on a hook at the back of the
 stall.'''
-                        },
-                        5: {
-                            "do": '''The third stall's door creaks as you push it open, and
+                    },
+                    5: {
+                        "do": '''The third stall's door creaks as you push it open, and
 immediately you see blood on the ground. A faint trail leads out
 of the stables, out the back of the barn. It's sparse, but
 consistent. You also spot a key nearby the pool of drying blood.''',
-                            "examine": "barnStable stall3"
-                        },
-                        6: {
-                            "do": '''The fourth stall's door seems to be broken, and it's stuck shut.
+                        "examine": "barnStable stall3"
+                    },
+                    6: {
+                        "do": '''The fourth stall's door seems to be broken, and it's stuck shut.
 However, you can see the inside of the stall from above the
 doors, and it is empty.'''
-                        },
-                        7: {
-                            "do": self.description,
-                            "examine": "barnBack"
-                        },
-                        8: {
-                            "menu": "menu"
-                        }
+                    },
+                    7: {
+                        "do": self.description,
+                        "examine": "barnBack"
+                    },
+                    8: {
+                        "menu": "menu"
                     }
+                }
 
 
 
- 
+
         # |- --- ### CORNFIELD ------------------------------------------------------------------ -|
 
         elif (self.zoneID == 24):  # cornfieldEdge
-            print(f"zone {zoneID}")
+            self.summary = '''The northern boundary of the yard, a solid wall of very tall corn.'''
+            self.description = '''The perfectly groomed wall of corn stalks stretches far from East
+to West, and seems to act as a fortress wall, protecting
+something beyond. Upon closer inspection of the corn wall, you
+discover somewhere you could slip into, and what looks like a
+path beyond. Looking around, you spot a blood trail which
+leads from the Southern part of the yard to this wall of corn.'''
+            self.items.clear()
+
+            if(pc.globalStatus["cornfieldEdge examined"] == False):
+
+                self.options = [
+                    "Walk back to the Farmstead",
+                    "Head back to the Garden",
+                    "Look around the area",
+                    "Player Menu"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You walk to the front of the farm house.",
+                        "moveTo": 1
+                    },
+                    2: {
+                        "do": "You walk toward the praririe Garden.",
+                        "moveTo": 14
+                    },
+                    3: {
+                        "do": self.description,
+                        "examine": "cornfieldEdge"
+                    },
+                    4: {
+                        "menu": "menu"
+                    }
+                }
+            else:
+                self.options = [
+                    "Walk back to the Farmstead",
+                    "Head back to the Garden",
+                    "Slip into the corn, past the edge",
+                    "Look around the area",
+                    "Player Menu"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You walk to the front of the farm house.",
+                        "moveTo": 1
+                    },
+                    2: {
+                        "do": "You walk toward the praririe Garden.",
+                        "moveTo": 14
+                    },
+                    3: {
+                        "do": '''You bend back some of the corn, and manage to wriggle into the cornfield itself. Between the rows of stalks, you see what appears to be a small path leading deeper in.''',
+                        "moveTo": 25
+                    },
+                    4: {
+                        "do": self.description,
+                        "examine": "cornfieldEdge"
+                    },
+                    5: {
+                        "menu": "menu"
+                    }
+                }
+
+
         elif (self.zoneID == 25):  # cornfieldThick
-            print(f"zone {zoneID}")
-        elif (self.zoneID == 26):  # cornfieldTangle
-            print(f"zone {zoneID}")
+            self.summary = '''Inside the cornfield, here, the corn begins to get thicker.'''
+            self.description = '''All around, you are surrounded by corn. It is getting thicker, and harder to move, but you can still see a path forward.'''
+            self.items.clear()
+
+            self.options = [
+                "Exit the corn",
+                "Continue deeper into the cornfield",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You make your way back out of the corn.",
+                    "moveTo": 24
+                },
+                2: {
+                    "do": '''You keep going, pushing through the tall stalks, making consider-
+able noise.''',
+                    "moveTo": 26
+                },
+                3: {
+                    "do": self.description,
+                    "examine": "cornfieldThick"
+                },
+                4: {
+                    "menu": "menu"
+                }
+            }
+
+
+        elif (self.zoneID == 26):  # cornfieldTangle (WIP) - Add Goblin stuff
+            self.summary = '''Inside the cornfield, here, it's getting quite difficult to move.'''
+            self.description = '''The corn continues to grow denser, and seems to be growing more
+wild. It's almost as if you are caught in a natural tangle of
+corn, which is so thick you can't even see the soil beneath. Yet,
+you can still see a path forward.'''
+            self.items.clear()
+
+            self.options = [
+                "Exit the corn",
+                "Continue deeper into the cornfield",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You make your way back out of the corn.",
+                    "moveTo": 24
+                },
+                2: {
+                    "do": '''.''',
+                    "moveTo": 27
+                },
+                3: {
+                    "do": self.description,
+                    "examine": "cornfieldThick"
+                },
+                4: {
+                    "menu": "menu"
+                }
+            }
+
+
         elif (self.zoneID == 27):  # cornfieldMazeStart
-            print(f"zone {zoneID}")
+            self.summary = '''The beginning of what is obviously a corn maze.'''
+            self.description = '''The walls of corn on either side are straight as a blade, and the
+corn stretches high above your head, higher than before, you
+think. The path continues forward, and it looks like there might
+be a T up ahead. The path is about 3 feet wide, comfortable
+enough to move through unhindered.'''
+            self.items.clear()
 
-        elif (self.zoneID > 27):
+            self.options = [
+                "South",
+                "Enter the maze proper",
+                "Look around the area",
+                "Player Menu"
+            ]
 
-            if(pc.maze == 1):
-
-                if (self.zoneID == 28):  # cornfieldMaze1
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 29):  # cornfieldMaze2
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 30):  # cornfieldMaze3
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 31):  # cornfieldMaze4
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 32):  # cornfieldMaze5
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 33):  # cornfieldMaze6
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 34):  # cornfieldMaze7
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 35):  # cornfieldMaze8
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 36):  # cornfieldMaze9
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 37):  # cornfieldMaze10
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 38):  # cornfieldMaze11
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 39):  # cornfieldMaze12
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 40):  # cornfieldMaze13
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 41):  # cornfieldMaze14
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 42):  # cornfieldMaze15
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 43):  # cornfieldMaze16
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 44):  # cornfieldMaze17
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 45):  # cornfieldMaze18
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 46):  # cornfieldMaze19
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 47):  # cornfieldMaze20
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 48):  # cornfieldMazeCenter
-                    print(f"zone {zoneID}")
-
-            elif(pc.maze == 2):
-
-                if (self.zoneID == 28):  # cornfieldMaze1
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 29):  # cornfieldMaze2
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 30):  # cornfieldMaze3
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 31):  # cornfieldMaze4
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 32):  # cornfieldMaze5
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 33):  # cornfieldMaze6
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 34):  # cornfieldMaze7
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 35):  # cornfieldMaze8
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 36):  # cornfieldMaze9
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 37):  # cornfieldMaze10
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 38):  # cornfieldMaze11
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 39):  # cornfieldMaze12
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 40):  # cornfieldMaze13
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 41):  # cornfieldMaze14
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 42):  # cornfieldMaze15
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 43):  # cornfieldMaze16
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 44):  # cornfieldMaze17
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 45):  # cornfieldMaze18
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 46):  # cornfieldMaze19
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 47):  # cornfieldMaze20
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 48):  # cornfieldMazeCenter
-                    print(f"zone {zoneID}")
+            self.selection = {
+                1: {
+                    "do": "You turn around and head back through the thick corn.",
+                    "moveTo": 25
+                },
+                2: {
+                    "do": '''You march forward, into the maze.''',
+                    "moveTo": 28
+                },
+                3: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                4: {
+                    "menu": "menu"
+                }
+            }
 
 
-            elif(pc.maze == 3):
 
-                if (self.zoneID == 28):  # cornfieldMaze1
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 29):  # cornfieldMaze2
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 30):  # cornfieldMaze3
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 31):  # cornfieldMaze4
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 32):  # cornfieldMaze5
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 33):  # cornfieldMaze6
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 34):  # cornfieldMaze7
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 35):  # cornfieldMaze8
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 36):  # cornfieldMaze9
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 37):  # cornfieldMaze10
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 38):  # cornfieldMaze11
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 39):  # cornfieldMaze12
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 40):  # cornfieldMaze13
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 41):  # cornfieldMaze14
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 42):  # cornfieldMaze15
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 43):  # cornfieldMaze16
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 44):  # cornfieldMaze17
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 45):  # cornfieldMaze18
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 46):  # cornfieldMaze19
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 47):  # cornfieldMaze20
-                    print(f"zone {zoneID}")
-                elif (self.zoneID == 48):  # cornfieldMazeCenter
-                    print(f"zone {zoneID}")
+        # |- -------------- ### ORANGE MAZE ### ------------------------------------------------- -|
+
+
+        elif (self.zoneID == 28):  # cornfieldMaze1
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "West",
+                "East",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 32
+                },
+                2: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 29
+                },
+                3: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 30
+                },
+                4: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 27
+                },
+                5: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                6: {
+                    "menu": "menu"
+                }
+            }
+
+
+        elif (self.zoneID == 29):  # cornfieldMaze2
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "West",
+                "East",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 31
+                },
+                2: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 46
+                },
+                3: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 28
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                5: {
+                    "menu": "menu"
+                }
+            }
+
+
+        elif (self.zoneID == 30):  # cornfieldMaze3
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "West",
+                "East",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 33
+                },
+                2: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 28
+                },
+                3: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 47
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                5: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 31):  # cornfieldMaze4
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "West",
+                "East",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 34
+                },
+                2: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 46
+                },
+                3: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 32
+                },
+                4: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 29
+                },
+                5: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                6: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 32):  # cornfieldMaze5
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "West",
+                "East",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 31
+                },
+                2: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 33
+                },
+                3: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 28
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                5: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 33):  # cornfieldMaze6
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "West",
+                "East",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 35
+                },
+                2: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 32
+                },
+                3: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 47
+                },
+                4: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 30
+                },
+                5: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                6: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 34):  # cornfieldMaze7
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "West",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 36
+                },
+                2: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 44
+                },
+                3: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 31
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                5: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 35):  # cornfieldMaze8
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "West",
+                "East",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 38
+                },
+                2: {  # CENTER
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 48
+                },
+                3: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 45
+                },
+                4: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 33
+                },
+                5: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                6: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 36):  # cornfieldMaze9
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "West",
+                "East",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 39
+                },
+                2: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 42
+                },
+                3: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 37
+                },
+                4: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 34
+                },
+                5: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                6: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 37):  # cornfieldMaze10
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "West",
+                "East",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 40
+                },
+                2: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 36
+                },
+                3: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 38
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                5: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 38):  # cornfieldMaze11
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "West",
+                "East",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 41
+                },
+                2: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 37
+                },
+                3: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 43
+                },
+                4: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 35
+                },
+                5: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                6: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 39):  # cornfieldMaze12
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "West",
+                "East",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 42
+                },
+                2: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 40
+                },
+                3: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 36
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                5: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 40):  # cornfieldMaze13
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "West",
+                "East",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 39
+                },
+                2: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 41
+                },
+                3: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 37
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                5: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 41):  # cornfieldMaze14
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "West",
+                "East",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 40
+                },
+                2: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 43
+                },
+                3: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 38
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                5: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 42):  # cornfieldMaze15
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "East",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 39
+                },
+                2: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 36
+                },
+                3: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 44
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                5: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 43):  # cornfieldMaze16
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "West",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 41
+                },
+                2: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 38
+                },
+                3: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 45
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                5: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 44):  # cornfieldMaze17
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "East",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 42
+                },
+                2: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 34
+                },
+                3: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 46
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                5: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 45):  # cornfieldMaze18
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "West",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 43
+                },
+                2: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 35
+                },
+                4: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 47
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                5: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 46):  # cornfieldMaze19
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "East",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 44
+                },
+                3: {
+                    "do": '''You walk East.''',  # EAST
+                    "moveTo": 31
+                },
+                4: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 29
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                5: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 47):  # cornfieldMaze20
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "North",
+                "West",
+                "South",
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You walk North.",  # NORTH
+                    "moveTo": 45
+                },
+                2: {
+                    "do": '''You walk West.''',  # WEST
+                    "moveTo": 33
+                },
+                4: {
+                    "do": "You walk South.",  # SOUTH
+                    "moveTo": 30
+                },
+                4: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                5: {
+                    "menu": "menu"
+                }
+            }
+
+        elif (self.zoneID == 48):  # cornfieldMazeCenter
+            self.summary = '''An intersection near the beginning of the maze.'''
+            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.items.clear()
+
+            self.options = [
+                "Return to the Maze",
+                "Descend the Stairs"
+                "Look around the area",
+                "Player Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "do": "You head back to the maze.",  # NORTH
+                    "moveTo": 35
+                },
+                2: {
+                    "do": '''You begin the descent down the stone steps.''',  # WEST
+                    "moveTo": 49
+                },
+                3: {
+                    "do": self.description,
+                    "examine": "cornfieldMazeStart"
+                },
+                4: {
+                    "menu": "menu"
+                }
+            }
+
+
+        elif(self.zoneID == 49):
+            self.summary = '''GAME WON.'''
+            self.description = '''GAME WON.'''
+            self.items.clear()
+
+            self.options = [
+                "Menu"
+            ]
+
+            self.selection = {
+                1: {
+                    "menu": "menu"
+                }
+            }
 
 
         elif(self.zoneID == 100):  # template

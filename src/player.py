@@ -38,11 +38,19 @@ class Player:
     ### |- ------ COMBAT ------------------------------------------------------------------------ -|
 
     def attack(self, creature):
-        damage = random.randrange(self.damage)
-        creature.takeDamage(damage, self)
-        print(f"You attack with your {self.weapon}.")
+        if (self.weapon != []):
+            weaponName = Item(self.weapon[0]).name
+            bonus = Item(self.weapon[0]).damageBonus
+        else:
+            weaponName = "Bare fists"
+            bonus = 0
+
+        damage = random.randrange(self.damage) + random.randrange(bonus)
+
+        print(f"You attack with your {weaponName}.")
         if(damage > 0):
-            print(f"You deal {damage} damage. YOU[{self.currentHP}], IT[{creature.currentHP}]")
+            print(f"You deal {damage} damage.")
+            creature.takeDamage(damage, self)
         else:
             print(f"The {creature.type} evades your attack.")
 
@@ -305,6 +313,7 @@ seem to become a single, solid crystal.''')
         print("2: Stats")
         print("3: Equipment")
         print("4: Save Game")
+        print("5: Quit")
         print("ENTER - Return to Game")
         choice = input("> ")
 
@@ -317,6 +326,16 @@ seem to become a single, solid crystal.''')
         elif (int(choice) == 4):
             print("\n\t# GAME SAVED #")
             self.saveState()
+        elif (int(choice) == 5):
+            print(f'\033[{random.choice([31, 32, 33, 34, 35, 36, 37, 38, 39])}m' + """\n\n
+           ..|'''.|                      '|| '||
+          .|'     '    ...     ...     .. ||  || ...  .... ...  ....
+          ||    .... .|  '|. .|  '|. .'  '||  ||'  ||  '|.  | .|...||
+          '|.    ||  ||   || ||   || |.   ||  ||    |   '|.|  ||
+           ''|...'|   '|.|'   '|.|'  '|..'||. '|...'     '|    '|...'
+                                                      .. |
+                                                       ''""" + '\n \033[0m')
+            quit()
         else:
             print("")
 

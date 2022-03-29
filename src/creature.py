@@ -53,18 +53,25 @@ class Creature:
             self.xp = 5
 
     def attack(self, pc):
-        damage = random.randrange(self.damage)
-        pc.takeDamage(damage)
+        damage = random.randrange(self.damage) + 2
+        hit = damage - pc.defense
         print(f"The {self.type} attacks with a {random.choice(self.weapons)}.")
-        if(damage - pc.defense > 0):
-            print(f"The {self.type} deals {damage - pc.defense} damage.")
-        elif (damage - pc.defense <= 0):
-            print(f"You evade the attack.")
-        ### FIX THESE
+        if (hit > 0):
+            pc.takeDamage(hit)
+            print(f"The {self.type} deals {hit} damage.")
+        else:
+            if (damage == 0):
+                print("You evade the attack.")
+            elif (damage > 0):
+                print("Your armor protects you from the attack.")
 
     def takeDamage(self, damage, pc):
         self.currentHP -= damage
         if(self.currentHP <= 0):
             self.isAlive = False
-            print(f"The {self.type} falls, and drops a {random.choice(self.itemDrops)}.")
+            self.currentHP = 0
+            drop = Item(random.choice(self.itemDrops))
+            if (drop.itemID not in pc.inventory):
+                print(f"The {self.type} falls, and drops a {drop.name}.")
+                pc.inventory.append(drop.itemID)
             pc.experience += self.xp

@@ -93,7 +93,6 @@ the other. Could be worth something.'''
         elif(self.itemID == 6):
             self.name = "Bottle of Ink"
             self.value = 1
-            self.use = "spell"
             self.description = '''A small, bulbous bottle of black ink, undoubtedly used for
 writing with a quill pen.'''
             # location: The Study, upstairs, on the desk.
