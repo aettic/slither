@@ -38,13 +38,8 @@ class Player:
     ### |- ------ COMBAT ------------------------------------------------------------------------ -|
 
     def attack(self, creature):
-        if (self.weapon != []):
-            weaponName = Item(self.weapon[0]).name
-            bonus = Item(self.weapon[0]).damageBonus
-        else:
-            weaponName = "Bare fists"
-            bonus = 0
-
+        weaponName = Item(self.weapon[0]).name
+        bonus = Item(self.weapon[0]).damageBonus
         damage = random.randrange(self.damage) + random.randrange(bonus)
 
         print(f"You attack with your {weaponName}.")
@@ -63,7 +58,7 @@ class Player:
 
 
     def intimidate(self, enemy):
-        intimidation = (self.stats["Str"] + self.stats["Con"]) - 15 #min 1, max 11
+        intimidation = (self.stats["STR"] + self.stats["CON"]) - 15 #min 1, max 11
         intimidateFactor = math.ceil(random.randrange(intimidation))
         if(intimidateFactor > (math.ceil(enemy.maxHP / 2))):
             print(f"The {enemy.type} is scared by your terrifying visage, and scurries away!")
@@ -84,7 +79,7 @@ class Player:
             if(item.use == "equip"):
                 self.equipItem(item)
             elif(item.use == "spell"):
-                if(self.stats["Int"] >= item.statRequired["Int"]):
+                if(self.stats["INT"] >= item.statRequired["INT"]):
                     self.castSpell(item)
                 else:
                     print("You do not have a high enough Intelligence score.")
@@ -102,7 +97,11 @@ class Player:
             self.defense += item.armorBonus
             print(f"You don the {item.name}")
         elif(item.weapon == True):
-            self.weapon.append(item.itemID)
+            # unequip current weapon
+            self.damage -= Item(self.weapon[0]).damageBonus
+            self.inventory.append(self.weapon.pop(0))
+
+            self.weapon = [item.itemID]
             self.damage += item.damageBonus
             print(f"You wield the {item.name}")
         else:
@@ -111,10 +110,7 @@ class Player:
 
 
     def castSpell(self, item):
-        if(item.itemID == 3):  # Emerald Pyramid Necklace Half
-            self.magic += item.magicBonus
-            print(item.spell)
-        elif(item.itemID == 4):  # Spellbook
+        if(item.itemID == 4):  # Spellbook
             self.magic += item.magicBonus
             self.globalStatus["Damage Enchanted"] = True
             print("\n\t# CHOOSE A SPELL #")
@@ -127,21 +123,21 @@ class Player:
                     print(item.spell["Astral Crown"]["description"])
                     self.damage += item.spell["Astral Crown"]["effect"]
                     self.defense += item.spell["Astral Crown"]["effect"]
-                    self.magic -= item.spell["Astral Crown"]["magic"]
+                    self.magic -= 1
                 else:
                     print("You attempt to cast the spell, but nothing happens.")
             elif(choice == 2):
                 if(self.magic >= item.spell["Miraculous Recovery"]["magic"]):
                     print(item.spell["Miraculous Recovery"]["description"])
                     self.currentHP += item.spell["Miraculous Recovery"]["effect"]
-                    self.magic -= item.spell["Fireball"]["magic"]
+                    self.magic -= 1
                 else:
                     print("You attempt to cast the spell, but nothing happens.")
             elif(choice == 3):
                 if(self.magic >= item.spell["Subtle Steps"]["magic"]):
                     print(item.spell["Subtle Steps"]["description"])
                     self.globalStatus["Stealthy"] = item.spell["Subtle Steps"]["effect"]
-                    self.magic -= item.spell["Fireball"]["magic"]
+                    self.magic -= 1
                 else:
                     print("You attempt to cast the spell, but nothing happens.")
         elif(item.itemID == 6):  # Ink?

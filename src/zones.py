@@ -356,7 +356,7 @@ trinket in the shape of a hexagon.''',
                         }
                     }
                 elif(pc.globalStatus["farmhouseCloset1 Box examined"] == True):
-                    if(pc.globalStatus["Emerald Medallion taken"] == False):
+                    if(pc.globalStatus["Emerald Pyramid Medallion taken"] == False):
                         self.options = [
                             "Head back to the kitchen",
                             "Go to the sitting room",
@@ -393,7 +393,7 @@ silver chain. You put it in your pack.''',
                             }
                         }
 
-                    elif(pc.globalStatus["Emerald Medallion taken"] == True):
+                    elif(pc.globalStatus["Emerald Pyramid Medallion taken"] == True):
                         self.options = [
                             "Head back to the kitchen",
                             "Go to the sitting room",
@@ -457,7 +457,7 @@ trinket in the shape of a hexagon.''',
                         }
                     }
                 elif(pc.globalStatus["farmhouseCloset1 Box examined"] == True):
-                    if(pc.globalStatus["Emerald Medallion taken"] == False):
+                    if(pc.globalStatus["Emerald Pyramid Medallion taken"] == False):
                         self.options = [
                             "Head back to the kitchen",
                             "Go to the sitting room",
@@ -487,7 +487,7 @@ silver chain. You put it in your pack.''',
                                 "menu": "menu"
                             }
                         }
-                    elif(pc.globalStatus["Emerald Medallion taken"] == True):
+                    elif(pc.globalStatus["Emerald Pyramid Medallion taken"] == True):
                         self.options = [
                             "Head back to the kitchen",
                             "Go to the sitting room",
@@ -1095,7 +1095,7 @@ hastily written theories and worries.'''
                 self.options = [
                     "Return to the Bedroom",
                     "Exit to the hallway",
-                    "Read papers",
+                    "Read the letter",
                     "Look around the area",
                     "Player Menu"
                 ]
@@ -1111,7 +1111,7 @@ hastily written theories and worries.'''
                             "moveTo": 6
                         },
                         3: {
-                            "do": "It is too dark to make out what the notes say clearly."
+                            "do": "It is too dark to make out what the letter says clearly."
                         },
                         4: {
                             "do": self.description,
@@ -1132,7 +1132,7 @@ hastily written theories and worries.'''
                             "moveTo": 6
                         },
                         3: {
-                            "do": "You read the notes.",
+                            "do": "You read the letter.",
                             "read": Item(11).read
                         },
                         4: {
@@ -1169,7 +1169,7 @@ making sure it's closed..''',
                                 "takeItem": 6
                             },
                             4: {
-                                "do": "It is too dark to make out what the notes say clearly."
+                                "do": "It is too dark to make out what the letter says clearly."
                             },
                             5: {
                                 "do": self.description,
@@ -1183,7 +1183,7 @@ making sure it's closed..''',
                         self.options = [
                             "Return to the Bedroom",
                             "Exit to the hallway",
-                            "Read the papers",
+                            "Read the letter",
                             "Look around the area",
                             "Player Menu"
                         ]
@@ -1197,7 +1197,7 @@ making sure it's closed..''',
                                 "moveTo": 6
                             },
                             3: {
-                                "do": "It is too dark to make out what the notes say clearly."
+                                "do": "It is too dark to make out what the letter says clearly."
                             },
                             4: {
                                 "do": self.description,
@@ -1208,12 +1208,12 @@ making sure it's closed..''',
                             }
                         }
                 else:
-                    if(pc.globalStatus["Lantern taken"] == False):
+                    if(pc.globalStatus["Bottle of Ink taken"] == False):
                         self.options = [
                             "Return to the Bedroom",
                             "Exit to the hallway",
                             "Pick up the Bottle of Ink",
-                            "Read the papers",
+                            "Read the letter",
                             "Look around the area",
                             "Player Menu"
                         ]
@@ -1232,7 +1232,7 @@ making sure it's closed..''',
                                 "takeItem": 6
                             },
                             4: {
-                                "do": "You read the notes.",
+                                "do": "You read the letter.",
                                 "read": Item(11).read
                             },
                             5: {
@@ -1247,7 +1247,7 @@ making sure it's closed..''',
                         self.options = [
                             "Return to the Bedroom",
                             "Exit to the hallway",
-                            "Read the papers",
+                            "Read the letter",
                             "Look around the area",
                             "Player Menu"
                         ]
@@ -1261,7 +1261,7 @@ making sure it's closed..''',
                                 "moveTo": 6
                             },
                             3: {
-                                "do": "You read the notes.",
+                                "do": "You read the letter.",
                                 "read": Item(11).read
                             },
                             4: {
@@ -1272,6 +1272,7 @@ making sure it's closed..''',
                                 "menu": "menu"
                             }
                         }
+
 
         elif (self.zoneID == 11):  # farmhouseStorage
             self.summary = '''This small storage room seems to contain a variety of items useful
@@ -2591,7 +2592,7 @@ the floor, mixed in with some of the hay, closer to the bench.'''
 
                 self.selection = {
                     1: {
-                        "do": "You turn back and return to the Garden.",
+                        "do": "You head inside the barn.",
                         "moveTo": 23
                     },
                     2: {
@@ -2615,8 +2616,7 @@ the floor, mixed in with some of the hay, closer to the bench.'''
                     }
                 }
 
-            if(pc.globalStatus["barnBack examined"] == False):
-
+            else:
                 self.options = [
                     "Go inside the barn",
                     "Head around to the front of the barn",
@@ -2629,7 +2629,7 @@ the floor, mixed in with some of the hay, closer to the bench.'''
 
                 self.selection = {
                     1: {
-                        "do": "You turn back and return to the Garden.",
+                        "do": "You head inside the barn.",
                         "moveTo": 23
                     },
                     2: {
@@ -2697,60 +2697,175 @@ from the stable.'''
                     }
                 }
             else:
+                if(pc.globalStatus["barnStable stall3 examined"] == False):
 
-                self.options = [
-                    "Head back to the pens",
-                    "Walk out the back door",
-                    "Examine the first stall",
-                    "Examine the second stall",
-                    "Examine the third stall",
-                    "Examine the fourth stall",
-                    "Look around the area",
-                    "Player Menu"
-                ]
+                    self.options = [
+                        "Head back to the pens",
+                        "Walk out the back door",
+                        "Examine the first stall",
+                        "Examine the second stall",
+                        "Examine the third stall",
+                        "Examine the fourth stall",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
 
-                self.selection = {
-                    1: {
-                        "do": "You walk to the front side of the barn's interior.",
-                        "moveTo": 20
-                    },
-                    2: {
-                        "do": "You walk through the small door and outside the back of the barn.",
-                        "moveTo": 22
-                    },
-                    3: {
-                        "do": '''You open the door of the first stall and look inside. The ground
+                    self.selection = {
+                        1: {
+                            "do": "You walk to the front side of the barn's interior.",
+                            "moveTo": 20
+                        },
+                        2: {
+                            "do": "You walk through the small door and outside the back of the barn.",
+                            "moveTo": 22
+                        },
+                        3: {
+                            "do": '''You open the door of the first stall and look inside. The ground
 is barren, except some hay, and you can see horse prints. A
 saddle rests on a hook at the back of the stall.'''
-                    },
-                    4: {
-                        "do": '''The door of the second stall was already open a crack. You push
+                        },
+                        4: {
+                            "do": '''The door of the second stall was already open a crack. You push
 it the rest of the way, and see that the ground is empty, except
 for horse prints, and horseshoe marks. Some dark brown fur can
 also be seen on the ground, and caught into the wooden joints of
 the stall walls. A saddle rests on a hook at the back of the
 stall.'''
-                    },
-                    5: {
-                        "do": '''The third stall's door creaks as you push it open, and
+                        },
+                        5: {
+                            "do": '''The third stall's door creaks as you push it open, and
 immediately you see blood on the ground. A faint trail leads out
 of the stables, out the back of the barn. It's sparse, but
 consistent. You also spot a key nearby the pool of drying blood.''',
-                        "examine": "barnStable stall3"
-                    },
-                    6: {
-                        "do": '''The fourth stall's door seems to be broken, and it's stuck shut.
+                            "examine": "barnStable stall3"
+                        },
+                        6: {
+                            "do": '''The fourth stall's door seems to be broken, and it's stuck shut.
 However, you can see the inside of the stall from above the
 doors, and it is empty.'''
-                    },
-                    7: {
-                        "do": self.description,
-                        "examine": "barnBack"
-                    },
-                    8: {
-                        "menu": "menu"
+                        },
+                        7: {
+                            "do": self.description,
+                            "examine": "barnBack"
+                        },
+                        8: {
+                            "menu": "menu"
+                        }
                     }
-                }
+                else:
+                    if(pc.globalStatus["Brass Key taken"] == False):
+                        self.options = [
+                            "Head back to the pens",
+                            "Walk out the back door",
+                            "Examine the first stall",
+                            "Examine the second stall",
+                            "Examine the third stall",
+                            "Examine the fourth stall",
+                            "Take the key",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+
+                        self.selection = {
+                            1: {
+                                "do": "You walk to the front side of the barn's interior.",
+                                "moveTo": 20
+                            },
+                            2: {
+                                "do": "You walk through the small door and outside the back of the barn.",
+                                "moveTo": 22
+                            },
+                            3: {
+                                "do": '''You open the door of the first stall and look inside. The ground
+is barren, except some hay, and you can see horse prints. A
+saddle rests on a hook at the back of the stall.'''
+                            },
+                            4: {
+                                "do": '''The door of the second stall was already open a crack. You push
+it the rest of the way, and see that the ground is empty, except
+for horse prints, and horseshoe marks. Some dark brown fur can
+also be seen on the ground, and caught into the wooden joints of
+the stall walls. A saddle rests on a hook at the back of the
+stall.'''
+                            },
+                            5: {
+                                "do": '''The third stall's door creaks as you push it open, and
+immediately you see blood on the ground. A faint trail leads out
+of the stables, out the back of the barn. It's sparse, but
+consistent. You also spot a key nearby the pool of drying blood.''',
+                                "examine": "barnStable stall3"
+                            },
+                            6: {
+                                "do": '''The fourth stall's door seems to be broken, and it's stuck shut.
+However, you can see the inside of the stall from above the
+doors, and it is empty.'''
+                            },
+                            7: {
+                                "do": "You pick up the bloody key.",
+                                "takeItem": 21
+                            },
+                            8: {
+                                "do": self.description,
+                                "examine": "barnBack"
+                            },
+                            9: {
+                                "menu": "menu"
+                            }
+                        }
+                    else:
+                        self.options = [
+                            "Head back to the pens",
+                            "Walk out the back door",
+                            "Examine the first stall",
+                            "Examine the second stall",
+                            "Examine the third stall",
+                            "Examine the fourth stall",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+
+                        self.selection = {
+                            1: {
+                                "do": "You walk to the front side of the barn's interior.",
+                                "moveTo": 20
+                            },
+                            2: {
+                                "do": "You walk through the small door and outside the back of the barn.",
+                                "moveTo": 22
+                            },
+                            3: {
+                                "do": '''You open the door of the first stall and look inside. The ground
+is barren, except some hay, and you can see horse prints. A
+saddle rests on a hook at the back of the stall.'''
+                            },
+                            4: {
+                                "do": '''The door of the second stall was already open a crack. You push
+it the rest of the way, and see that the ground is empty, except
+for horse prints, and horseshoe marks. Some dark brown fur can
+also be seen on the ground, and caught into the wooden joints of
+the stall walls. A saddle rests on a hook at the back of the
+stall.'''
+                            },
+                            5: {
+                                "do": '''The third stall's door creaks as you push it open, and
+immediately you see blood on the ground. A faint trail leads out
+of the stables, out the back of the barn. It's sparse, but
+consistent. You also spot a key nearby the pool of drying blood.''',
+                                "examine": "barnStable stall3"
+                            },
+                            6: {
+                                "do": '''The fourth stall's door seems to be broken, and it's stuck shut.
+However, you can see the inside of the stall from above the
+doors, and it is empty.'''
+                            },
+                            7: {
+                                "do": self.description,
+                                "examine": "barnBack"
+                            },
+                            8: {
+                                "menu": "menu"
+                            }
+                        }
 
 
 

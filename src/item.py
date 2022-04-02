@@ -18,6 +18,17 @@ class Item:
             self.description = '''A small note from your friend pleading for you to visit her at
 her farm. She seemed desparate, which is not like Alys. But she
 also seemed excited, as if she was on the verge of a great discovery.'''
+            self.read = '''My dearest friend,
+Things have been rather strange as of late. Peculiar, but also
+intriguing. My studies have kept me on my toes, especially with
+the evolving circumstances and consequences. I have opened some-
+thing... What it is, I'm not sure. But it is open, and I suspect
+that I am unable to close it again. It is so exciting! I know I
+must probe deeper, past the boundaries, and into this mysterious
+world I have discovered.
+May the stars shine down upon your nights, my friend.
+
+                                            - Alys Astraniela'''
             # location: Given to player at the start of the game
 
         elif(self.itemID == 1):
@@ -56,7 +67,7 @@ whole. When worn, the pyramid points down.'''
             self.value = 10
             self.magic = True
             self.magicBonus = 2
-            self.statRequired = {"Int": 13}
+            self.statRequired = {"INT": 13}
             self.use = "spell"
             self.spell = {
                 "Astral Crown": {
@@ -225,11 +236,11 @@ chemicals.'''
         elif(self.itemID == 19):
             self.name = "Jar Bomb"
             self.value = 2
-            self.statRequired = {"Int": 9}
+            self.statRequired = {"INT": 9}
             self.use = "spell"
             self.spell = "You shake the jar and throw it! After a few seconds, it explodes!"
             self.description = '''A very dangerous homemade bomb. It could be useful, but it is
-also quite fragile.'''
+also quite fragile. Will probably explode if dropped or thrown.'''
             # location: Created from 16, 17, 18.
 
         elif(self.itemID == 20):
@@ -249,8 +260,9 @@ around its edges, it has a peculiar symmertry.'''
 
         elif(self.itemID == 22):
             self.name = "Emerald Merkaba Pendant"
+            self.magicBonus = 10
             self.value = 50
-            self.statRequired = {"Int": 12}
+            self.statRequired = {"INT": 12}
             self.use = "spell"
             self.spell = '''You twist the double pyramid structure, which seems to interlock
 and shift around itself. The inside glows a bright green, and the
@@ -261,7 +273,14 @@ hidden. You also feel invigorated.'''
             self.description = '''A green Merkaba shaped pendant, about an inch and a half wide. The shape is a pair of pyramids, intersected, creating one three-dimensional star shape, with peculiar symmetry.'''
             # location: created by combining 3 and 20. Requires 12 Int to combine, and use.
 
-
+        elif(self.itemID == 99):
+            self.name = "Knife"
+            self.damageBonus = 1
+            self.description = '''Your grandfather's knife, useful for many things.'''
+            self.use = "equip"
+            self.value = 0
+            self.weapon = True
+            # location: starts with it equipped
 
         elif(self.itemID == 100):
             self.name = "Template"

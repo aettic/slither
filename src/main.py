@@ -30,12 +30,12 @@ dP""""Yb  888888    88    88  Yb    88    88  Y8   YbodP   '8bodP'''
 
 
 def doSomething(pc):
-    zoneStart = pc.zone.zoneID
+    currentZoneID = pc.zone.zoneID
     # print(pc.zone.summary)
 
-    while(zoneStart == pc.zoneID):
+    while(currentZoneID == pc.zoneID):
 
-        pc.zone = Zone(zoneStart, pc)
+        pc.zone = Zone(currentZoneID, pc)
 
         if (pc.isAlive == False):
             running = False
@@ -174,22 +174,20 @@ def gameloop(pc):
 
                 print('''\nYears ago, when you lived in the town of Almyth, there was a
 Strong sense of community. In many ways, it felt like you
-mattered to the people you called friends, the people you called
-neighbors. They were family. After you moved out, heading toward
-bigger and better things in the city of Cormandyr, there was a
-sense of betrayal.\n''')
+mattered to the people you called friends and neighbors. They
+were family. After you moved out toward bigger and better
+things in the city of Cormandyr, there was a sense of betrayal.\n''')
                 input("\t# ENTER TO CONTINUE #")
 
                 print('''\nYes, certainly a sense that your trust had been abused by
 those who you called family, who no longer kept in touch. But
 also a sense that you were guilty of the same abuse. Did you
 ever write? Of course not. The only person you kept in touch
-with - and mostly because she always returned your notes,
-always... - was Alys Astranos. So named because of her family's
+with was Alys Astraniela. So named because of her family's
 ties to staring up at the stars, and wondering.\n''')
                 input("\t# ENTER TO CONTINUE #")
 
-                print('''\nAlys and her son worked their family's last farm, her
+                print('''\nAlys and her son worked their family's farm, her
 parents had both gone years ago, and her husband had left for
 the war, but has not returned and the two of them were
 all that remained of their nightsky-infatuated family. She
@@ -583,12 +581,12 @@ There are hooks for leads, and there are saddles hung on the
 wall. Clearly nobody rode the horses out of here, unless they
 rode bareback.''')
             else:
-                if(pc.globalStatus["prairieWell first time"] == False):
+                if(pc.globalStatus["barnStable first time"] == False):
                     combatChance = random.randint(1, 100)
-                    if(combatChance >= 65 and combatChance < 80):
+                    if(combatChance >= 65 and combatChance < 90):
                         beast = Creature("Beast")
                         combat(pc, beast)
-                    elif(combatChance >= 80):
+                    elif(combatChance >= 90):
                         goblin = Creature("Goblin")
                         combat(pc, goblin)
                 print(pc.zone.summary)
@@ -650,10 +648,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 28):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze1 first time"] == True):
-                print('''You realize quickly that this is a maze. From here, the path
-splits into three forks - left, right, and center. You stop for a
-moment, and can hear snickering in the distance, but you aren't
-exactly sure where it's coming from.''')
+                print('''It's quiet as you step into the aisle of corn walls, rows on both sides extending forward to a hard T in the distance.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze1(pc)
@@ -662,7 +657,7 @@ exactly sure where it's coming from.''')
         elif(pc.zone.zoneID == 29):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze2 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''Another intersection in ''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze2(pc)
@@ -899,7 +894,7 @@ def farmhouseCloset1(pc):
     # Small front closet with work clothes and warm clothes (women's)
     # Cycle: Back to kitchen
     # Items: Boots (armor) & gloves (Puzzle item: armor + safely handle dangerous things)
-    # GS: Boots taken, Emerald Medallion in box
+    # GS: Boots taken, Emerald Pyramid Medallion in box
 
 def farmhouseSittingRoom(pc):
     pc.zone = Zone(4, pc)
@@ -1450,7 +1445,7 @@ Any remaining points might be useful... later on...''')
     # inventory = [0, 7, 12, 16, 17, 18] # testing bomb
 
     # equippable slots
-    weapon = []
+    weapon = [99] # start with knife equipped
     armor = []
 
     # Set currentZone to 0 for game opening
@@ -1539,7 +1534,9 @@ Any remaining points might be useful... later on...''')
         "Alchemical Powder taken": False,
         "Alcohol taken": False,
         "Bottle of Ink taken": False,
-        "Emerald Medallion taken": False,
+        "Brass Key taken": False,
+        "Emerald Pyramid taken": False,
+        "Emerald Pyramid Medallion taken": False,
         "Emerald Merkaba taken": False,
         "Fancy Hat taken": False,
         "Glass Jar taken": False,
@@ -1563,6 +1560,7 @@ Any remaining points might be useful... later on...''')
         "barnLoft examined": False,
         "barnBack examined": False,
         "barnStable examined": False,
+        "barnStable stall3 examined": False,
         "cornfieldEdge examined": False,
         "cornfieldMaze1 examined": False,
         "cornfieldMaze2 examined": False,
@@ -1656,7 +1654,7 @@ Any remaining points might be useful... later on...''')
         "mazeKey": mazeKey,  # the specific path for the generated maze
         "name": name,  # the player's name
         "stats": stats,  # the player's stats / attributes (STR, DEX, INT, CON)
-        "weapon": weapon,  # the player's weapon (release: 0 - Bare fitst)
+        "weapon": weapon,  # the player's weapon (release: 99 - knife)
         "zoneID": startingZoneID  # Choose where play starts (release: 0)
     }
 

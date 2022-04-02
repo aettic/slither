@@ -39,7 +39,6 @@ This is a zork-like text-based adventure game. It contains a global status syste
 ## Development Progress
 
 #### Priority To Do
-- [ ] Finish combat options
 - [ ] Finish equipment (equip, unequip, with inventory access, also bare fists)
 - [ ] Finish Jar Bomb spell effects for damage
 - [ ] Move Lantern to Shed (Once shed is built, maybe replace lantern with something in study)
@@ -65,8 +64,10 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [ ] Build NPC objects with interactive dialogue capacity (model after combat)
 - [ ] Burn down barn with matches?
 - [ ] Clean up code redundancy, especially in zones
+- [ ] Kill grue with matches
 - [ ] Look into combining all possible movements into one function - pc.moveTo(Zone) or something
 - [ ] Redesign doSomething choices to ALWAYS include moving backwards as number 1.
+- [ ] Redesign Items so that inventory and everything use actual Item objects, not just the ID
 - [ ] Redesign menus to always include a movement option which opens a move menu for each room
 
 #### Done
@@ -88,6 +89,7 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [x] Design basis for the Maze (20 zones)
 - [x] Design paths for each of three mazes
 - [x] Design spell(s) for Spellbook
+- [x] Finish combat options
 - [x] Finish Jar Bomb spell effects for environment puzzle
 - [x] Fix closet entrance from Master bedroom
 - [x] Fix the cellar's descriptions
