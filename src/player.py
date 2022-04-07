@@ -325,14 +325,14 @@ seem to become a single, solid crystal.''')
             print("\n\t# GAME SAVED #")
             self.saveState()
         elif (int(choice) == 5):
-            print(f'\033[{random.choice([31, 32, 33, 34, 35, 36, 37, 38, 39])}m' + """\n\n
+            print("""\n\n
            ..|'''.|                      '|| '||
           .|'     '    ...     ...     .. ||  || ...  .... ...  ....
           ||    .... .|  '|. .|  '|. .'  '||  ||'  ||  '|.  | .|...||
           '|.    ||  ||   || ||   || |.   ||  ||    |   '|.|  ||
            ''|...'|   '|.|'   '|.|'  '|..'||. '|...'     '|    '|...'
                                                       .. |
-                                                       ''""" + '\n \033[0m')
+                                                       ''         """)
             quit()
         elif (int(choice) == 6):
             print("\n\t# INFORMATION #")
