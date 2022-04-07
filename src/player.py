@@ -101,6 +101,7 @@ class Player:
             self.damage -= Item(self.weapon[0]).damageBonus
             self.inventory.append(self.weapon.pop(0))
 
+            # equip new weapon - only one can be used at a time
             self.weapon = [item.itemID]
             self.damage += item.damageBonus
             print(f"You wield the {item.name}")
@@ -310,6 +311,7 @@ seem to become a single, solid crystal.''')
         print("3: Equipment")
         print("4: Save Game")
         print("5: Quit")
+        print("6: Help")
         print("ENTER - Return to Game")
         choice = input("> ")
 
@@ -332,6 +334,37 @@ seem to become a single, solid crystal.''')
                                                       .. |
                                                        ''""" + '\n \033[0m')
             quit()
+        elif (int(choice) == 6):
+            print("\n\t# INFORMATION #")
+            print("- Welcome to the world of Aetrynos, a text based adventure game.")
+            print("- To navigate the world, interact with menus by using number keys")
+            print("  to select various options.")
+            print("- The game's layout uses Zones for interacting with the world. For")
+            print("  instance, if you are standing on the dirt road, your Zone will")
+            print("  reflect that, and you will see Zone options related to that Zone.")
+            print("- Each zone has similar option types, and they are laid out as")
+            print("  follows:")
+            print("    - Movement: The first options will always involve movement.")
+            print("    - Interaction: After movement may be options for interacting")
+            print("      with the world, this could include looking inside something,")
+            print("      or picking something up, etc.")
+            print("    - Look around the area: This option will always let you look.")
+            print("      closer at the surrounding area, which will provide more in")
+            print("      the way of flavor text and descriptions, and may reveal some")
+            print("      things to interact with. This option is different from, say,")
+            print("      a specific interaction option to examine something, because")
+            print("      every zone has this, and it always involves the entire zone.")
+            print("    - Player Menu: Finally, the menu is always accessible at the")
+            print("      bottom, which provides interactions like this help screen,")
+            print("      as well as viewing your inventory, stats, and equipment,")
+            print("      and even saving or quitting the game. Make sure to save often.")
+            print("- If you encounter an issue, please record detailed notes on what")
+            print("  happened, including which zone you were in, what you were doing,")
+            print("  and even what kinds of items you had in your inventory (it may")
+            print("  not all be needed, but the more detailed the notes, the easier")
+            print("  it is to find the solution).")
+            print("- Above all, please enjoy this game!")
+            input("\nENTER - Return to Game")
         else:
             print("")
 

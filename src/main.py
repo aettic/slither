@@ -517,10 +517,10 @@ One of the doors is open, and it is quiet inside.''')
             else:
                 if(pc.globalStatus["prairieWell first time"] == False):
                     combatChance = random.randint(1, 100)
-                    if(combatChance >= 65 and combatChance < 80):
+                    if(combatChance >= 65 and combatChance < 90):
                         beast = Creature("Beast")
                         combat(pc, beast)
-                    elif(combatChance >= 80):
+                    elif(combatChance >= 90):
                         goblin = Creature("Goblin")
                         combat(pc, goblin)
                 print(pc.zone.summary)
@@ -581,7 +581,7 @@ There are hooks for leads, and there are saddles hung on the
 wall. Clearly nobody rode the horses out of here, unless they
 rode bareback.''')
             else:
-                if(pc.globalStatus["barnStable first time"] == False):
+                if(pc.globalStatus["prairieWell first time"] == False):
                     combatChance = random.randint(1, 100)
                     if(combatChance >= 65 and combatChance < 90):
                         beast = Creature("Beast")
@@ -626,8 +626,8 @@ this pattern seems wild and orchestrated by nature herself.''')
 you snare your foot on some kind of root. You free yourself, and
 when you look up, you catch the backside of a small creature,
 disappearing deeper into the corn. Its green skin and pointed
-ears evoke the image of a goblin in your mind. Could this be
-a goblin?''')
+ears give it away as a Goblin! Quickly, it has scurried out of
+your view, deeper into the corn.''')
             else:
                 print(pc.zone.summary)
             cornfieldTangle(pc)
@@ -657,7 +657,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 29):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze2 first time"] == True):
-                print('''Another intersection in ''')
+                print('''Another intersection in the corn. The walls begin to look the same.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze2(pc)
@@ -684,7 +684,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 32):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze5 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze5(pc)
@@ -693,7 +693,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 33):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze6 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze6(pc)
@@ -702,7 +702,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 34):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze7 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze7(pc)
@@ -711,7 +711,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 35):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze8 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze8(pc)
@@ -720,7 +720,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 36):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze9 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze9(pc)
@@ -729,7 +729,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 37):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze10 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze10(pc)
@@ -738,7 +738,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 38):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze11 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze11(pc)
@@ -747,7 +747,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 39):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze12 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze12(pc)
@@ -756,7 +756,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 40):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze13 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze13(pc)
@@ -765,7 +765,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 41):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze14 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze14(pc)
@@ -774,7 +774,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 42):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze15 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze15(pc)
@@ -783,7 +783,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 43):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze16 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze16(pc)
@@ -792,7 +792,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 44):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze17 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze17(pc)
@@ -801,7 +801,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 45):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze18 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze18(pc)
@@ -810,7 +810,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 46):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze19 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze19(pc)
@@ -819,7 +819,7 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 47):
             print("\n\t# CORN MAZE #")
             if (pc.globalStatus["cornfieldMaze20 first time"] == True):
-                print('''As you continue through the corn, you find another intersection.''')
+                print('''As you continue through the corn, you find yet another intersection.''')
             else:
                 print(pc.zone.summary)
             cornfieldMaze20(pc)
@@ -875,7 +875,7 @@ def farmhouseFront(pc):
     doSomething(pc)
 
     # Looming farmhouse
-    # Cycle: Walk into house, walk to backyard, walk to cornfield, walk back to road
+    # Cycle: farmhouseKitchen, dirtRoad, prairieBackyard, farmhouseStairsCellar
 
 def farmhouseKitchen(pc):
     pc.zone = Zone(2, pc)
@@ -997,8 +997,8 @@ def prairieBackyard(pc):
     pc.globalStatus["Dark Place"] = False
     doSomething(pc)
 
-    # Open, view of scarecrow, leads to all other places (HUB)
-    # Cycle: Well, Shed, Outhouse, barnFront, House Front, Cellar stairs, Cornfield
+    # Open, view of scarecrow, leads to most other places (HUB)
+    # Cycle: Shed, Outhouse, barnFront, House Front, Cellar stairs, Cornfield
     # GS: Bloodtrail examined (look)
 
 def prairieWell(pc):
@@ -1007,9 +1007,9 @@ def prairieWell(pc):
     doSomething(pc)
 
     # Large handbuilt stone well. Tented roof. Rope pulley system for bucket. Water inside.
-    # Cycle: Backyard, barnBack, outhouse, shed
-    # Item: Bucket of water (puzzle item)
-    # GS: Bucket taken
+    # Cycle: prairieOuthouse, prairieShed
+    # Item: Emerald Pyramid (Puzzle Item)
+    # GS: Emerald Pyramid taken
 
 def prairieShedExterior(pc):
     pc.zone = Zone(16, pc)
@@ -1017,7 +1017,7 @@ def prairieShedExterior(pc):
     doSomething(pc)
 
     # Dingy shack with sloped roof
-    # Cycle: Enter shed, back to Backyard, Well, Outhouse, BarnFront
+    # Cycle: Enter shed, back to Backyard, Well, Outhouse, barnBack
 
 def prairieShedInterior(pc):
     pc.zone = Zone(17, pc)
@@ -1025,7 +1025,7 @@ def prairieShedInterior(pc):
     doSomething(pc)
 
     # Filled with tools
-    # Cycle: Shed exterior
+    # Cycle: prairieShedExterior
     # Item: Acrid Solution
     # GS: Acrid Solution taken
 
@@ -1046,7 +1046,7 @@ def barnFront(pc):
     doSomething(pc)
 
     # Same materials and style as house, Open windows high up, Large barn doors
-    # Cycle: barnInterior, barnBack, Backyard, Well, Shed
+    # Cycle: barnInterior, barnBack, prairieBackyard
 
 def barnInterior(pc):
     pc.zone = Zone(20, pc)
@@ -1073,7 +1073,7 @@ def barnBack(pc):
     doSomething(pc)
 
     # Outside the barn's back door, blood trail passs around the edges of the fields all the way to the cornfieldEdge
-    # Cycle: barnInterior, barnStable, prairieWell
+    # Cycle: barnInterior, barnStable, prairieShed, cornfieldEdge (via bloodtrail)
     # GS: Bloodtrail examined (automatically True)
 
 def barnStable(pc):
@@ -1094,7 +1094,7 @@ def cornfieldEdge(pc):
     pc.globalStatus["Dark Place"] = False
     doSomething(pc)
     # The south end of the Cornfield, a wall of tall corn. On the far West side, a trail of blood can be seen once Bloodtrail examined is True.
-    # Cycle: back to prairieBackyard, or prairieOuthouse, forward to cornfieldThick
+    # Cycle: prairieBackyard, cornfieldThick
     # GS: Bloodtrail examined (look)
 
 def cornfieldThick(pc):

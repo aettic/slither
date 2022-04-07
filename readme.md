@@ -19,7 +19,7 @@ A core element of the game, generates the actual player object, which is carried
 Houses descriptions for all items in the game, organized by itemID. Can contain lots of information, such as what type of object it is, whether it has any magical abilities, or gives a boost to armor or damage, etc. All items share a common set of traits, all of which start as False, and are turned on for individual items based on needs.
 
 #### creature.py
-Creates creature objects to be used for combat. Includes elements like HP, descroptions, item drops, weapons, etc., as well as functions for combat.
+Creates creature objects to be used for combat. Includes elements like HP, descriptions, item drops, weapons, etc., as well as functions for combat.
 
 #### npc.py
 Used to generate non-player character objects which can be interacted with, including dialogue options, and globalStatus booleans which can allow for choices to seriously affect the way the game plays.
@@ -40,9 +40,8 @@ This is a zork-like text-based adventure game. It contains a global status syste
 
 #### Priority To Do
 - [ ] Finish equipment (equip, unequip, with inventory access, also bare fists)
-- [ ] Finish Jar Bomb spell effects for damage
-- [ ] Move Lantern to Shed (Once shed is built, maybe replace lantern with something in study)
-- [ ] Put a Grue in the Barn Loft
+- [ ] Fix combat health issue
+- [ ] Fix the cornfield options and flavor text
 - [ ] Reformat all flavor text and results / separate properly from commands
 - [ ] Write out Cornfield First Time text
   - [ ] cornfieldMaze2 first time text
@@ -55,10 +54,9 @@ This is a zork-like text-based adventure game. It contains a global status syste
   - [ ] cornfieldMaze9 first time text
   - [ ] cornfieldTangle first time text
   - [ ] cornfieldThick first time text
-- [ ] Write out Barn Zones
-- [ ] Write out Cornfield Zones
 
 #### Extra To Do
+- [ ] Add directions to movement options?
 - [ ] Add Scarecrow to descriptions of the garden / prairieBackyard
 - [ ] Build a way to light the candles in the study with the matches, so they stay lit
 - [ ] Build NPC objects with interactive dialogue capacity (model after combat)
@@ -90,13 +88,16 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [x] Design paths for each of three mazes
 - [x] Design spell(s) for Spellbook
 - [x] Finish combat options
+- [x] Finish Jar Bomb spell effects for damage
 - [x] Finish Jar Bomb spell effects for environment puzzle
 - [x] Fix closet entrance from Master bedroom
 - [x] Fix the cellar's descriptions
 - [x] Fix the lighting problem in the Study (if matches / lantern lit: dark is True)
 - [x] Fix the options for consistency in farmhouseStudy and farmhouseCloset2
 - [x] Fix problem with globalStatus not updating properly (had to do with How python uses boolean)
+- [x] Move Lantern to Shed (Once shed is built, maybe replace lantern with something in study)
 - [x] Organize globalStatus entires
+- [x] Put a Grue in the Barn Loft
 - [x] Put a Grue in Cellar
 - [x] Test save state works
 - [x] Write out Farmhouse Zones
@@ -106,7 +107,6 @@ This is a zork-like text-based adventure game. It contains a global status syste
   - [x] prairieShedExterior first time text
   - [x] prairieShedInterior first time text
   - [x] prairieWell first time text
-- [x] Write out Prairie Zones
 - [x] Write out Barn First Time text
   - [x] barnBack first time text
   - [x] barnFront first time text
@@ -117,8 +117,9 @@ This is a zork-like text-based adventure game. It contains a global status syste
   - [x] cornfieldEdge first time text
   - [x] cornfieldMazeCenter first time text
   - [x] cornfieldMaze1 first time text
-
-
+- [x] Write out Barn Zones
+- [x] Write out Cornfield Zones
+- [x] Write out Prairie Zones
 - [x] Write out the story more thoroughly in a secret canon piece.
 
 ---

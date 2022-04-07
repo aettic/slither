@@ -1578,7 +1578,6 @@ harvest soon.'''
                     "Walk to the Barn",
                     "Head to the Outhouse",
                     "Go to the Shed",
-                    "Walk to the Well",
                     "Head North to the Cornfield",
                     "Walk back to the front of the house",
                     "Head to the cellar doors",
@@ -1600,26 +1599,22 @@ harvest soon.'''
                         "moveTo": 16
                     },
                     4: {
-                        "do": '''You head to the Well.''',
-                        "moveTo": 15
-                    },
-                    5: {
                         "do": '''You start walking North, toward the cornfield.''',
                         "moveTo": 24
                     },
-                    6: {
+                    5: {
                         "do": '''You return to the front of the house.''',
                         "moveTo": 1
                     },
-                    7: {
+                    6: {
                         "do": '''You walk around the side of the house to the cellar doors.''',
                         "moveTo": 12
                     },
-                    8: {
+                    7: {
                         "do": self.description,
                         "examine": "prairieBackyard"
                     },
-                    9: {
+                    8: {
                         "menu": "menu"
                     }
                 }
@@ -1629,7 +1624,6 @@ harvest soon.'''
                         "Walk to the Barn",
                         "Head to the Outhouse",
                         "Go to the Shed",
-                        "Walk to the Well",
                         "Head North to the Cornfield",
                         "Walk back to the front of the house",
                         "Head to the cellar doors",
@@ -1652,30 +1646,26 @@ harvest soon.'''
                             "moveTo": 16
                         },
                         4: {
-                            "do": '''You head to the Well.''',
-                            "moveTo": 15
-                        },
-                        5: {
                             "do": '''You start walking North, toward the cornfield.''',
                             "moveTo": 24
                         },
-                        6: {
+                        5: {
                             "do": '''You return to the front of the house.''',
                             "moveTo": 1
                         },
-                        7: {
+                        6: {
                             "do": '''You walk around the side of the house to the cellar doors.''',
                             "moveTo": 12
                         },
-                        8: {
+                        7: {
                             "do": "You bend down and pick up the coin, it's unlike normal coins you have seen.",
                             "takeItem": 5
                         },
-                        9: {
+                        8: {
                             "do": self.description,
                             "examine": "prairieBackyard"
                         },
-                        10: {
+                        9: {
                             "menu": "menu"
                         }
                     }
@@ -1684,7 +1674,6 @@ harvest soon.'''
                         "Walk to the Barn",
                         "Head to the Outhouse",
                         "Go to the Shed",
-                        "Walk to the Well",
                         "Head North to the Cornfield",
                         "Walk back to the front of the house",
                         "Head to the cellar doors",
@@ -1706,26 +1695,22 @@ harvest soon.'''
                             "moveTo": 16
                         },
                         4: {
-                            "do": '''You head to the Well.''',
-                            "moveTo": 15
-                        },
-                        5: {
                             "do": '''You start walking North, toward the cornfield.''',
                             "moveTo": 24
                         },
-                        6: {
+                        5: {
                             "do": '''You return to the front of the house.''',
                             "moveTo": 1
                         },
-                        7: {
+                        6: {
                             "do": '''You walk around the side of the house to the cellar doors.''',
                             "moveTo": 12
                         },
-                        8: {
+                        7: {
                             "do": self.description,
                             "examine": "prairieBackyard"
                         },
-                        9: {
+                        8: {
                             "menu": "menu"
                         }
                     }
@@ -1743,46 +1728,34 @@ clearly for hoisting and lowering a bucket for water.'''
 
             if(pc.globalStatus["prairieWell examined"] == False):
                 self.options = [
-                    "Walk to the back of the Barn",
                     "Head to the Outhouse",
                     "Go to the Shed",
-                    "Walk to the Garden",
                     "Look around the area",
                     "Player Menu"
                 ]
 
                 self.selection = {
                     1: {
-                        "do": '''You head to the Barn's rear entrance.''',
-                        "moveTo": 22
-                    },
-                    2: {
                         "do": '''You walk back toward the Outhouse.''',
                         "moveTo": 18
                     },
-                    3: {
+                    2: {
                         "do": '''You walk over to the Shed.''',
                         "moveTo": 16
                     },
-                    4: {
-                        "do": '''You turn back toward the garden.''',
-                        "moveTo": 14
-                    },
-                    5: {
+                    3: {
                         "do": self.description,
                         "examine": "prairieWell"
                     },
-                    6: {
+                    4: {
                         "menu": "menu"
                     }
                 }
             else:
                 if(pc.globalStatus["prairieWell obstruction destroyed"] == False):
                     self.options = [
-                        "Walk to the back of the Barn",
                         "Head to the Outhouse",
                         "Go to the Shed",
-                        "Walk to the Garden",
                         "Pull the rope",
                         "Peer into the Well",
                         "Look around the area",
@@ -1791,44 +1764,34 @@ clearly for hoisting and lowering a bucket for water.'''
 
                     self.selection = {
                         1: {
-                            "do": '''You head to the Barn's rear entrance.''',
-                            "moveTo": 22
-                        },
-                        2: {
                             "do": '''You walk back toward the Outhouse.''',
                             "moveTo": 18
                         },
-                        3: {
+                        2: {
                             "do": '''You walk over to the Shed.''',
                             "moveTo": 16
                         },
-                        4: {
-                            "do": '''You turn back toward the garden.''',
-                            "moveTo": 14
-                        },
-                        5: {
+                        3: {
                             "do": '''You pull the rope to hoist the bucket up, but something blocks
 its path, and it is stuck.'''
                         },
-                        6: {
+                        4: {
                             "do": '''You take a look down into the well. Some sort of stony obstruction
 seems to be lodged halfway down.'''
                         },
-                        7: {
+                        5: {
                             "do": self.description,
                             "examine": "prairieWell"
                         },
-                        8: {
+                        6: {
                             "menu": "menu"
                         }
                     }
                 else:
                     if(pc.globalStatus["Emerald Merkaba taken"] == False):
                         self.options = [
-                            "Walk to the back of the Barn",
                             "Head to the Outhouse",
                             "Go to the Shed",
-                            "Walk to the Garden",
                             "Pull the rope",
                             "Peer into the Well",
                             "Look around the area",
@@ -1837,46 +1800,36 @@ seems to be lodged halfway down.'''
 
                         self.selection = {
                             1: {
-                                "do": '''You head to the Barn's rear entrance.''',
-                                "moveTo": 22
-                            },
-                            2: {
                                 "do": '''You walk back toward the Outhouse.''',
                                 "moveTo": 18
                             },
-                            3: {
+                            2: {
                                 "do": '''You walk over to the Shed.''',
                                 "moveTo": 16
                             },
-                            4: {
-                                "do": '''You turn back toward the garden.''',
-                                "moveTo": 14
-                            },
-                            5: {
+                            3: {
                                 "do": '''You pull the rope to hoist the bucket, which comes up with ease.
 The bucket is filled with some water, and sitting at the bottom is a glimmering green stone object.''',
                                 "takeItem": 20
                             },
-                            6: {
+                            4: {
                                 "do": '''You take a look down into the well. It is now clear of any
 obstructions, and you can see a bucket below. Inside the bucket
 you can make out some water, and a shining green stone.''',
                                 "examine": "prairieWell Inside"
                             },
-                            7: {
+                            5: {
                                 "do": self.description,
                                 "examine": "prairieWell"
                             },
-                            8: {
+                            6: {
                                 "menu": "menu"
                             }
                         }
                     else:
                         self.options = [
-                            "Walk to the back of the Barn",
                             "Head to the Outhouse",
                             "Go to the Shed",
-                            "Walk to the Garden",
                             "Peer into the Well",
                             "Look around the area",
                             "Player Menu"
@@ -1884,32 +1837,24 @@ you can make out some water, and a shining green stone.''',
 
                         self.selection = {
                             1: {
-                                "do": '''You head to the Barn's rear entrance.''',
-                                "moveTo": 22
-                            },
-                            2: {
                                 "do": '''You walk back toward the Outhouse.''',
                                 "moveTo": 18
                             },
-                            3: {
+                            2: {
                                 "do": '''You walk over to the Shed.''',
                                 "moveTo": 16
                             },
-                            4: {
-                                "do": '''You turn back toward the garden.''',
-                                "moveTo": 14
-                            },
-                            5: {
+                            3: {
                                 "do": '''You take a look down into the well. It is now clear of any
 obstructions, and you can see a bucket below. Inside the bucket
 you can make out some water, and a shining green stone.''',
                                 "examine": "prairieWell Inside"
                             },
-                            6: {
+                            4: {
                                 "do": self.description,
                                 "examine": "prairieWell"
                             },
-                            7: {
+                            5: {
                                 "menu": "menu"
                             }
                         }
@@ -1951,7 +1896,7 @@ the shed is locked with a large metal padlock, which takes a key.'''
                         },
                         3: {
                             "do": "You walk over to the large barn.",
-                            "moveTo": 19
+                            "moveTo": 22
                         },
                         4: {
                             "do": "You walk behind the shed, toward the outhouse.",
@@ -1983,7 +1928,7 @@ unlocks.''',
                         },
                         3: {
                             "do": "You walk over to the large barn.",
-                            "moveTo": 19
+                            "moveTo": 22
                         },
                         4: {
                             "do": "You walk behind the shed, toward the outhouse.",
@@ -2026,7 +1971,7 @@ to be locked, but the swings on the handle, not open.'''
                     },
                     3: {
                         "do": "You walk over to the large barn.",
-                        "moveTo": 19
+                        "moveTo": 22
                     },
                     4: {
                         "do": "You walk behind the shed, toward the outhouse.",
@@ -2324,7 +2269,6 @@ remeniscent of the trees at the edges of the property.'''
             self.options = [
                 "Head back to the Gardens",
                 "Walk into the open barn",
-                "Walk over to the shed",
                 "Head to the back of the barn",
                 "Look around the area",
                 "Player Menu"
@@ -2340,18 +2284,14 @@ remeniscent of the trees at the edges of the property.'''
                     "moveTo": 20
                 },
                 3: {
-                    "do": "You take the path over to the shed.",
-                    "moveTo": 16
-                },
-                4: {
                     "do": "Walk around the barn to the rear",
                     "moveTo": 22
                 },
-                5: {
+                4: {
                     "do": self.description,
                     "examine": "barnFront"
                 },
-                6: {
+                5: {
                     "menu": "menu"
                 }
             }
@@ -2388,7 +2328,7 @@ empty. Even the hen house is silent.'''
                         "moveTo": 23
                     },
                     3: {
-                        "do": "You climb the m2etal ladder and enter the hay loft.",
+                        "do": "You climb the metal ladder and enter the hay loft.",
                         "moveTo": 21
                     },
                     4: {
@@ -2420,7 +2360,7 @@ empty. Even the hen house is silent.'''
                             "moveTo": 23
                         },
                         3: {
-                            "do": "You climb the m2etal ladder and enter the hay loft.",
+                            "do": "You climb the metal ladder and enter the hay loft.",
                             "moveTo": 21
                         },
                         4: {
@@ -2454,7 +2394,7 @@ empty. Even the hen house is silent.'''
                             "moveTo": 23
                         },
                         3: {
-                            "do": "You climb the m2etal ladder and enter the hay loft.",
+                            "do": "You climb the metal ladder and enter the hay loft.",
                             "moveTo": 21
                         },
                         4: {
@@ -2584,8 +2524,7 @@ the floor, mixed in with some of the hay, closer to the bench.'''
                 self.options = [
                     "Go inside the barn",
                     "Head around to the front of the barn",
-                    "Walk over to the Outhouse",
-                    "Walk over to the Well",
+                    "Walk over to the Shed",
                     "Look around the area",
                     "Player Menu"
                 ]
@@ -2600,18 +2539,14 @@ the floor, mixed in with some of the hay, closer to the bench.'''
                         "moveTo": 19
                     },
                     3: {
-                        "do": "You take the path over to the Outhouse.",
-                        "moveTo": 18
+                        "do": "You take the path over to the Shed.",
+                        "moveTo": 16
                     },
                     4: {
-                        "do": "You head toward the Well.",
-                        "moveTo": 15
-                    },
-                    5: {
                         "do": self.description,
                         "examine": "barnBack"
                     },
-                    6: {
+                    5: {
                         "menu": "menu"
                     }
                 }
@@ -2620,8 +2555,7 @@ the floor, mixed in with some of the hay, closer to the bench.'''
                 self.options = [
                     "Go inside the barn",
                     "Head around to the front of the barn",
-                    "Walk over to the Outhouse",
-                    "Walk over to the Well",
+                    "Walk over to the Shed",
                     "Examine the bloodtrail",
                     "Look around the area",
                     "Player Menu"
@@ -2637,14 +2571,10 @@ the floor, mixed in with some of the hay, closer to the bench.'''
                         "moveTo": 19
                     },
                     3: {
-                        "do": "You take the path over to the Outhouse.",
-                        "moveTo": 18
+                        "do": "You take the path over to the Shed.",
+                        "moveTo": 16
                     },
                     4: {
-                        "do": "You head toward the Well.",
-                        "moveTo": 15
-                    },
-                    5: {
                         "do": '''You bend down and take a closer look at the bloodtrail. It's
 dried, but it doesn't seem more than a day old, it's still red.
 You can tell that something - or someone - was dragged from the
@@ -2652,16 +2582,17 @@ barn stable to the north. You also spot tiny footprints in some
 of the blood streaks. Looking in the distance, you see the wall
 of corn at the other end of the property.'''
                     },
-                    6: {
+                    5: {
                         "do": self.description,
                         "examine": "barnBack"
                     },
-                    7: {
+                    6: {
                         "menu": "menu"
                     }
                 }
 
-        elif (self.zoneID == 23):  # barnStable (WIP)
+
+        elif (self.zoneID == 23):  # barnStable
             self.summary = '''The rear side of the barn. From here you can see the Well and Outhouse'''
             self.description = '''Behind the barn, you are standing near the edge of the woods on
 the South end of the property. North of the barn you can see the
@@ -2972,7 +2903,7 @@ able noise.''',
             }
 
 
-        elif (self.zoneID == 26):  # cornfieldTangle (WIP) - Add Goblin stuff
+        elif (self.zoneID == 26):  # cornfieldTangle
             self.summary = '''Inside the cornfield, here, it's getting quite difficult to move.'''
             self.description = '''The corn continues to grow denser, and seems to be growing more
 wild. It's almost as if you are caught in a natural tangle of

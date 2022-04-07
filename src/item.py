@@ -168,7 +168,7 @@ the door if you can, and try to forget this place.'"""
             self.name = "Sword"
             self.value = 5
             self.weapon = True
-            self.damageBonus = 4
+            self.damageBonus = 3
             self.use = "equip"
             self.description = '''A simple shortsword, handmade, but not by any expert. The blade
 is sharp, but crudely assymetrical.'''
@@ -178,11 +178,11 @@ is sharp, but crudely assymetrical.'''
             self.name = "Pitchfork"
             self.value = 2
             self.weapon = True
-            self.damageBonus = 1
+            self.damageBonus = 2
             self.use = "equip"
             self.description = '''A well-used iron pitchfork on a long wooden handle. The wood is
 warn and grimy with age.'''
-            # location: On a hook on a beam in the barnInterior
+            # location: On a hook in the barnInterior
 
         elif(self.itemID == 14):
             self.name = "Liquid Darkness"
@@ -262,7 +262,7 @@ around its edges, it has a peculiar symmertry.'''
             self.name = "Emerald Merkaba Pendant"
             self.magicBonus = 10
             self.value = 50
-            self.statRequired = {"INT": 12}
+            self.statRequired = {"INT": 11}
             self.use = "spell"
             self.spell = '''You twist the double pyramid structure, which seems to interlock
 and shift around itself. The inside glows a bright green, and the
