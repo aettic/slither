@@ -41,8 +41,11 @@ This is a zork-like text-based adventure game. It contains a global status syste
 #### Priority To Do
 - [ ] Finish equipment (equip, unequip, with inventory access, also bare fists)
 - [ ] Fix combat health issue
+- [ ] Fix Spells in book
 - [ ] Fix the cornfield options and flavor text
+- [ ] Make it so having read all three notes reveals the stairs
 - [ ] Reformat all flavor text and results / separate properly from commands
+- [ ] Verify that using amulet reveals the stairs
 - [ ] Write out Cornfield First Time text
   - [ ] cornfieldMaze2 first time text
   - [ ] cornfieldMaze3 first time text
@@ -52,8 +55,6 @@ This is a zork-like text-based adventure game. It contains a global status syste
   - [ ] cornfieldMaze7 first time text
   - [ ] cornfieldMaze8 first time text
   - [ ] cornfieldMaze9 first time text
-  - [ ] cornfieldTangle first time text
-  - [ ] cornfieldThick first time text
 
 #### Extra To Do
 - [ ] Add directions to movement options?
@@ -117,6 +118,8 @@ This is a zork-like text-based adventure game. It contains a global status syste
   - [x] cornfieldEdge first time text
   - [x] cornfieldMazeCenter first time text
   - [x] cornfieldMaze1 first time text
+  - [x] cornfieldTangle first time text
+  - [x] cornfieldThick first time text
 - [x] Write out Barn Zones
 - [x] Write out Cornfield Zones
 - [x] Write out Prairie Zones
