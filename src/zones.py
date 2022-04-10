@@ -2419,98 +2419,251 @@ the floor, mixed in with some of the hay, closer to the bench.'''
 
             if(pc.globalStatus["Match Lit"] == False and pc.globalStatus["Lantern Lit"] == False):
                 pc.globalStatus["Dark"] = True
+                self.description = '''It is too dark to make much out, but hay is scattered about the
+floor, and stacked up along the wall.'''
 
             if(pc.globalStatus["barnLoft examined"] == False):
                 self.options = [
                     "Climb back down the ladder",
-                    "Examine the workbench",
                     "Look around the area",
                     "Player Menu"
                 ]
 
-                self.selection = {
-                    1: {
-                        "do": "You head back outside through the front doors.",
-                        "moveTo": 19
-                    },
-                    2: {
-                        "do": "You take a closer look at the work bench, and you find a (WIP).",
-                        "moveTo": 23
-                    },
-                    4: {
-                        "do": "It is too dark to see.",
-                        "examine": "barnLoft"
-                    },
-                    5: {
-                        "menu": "menu"
-                    }
-                }
-            else:
-                if(pc.globalStatus["Pitchfork taken"] == False):
-                    self.options = [
-                        "Exit the barn doors",
-                        "Explore the stable",
-                        "Climb the ladder",
-                        "Take the Pitchfork",
-                        "Look around the area",
-                        "Player Menu"
-                    ]
-
+                if(pc.globalStatus["Dark"] == True):
                     self.selection = {
                         1: {
-                            "do": "You head back outside through the front doors.",
-                            "moveTo": 19
+                            "do": "You climb back down the ladder.",
+                            "moveTo": 20
                         },
                         2: {
-                            "do": "You walk to the rear of the barn and check out the empty stables.",
-                            "moveTo": 23
+                            "do": "It is too dark to see."
                         },
                         3: {
-                            "do": "You climb the m2etal ladder and enter the hay loft.",
-                            "moveTo": 21
-                        },
-                        4: {
-                            "do": "You lift the pitchfork off its hook, and strap it to your back.",
-                            "takeItem": 13
-                        },
-                        5: {
-                            "do": self.description,
-                            "examine": "barnLoft"
-                        },
-                        6: {
                             "menu": "menu"
                         }
                     }
                 else:
+                    self.selection = {
+                        1: {
+                            "do": "You climb back down the ladder.",
+                            "moveTo": 20
+                        },
+                        2: {
+                            "do": self.description,
+                            "examine": "barnLoft"
+                        },
+                        3: {
+                            "menu": "menu"
+                        }
+                    }
+            else:
+                if(pc.globalStatus["barnLoft Workbench examined"] == False):
                     self.options = [
-                        "Exit the barn doors",
-                        "Explore the stable",
-                        "Climb the ladder",
+                        "Climb back down the ladder",
+                        "Examine the workbench",
                         "Look around the area",
                         "Player Menu"
                     ]
 
-                    self.selection = {
-                        1: {
-                            "do": "You head back outside through the front doors.",
-                            "moveTo": 19
-                        },
-                        2: {
-                            "do": "You walk to the rear of the barn and check out the empty stables.",
-                            "moveTo": 23
-                        },
-                        3: {
-                            "do": "You climb the m2etal ladder and enter the hay loft.",
-                            "moveTo": 21
-                        },
-                        4: {
-                            "do": self.description,
-                            "examine": "barnLoft"
-                        },
-                        5: {
-                            "menu": "menu"
+                    if(pc.globalStatus["Dark"] == True):
+                        self.selection = {
+                            1: {
+                                "do": "You climb back down the ladder.",
+                                "moveTo": 20
+                            },
+                            2: {
+                                "do": '''It's too dark to make out what's on the bench.'''
+                            },
+                            3: {
+                                "do": "It is too dark to see."
+                            },
+                            4: {
+                                "menu": "menu"
+                            }
                         }
-                    }
+                    else:
+                        self.selection = {
+                            1: {
+                                "do": "You climb back down the ladder.",
+                                "moveTo": 20
+                            },
+                            2: {
+                                "do": '''The workbench has a variety of drawings, like schematics, and
+several odds and ends on top and sticking out from underneath it.
+These objects are confounding, but appear to be the makings of
+some kind of machines. There is a small journal on the desk.''',
+                                "examine": "barnLoft Workbench"
+                            },
+                            3: {
+                                "do": self.description,
+                                "examine": "barnLoft"
+                            },
+                            4: {
+                                "menu": "menu"
+                            }
+                        }
+
+                else:
+                    if(pc.globalStatus["barnLoft Workbench Journal examined"] == False):
+                        self.options = [
+                            "Climb back down the ladder",
+                            "Examine the workbench",
+                            "Skim the journal",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+
+                        if(pc.globalStatus["Dark"] == True):
+                            self.selection = {
+                                1: {
+                                    "do": "You climb back down the ladder.",
+                                    "moveTo": 20
+                                },
+                                2: {
+                                    "do": '''It's too dark to make out what's on the bench.'''
+                                },
+                                3: {
+                                    "do": "It's too dark to read the journal."
+                                },
+                                4: {
+                                    "do": "It is too dark to see."
+                                },
+                                5: {
+                                    "menu": "menu"
+                                }
+                            }
+                        else:
+                            self.selection = {
+                                1: {
+                                    "do": "You climb back down the ladder.",
+                                    "moveTo": 20
+                                },
+                                2: {
+                                    "do": '''The workbench has a variety of drawings, like schematics, and
+several odds and ends on top and sticking out from underneath it.
+These objects are confounding, but appear to be the makings of
+some kind of machines. There is a small journal on the desk.''',
+                                    "examine": "barnLoft Workbench"
+                                },
+                                3: {
+                                    "do": '''You pick up the journal and skim its pages. Most of it appears to
+be schematics and notes about creations. It appears to be in
+handwriting different to Alys' own handwriting. More angular, and
+jagged, but with a simple elegance about it. As you flip through,
+a loose page falls out and onto the workbench.''',
+                                    "examine": "barnLoft Workbench Journal"
+                                },
+                                4: {
+                                    "do": self.description,
+                                    "examine": "barnLoft"
+                                },
+                                5: {
+                                    "menu": "menu"
+                                }
+                            }
+                    else:
+                        if(pc.globalStatus["Journal Page taken"] == False):
+                            self.options = [
+                                "Climb back down the ladder",
+                                "Examine the workbench",
+                                "Take the loose page",
+                                "Look around the area",
+                                "Player Menu"
+                            ]
+
+                            if(pc.globalStatus["Dark"] == True):
+                                self.selection = {
+                                    1: {
+                                        "do": "You climb back down the ladder.",
+                                        "moveTo": 20
+                                    },
+                                    2: {
+                                        "do": '''It's too dark to make out what's on the bench.'''
+                                    },
+                                    3: {
+                                        "do": "You pick up the page and slip it in with your things.",
+                                        "takeItem": 23
+                                    },
+                                    4: {
+                                        "do": "It is too dark to see."
+                                    },
+                                    5: {
+                                        "menu": "menu"
+                                    }
+                                }
+                            else:
+                                self.selection = {
+                                    1: {
+                                        "do": "You climb back down the ladder.",
+                                        "moveTo": 20
+                                    },
+                                    2: {
+                                        "do": '''The workbench has a variety of drawings, like schematics, and
+several odds and ends on top and sticking out from underneath it.
+These objects are confounding, but appear to be the makings of
+some kind of machines. There is a small journal on the desk.''',
+                                        "examine": "barnLoft Workbench"
+                                    },
+                                    3: {
+                                        "do": "You pick up the page and slip it in with your things.",
+                                        "takeItem": 23
+                                    },
+                                    4: {
+                                        "do": self.description,
+                                        "examine": "barnLoft"
+                                    },
+                                    5: {
+                                        "menu": "menu"
+                                    }
+                                }
+                        else:
+                            self.options = [
+                                "Climb back down the ladder",
+                                "Examine the workbench",
+                                "Look around the area",
+                                "Player Menu"
+                            ]
+
+                            if(pc.globalStatus["Dark"] == True):
+                                self.selection = {
+                                    1: {
+                                        "do": "You climb back down the ladder.",
+                                        "moveTo": 20
+                                    },
+                                    2: {
+                                        "do": '''It's too dark to make out what's on the bench.'''
+                                    },
+                                    3: {
+                                        "do": "It is too dark to see.",
+                                        "examine": "barnLoft"
+                                    },
+                                    4: {
+                                        "menu": "menu"
+                                    }
+                                }
+                            else:
+                                self.selection = {
+                                    1: {
+                                        "do": "You climb back down the ladder.",
+                                        "moveTo": 20
+                                    },
+                                    2: {
+                                        "do": '''The workbench has a variety of drawings, like schematics, and
+several odds and ends on top and sticking out from underneath it.
+These objects are confounding, but appear to be the makings of
+some kind of machines. There is a small journal on the desk.''',
+                                        "examine": "barnLoft Workbench"
+                                    },
+                                    3: {
+                                        "do": self.description,
+                                        "examine": "barnLoft"
+                                    },
+                                    4: {
+                                        "menu": "menu"
+                                    }
+                                }
+
+
 
 
         elif (self.zoneID == 22):  # barnBack

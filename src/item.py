@@ -15,6 +15,7 @@ class Item:
         if(self.itemID == 0):
             self.name = "Note from Alys"
             self.value = 0
+            self.use = "read"
             self.description = '''A small note from your friend pleading for you to visit her at
 her farm. She seemed desparate, which is not like Alys. But she
 also seemed excited, as if she was on the verge of a great discovery.'''
@@ -33,7 +34,7 @@ May the stars shine down upon your nights, my friend.
 
         elif(self.itemID == 1):
             self.name = "Fancy Hat"
-            self.value = 5
+            self.value = 3
             self.description = '''A small decorative hat, too small to wear. It is finely crafted
 of black silk with green embroidery.'''
             # location: On the dirt road, hidden in a ditch
@@ -270,8 +271,18 @@ whole surface sparkles brilliantly. It becomes hot, and you feel
 almost as if it is on fire, you can see sparks eminating from it
 like starlight. You feel as though it has revealed something
 hidden. You also feel invigorated.'''
-            self.description = '''A green Merkaba shaped pendant, about an inch and a half wide. The shape is a pair of pyramids, intersected, creating one three-dimensional star shape, with peculiar symmetry.'''
+            self.description = '''A green Merkaba shaped pendant, about an inch and a half wide.
+The shape is a pair of pyramids, intersected, creating one three-
+dimensional star shape, with peculiar symmetry.'''
             # location: created by combining 3 and 20. Requires 12 Int to combine, and use.
+
+        elif(self.itemID == 23):
+            self.name = "Journal Page"
+            self.value = 1
+            self.description = '''A narrow loose page of parchment from Dareth's journal. It is
+covered with strange diagrams making up what seems to be inter-
+connected circuitry of some sort. It looks incomplete.'''
+            # location: The workbench in the barnLoftd
 
         elif(self.itemID == 99):
             self.name = "Knife"

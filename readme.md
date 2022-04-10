@@ -39,11 +39,10 @@ This is a zork-like text-based adventure game. It contains a global status syste
 ## Development Progress
 
 #### Priority To Do
-- [ ] Finish equipment (equip, unequip, with inventory access, also bare fists)
-- [ ] Fix combat health issue
-- [ ] Fix Spells in book
+- [ ] Design the rest of the journal page ink puzzle (something about finishing a diagram, or writing something on the page?)
 - [ ] Fix the cornfield options and flavor text
 - [ ] Make it so having read all three notes reveals the stairs
+- [ ] Make the matches expendable, so you only have one.
 - [ ] Reformat all flavor text and results / separate properly from commands
 - [ ] Verify that using amulet reveals the stairs
 - [ ] Write out Cornfield First Time text
@@ -89,9 +88,13 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [x] Design paths for each of three mazes
 - [x] Design spell(s) for Spellbook
 - [x] Finish combat options
+- [x] Finish equipment (equip, unequip, with inventory access, also bare fists)
 - [x] Finish Jar Bomb spell effects for damage
 - [x] Finish Jar Bomb spell effects for environment puzzle
 - [x] Fix closet entrance from Master bedroom
+- [x] Fix combat health issue (scaling and balance)
+- [x] Fix Spells in book
+- [x] Fix the barnLoft
 - [x] Fix the cellar's descriptions
 - [x] Fix the lighting problem in the Study (if matches / lantern lit: dark is True)
 - [x] Fix the options for consistency in farmhouseStudy and farmhouseCloset2

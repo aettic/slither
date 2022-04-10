@@ -35,6 +35,8 @@ def doSomething(pc):
 
     while(currentZoneID == pc.zoneID):
 
+        input("\n\t# ENTER TO CONTINUE #")
+
         pc.zone = Zone(currentZoneID, pc)
 
         if (pc.isAlive == False):
@@ -221,7 +223,6 @@ the quaint farmstead that lies before you.\n''')
 into the air leaving a stream of beige behind the team of
 horses and their dark wagon as the driver leaves you here
 alone. It is quiet.\n''')
-                input("\t# ENTER TO CONTINUE #")
 
             else:
                 print("\nThe road still lies barren and empty. The dust has settled.")
@@ -373,7 +374,7 @@ and feathers - probably used for stuffing.''')
                 print('''A wooden doubledoor rests over the cellar stairs, at a slight
 angle, foretelling the imminent descent.''')
             else:
-                if(pc.globalStatus["prairieWell first time"] == False):
+                if(pc.globalStatus["prairieWell first time"] == False and pc.globalStatus["Stealthy"] == False):
                     combatChance = random.randint(1, 100)
                     if(combatChance >= 65 and combatChance < 80):
                         beast = Creature("Beast")
@@ -420,7 +421,7 @@ better see the buildings you saw earlier: A shed, an outhouse, a
 well not too far away, and a great big barn. There is a garden
 nearby as well.''')
             else:
-                if(pc.globalStatus["prairieWell first time"] == False):
+                if(pc.globalStatus["prairieWell first time"] == False and pc.globalStatus["Stealthy"] == False):
                     combatChance = random.randint(1, 100)
                     if(combatChance >= 65 and combatChance < 80):
                         beast = Creature("Beast")
@@ -454,7 +455,7 @@ be a Goblin. You've heard a lot about these, but never seen one.''')
 
         elif(pc.zone.zoneID == 16):
             print("\n\t# SHED #")
-            if (pc.globalStatus["prairieShedExterior first time"] == True):
+            if (pc.globalStatus["prairieShedExterior first time"] == True and pc.globalStatus["Stealthy"] == False):
                 print('''This sagging shack feels as if it might collapse at any moment,
 yet it stands firm against the soft wind. You imagine you can
 hear its creaking bones. The door is held fast with a large lock.''')
@@ -489,7 +490,7 @@ used for hauling vegetables to and fro.''')
 overwhelming. This thin wooden building has a crescent moon cut
 out of the door to let light in when it's closed.''')
             else:
-                if(pc.globalStatus["prairieWell first time"] == False):
+                if(pc.globalStatus["prairieWell first time"] == False and pc.globalStatus["Stealthy"] == False):
                     combatChance = random.randint(1, 100)
                     if(combatChance >= 65 and combatChance < 80):
                         beast = Creature("Beast")
@@ -515,7 +516,7 @@ large double doors are painted tan, like the front foor of the
 farmstead. There are simple windows on either side of the door.
 One of the doors is open, and it is quiet inside.''')
             else:
-                if(pc.globalStatus["prairieWell first time"] == False):
+                if(pc.globalStatus["prairieWell first time"] == False and pc.globalStatus["Stealthy"] == False):
                     combatChance = random.randint(1, 100)
                     if(combatChance >= 65 and combatChance < 90):
                         beast = Creature("Beast")
@@ -581,7 +582,7 @@ There are hooks for leads, and there are saddles hung on the
 wall. Clearly nobody rode the horses out of here, unless they
 rode bareback.''')
             else:
-                if(pc.globalStatus["prairieWell first time"] == False):
+                if(pc.globalStatus["prairieWell first time"] == False and pc.globalStatus["Stealthy"] == False):
                     combatChance = random.randint(1, 100)
                     if(combatChance >= 65 and combatChance < 90):
                         beast = Creature("Beast")
@@ -1544,6 +1545,7 @@ Any remaining points might be useful... later on...''')
         "Hidden Note 1 taken": False,
         "Hidden Note 2 taken": False,
         "Hidden Note 3 taken": False,
+        "Journal Page taken": False,
         "Lantern taken": False,
         "Letter from Alys taken": False,
         "Liquid Darkness taken": False,
@@ -1558,6 +1560,8 @@ Any remaining points might be useful... later on...''')
         "barnFront examined": False,
         "barnInterior examined": False,
         "barnLoft examined": False,
+        "barnLoft Workbench examined": False,
+        "barnLoft Workbench Journal examined": False,
         "barnBack examined": False,
         "barnStable examined": False,
         "barnStable stall3 examined": False,
@@ -1617,7 +1621,7 @@ Any remaining points might be useful... later on...''')
         "Darkvision": False,
         "Lantern Lit": False,
         "Match Lit": False,
-        "Stelthy": False,
+        "Stealthy": False,
 
         # environment effects
         "Dark": False,

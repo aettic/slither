@@ -51,7 +51,12 @@ class Player:
 
 
     def takeDamage(self, damage):
-        self.currentHP -= (damage - self.defense)
+        if(damage - self.defense <= 0):
+            print("You take no damage.")
+        elif(damage - self.defense > 0):
+            self.currentHP -= (damage - self.defense)
+            print(f"You take {damage - self.defense} damage.")
+
         if(self.currentHP <= 0):
             self.isAlive = False
             print("You have perished.\n\n\t # GAME OVER #")
@@ -112,14 +117,12 @@ class Player:
 
     def castSpell(self, item):
         if(item.itemID == 4):  # Spellbook
-            self.magic += item.magicBonus
-            self.globalStatus["Damage Enchanted"] = True
             print("\n\t# CHOOSE A SPELL #")
             print("1: Astral Crown")
             print("2: Miraculous Recovery")
             print("3: Subtle Steps")
             choice = input("> ")
-            if(choice == 1):
+            if(int(choice) == 1):
                 if(self.magic >= item.spell["Astral Crown"]["magic"]):
                     print(item.spell["Astral Crown"]["description"])
                     self.damage += item.spell["Astral Crown"]["effect"]
@@ -127,14 +130,14 @@ class Player:
                     self.magic -= 1
                 else:
                     print("You attempt to cast the spell, but nothing happens.")
-            elif(choice == 2):
+            elif(int(choice) == 2):
                 if(self.magic >= item.spell["Miraculous Recovery"]["magic"]):
                     print(item.spell["Miraculous Recovery"]["description"])
                     self.currentHP += item.spell["Miraculous Recovery"]["effect"]
                     self.magic -= 1
                 else:
                     print("You attempt to cast the spell, but nothing happens.")
-            elif(choice == 3):
+            elif(int(choice) == 3):
                 if(self.magic >= item.spell["Subtle Steps"]["magic"]):
                     print(item.spell["Subtle Steps"]["description"])
                     self.globalStatus["Stealthy"] = item.spell["Subtle Steps"]["effect"]
