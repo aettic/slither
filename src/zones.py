@@ -339,8 +339,8 @@ two pairs of muddy boots. One pair looks like it could fit you.'''
                             "moveTo": 4
                         },
                         3: {
-                            "do": '''You grab the boots and put them on, dried mud is crusted on the
-sides, but they're comfortable.''',
+                            "do": '''You grab the boots, dried mud is crusted on the
+sides, but they look comfortable.''',
                             "takeItem": 2
                         },
                         4: {
@@ -376,8 +376,8 @@ trinket in the shape of a hexagon.''',
                                 "moveTo": 4
                             },
                             3: {
-                                "do": '''You grab the boots and put them on, dried mud is crusted on the
-sides, but they're comfortable.''',
+                                "do": '''You grab the boots, dried mud is crusted on the
+sides, but they look comfortable.''',
                                 "takeItem": 2
                             },
                             4: {
@@ -412,8 +412,8 @@ silver chain. You put it in your pack.''',
                                 "moveTo": 4
                             },
                             3: {
-                                "do": '''You grab the boots and put them on, dried mud is crusted on the
-sides, but they're comfortable.''',
+                                "do": '''You grab the boots, dried mud is crusted on the
+sides, but they look comfortable.''',
                                 "takeItem": 2
                             },
                             4: {
@@ -2408,17 +2408,20 @@ empty. Even the hen house is silent.'''
 
 
         elif (self.zoneID == 21):  # barnLoft
-            self.summary = '''This loft is quite dark without a light, and there are no windows...'''
+            self.summary = '''This loft is small, and somewhat cramped with a low angled
+ceiling. There is a workbench on one side, and the floor is
+littered with hay, which also lies in stacks near the wall.'''
             self.description = '''The cozy loft is full up with hay, stacked in piles, but it is
 also home to a small workshop bench, and some minor crafts tools.
 It appears that someone used this spot to build things, and work
 on honing their craft skills. Leather and bits of metal litter
 the floor, mixed in with some of the hay, closer to the bench.'''
             self.items.clear()
-            self.items = [13]
+            self.items = [23]
 
             if(pc.globalStatus["Match Lit"] == False and pc.globalStatus["Lantern Lit"] == False):
                 pc.globalStatus["Dark"] = True
+                self.summary = "This loft is quite dark without a light, and there are no windows..."
                 self.description = '''It is too dark to make much out, but hay is scattered about the
 floor, and stacked up along the wall.'''
 
@@ -3862,34 +3865,74 @@ enough to move through unhindered.'''
             }
 
         elif (self.zoneID == 48):  # cornfieldMazeCenter
-            self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.summary = '''The center of the maze.'''
             self.items.clear()
 
-            self.options = [
-                "Return to the Maze",
-                "Descend the Stairs"
-                "Look around the area",
-                "Player Menu"
-            ]
+            if(pc.globalStatus["Staircase Visible"]):
+                self.description = '''An open clearing that appears to be pressed down in a large
+circle, flattened to the ground. At the center of this clearing
+is a stone staircase descending into the ground.'''
+                self.options = [
+                    "Return to the Maze",
+                    "Descend the Stairs",
+                    "Look around the area",
+                    "Player Menu"
+                ]
 
-            self.selection = {
-                1: {
-                    "do": "You head back to the maze.",  # NORTH
-                    "moveTo": 35
-                },
-                2: {
-                    "do": '''You begin the descent down the stone steps.''',  # WEST
-                    "moveTo": 49
-                },
-                3: {
-                    "do": self.description,
-                    "examine": "cornfieldMazeStart"
-                },
-                4: {
-                    "menu": "menu"
+                self.selection = {
+                    1: {
+                        "do": "You head back to the maze.",  # EAST
+                        "moveTo": 35
+                    },
+                    2: {
+                        "do": '''You begin the descent down the stone steps.''',  # DOWN
+                        "moveTo": 49
+                    },
+                    3: {
+                        "do": self.description,
+                        "examine": "cornfieldMazeStart"
+                    },
+                    4: {
+                        "menu": "menu"
+                    }
                 }
-            }
+            else:
+                self.description = '''An open clearing that appears to be pressed down in a large
+    circle, flattened to the ground.'''
+                self.options = [
+                    "North",
+                    "West",
+                    "East",
+                    "South",
+                    "Look around the area",
+                    "Player Menu"
+                ]
+
+                self.selection = {
+                    1: {
+                        "do": "You walk North.",  # NORTH
+                        "moveTo": 37
+                    },
+                    2: {
+                        "do": '''You walk West.''',  # WEST
+                        "moveTo": 34
+                    },
+                    3: {
+                        "do": '''You walk East.''',  # EAST
+                        "moveTo": 35
+                    },
+                    4: {
+                        "do": "You walk South.",  # SOUTH
+                        "moveTo": 32
+                    },
+                    5: {
+                        "do": self.description,
+                        "examine": "cornfieldMazeStart"
+                    },
+                    6: {
+                        "menu": "menu"
+                    }
+                }
 
 
         elif(self.zoneID == 49):

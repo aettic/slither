@@ -189,6 +189,27 @@ nostrils...''')
             self.magic += item.magicBonus
             self.globalStatus["Staircase Visible"] = True
             print(item.spell)
+        elif(item.itemID == 24):
+            print(item.spell)
+            if(self.zoneID == 48):
+                print("The page seems to be drawn downward toward the ground.")
+            elif(self.zoneID == 35 or self.zoneID == 45):
+                print("The page is pulling to the West.")
+            elif(self.zoneID == 34 or self.zoneID == 44):
+                print("The page is pulling to the East.")
+            elif(self.zoneID == 37 or self.zoneID == 40):
+                print("The page is pulling to the South.")
+            elif(any([self.zoneID == 36, self.zoneID == 39, self.zoneID == 42])):
+                print("The page is pulling to the South-East.")
+            elif(any([self.zoneID == 38, self.zoneID == 41, self.zoneID == 43])):
+                print("The page is pulling to the South-West.")
+            elif(any([self.zoneID == 29, self.zoneID == 31, self.zoneID == 46])):
+                print("The page is pulling to the North-East.")
+            elif(any([self.zoneID == 30, self.zoneID == 33, self.zoneID == 47])):
+                print("The page is pulling to the North-West.")
+            else:
+                print("The page is pulling to the North.")
+
 
 
         else:
@@ -260,6 +281,19 @@ seem to become a single, solid crystal.''')
                 self.inventory.append(22)
             else:
                 print("You do not have enough to make this item useful. Keep looking.")
+        elif(item.itemID == 6 or item.itemID == 23):
+            if (combineCount == 1):
+                print('''You unscrew the cap on the bottle of ink, and spill it all
+over the loose journal page. The ink seeps in, covering the page in darkness, but
+does not touch certain areas defined by the unfinished parts of the designs on the
+page. In this unblemished spot, a thirteen pointed star forms. Something feels odd
+about this page's weight now.''')
+                self.inventory.pop(self.inventory.index(6))
+                self.inventory.pop(self.inventory.index(23))
+                self.inventory.append(24)
+                self.globalStatus["Staircase Visible"] = True
+            else:
+                print("You do not have enough to make this item useful. Keep looking.")
         else:
             print("WIP")
 
@@ -328,7 +362,7 @@ seem to become a single, solid crystal.''')
             print("\n\t# GAME SAVED #")
             self.saveState()
         elif (int(choice) == 5):
-            print(f'\033[{random.choice([31, 32, 33, 34, 35, 36, 37, 38, 39])}m' + """\n\n
+            print(f'\033[{random.choice([37])}m' + """\n\n
            ..|'''.|                      '|| '||
           .|'     '    ...     ...     .. ||  || ...  .... ...  ....
           ||    .... .|  '|. .|  '|. .'  '||  ||'  ||  '|.  | .|...||

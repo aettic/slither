@@ -105,6 +105,8 @@ the other. Could be worth something.'''
         elif(self.itemID == 6):
             self.name = "Bottle of Ink"
             self.value = 1
+            self.use = "combine"
+            self.combine = [23]
             self.description = '''A small, bulbous bottle of black ink, undoubtedly used for
 writing with a quill pen.'''
             # location: The Study, upstairs, on the desk.
@@ -279,10 +281,25 @@ dimensional star shape, with peculiar symmetry.'''
         elif(self.itemID == 23):
             self.name = "Journal Page"
             self.value = 1
+            self.use = "combine"
+            self.combine = [6]
             self.description = '''A narrow loose page of parchment from Dareth's journal. It is
-covered with strange diagrams making up what seems to be inter-
-connected circuitry of some sort. It looks incomplete.'''
+covered with peculiar markings in a language you cannot read,
+with some kind of unfinished symbols, but underneath is written
+in plain words: "Only in darkness do the stars light the way."'''
             # location: The workbench in the barnLoftd
+
+        elif(self.itemID == 24):
+            self.name = "Stained Journal Page"
+            self.value = 1
+            self.use = "spell"
+            self.statRequired = {"INT": 9}
+            self.spell = '''You hold the page up, and can feel it almost guiding you.'''
+            self.description = '''The page of the journal is now stained with black ink, except for
+a star in the center. The page almost seems to be affected by a
+different direction of gravity: one that appears to almost pull
+you to the North.'''
+            # location: combined from journal page and bottle of ink
 
         elif(self.itemID == 99):
             self.name = "Knife"
