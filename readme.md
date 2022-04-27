@@ -2,6 +2,7 @@
 *A Game Manual*
 
 ### Table of Contents
+- Downloading the Game
 - Starting the game
 - Playing the game
 - Saving, continuing, and death
@@ -11,6 +12,9 @@
 ### QUICK NOTE
 This game comes with all of the source code, as well as the "README.md" which is designed as a development tracker and provides technical information on the game. It *also* contains many spoilers, so please do not read it until after you have played the game. This README manual aims to provide any information that should be needed.
 
+---
+### Downloading the Game
+From GitHub, you can select Code > Download Zip.
 
 ---
 ### Starting the Game
