@@ -19,14 +19,18 @@ class Item:
             self.description = '''A small note from your friend pleading for you to visit her at
 her farm. She seemed desparate, which is not like Alys. But she
 also seemed excited, as if she was on the verge of a great discovery.'''
-            self.read = '''My dearest friend,
+            self.read = '''\nMy Dearest friend,
+
 Things have been rather strange as of late. Peculiar, but also
 intriguing. My studies have kept me on my toes, especially with
 the evolving circumstances and consequences. I have opened some-
 thing... What it is, I'm not sure. But it is open, and I suspect
-that I am unable to close it again. It is so exciting! I know I
-must probe deeper, past the boundaries, and into this mysterious
-world I have discovered.
+that I am unable to close it again...
+
+It is so exciting! I know I must probe deeper, past the boundar-
+ies, and into this mysterious world I have discovered. Come, out
+here to the farm, please, you must see this wild magic yourself!
+
 May the stars shine down upon your nights, my friend.
 
                                             - Alys Astraniela'''

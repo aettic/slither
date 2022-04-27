@@ -40,7 +40,7 @@ This is a zork-like text-based adventure game. It contains a global status syste
 ## Development Progress
 
 #### Priority To Do
-DONE
+- [ ] Create alt descriptions for each status in zones
 
 #### Extra To Do
 - [ ] Add directions to movement options?

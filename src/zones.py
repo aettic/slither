@@ -229,6 +229,11 @@ There is a glass jar with lid sitting upright on the table.'''
                 }
             else:
                 if(pc.globalStatus["Glass Jar taken"] == False):
+                    self.description = '''Only the dim evening light spills in from the windows on the West
+side of the wall. It appears that this place was left in
+a hurry. The tell-tale signs of a struggle can be seen about the
+room. There are unlit candles on the table and around the room.
+There is a glass jar with lid sitting upright on the table.'''
                     self.options = [
                         "Into the sitting room",
                         "Open the closet",
@@ -312,14 +317,14 @@ You can see the footprints came from the sitting room.'''
         elif (self.zoneID == 3):  # farmhouseCloset1
             self.summary = '''A dusty front closet, muddy boots on the ground, a couple thick
 coats, and some overalls.'''
-            self.description = '''A wooden dowel supports a handful of coats, a pair of hide
-overalls, and a nice shawl tucked behind the rest of the clothes.
-There is a shelf, upon which rests a small box. On the floor are
-two pairs of muddy boots. One pair looks like it could fit you.'''
             self.items.clear()
             self.items = [2, 3]
 
             if(pc.globalStatus["Muddy Boots taken"] == False):
+                self.description = '''A wooden dowel supports a handful of coats, a pair of hide
+overalls, and a nice shawl tucked behind the rest of the clothes.
+There is a shelf, upon which rests a small box. On the floor are
+two pairs of muddy boots. One pair looks like it could fit you.'''
                 if(pc.globalStatus["farmhouseCloset1 Box examined"] == False):
                     self.options = [
                         "Head back to the kitchen",
@@ -344,8 +349,8 @@ sides, but they look comfortable.''',
                             "takeItem": 2
                         },
                         4: {
-                            "do": '''You pull the box down and open it up, inside is a small crystal
-trinket in the shape of a hexagon.''',
+                            "do": '''You pull the box down and open it up, inside is a small emerald
+trinket in the shape of a pyramid.''',
                             "examine": "farmhouseCloset1 Box"
                         },
                         5: {
@@ -426,6 +431,10 @@ sides, but they look comfortable.''',
 
 
             elif(pc.globalStatus["Muddy Boots taken"] == True):
+                self.description = '''A wooden dowel supports a handful of coats, a pair of hide
+overalls, and a nice shawl tucked behind the rest of the clothes.
+There is a shelf, upon which rests a small box. On the floor are
+is one pair of boots, the pair which would not fit you.'''
                 if(pc.globalStatus["farmhouseCloset1 Box examined"] == False):
                     self.options = [
                         "Head back to the kitchen",
@@ -445,8 +454,8 @@ sides, but they look comfortable.''',
                             "moveTo": 4
                         },
                         3: {
-                            "do": '''You pull the box down and open it up, inside is a small crystal
-trinket in the shape of a hexagon.''',
+                            "do": '''You pull the box down and open it up, inside is a small emerald
+trinket in the shape of a pyramid.''',
                             "examine": "farmhouseCloset1 Box"
                         },
                         4: {
@@ -593,7 +602,7 @@ which runs the height of the house, from ground to roof. The
 stairs creak gently. The back wall is decorated with a handful
 of portraits: A beautiful woman you know to be Alys, a young
 man who must be her son, and another man who you remember as
-her late husband. A crest of the Astranos family featuring
+her late husband. A crest of the Astraniela family featuring
 thirteen stars around a circular labyrinth design with a heart
 at the center.'''
             self.items.clear()
@@ -718,6 +727,10 @@ looking book with a gem set in the cover.''',
                         }
                     }
                 elif(pc.globalStatus["farmhouseHallway Chest examined"] == True):
+                    self.description = '''This hallway is quite plain, with two doors on either side and a
+large open chest at the far end, resting beneath a stained glass
+window depicting a scene of meteors gliding downward at an angle,
+fiery tails trailing behind.'''
                     if(pc.globalStatus["Spellbook taken"] == False):
                         self.options = [
                             "Back to the stairs",
@@ -765,6 +778,10 @@ things.''',
                             }
                         }
                     elif(pc.globalStatus["Spellbook taken"] == True):
+                        self.description = '''This hallway is quite plain, with two doors on either side and a
+large empty chest at the far end, resting beneath a stained glass
+window depicting a scene of meteors gliding downward at an angle,
+fiery tails trailing behind.'''
                         self.options = [
                             "Back to the stairs",
                             "First door on the left",
@@ -860,6 +877,8 @@ near the top, is a box of matches.'''
                         }
                     }
                 else:
+                    self.description = '''This closet is full of linens, shirts and trousers, and some
+extra blankets Nothing terrible interesting.'''
                     self.options = [
                         "Close the closet door",
                         "Look around the area",
@@ -1050,6 +1069,13 @@ it could be removed.'''
                         }
                     }
                 else:
+                    self.description = '''This bedroom is smaller than the one across the hall, and seems
+like it might belong to Alys' son, Dareth. The walls are covered
+in pages of parchment, each with different unique drawings made
+in what appear to be charcoal in some cases, and ink in others.
+The back wall is one large mural, drawn across a grid of pages
+that covers the entire wall, including behind the bed. Above the
+bed is a plaque mounted to the wall, which once held a sword.'''
                     self.options = [
                         "Exit the bedroom",
                         "Open the closet door",
@@ -1180,6 +1206,13 @@ making sure it's closed..''',
                             }
                         }
                     else:
+                        self.description = '''This cramped space seems well-used. A wide, but shallow desk
+abuts the wooden wall, and the room is dimly lit by the evening
+sky through a thin window above the desk. Two unlit candles in
+sconces flank the door on either side. Writing materials sit on
+the desk. You can also see that notes are scattered about. Each
+contains formulae, sketches, and hastily written theories and
+worries.'''
                         self.options = [
                             "Return to the Bedroom",
                             "Exit to the hallway",
@@ -1278,8 +1311,9 @@ making sure it's closed..''',
             self.summary = '''This small storage room seems to contain a variety of items useful
 around the house.'''
             self.description = '''Inside this storage room are bags of hay and feathers, likely
-used for stuffing; extra pillows; sheets; a small wooden box containing some personal belongings
-which likely belong to Alys' son, Dareth. There is an ITEM in the box.'''
+used for stuffing; extra pillows; sheets; a small wooden box
+containing some personal belongings. There is a folded note in
+the box, amidst other odds and ends.'''
             self.items.clear()
             self.items = [9]
 
@@ -1330,6 +1364,10 @@ which likely belong to Alys' son, Dareth. There is an ITEM in the box.'''
                         }
                     }
                 else:
+                    self.description = '''Inside this storage room are bags of hay and feathers, likely
+used for stuffing; extra pillows; sheets; a small wooden box
+containing some personal belongings. The box contains old pic-
+tures, trinkets, and other odds and ends.'''
                     self.options = [
                         "Close the door",
                         "Look around the area",
@@ -1430,6 +1468,10 @@ into the darkened cellar.''',
                         }
                     }
                 else:
+                    self.description = '''Heavy looking wooden doors stand resolute, shut tight
+over the entrance to the cellar. The wooden doors are carved with
+a large symbol, circular, with interconnected knots, and thirteen
+stars sround the edge. In the center is an ornate labyrinth.'''
                     self.options = [
                         "Open the doors and descend",
                         "Head back to the prairie",
@@ -1641,7 +1683,11 @@ nearby are an outhouse, a shed, and a well. To the north is the
 dense cornfield.'''
             self.description = '''The garden contains a variety of produce, as well as autumn
 flowers and a handful of decorative gourds growing, ready for
-harvest soon.'''
+harvest soon. Standing resolute in the center of the crops is
+a looming scarecrow - nearly 8 feet tall on its wooden cross,
+arms outstretched, and hands hanging like claws. Its face is a
+burlap sack taught over some small ovoid shape, giving an uncanny
+likeness to a human head; its face stares blankly at the barn.'''
             self.items.clear()
             self.items = [5]
 
@@ -1792,9 +1838,10 @@ harvest soon.'''
             self.summary = '''In the midst of the open field is a medium sized well made of stone, with a tented roof and strong wooden frame.'''
             self.description = '''This well sits not too far from the house, in the open field of
 the praririe. From here, you can see the back of the Barn, the
-Shed, the Outhouse, and the garden. The well itself looks
-handmade. There is a rope pulley system attached to the roofing,
-clearly for hoisting and lowering a bucket for water.'''
+Shed, the Outhouse, and the garden, including its stalwart scare-
+crow. The well itself looks handmade. There is a rope pulley
+system attached to the roofing, clearly for hoisting and lowering
+a bucket for water.'''
             self.items.clear()
             self.items = [20]
 
@@ -2066,7 +2113,7 @@ to be locked, but the swings on the handle, not open.'''
 
         elif (self.zoneID == 17):  # prairieShedInterior
             self.summary = '''Inside the shed, there are a handful of tools, and boxes.'''
-            self.description = '''The dimly lit interior of this shed is crowded with items Some
+            self.description = '''The dimly lit interior of this shed is crowded with items: Some
 yard tools including hoes, rakes, saws, poles, and other strange
 implements you've never seen. On the floor is a stack of wide,
 flat wooden boxes, which seem sturdy, probably used to haul
@@ -2406,6 +2453,9 @@ into a nook in the wall you find a small folded note.'''
                         }
                     }
                 else:
+                    self.description = '''The paint has started to peel in places, but still seems fairly
+fresh over the door. The walls themselves are untreated, and raw,
+remeniscent of the trees at the edges of the property.'''
                     self.options = [
                         "Head back to the Gardens",
                         "Walk into the open barn",
@@ -2443,7 +2493,7 @@ are some stables in the back, and exits in the front and rear.'''
             self.description = '''The dense smell of animal fur and waste hangs tightly to
 the air, though no animals are to be found. A pitchfork rests on
 a hook on one of the middle support pillars, its wrought iron the
-product of a local forge. Hay clings to its forks, and is litters
+product of a local forge. Hay clings to its forks, and litters
 the ground on all sides of the barn. The pens and styes are
 empty. Even the hen house is silent.'''
             self.items.clear()
@@ -2516,6 +2566,10 @@ empty. Even the hen house is silent.'''
                         }
                     }
                 else:
+                    self.description = '''The dense smell of animal fur and waste hangs tightly to
+the air, though no animals are to be found. An empty hook used to
+hold a pitchfork. Hay litters the ground on all sides of the
+barn. The pens and styes are empty. Even the hen house is silent.'''
                     self.options = [
                         "Exit the barn doors",
                         "Explore the stable",
@@ -2554,7 +2608,7 @@ littered with hay, which also lies in stacks near the wall.'''
             self.description = '''The cozy loft is full up with hay, stacked in piles, but it is
 also home to a small workshop bench, and some minor crafts tools.
 It appears that someone used this spot to build things, and work
-on honing their craft skills. Leather and bits of metal litter
+on honing their craft skills. Leather and bits of metal cover
 the floor, mixed in with some of the hay, closer to the bench.'''
             self.items.clear()
             self.items = [23]
@@ -2889,11 +2943,11 @@ of corn at the other end of the property.'''
 
 
         elif (self.zoneID == 23):  # barnStable
-            self.summary = '''The rear side of the barn. From here you can see the Well and Outhouse'''
-            self.description = '''Behind the barn, you are standing near the edge of the woods on
-the South end of the property. North of the barn you can see the
-rest of the property. On the ground, you see a trail of blood
-from the stable.'''
+            self.summary = '''The back end of the barn, a set of four stables with closed doors.'''
+            self.description = '''There are four stables, two on either side, with doors that look
+handmade, and painted a dull white. Each door is latched, but not
+locked. Behind the stables you see signs of horses having lived
+here, but there are no horses to be found.'''
             self.items.clear()
             self.items = [21]
 
