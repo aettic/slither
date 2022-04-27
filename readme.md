@@ -14,10 +14,15 @@ This game comes with all of the source code, as well as the "README.md" which is
 
 ---
 ### Starting the Game
-This game is a python script, which means right now it must be run in a Terminal or Command prompt, on a machine running Python3. Extract the zip folder to some location, and the change directory into that location in your Terminal. Then run this command:  
+This game is a python script, which means right now it must be run in a Terminal or Command prompt, on a machine running Python3. Extract the zip folder to some location, and then change directory into that location in your Terminal. Then run this command:  
 `python3 src/main.py`
 
+
+You must have python3 installed on your system first.
+
 This should start the game inside your Terminal window. If there is something wrong, you may experience a Python interpreter execution error, and the game will not start. If this happens, please take note of the error and contact me. (See the final section in this manual).
+
+If the text seems to wrap poorly and cuts off words, try increasing the width of your terminal window.
 
 ---
 ### Playing the Game

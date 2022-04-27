@@ -349,6 +349,7 @@ about this page's weight now.''')
 
 
     def viewStats(self):
+        print(self.name)
         print(f"\n\t# STATS #\nHP: {self.currentHP} / {self.maxHP}")
         for stat in self.stats:
             print(f"{stat}: {self.stats[stat]}")

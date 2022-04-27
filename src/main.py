@@ -20,7 +20,7 @@ def printTitle():
 ██ ▄▄▄ █ ███▄██▄ ▄█ ████ ▄▄█ ▄▄▀████ ▄▄▄█ ▄▄▀█ ▄▄▄██▄██ ▄▄▀█ ▄▄██
 ██▄▄▄▀▀█ ███ ▄██ ██ ▄▄ █ ▄▄█ ▀▀▄████ ▄▄▄█ ██ █ █▄▀██ ▄█ ██ █ ▄▄██
 ██ ▀▀▀ █▄▄█▄▄▄██▄██▄██▄█▄▄▄█▄█▄▄████ ▀▀▀█▄██▄█▄▄▄▄█▄▄▄█▄██▄█▄▄▄██
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ v0.1.10 ▀▀▀
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ v1.0.0 ▀▀▀▀
 
    db     888888  888888  88""Yb  Yb  dY  88b 88   dP"Yb   .dP"Y8
   dPYb    88__      88    88__dP   YbdY   88Yb88  dY   Yb  `Ybo.
@@ -1709,9 +1709,13 @@ if __name__ == "__main__":
     # Start menu for selecting gameStart option (new / continue)
     startOption = gameStart()
     if(startOption == "CONTINUE"):
-        with open("src/saves/gameSave.json", encoding="utf-8") as file:
-            continuePlayer = json.load(file)
-        pc = Player(continuePlayer)
+        try:
+            with open("src/saves/gameSave.json", encoding="utf-8") as file:
+                continuePlayer = json.load(file)
+            pc = Player(continuePlayer)
+        except FileNotFoundError:
+            print("No Save Found, starting a new game.")
+            pc = Player(newGame())
     else:
         pc = Player(newGame())
 

@@ -40,15 +40,14 @@ This is a zork-like text-based adventure game. It contains a global status syste
 ## Development Progress
 
 #### Priority To Do
-- [ ] Make it so having read all three notes reveals the stairs
+DONE
 
 #### Extra To Do
 - [ ] Add directions to movement options?
 - [ ] Add Scarecrow to descriptions of the garden / prairieBackyard
 - [ ] Build a way to light the candles in the study with the matches, so they stay lit
-- [ ] Build NPC objects with interactive dialogue capacity (model after combat)
+- [ ] Build NPC objects with interactive dialogue capacity (model after combat) (for Act 3)
 - [ ] Clean up code redundancy, especially in zones
-- [ ] Finish Manual
 - [ ] Fix the cornfield options and flavor text
 - [ ] Look into combining all possible movements into one function - pc.moveTo(Zone) or something
 - [ ] Make the matches expendable, so you only have three
@@ -81,6 +80,7 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [x] Finish equipment (equip, unequip, with inventory access, also bare fists)
 - [x] Finish Jar Bomb spell effects for damage
 - [x] Finish Jar Bomb spell effects for environment puzzle
+- [x] Finish Manual
 - [x] Finish programming the maze
 - [x] Fix closet entrance from Master bedroom
 - [x] Fix combat health issue (scaling and balance)
@@ -90,6 +90,7 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [x] Fix the lighting problem in the Study (if matches / lantern lit: dark is True)
 - [x] Fix the options for consistency in farmhouseStudy and farmhouseCloset2
 - [x] Fix problem with globalStatus not updating properly (had to do with How python uses boolean)
+- [x] Make it so having read all three notes reveals the stairs
 - [x] Make using the amulet reveal the stairs
 - [x] Move Lantern to Shed (Once shed is built, maybe replace lantern with something in study)
 - [x] Organize globalStatus entires
