@@ -250,6 +250,27 @@ nostrils...''')
                 if(self.globalStatus["Dark Place"] == True):
                     self.globalStatus["Dark"] = True
                 self.globalStatus["Match Lit"] = False
+        elif(item.itemID == 8):
+            print(item.read)
+            self.globalStatus["Hidden Note 1 read"] = True
+            if(self.globalStatus["Hidden Note 1 read"] and self.globalStatus["Hidden Note 2 read"] and self.globalStatus["Hidden Note 3 read"]):
+                print('''The ground seems to shake and shift lightly, as something in
+the distance has opened up.''')
+                self.globalStatus["Staircase Visible"] = True
+        elif(item.itemID == 9):
+            print(item.read)
+            self.globalStatus["Hidden Note 2 read"] = True
+            if(self.globalStatus["Hidden Note 1 read"] and self.globalStatus["Hidden Note 2 read"] and self.globalStatus["Hidden Note 3 read"]):
+                print('''The ground seems to shake and shift lightly, as something in
+the distance has opened up.''')
+                self.globalStatus["Staircase Visible"] = True
+        elif(item.itemID == 10):
+            print(item.read)
+            self.globalStatus["Hidden Note 3 read"] = True
+            if(self.globalStatus["Hidden Note 1 read"] and self.globalStatus["Hidden Note 2 read"] and self.globalStatus["Hidden Note 3 read"]):
+                print('''The ground seems to shake and shift lightly, as something in
+the distance has opened up.''')
+                self.globalStatus["Staircase Visible"] = True
         else:
             print("Not yet made")
 

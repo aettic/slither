@@ -829,7 +829,10 @@ Before you, the path continues straight for several more feet.''')
         elif(pc.zone.zoneID == 48):
             print("\n\t# CROP CIRCLE #")
             if (pc.globalStatus["cornfieldMazeCenter first time"] == True):
-                print('''You spill out into a clearing, circular, and large in the middle of the this corn maze. The crops here have been pressed down in a spiral, creating a peculiar vortex of flattened corn in a perfect cirle. In the center of this crop circle, you see what appears to be the very top of a stone staircase, spiraling down into the ground.''')
+                print('''You spill out into a clearing, circular, and large in the middle of the this corn maze. The crops here have been pressed down in a spiral, creating a peculiar vortex of flattened corn in a perfect cirle.''')
+                if(pc.globalStatus["Staircase Visible"] == True):
+                    print('''In the center of this crop circle, you see what appears to be the very
+top of a stone staircase, spiraling down into the ground.''')
             else:
                 print(pc.zone.summary)
             cornfieldMazeCenter(pc)
@@ -1630,6 +1633,11 @@ Any remaining points might be useful... later on...''')
         "prairieShedExterior Unlocked toggle": False,
         "prairieWell obstruction destroyed": False,
         "Staircase Visible": False,
+
+        # Notes
+        "Hidden Note 1 read": False,
+        "Hidden Note 2 read": False,
+        "Hidden Note 3 read": False,
 
         ### GAME END
         "Game Won": False,

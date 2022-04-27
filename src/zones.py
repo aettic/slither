@@ -1355,39 +1355,111 @@ which likely belong to Alys' son, Dareth. There is an ITEM in the box.'''
             self.description = '''Heavy looking wooden doors stand resolute, shut tight
 over the entrance to the cellar. The wooden doors are carved with
 a large symbol, circular, with interconnected knots, and thirteen
-stars sround the edge. In the center is an ornate labyrinth.'''
+stars sround the edge. In the center is an ornate labyrinth. You
+spot a small folded piece of paper tucked between some of the
+stones.'''
             self.items.clear()
+            self.items = [8]
 
-            self.options = [
-                "Open the doors and descend",
-                "Head back to the prairie",
-                "Walk toward the front of the house",
-                "Look around the area",
-                "Player Menu"
-            ]
+            if(pc.globalStatus["farmhouseStairsCellar examined"] == False):
+                self.options = [
+                    "Open the doors and descend",
+                    "Head back to the prairie",
+                    "Walk toward the front of the house",
+                    "Look around the area",
+                    "Player Menu"
+                ]
 
-            self.selection = {
-                1: {
-                    "do": '''You pull open the heavy wooden doors, and climb down the stairs
+                self.selection = {
+                    1: {
+                        "do": '''You pull open the heavy wooden doors, and climb down the stairs
 into the darkened cellar.''',
-                    "moveTo": 13
-                },
-                2: {
-                    "do": '''You leave the cellar doors and head toward the backyard.''',
-                    "moveTo": 14
-                },
-                3: {
-                    "do": '''You leave the cellar doors and return to the front of the house.''',
-                    "moveTo": 1
-                },
-                4: {
-                    "do": self.description,
-                    "examine": "farmhouseStairsCellar"
-                },
-                5: {
-                    "menu": "menu"
+                        "moveTo": 13
+                    },
+                    2: {
+                        "do": '''You leave the cellar doors and head toward the backyard.''',
+                        "moveTo": 14
+                    },
+                    3: {
+                        "do": '''You leave the cellar doors and return to the front of the house.''',
+                        "moveTo": 1
+                    },
+                    4: {
+                        "do": self.description,
+                        "examine": "farmhouseStairsCellar"
+                    },
+                    5: {
+                        "menu": "menu"
+                    }
                 }
-            }
+            else:
+                if(pc.globalStatus["Hidden Note 1 taken"] == False):
+                    self.options = [
+                        "Open the doors and descend",
+                        "Head back to the prairie",
+                        "Walk toward the front of the house",
+                        "Pick up the note",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": '''You pull open the heavy wooden doors, and climb down the stairs
+    into the darkened cellar.''',
+                            "moveTo": 13
+                        },
+                        2: {
+                            "do": '''You leave the cellar doors and head toward the backyard.''',
+                            "moveTo": 14
+                        },
+                        3: {
+                            "do": '''You leave the cellar doors and return to the front of the house.''',
+                            "moveTo": 1
+                        },
+                        4: {
+                            "do": '''You reach down and pick up the folded note.''',
+                            "takeItem": 8
+                        },
+                        5: {
+                            "do": self.description,
+                            "examine": "farmhouseStairsCellar"
+                        },
+                        6: {
+                            "menu": "menu"
+                        }
+                    }
+                else:
+                    self.options = [
+                        "Open the doors and descend",
+                        "Head back to the prairie",
+                        "Walk toward the front of the house",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": '''You pull open the heavy wooden doors, and climb down the stairs
+    into the darkened cellar.''',
+                            "moveTo": 13
+                        },
+                        2: {
+                            "do": '''You leave the cellar doors and head toward the backyard.''',
+                            "moveTo": 14
+                        },
+                        3: {
+                            "do": '''You leave the cellar doors and return to the front of the house.''',
+                            "moveTo": 1
+                        },
+                        4: {
+                            "do": self.description,
+                            "examine": "farmhouseStairsCellar"
+                        },
+                        5: {
+                            "menu": "menu"
+                        }
+                    }
 
         elif (self.zoneID == 13):  # farmhouseCellar
 
@@ -2262,39 +2334,107 @@ expect to find inside an outhouse. Nothing terrible exciting.'''
 and in the distance you can see the backyard garden, the shed, and the well.'''
             self.description = '''The paint has started to peel in places, but still seems fairly
 fresh over the door. The walls themselves are untreated, and raw,
-remeniscent of the trees at the edges of the property.'''
+remeniscent of the trees at the edges of the property. Tucked
+into a nook in the wall you find a small folded note.'''
             self.items.clear()
-            self.items = []
+            self.items = [10]
 
-            self.options = [
-                "Head back to the Gardens",
-                "Walk into the open barn",
-                "Head to the back of the barn",
-                "Look around the area",
-                "Player Menu"
-            ]
+            if(pc.globalStatus["barnFront examined"] == False):
+                self.options = [
+                    "Head back to the Gardens",
+                    "Walk into the open barn",
+                    "Head to the back of the barn",
+                    "Look around the area",
+                    "Player Menu"
+                ]
 
-            self.selection = {
-                1: {
-                    "do": "You turn back and return to the Garden.",
-                    "moveTo": 14
-                },
-                2: {
-                    "do": "You move through the open doors, into the barn.",
-                    "moveTo": 20
-                },
-                3: {
-                    "do": "Walk around the barn to the rear",
-                    "moveTo": 22
-                },
-                4: {
-                    "do": self.description,
-                    "examine": "barnFront"
-                },
-                5: {
-                    "menu": "menu"
+                self.selection = {
+                    1: {
+                        "do": "You turn back and return to the Garden.",
+                        "moveTo": 14
+                    },
+                    2: {
+                        "do": "You move through the open doors, into the barn.",
+                        "moveTo": 20
+                    },
+                    3: {
+                        "do": "Walk around the barn to the rear",
+                        "moveTo": 22
+                    },
+                    4: {
+                        "do": self.description,
+                        "examine": "barnFront"
+                    },
+                    5: {
+                        "menu": "menu"
+                    }
                 }
-            }
+            else:
+                if(pc.globalStatus["Hidden Note 3 taken"] == False):
+                    self.options = [
+                        "Head back to the Gardens",
+                        "Walk into the open barn",
+                        "Head to the back of the barn",
+                        "Pick up the note",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You turn back and return to the Garden.",
+                            "moveTo": 14
+                        },
+                        2: {
+                            "do": "You move through the open doors, into the barn.",
+                            "moveTo": 20
+                        },
+                        3: {
+                            "do": "Walk around the barn to the rear",
+                            "moveTo": 22
+                        },
+                        4: {
+                            "do": "You pull the note out of the nook it's stuck in.",
+                            "takeItem": 10
+                        },
+                        5: {
+                            "do": self.description,
+                            "examine": "barnFront"
+                        },
+                        6: {
+                            "menu": "menu"
+                        }
+                    }
+                else:
+                    self.options = [
+                        "Head back to the Gardens",
+                        "Walk into the open barn",
+                        "Head to the back of the barn",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+
+                    self.selection = {
+                        1: {
+                            "do": "You turn back and return to the Garden.",
+                            "moveTo": 14
+                        },
+                        2: {
+                            "do": "You move through the open doors, into the barn.",
+                            "moveTo": 20
+                        },
+                        3: {
+                            "do": "Walk around the barn to the rear",
+                            "moveTo": 22
+                        },
+                        4: {
+                            "do": self.description,
+                            "examine": "barnFront"
+                        },
+                        5: {
+                            "menu": "menu"
+                        }
+                    }
 
 
         elif (self.zoneID == 20):  # barnInterior

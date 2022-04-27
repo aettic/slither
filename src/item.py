@@ -123,18 +123,18 @@ glass windows.'''
         elif(self.itemID == 8):
             self.name = "Hidden Note 1"
             self.value = 0
-            self.use = "read"
+            self.use = "toggle"
             self.read = '''A torn page of a journal, hurriedly documenting magical features
 of some sort of stairway. It appears to indicate that this
 stairway exists and does not exist at the same time; or perhaps
 it exists in a parallel dimension.'''
             self.description = "A strange drawing found by the well."
-            # location: Tucked into the roofing of the well
+            # location: Tucked into the stairs of the cellar
 
         elif(self.itemID == 9):
             self.name = "Hidden Note 2"
             self.value = 0
-            self.use = "read"
+            self.use = "toggle"
             self.read = '''A drawing of a spiral, with evenly spaced segments, terminating
 in a circle which takes up half the page. Around it are a
 sunburts of branching lines... They almost seem to be plants,
@@ -146,7 +146,7 @@ There is a single word written on this note: 'Amaze'.'''
         elif(self.itemID == 10):
             self.name = "Hidden Note 3"
             self.value = 0
-            self.use = "read"
+            self.use = "toggle"
             self.read = "This note is a hastily sketched drawing of a wall of corn."
             self.description = "A strange drawing found in the Barn Loft."
             # location: Found in the barn loft, in a small desk
