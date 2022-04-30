@@ -40,35 +40,37 @@ This is a zork-like text-based adventure game. It contains a global status syste
 ## Development Progress
 
 #### Priority To Do
-- [ ] Create alt descriptions for each status in zones
+- [ ] Fix the Grue's attacks (Need to reproduce the issue first)
 
 #### Extra To Do
-- [ ] Add directions to movement options?
-- [ ] Add Scarecrow to descriptions of the garden / prairieBackyard
 - [ ] Build a way to light the candles in the study with the matches, so they stay lit
 - [ ] Build NPC objects with interactive dialogue capacity (model after combat) (for Act 3)
 - [ ] Clean up code redundancy, especially in zones
-- [ ] Fix the cornfield options and flavor text
+- [ ] Cornfield unique flavor text?
+- [ ] Develop json dataset to house descriptions, options, etc. (will require re-architecture)
 - [ ] Look into combining all possible movements into one function - pc.moveTo(Zone) or something
-- [ ] Make the matches expendable, so you only have three
+- [ ] Make the matches expendable, so you only have three(?)
 - [ ] Redesign doSomething choices to ALWAYS include moving backwards as number 1
 - [ ] Redesign Items so that inventory and everything use actual Item objects, not just the ID
-- [ ] Redesign menus to always include a movement option which opens a move menu for each room
+- [ ] !! Redesign menus to always include a movement option which opens a move menu for each room
 - [ ] Write out Cornfield First Time text for all zones
 
 #### Done
 - [x] Actually use item.py before getting too carried away
+- [x] Add Scarecrow to descriptions of the garden / prairieBackyard
 - [x] Alchemical Jar Bomb: Add descriptive information for fragility
 - [x] Build load state function
 - [x] Build combat system
 - [x] Build magic system
 - [x] Build creature objects for combat
 - [x] Check lighting and timer in the Cellar
+- [x] Check the Beast's attacks (removed Beasts all together, no need)
 - [x] Complete location globalStatus entries
 - [x] Complete the Beast itemDrops
 - [x] Construct a puzzle using items (Alchemical Powder, Glass Jar, Acrid Solution)
 - [x] Create a combine method
 - [x] Create a useItem method in player.py (now contains equip, toggle, and spell, and combine)
+- [x] Create alt descriptions for each status in zones
 - [x] Create Dark timer for Grue attack - 2 rounds
 - [x] Create end of game / game win screen
 - [x] Create Matches timer - 5 rounds
@@ -76,6 +78,7 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [x] Design paths for each of three mazes
 - [x] Design spell(s) for Spellbook
 - [x] Design the rest of the journal page ink puzzle
+- [x] Figure out something for the coin in the garden
 - [x] Finish combat options
 - [x] Finish equipment (equip, unequip, with inventory access, also bare fists)
 - [x] Finish Jar Bomb spell effects for damage
@@ -84,12 +87,16 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [x] Finish programming the maze
 - [x] Fix closet entrance from Master bedroom
 - [x] Fix combat health issue (scaling and balance)
+- [x] Fix problem with globalStatus not updating properly (had to do with How python uses boolean)
 - [x] Fix Spells in book
 - [x] Fix the barnLoft
+- [x] Fix the box appearing in the closet without looking around
 - [x] Fix the cellar's descriptions
+- [x] Fix the cornfield options
+- [x] Fix the Goblin's attacks (turned out it was a problem with damage in general)
 - [x] Fix the lighting problem in the Study (if matches / lantern lit: dark is True)
 - [x] Fix the options for consistency in farmhouseStudy and farmhouseCloset2
-- [x] Fix problem with globalStatus not updating properly (had to do with How python uses boolean)
+- [x] Fix the stained journal page description (removed direction)
 - [x] Make it so having read all three notes reveals the stairs
 - [x] Make using the amulet reveal the stairs
 - [x] Move Lantern to Shed (Once shed is built, maybe replace lantern with something in study)
@@ -97,6 +104,7 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [x] Put a Grue in the Barn Loft
 - [x] Put a Grue in Cellar
 - [x] Reformat all flavor text and results / separate properly from commands
+- [x] Remove note from cellar (now on cellar stairs)
 - [x] Test save state works
 - [x] Write out Farmhouse Zones
 - [x] Write out Prairie First Time text

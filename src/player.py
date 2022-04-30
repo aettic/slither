@@ -51,11 +51,7 @@ class Player:
 
 
     def takeDamage(self, damage):
-        if(damage - self.defense <= 0):
-            print("You take no damage.")
-        elif(damage - self.defense > 0):
-            self.currentHP -= (damage - self.defense)
-            print(f"You take {damage - self.defense} damage.")
+        self.currentHP -= (damage - self.defense)
 
         if(self.currentHP <= 0):
             self.isAlive = False
@@ -384,14 +380,14 @@ about this page's weight now.''')
             print("\n\t# GAME SAVED #")
             self.saveState()
         elif (int(choice) == 5):
-            print(f'\033[{random.choice([37])}m' + """\n\n
+            print("""\n\n
            ..|'''.|                      '|| '||
           .|'     '    ...     ...     .. ||  || ...  .... ...  ....
           ||    .... .|  '|. .|  '|. .'  '||  ||'  ||  '|.  | .|...||
           '|.    ||  ||   || ||   || |.   ||  ||    |   '|.|  ||
            ''|...'|   '|.|'   '|.|'  '|..'||. '|...'     '|    '|...'
                                                       .. |
-                                                       ''""" + '\n \033[0m')
+                                                       ''""")
             quit()
         elif (int(choice) == 6):
             print("\n\t# INFORMATION #")
@@ -407,7 +403,7 @@ about this page's weight now.''')
             print("    - Interaction: After movement may be options for interacting")
             print("      with the world, this could include looking inside something,")
             print("      or picking something up, etc.")
-            print("    - Look around the area: This option will always let you look.")
+            print("    - Look around the area: This option will always let you look")
             print("      closer at the surrounding area, which will provide more in")
             print("      the way of flavor text and descriptions, and may reveal some")
             print("      things to interact with. This option is different from, say,")
@@ -423,7 +419,6 @@ about this page's weight now.''')
             print("  not all be needed, but the more detailed the notes, the easier")
             print("  it is to find the solution).")
             print("- Above all, please enjoy this game!")
-            input("\nENTER - Return to Game")
         else:
             print("")
 

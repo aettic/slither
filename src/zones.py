@@ -269,7 +269,8 @@ You can see the footprints came from the sitting room.'''
                             "takeItem": 17
                         },
                         6: {
-                            "do": self.description
+                            "do": self.description,
+                            "examine": "farmhouseKitchen"
                         },
                         7: {
                             "menu": "menu"
@@ -306,7 +307,8 @@ it. It is no longer warm. A fight happened here. Is Alys okay?
 You can see the footprints came from the sitting room.'''
                         },
                         5: {
-                            "do": self.description
+                            "do": self.description,
+                            "examine": "farmhouseKitchen"
                         },
                         6: {
                             "menu": "menu"
@@ -317,20 +319,19 @@ You can see the footprints came from the sitting room.'''
         elif (self.zoneID == 3):  # farmhouseCloset1
             self.summary = '''A dusty front closet, muddy boots on the ground, a couple thick
 coats, and some overalls.'''
-            self.items.clear()
-            self.items = [2, 3]
-
-            if(pc.globalStatus["Muddy Boots taken"] == False):
-                self.description = '''A wooden dowel supports a handful of coats, a pair of hide
+            self.description = '''A wooden dowel supports a handful of coats, a pair of hide
 overalls, and a nice shawl tucked behind the rest of the clothes.
 There is a shelf, upon which rests a small box. On the floor are
 two pairs of muddy boots. One pair looks like it could fit you.'''
-                if(pc.globalStatus["farmhouseCloset1 Box examined"] == False):
+            self.items.clear()
+            self.items = [2, 3]
+
+            if(pc.globalStatus["farmhouseCloset1 examined"] == False):
+                if(pc.globalStatus["Muddy Boots taken"] == False):
                     self.options = [
                         "Head back to the kitchen",
                         "Go to the sitting room",
                         "Take the boots",
-                        "Look in the box",
                         "Look around the area",
                         "Player Menu"
                     ]
@@ -349,97 +350,21 @@ sides, but they look comfortable.''',
                             "takeItem": 2
                         },
                         4: {
-                            "do": '''You pull the box down and open it up, inside is a small emerald
-trinket in the shape of a pyramid.''',
-                            "examine": "farmhouseCloset1 Box"
+                            "do": self.description,
+                            "examine": "farmhouseCloset1"
                         },
                         5: {
-                            "do": self.description
-                        },
-                        6: {
                             "menu": "menu"
                         }
                     }
-                elif(pc.globalStatus["farmhouseCloset1 Box examined"] == True):
-                    if(pc.globalStatus["Emerald Pyramid Medallion taken"] == False):
-                        self.options = [
-                            "Head back to the kitchen",
-                            "Go to the sitting room",
-                            "Take the boots",
-                            "Take the Medallion",
-                            "Look around the area",
-                            "Player Menu"
-                        ]
-
-                        self.selection = {
-                            1: {
-                                "do": "You close the closet door, and walk back to the kitchen.",
-                                "moveTo": 2
-                            },
-                            2: {
-                                "do": "You close the closet door and head into the sitting room.",
-                                "moveTo": 4
-                            },
-                            3: {
-                                "do": '''You grab the boots, dried mud is crusted on the
-sides, but they look comfortable.''',
-                                "takeItem": 2
-                            },
-                            4: {
-                                "do": '''You gently lift the delicate charm out of the box, it is on a
-silver chain. You put it in your pack.''',
-                                "takeItem": 3
-                            },
-                            5: {
-                                "do": self.description
-                            },
-                            6: {
-                                "menu": "menu"
-                            }
-                        }
-
-                    elif(pc.globalStatus["Emerald Pyramid Medallion taken"] == True):
-                        self.options = [
-                            "Head back to the kitchen",
-                            "Go to the sitting room",
-                            "Take the boots",
-                            "Look around the area",
-                            "Player Menu"
-                        ]
-
-                        self.selection = {
-                            1: {
-                                "do": "You close the closet door, and walk back to the kitchen.",
-                                "moveTo": 2
-                            },
-                            2: {
-                                "do": "You close the closet door and head into the sitting room.",
-                                "moveTo": 4
-                            },
-                            3: {
-                                "do": '''You grab the boots, dried mud is crusted on the
-sides, but they look comfortable.''',
-                                "takeItem": 2
-                            },
-                            4: {
-                                "do": self.description
-                            },
-                            5: {
-                                "menu": "menu"
-                            }
-                        }
-
-
-            elif(pc.globalStatus["Muddy Boots taken"] == True):
-                self.description = '''A wooden dowel supports a handful of coats, a pair of hide
+                else:
+                    self.description = '''A wooden dowel supports a handful of coats, a pair of hide
 overalls, and a nice shawl tucked behind the rest of the clothes.
-There is a shelf, upon which rests a small box. On the floor are
-is one pair of boots, the pair which would not fit you.'''
-                if(pc.globalStatus["farmhouseCloset1 Box examined"] == False):
+There is a shelf, upon which rests a small box. On the floor is a
+pair of boots, which probably won't fit you.'''
                     self.options = [
                         "Head back to the kitchen",
                         "Go to the sitting room",
-                        "Look in the box",
                         "Look around the area",
                         "Player Menu"
                     ]
@@ -454,23 +379,135 @@ is one pair of boots, the pair which would not fit you.'''
                             "moveTo": 4
                         },
                         3: {
-                            "do": '''You pull the box down and open it up, inside is a small emerald
-trinket in the shape of a pyramid.''',
-                            "examine": "farmhouseCloset1 Box"
+                            "do": self.description,
+                            "examine": "farmhouseCloset1"
                         },
                         4: {
-                            "do": self.description
-                        },
-                        5: {
                             "menu": "menu"
                         }
                     }
-                elif(pc.globalStatus["farmhouseCloset1 Box examined"] == True):
-                    if(pc.globalStatus["Emerald Pyramid Medallion taken"] == False):
+
+            else:
+
+                if(pc.globalStatus["Muddy Boots taken"] == False):
+                    if(pc.globalStatus["farmhouseCloset1 Box examined"] == False):
                         self.options = [
                             "Head back to the kitchen",
                             "Go to the sitting room",
-                            "Take the Medallion",
+                            "Take the boots",
+                            "Look in the box",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+                        self.selection = {
+                            1: {
+                                "do": "You close the closet door, and walk back to the kitchen.",
+                                "moveTo": 2
+                            },
+                            2: {
+                                "do": "You close the closet door and head into the sitting room.",
+                                "moveTo": 4
+                            },
+                            3: {
+                                "do": '''You grab the boots, dried mud is crusted on the
+sides, but they look comfortable.''',
+                                "takeItem": 2
+                            },
+                            4: {
+                                "do": '''You pull the box down and open it up, inside is a small emerald
+trinket in the shape of a pyramid.''',
+                                "examine": "farmhouseCloset1 Box"
+                            },
+                            5: {
+                                "do": self.description,
+                                "examine": "farmhouseCloset1"
+                            },
+                            6: {
+                                "menu": "menu"
+                            }
+                        }
+                    elif(pc.globalStatus["farmhouseCloset1 Box examined"] == True):
+                        if(pc.globalStatus["Emerald Pyramid Medallion taken"] == False):
+                            self.options = [
+                                "Head back to the kitchen",
+                                "Go to the sitting room",
+                                "Take the boots",
+                                "Take the Medallion",
+                                "Look around the area",
+                                "Player Menu"
+                            ]
+
+                            self.selection = {
+                                1: {
+                                    "do": "You close the closet door, and walk back to the kitchen.",
+                                    "moveTo": 2
+                                },
+                                2: {
+                                    "do": "You close the closet door and head into the sitting room.",
+                                    "moveTo": 4
+                                },
+                                3: {
+                                    "do": '''You grab the boots, dried mud is crusted on the
+sides, but they look comfortable.''',
+                                    "takeItem": 2
+                                },
+                                4: {
+                                    "do": '''You gently lift the delicate charm out of the box, it is on a
+silver chain. You put it in your pack.''',
+                                    "takeItem": 3
+                                },
+                                5: {
+                                    "do": self.description,
+                                    "examine": "farmhouseCloset1"
+                                },
+                                6: {
+                                    "menu": "menu"
+                                }
+                            }
+
+                        elif(pc.globalStatus["Emerald Pyramid Medallion taken"] == True):
+                            self.options = [
+                                "Head back to the kitchen",
+                                "Go to the sitting room",
+                                "Take the boots",
+                                "Look around the area",
+                                "Player Menu"
+                            ]
+
+                            self.selection = {
+                                1: {
+                                    "do": "You close the closet door, and walk back to the kitchen.",
+                                    "moveTo": 2
+                                },
+                                2: {
+                                    "do": "You close the closet door and head into the sitting room.",
+                                    "moveTo": 4
+                                },
+                                3: {
+                                    "do": '''You grab the boots, dried mud is crusted on the
+sides, but they look comfortable.''',
+                                    "takeItem": 2
+                                },
+                                4: {
+                                    "do": self.description,
+                                    "examine": "farmhouseCloset1"
+                                },
+                                5: {
+                                    "menu": "menu"
+                                }
+                            }
+
+
+                elif(pc.globalStatus["Muddy Boots taken"] == True):
+                    self.description = '''A wooden dowel supports a handful of coats, a pair of hide
+overalls, and a nice shawl tucked behind the rest of the clothes.
+There is a shelf, upon which rests a small box. On the floor is a
+pair of boots, which probably won't fit you.'''
+                    if(pc.globalStatus["farmhouseCloset1 Box examined"] == False):
+                        self.options = [
+                            "Head back to the kitchen",
+                            "Go to the sitting room",
+                            "Look in the box",
                             "Look around the area",
                             "Player Menu"
                         ]
@@ -485,41 +522,75 @@ trinket in the shape of a pyramid.''',
                                 "moveTo": 4
                             },
                             3: {
-                                "do": '''You gently lift the delicate charm out of the box, it is on a
-silver chain. You put it in your pack.''',
-                                "takeItem": 3
+                                "do": '''You pull the box down and open it up, inside is a small emerald
+trinket in the shape of a pyramid.''',
+                                "examine": "farmhouseCloset1 Box"
                             },
                             4: {
-                                "do": self.description
+                                "do": self.description,
+                                "examine": "farmhouseCloset1"
                             },
                             5: {
                                 "menu": "menu"
                             }
                         }
-                    elif(pc.globalStatus["Emerald Pyramid Medallion taken"] == True):
-                        self.options = [
-                            "Head back to the kitchen",
-                            "Go to the sitting room",
-                            "Look around the area",
-                            "Player Menu"
-                        ]
+                    elif(pc.globalStatus["farmhouseCloset1 Box examined"] == True):
+                        if(pc.globalStatus["Emerald Pyramid Medallion taken"] == False):
+                            self.options = [
+                                "Head back to the kitchen",
+                                "Go to the sitting room",
+                                "Take the Medallion",
+                                "Look around the area",
+                                "Player Menu"
+                            ]
 
-                        self.selection = {
-                            1: {
-                                "do": "You close the closet door, and walk back to the kitchen.",
-                                "moveTo": 2
-                            },
-                            2: {
-                                "do": "You close the closet door and head into the sitting room.",
-                                "moveTo": 4
-                            },
-                            3: {
-                                "do": self.description
-                            },
-                            4: {
-                                "menu": "menu"
+                            self.selection = {
+                                1: {
+                                    "do": "You close the closet door, and walk back to the kitchen",
+                                    "moveTo": 2
+                                },
+                                2: {
+                                    "do": "You close the closet door and head into the sitting room",
+                                    "moveTo": 4
+                                },
+                                3: {
+                                    "do": '''You gently lift the delicate charm out of the box, it is on a
+silver chain. You put it in your pack.''',
+                                    "takeItem": 3
+                                },
+                                4: {
+                                    "do": self.description,
+                                    "examine": "farmhouseCloset1"
+                                },
+                                5: {
+                                    "menu": "menu"
+                                }
                             }
-                        }
+                        elif(pc.globalStatus["Emerald Pyramid Medallion taken"] == True):
+                            self.options = [
+                                "Head back to the kitchen",
+                                "Go to the sitting room",
+                                "Look around the area",
+                                "Player Menu"
+                            ]
+
+                            self.selection = {
+                                1: {
+                                    "do": "You close the closet door, and walk back to the kitchen.",
+                                    "moveTo": 2
+                                },
+                                2: {
+                                    "do": "You close the closet door and head into the sitting room.",
+                                    "moveTo": 4
+                                },
+                                3: {
+                                    "do": self.description,
+                                    "examine": "farmhouseCloset1"
+                                },
+                                4: {
+                                    "menu": "menu"
+                                }
+                            }
 
 
         elif (self.zoneID == 4):  # farmhouseSittingRoom
@@ -1510,8 +1581,7 @@ stars sround the edge. In the center is an ornate labyrinth.'''
 and pickled vegetables. In one corner, there are a number of
 alchemical instruments and tools, likely used by Alys in her
 experiments. A packet of black powder lies on a workbench in this
-area. Along a wall, tucked under a jar of canned beats, you find
-a small note.'''
+area.'''
             self.items.clear()
             self.items = [9, 16]
 
@@ -1539,7 +1609,6 @@ a small note.'''
                         }
                     }
                 else:
-
                     self.selection = {
                         1: {
                             "do": "You climb back out of the cellar, surfacing above ground.",
@@ -1574,103 +1643,56 @@ a small note.'''
                     }
                 else:
                     if(pc.globalStatus["Alchemical Powder taken"] == False):
-                        if(pc.globalStatus["Hidden Note 2 taken"] == False):
-                            self.options = [
-                                "Climb back out of the cellar",
-                                "Take the alchemical powder",
-                                "Grab the note",
-                                "Look around the area",
-                                "Player Menu"
-                            ]
-                            self.selection = {
-                                1: {
-                                    "do": "You climb back out of the cellar, surfacing above ground.",
-                                    "moveTo": 12
-                                },
-                                2: {
-                                    "do": "You grab the packet of Alchemical Powder.",
-                                    "takeItem": 16
-                                },
-                                3: {
-                                    "do": "You take the note.",
-                                    "takeItem": 9
-                                },
-                                4: {
-                                    "do": self.description,
-                                    "examine": "farmhouseCellar"
-                                },
-                                5: {
-                                    "menu": "menu"
-                                }
+                        self.options = [
+                            "Climb back out of the cellar",
+                            "Take the alchemical powder",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+                        self.selection = {
+                            1: {
+                                "do": "You climb back out of the cellar, surfacing above ground.",
+                                "moveTo": 12
+                            },
+                            2: {
+                                "do": "You grab the packet of Alchemical Powder.",
+                                "takeItem": 16
+                            },
+                            3: {
+                                "do": self.description,
+                                "examine": "farmhouseCellar"
+                            },
+                            4: {
+                                "menu": "menu"
                             }
-                        else:
-                            self.options = [
-                                "Climb back out of the cellar",
-                                "Take the alchemical powder",
-                                "Look around the area",
-                                "Player Menu"
-                            ]
-                            self.selection = {
-                                1: {
-                                    "do": "You climb back out of the cellar, surfacing above ground.",
-                                    "moveTo": 12
-                                },
-                                2: {
-                                    "do": "You grab the packet of Alchemical Powder.",
-                                    "takeItem": 16
-                                },
-                                3: {
-                                    "do": self.description,
-                                    "examine": "farmhouseCellar"
-                                },
-                                4: {
-                                    "menu": "menu"
-                                }
-                            }
+                        }
                     elif(pc.globalStatus["Alchemical Powder taken"] == True):
-                        if(pc.globalStatus["Hidden Note 2 taken"] == False):
-                            self.options = [
-                                "Climb back out of the cellar",
-                                "Grab the note",
-                                "Look around the area",
-                                "Player Menu"
-                            ]
-                            self.selection = {
-                                1: {
-                                    "do": "You climb back out of the cellar, surfacing above ground.",
-                                    "moveTo": 12
-                                },
-                                2: {
-                                    "do": "You take the note.",
-                                    "takeItem": 9
-                                },
-                                3: {
-                                    "do": self.description,
-                                    "examine": "farmhouseCellar"
-                                },
-                                4: {
-                                    "menu": "menu"
-                                }
+                        self.description = '''The cellar contains a variety of preserved meats, canned fruits
+and pickled vegetables. In one corner, there are a number of
+alchemical instruments and tools, likely used by Alys in her
+experiments.'''
+                        self.options = [
+                            "Climb back out of the cellar",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+                        self.selection = {
+                            1: {
+                                "do": "You climb back out of the cellar, surfacing above ground.",
+                                "moveTo": 12
+                            },
+                            2: {
+                                "do": self.description,
+                                "examine": "farmhouseCellar"
+                            },
+                            3: {
+                                "menu": "menu"
                             }
-                        else:
-                            self.options = [
-                                "Climb back out of the cellar",
-                                "Look around the area",
-                                "Player Menu"
-                            ]
-                            self.selection = {
-                                1: {
-                                    "do": "You climb back out of the cellar, surfacing above ground.",
-                                    "moveTo": 12
-                                },
-                                2: {
-                                    "do": self.description,
-                                    "examine": "farmhouseCellar"
-                                },
-                                3: {
-                                    "menu": "menu"
-                                }
-                            }
+                        }
+
+
+
+
 
 
 
@@ -1687,7 +1709,8 @@ harvest soon. Standing resolute in the center of the crops is
 a looming scarecrow - nearly 8 feet tall on its wooden cross,
 arms outstretched, and hands hanging like claws. Its face is a
 burlap sack taught over some small ovoid shape, giving an uncanny
-likeness to a human head; its face stares blankly at the barn.'''
+likeness to a human head; its face stares blankly at the barn.
+You spot a shiny gold coin on the ground.'''
             self.items.clear()
             self.items = [5]
 
@@ -1788,6 +1811,13 @@ likeness to a human head; its face stares blankly at the barn.'''
                         }
                     }
                 else:
+                    self.description = '''The garden contains a variety of produce, as well as autumn
+flowers and a handful of decorative gourds growing, ready for
+harvest soon. Standing resolute in the center of the crops is
+a looming scarecrow - nearly 8 feet tall on its wooden cross,
+arms outstretched, and hands hanging like claws. Its face is a
+burlap sack taught over some small ovoid shape, giving an uncanny
+likeness to a human head; its face stares blankly at the barn.'''
                     self.options = [
                         "Walk to the Barn",
                         "Head to the Outhouse",

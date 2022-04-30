@@ -28,7 +28,7 @@ thing... What it is, I'm not sure. But it is open, and I suspect
 that I am unable to close it again...
 
 It is so exciting! I know I must probe deeper, past the boundar-
-ies, and into this mysterious world I have discovered. Come, out
+ies, and into this mysterious world I have discovered. Come out
 here to the farm, please, you must see this wild magic yourself!
 
 May the stars shine down upon your nights, my friend.
@@ -302,7 +302,7 @@ in plain words: "Only in darkness do the stars light the way."'''
             self.description = '''The page of the journal is now stained with black ink, except for
 a star in the center. The page almost seems to be affected by a
 different direction of gravity: one that appears to almost pull
-you to the North.'''
+you.'''
             # location: combined from journal page and bottle of ink
 
         elif(self.itemID == 99):

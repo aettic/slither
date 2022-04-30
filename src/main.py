@@ -15,18 +15,18 @@ import sys
 
 
 def printTitle():
-    print(f'\033[{random.choice([31, 32, 33, 34, 35, 36, 37, 38, 39])}m' + '''
+    print('''
 ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ██ ▄▄▄ █ ███▄██▄ ▄█ ████ ▄▄█ ▄▄▀████ ▄▄▄█ ▄▄▀█ ▄▄▄██▄██ ▄▄▀█ ▄▄██
 ██▄▄▄▀▀█ ███ ▄██ ██ ▄▄ █ ▄▄█ ▀▀▄████ ▄▄▄█ ██ █ █▄▀██ ▄█ ██ █ ▄▄██
 ██ ▀▀▀ █▄▄█▄▄▄██▄██▄██▄█▄▄▄█▄█▄▄████ ▀▀▀█▄██▄█▄▄▄▄█▄▄▄█▄██▄█▄▄▄██
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ v0.2.1 ▀▀▀▀
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ v0.2.2 ▀▀▀▀
 
    db     888888  888888  88""Yb  Yb  dY  88b 88   dP"Yb   .dP"Y8
   dPYb    88__      88    88__dP   YbdY   88Yb88  dY   Yb  `Ybo.
  dP__Yb   88""      88    88"Yb     88    88 Y88  Yb   dY    `Y8b
-dP""""Yb  888888    88    88  Yb    88    88  Y8   YbodP   '8bodP'''
-+ '\n \033[0m')
+dP""""Yb  888888    88    88  Yb    88    88  Y8   YbodP   '8bodP
+''')
 
 
 def doSomething(pc):
@@ -376,10 +376,7 @@ angle, foretelling the imminent descent.''')
             else:
                 if(pc.globalStatus["prairieWell first time"] == False and pc.globalStatus["Stealthy"] == False):
                     combatChance = random.randint(1, 100)
-                    if(combatChance >= 65 and combatChance < 80):
-                        beast = Creature("Beast")
-                        combat(pc, beast)
-                    elif(combatChance >= 80):
+                    if(combatChance >= 70):
                         goblin = Creature("Goblin")
                         combat(pc, goblin)
                 print(pc.zone.summary)
@@ -423,10 +420,7 @@ nearby as well.''')
             else:
                 if(pc.globalStatus["prairieWell first time"] == False and pc.globalStatus["Stealthy"] == False):
                     combatChance = random.randint(1, 100)
-                    if(combatChance >= 65 and combatChance < 80):
-                        beast = Creature("Beast")
-                        combat(pc, beast)
-                    elif(combatChance >= 80):
+                    if(combatChance >= 70):
                         goblin = Creature("Goblin")
                         combat(pc, goblin)
                 print(pc.zone.summary)
@@ -461,10 +455,7 @@ yet it stands firm against the soft wind. You imagine you can
 hear its creaking bones. The door is held fast with a large lock.''')
             else:
                 combatChance = random.randint(1, 100)
-                if(combatChance >= 65 and combatChance < 80):
-                    beast = Creature("Beast")
-                    combat(pc, beast)
-                elif(combatChance >= 80):
+                if(combatChance >= 70):
                     goblin = Creature("Goblin")
                     combat(pc, goblin)
                 print(pc.zone.summary)
@@ -492,10 +483,7 @@ out of the door to let light in when it's closed.''')
             else:
                 if(pc.globalStatus["prairieWell first time"] == False and pc.globalStatus["Stealthy"] == False):
                     combatChance = random.randint(1, 100)
-                    if(combatChance >= 65 and combatChance < 80):
-                        beast = Creature("Beast")
-                        combat(pc, beast)
-                    elif(combatChance >= 80):
+                    if(combatChance >= 70):
                         goblin = Creature("Goblin")
                         combat(pc, goblin)
                 print(pc.zone.summary)
@@ -518,10 +506,7 @@ One of the doors is open, and it is quiet inside.''')
             else:
                 if(pc.globalStatus["prairieWell first time"] == False and pc.globalStatus["Stealthy"] == False):
                     combatChance = random.randint(1, 100)
-                    if(combatChance >= 65 and combatChance < 90):
-                        beast = Creature("Beast")
-                        combat(pc, beast)
-                    elif(combatChance >= 90):
+                    if(combatChance >= 70):
                         goblin = Creature("Goblin")
                         combat(pc, goblin)
                 print(pc.zone.summary)
@@ -584,10 +569,7 @@ rode bareback.''')
             else:
                 if(pc.globalStatus["prairieWell first time"] == False and pc.globalStatus["Stealthy"] == False):
                     combatChance = random.randint(1, 100)
-                    if(combatChance >= 65 and combatChance < 90):
-                        beast = Creature("Beast")
-                        combat(pc, beast)
-                    elif(combatChance >= 90):
+                    if(combatChance >= 70):
                         goblin = Creature("Goblin")
                         combat(pc, goblin)
                 print(pc.zone.summary)
@@ -1595,6 +1577,7 @@ Any remaining points might be useful... later on...''')
         "cornfieldTangle examined": False,
         "dirtRoad examined": False,
         "farmhouseCellar examined": False,
+        "farmhouseCloset1 examined": False,
         "farmhouseCloset1 Box examined": False,
         "farmhouseCloset2 examined": False,
         "farmhouseGuestBedroom examined": False,
@@ -1689,14 +1672,14 @@ def gameStart():
 
 
 def exitScreen():
-    print(f'\033[{random.choice([37])}m' + """\n\n
+    print("""\n\n
    ..|'''.|                      '|| '||
   .|'     '    ...     ...     .. ||  || ...  .... ...  ....
   ||    .... .|  '|. .|  '|. .'  '||  ||'  ||  '|.  | .|...||
   '|.    ||  ||   || ||   || |.   ||  ||    |   '|.|  ||
    ''|...'|   '|.|'   '|.|'  '|..'||. '|...'     '|    '|...'
                                               .. |
-                                               ''""" + '\n \033[0m')
+                                               ''""")
     quit()
 
 

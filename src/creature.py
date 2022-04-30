@@ -24,20 +24,6 @@ class Creature:
             self.itemDrops = [5]  # gold coin
             self.xp = 2
 
-        elif (self.type == "Beast"):
-
-            # Possible descriptions
-            descriptions = ["A sleek and slender fox, quiet on its feet", "A plodding beaver, angry and territorial", "A grey wolf, its coat thick and light"]
-
-            # Setting stats
-            self.maxHP = 4
-            self.currentHP = self.maxHP - 0
-            self.damage = 2
-            self.description = random.choice(descriptions)
-            self.weapons = ["claw", "bite", "tail whip"]
-            self.itemDrops = [5]  # gold coin
-            self.xp = 1
-
         elif (self.type == "Grue"):
 
             # Possible descriptions
@@ -48,17 +34,16 @@ class Creature:
             self.currentHP = self.maxHP - 0
             self.damage = 10
             self.description = random.choice(descriptions)
-            self.weapons = ["bite", "chomp", "eaten"]
+            self.weapons = ["bite", "chomp", "munch"]
             self.itemDrops = [14]  # liquid darkness
             self.xp = 20
 
     def attack(self, pc):
-        damage = random.randrange(self.damage) + 2
-        hit = damage - pc.defense
+        damage = random.randrange(self.damage) + 1
         print(f"The {self.type} attacks with a {random.choice(self.weapons)}.")
-        if (hit > 0):
-            pc.takeDamage(hit)
-            print(f"The {self.type} deals {hit} damage.")
+        if ((damage - pc.defense) > 0):
+            pc.takeDamage(damage)
+            print(f"The {self.type} deals {damage - pc.defense} damage.")
         else:
             if (damage == 0):
                 print("You evade the attack.")
