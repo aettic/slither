@@ -1348,6 +1348,7 @@ not? You have achieved that, at least. What else have you done?\n''')
     pc.globalStatus["Game Won"] = True
     pc.globalStatus["Game Over"] = True
     pc.saveState()
+    input("\n\t# ENTER to QUIT #")
     exitScreen()
 
 

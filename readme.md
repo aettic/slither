@@ -1,4 +1,9 @@
-# Aetrynos
+```
+   db     888888  888888  88""Yb  Yb  dY  88b 88   dP"Yb   .dP"Y8
+  dPYb    88__      88    88__dP   YbdY   88Yb88  dY   Yb  `Ybo.
+ dP__Yb   88""      88    88"Yb     88    88 Y88  Yb   dY    `Y8b
+dP""""Yb  888888    88    88  Yb    88    88  Y8   YbodP   '8bodP
+```
 *A Game Manual*
 
 ### Table of Contents
@@ -9,7 +14,7 @@
 - Winning the game
 - How to report issues, provide feedback, or donate
 
-### QUICK NOTE
+### Quick Note
 This game comes with all of the source code, as well as the "README.md" which is designed as a development tracker and provides technical information on the game. It *also* contains many spoilers, so please do not read it until after you have played the game. This README manual aims to provide any information that should be needed.
 
 ---
@@ -17,12 +22,20 @@ This game comes with all of the source code, as well as the "README.md" which is
 From GitHub, you can select Code > Download Zip.
 
 ---
+### Installing Python3
+If you already have Python3 installed and know how to execute .py scripts from the command line, you can skip this section.
+
+If you do not have Python3 installed, you will need to download and install it. There are several ways to do this, I am going to include my personal recommendations here, but the crux of the matter is that you will need to know *how to launch* python3 commands.
+
+In general, I recommend using https://www.python.org/downloads/ to download the official latest release of Python3. The installation process should be straight forward. Once it is installed, restart Terminal or Command Prompt if you have it open, and test it out by executing the command provided.
+
+There are a number of different execution command keywords for python3 depending on your installation and other circumstances, which makes this part a bit annoying, but for sake of ease, I'm just going to use the one I've seen most commonly, which is `python3`, this might be different in your installation, please determine what command is used to execute the python interpreter on your own installation, and substitute that command where you see `python3` below.
+
+---
 ### Starting the Game
-This game is a python script, which means right now it must be run in a Terminal or Command prompt, on a machine running Python3. Extract the zip folder to some location, and then change directory into that location in your Terminal. Then run this command:  
-`python3 src/main.py`
+This game is a python script, which means right now it must be run in a Terminal or Command prompt, on a machine running Python3. Extract the zip folder to some location, and then change directory into that location in your Terminal. Then launch the python script from within the "slither" folder.
 
 
-You must have python3 installed on your system first.
 
 This should start the game inside your Terminal window. If there is something wrong, you may experience a Python interpreter execution error, and the game will not start. If this happens, please take note of the error and contact me. (See the final section in this manual).
 

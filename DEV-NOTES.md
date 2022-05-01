@@ -1,4 +1,4 @@
-# Slither
+# Slither Engine / Aetrynos
 
 This application started as a playground to test out python development in Atom text editor. It has now become a text-based adventure game engine. There are a lot of plans for what this can become, but I'm trying to take things one bit at a time, and have fun doing it. At present, the scope for completion is to create a demo, which is Act I of a text-based game called Aetrynos, which takes place in the titular world, in a small country-side. There are rough plans for three acts, the latter two of which will hopefully build onto the mechanics of the first act. The first act is called "The Farm", and takes place, you guessed it, on a farm.
 
@@ -32,7 +32,7 @@ Like with Bloodborne java, there will be a player character object which is pass
 ---
 
 ## The Slither Engine so far
-This is a zork-like text-based adventure game. It contains a global status system to track world changes consistently. It uses a numbered option based system for actions. The story is homebrew High Fantasy, taking place in a land called Aetrynos. Distinct from Javaborne, this game is designed with a single "doSomething()" function which can handle all locations and all actions. This, paired with the system of selection and options rooted inside the player's active zone itself allows for a smooth, single system which can handle and parse many different things. The engine utilizes object-oriented-programming to handle creating the necessary entities and objects which interact in the game (Player, creature, items, zones, etc.)
+This is a zork-like text-based adventure game. It contains a global status system to track world changes consistently. It uses a numbered option based system for actions. The story is home brew High Fantasy, taking place in a land called Aetrynos. Distinct from Javaborne, this game is designed with a single "doSomething()" function which can handle all locations and all actions. This, paired with the system of selection and options rooted inside the player's active zone itself allows for a smooth, single system which can handle and parse many different things. The engine utilizes object-oriented-programming to handle creating the necessary entities and objects which interact in the game (Player, creature, items, zones, etc.)
 
 
 ---
@@ -40,7 +40,6 @@ This is a zork-like text-based adventure game. It contains a global status syste
 ## Development Progress
 
 #### Priority To Do
-- [ ] Fix the Grue's attacks (Need to reproduce the issue first)
 
 #### Extra To Do
 - [ ] Build a way to light the candles in the study with the matches, so they stay lit
@@ -52,7 +51,7 @@ This is a zork-like text-based adventure game. It contains a global status syste
 - [ ] Make the matches expendable, so you only have three(?)
 - [ ] Redesign doSomething choices to ALWAYS include moving backwards as number 1
 - [ ] Redesign Items so that inventory and everything use actual Item objects, not just the ID
-- [ ] !! Redesign menus to always include a movement option which opens a move menu for each room
+- [ ] ! Redesign menus to always include a movement option which opens a move menu for each room
 - [ ] Write out Cornfield First Time text for all zones
 
 #### Done

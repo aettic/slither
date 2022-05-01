@@ -380,6 +380,7 @@ about this page's weight now.''')
             print("\n\t# GAME SAVED #")
             self.saveState()
         elif (int(choice) == 5):
+            input("\n\t# ENTER to QUIT #")
             print("""\n\n
            ..|'''.|                      '|| '||
           .|'     '    ...     ...     .. ||  || ...  .... ...  ....

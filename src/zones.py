@@ -894,7 +894,7 @@ fiery tails trailing behind.'''
                         }
 
         elif (self.zoneID == 7):  # farmhouseCloset2
-            self.summary = "A simple closet, full of clothes, sheets, and other odds and ends."
+            self.summary = "A simple closet full of clothes, sheets, and other odds and ends."
             self.description = '''This closet is full of linens, shirts and trousers, and some
 extra blankets Nothing terrible interesting. On a small shelf
 near the top, is a box of matches.'''
@@ -1865,7 +1865,8 @@ likeness to a human head; its face stares blankly at the barn.'''
 
 
         elif (self.zoneID == 15):  # prairieWell
-            self.summary = '''In the midst of the open field is a medium sized well made of stone, with a tented roof and strong wooden frame.'''
+            self.summary = '''In the midst of the open field is a medium sized well made of
+stone, with a tented roof and strong wooden frame.'''
             self.description = '''This well sits not too far from the house, in the open field of
 the praririe. From here, you can see the back of the Barn, the
 Shed, the Outhouse, and the garden, including its stalwart scare-
@@ -2895,7 +2896,10 @@ some kind of machines. There is a small journal on the desk.''',
 
         elif (self.zoneID == 22):  # barnBack
             self.summary = '''The rear side of the barn. From here you can see the Well and Outhouse'''
-            self.description = '''Behind the barn, you are standing near the edge of the woods on the South end of the property. North of the barn you can see the rest of the property. On the ground, you see a trail of blood from the stable.'''
+            self.description = '''Behind the barn, you are standing near the edge of the woods on
+the South end of the property. North of the barn you can see the
+rest of the property. On the ground, you see a trail of blood
+from the stable.'''
             self.items.clear()
             self.items = []
 
@@ -3253,7 +3257,8 @@ leads from the Southern part of the yard to this wall of corn.'''
 
         elif (self.zoneID == 25):  # cornfieldThick
             self.summary = '''Inside the cornfield, here, the corn begins to get thicker.'''
-            self.description = '''All around, you are surrounded by corn. It is getting thicker, and harder to move, but you can still see a path forward.'''
+            self.description = '''All around, you are surrounded by corn. It is getting thicker,
+and harder to move, but you can still see a path forward.'''
             self.items.clear()
 
             self.options = [
@@ -3358,7 +3363,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 28):  # cornfieldMaze1
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3399,7 +3405,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 29):  # cornfieldMaze2
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3435,7 +3442,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 30):  # cornfieldMaze3
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3470,7 +3478,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 31):  # cornfieldMaze4
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3510,7 +3519,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 32):  # cornfieldMaze5
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3545,7 +3555,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 33):  # cornfieldMaze6
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3585,7 +3596,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 34):  # cornfieldMaze7
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3620,7 +3632,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 35):  # cornfieldMaze8
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3660,7 +3673,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 36):  # cornfieldMaze9
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3700,7 +3714,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 37):  # cornfieldMaze10
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3735,7 +3750,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 38):  # cornfieldMaze11
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3775,7 +3791,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 39):  # cornfieldMaze12
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3810,7 +3827,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 40):  # cornfieldMaze13
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3845,7 +3863,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 41):  # cornfieldMaze14
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3880,7 +3899,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 42):  # cornfieldMaze15
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3915,7 +3935,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 43):  # cornfieldMaze16
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3950,7 +3971,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 44):  # cornfieldMaze17
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -3985,7 +4007,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 45):  # cornfieldMaze18
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -4020,7 +4043,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 46):  # cornfieldMaze19
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -4055,7 +4079,8 @@ enough to move through unhindered.'''
 
         elif (self.zoneID == 47):  # cornfieldMaze20
             self.summary = '''An intersection near the beginning of the maze.'''
-            self.description = '''This maze is disorienting, as all of the intersections look similar.'''
+            self.description = '''This maze is disorienting, as all of the intersections look
+similar.'''
             self.items.clear()
 
             self.options = [
@@ -4122,7 +4147,7 @@ is a stone staircase descending into the ground.'''
                 }
             else:
                 self.description = '''An open clearing that appears to be pressed down in a large
-    circle, flattened to the ground.'''
+circle, flattened to the ground.'''
                 self.options = [
                     "North",
                     "West",
