@@ -33,13 +33,18 @@ There are a number of different execution command keywords for python3 depending
 
 ---
 ### Starting the Game
-This game is a python script, which means right now it must be run in a Terminal or Command prompt, on a machine running Python3. Extract the zip folder to some location, and then change directory into that location in your Terminal. Then launch the python script from within the "slither" folder.
+This game is a python script, which means right now it must be run in a Terminal or Command prompt, on a machine running Python3. Extract the zip folder to some location, and then change directory into that location in your Terminal. Then launch the python script from within the "slither" folder. You have to launch the game from this folder, or saving and loading will not work. This is early beta, please bear with me.
 
+Here's an example:
 
+If you're in your home folder, and you extract to a location called Aetrynos for instance, here's what it should look like
+
+`cd ~/Aetrynos/slither`
+`python3 src/main.py`
 
 This should start the game inside your Terminal window. If there is something wrong, you may experience a Python interpreter execution error, and the game will not start. If this happens, please take note of the error and contact me. (See the final section in this manual).
 
-If the text seems to wrap poorly and cuts off words, try increasing the width of your terminal window.
+If the text seems to wrap poorly and cuts off words, try increasing the width of your terminal window. It needs to be at least 70 columns wide.
 
 ---
 ### Playing the Game
