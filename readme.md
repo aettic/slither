@@ -25,22 +25,28 @@ From GitHub, you can select Code > Download Zip.
 ### Installing Python3
 If you already have Python3 installed and know how to execute .py scripts from the command line, you can skip this section.
 
-If you do not have Python3 installed, you will need to download and install it. There are several ways to do this, I am going to include my personal recommendations here, but the crux of the matter is that you will need to know *how to launch* python3 commands.
+If you do not have Python3 installed, you will need to download and install it. There are several ways to do this, I am going to include my personal recommendations here.
 
-In general, I recommend using https://www.python.org/downloads/ to download the official latest release of Python3. The installation process should be straight forward. Once it is installed, restart Terminal or Command Prompt if you have it open, and test it out by executing the command provided.
-
-There are a number of different execution command keywords for python3 depending on your installation and other circumstances, which makes this part a bit annoying, but for sake of ease, I'm just going to use the one I've seen most commonly, which is `python3`, this might be different in your installation, please determine what command is used to execute the python interpreter on your own installation, and substitute that command where you see `python3` below.
+I recommend using https://www.python.org/downloads/ to download the official latest release of Python3. The installation process should be straight forward. Once it is installed, restart Terminal or Command Prompt if you have it open.
 
 ---
 ### Starting the Game
-This game is a python script, which means right now it must be run in a Terminal or Command prompt, on a machine running Python3. Extract the zip folder to some location, and then change directory into that location in your Terminal. Then launch the python script from within the "slither" folder. You have to launch the game from this folder, or saving and loading will not work. This is early beta, please bear with me.
+This game is a python script, which means right now it must be run in a Terminal or Command prompt, on a machine running Python3. Extract the zip folder to some location, and then double click on the appropriate Play button for your Operating System. For instance, if you're on a mac, double click "play-mac.command", if you're on Windows, double click "play-windows".
 
-Here's an example:
+**IMPORTANT NOTE FOR WINDOWS USERS**
+This is a Batch file. In particular, all this Batch file does is run the game, but Batch files have a notorious history of being used for all kinds of nefarious purposes, so Microsoft has put up a warning wall. If / When this pops up, go ahead click the Read More button and then click Run Anyway.
 
-If you're in your home folder, and you extract to a location called Aetrynos for instance, here's what it should look like
+If you are curious and want to verify the integrity of the batch file yourself, it should say the following, and nothing else:
 
-`cd ~/Aetrynos/slither`
-`python3 src/main.py`
+```cmd
+@py.exe ./src/main.py %*
+@pause
+```
+
+If you want, you can also verify the hash for these script files:
+MD5 (play-windows.bat)  =  3eb3c04b613254c8adb4f27f32ae7529
+MD5 (play-linux.sh)     =  596306781453677685cc2f3380601b07
+MD5 (play-mac.command)  =  ce87985bb5ddfc420338fff31fd5f9a1
 
 This should start the game inside your Terminal window. If there is something wrong, you may experience a Python interpreter execution error, and the game will not start. If this happens, please take note of the error and contact me. (See the final section in this manual).
 
