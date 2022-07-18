@@ -367,6 +367,7 @@ about this page's weight now.''')
         print("4: Save Game")
         print("5: Quit")
         print("6: Help")
+        print("7: Settings")
         print("ENTER - Return to Game")
         choice = input("> ")
 
@@ -420,6 +421,27 @@ about this page's weight now.''')
             print("  not all be needed, but the more detailed the notes, the easier")
             print("  it is to find the solution).")
             print("- Above all, please enjoy this game!")
+        elif (int(choice) == 7):
+            print("\n\t# SETTINGS #")
+            print("1 - Quick Read")
+            settingsChoice = input("\nSelect an Option, or ENTER to go back\n> ")
+            if (int(settingsChoice) == 1):
+                print("""Quick Read allows you to skip the secondary confirmation return
+when moving between rooms. It is off by default.""")
+                if (self.globalStatus["Quick Read"] == False):
+                    print("\nQuick Read is currently off.")
+                    selection = input("\n1: Turn on\n2: Keep off\n> ")
+                    if (int(selection) == 1):
+                        self.globalStatus["Quick Read"] = True
+                    elif (int(selection) == 2):
+                        self.globalStatus["Quick Read"] = False
+                elif (self.globalStatus["Quick Read"] == True):
+                    print("\nQuick Read is currently on.")
+                    selection = input("\n1: Turn off\n2: Keep on\n> ")
+                    if (int(selection) == 1):
+                        self.globalStatus["Quick Read"] = False
+                    elif (int(selection) == 2):
+                        self.globalStatus["Quick Read"] = True
         else:
             print("")
 

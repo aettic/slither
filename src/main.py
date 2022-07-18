@@ -29,7 +29,8 @@ def doSomething(pc):
 
     while(currentZoneID == pc.zoneID):
 
-        input("\n\t# ENTER TO CONTINUE #")
+        if(pc.globalStatus["Quick Read"] == False):
+            input("\n\t# ENTER TO CONTINUE #")
 
         pc.zone = Zone(currentZoneID, pc)
 
@@ -1616,6 +1617,9 @@ Any remaining points might be useful... later on...''')
         "Hidden Note 1 read": False,
         "Hidden Note 2 read": False,
         "Hidden Note 3 read": False,
+
+        ### SETTINGS
+        "Quick Read": False,
 
         ### GAME END
         "Game Won": False,

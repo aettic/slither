@@ -5,7 +5,8 @@ from item import Item
 class Zone:
 
     def __init__(self, zoneID, pc):
-
+        # Zones are essentially rooms. All events in the game take place in a zone. Zomes feature a number of attributes, which define everything about them, from what the zone is called, to what it looks like, to what kind of options are available in that zone, to what items are available, and these attributes can change for the player based on the PC's global status dictionary. If, for instance, it's the first time walking into the dirt road zone, then there is a hat available to pick up, if the hat has been picked up, it will not show up anymore in the description, or the options.
+        # Inside a zone, options are dictated by a select list of possible option types, and what they do specifically is defined in the zone, based on its current circumstance.
         self.zoneID = zoneID
         self.items = []
 
@@ -92,6 +93,13 @@ ditch just off the road, you spot a tiny hat.'''
                         }
                     }
                 elif(pc.globalStatus["Fancy Hat taken"] == True):
+                    self.description = '''You are standing just off a dirt road which stretches onward
+for what seems like miles to the North and South. The sun hangs
+overhead, slowly dipping toward the horizon behind a steady farm.
+Several structures dot the property, including a house, a barn,
+and a couple ancilliary buildings. Behind you, across the road,
+a wide field of beans stretches far into the distance, abutting
+a misty thicket of wood.'''
                     self.options = [
                         "Walk West toward the house",
                         "Walk North along the road",
