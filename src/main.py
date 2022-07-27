@@ -346,8 +346,8 @@ There is also a sword mounted over the bed.''')
             if (pc.globalStatus["farmhouseStudy first time"] == True):
                 print('''This room is darker than the bedroom itself, and contains one
 large desk pressed up against the solid wooden wall. A narrow
-window lets light in from the North. On the desk is a lantern,
-and several handwritten notes.''')
+window lets light in from the North. On the desk are several
+handwritten notes.''')
             else:
                 print(pc.zone.summary)
             farmhouseStudy(pc)
@@ -1361,7 +1361,7 @@ def newGame():
     except KeyboardInterrupt:
         exitScreen()
 
-    print(f'''Hello, {name}. Next, you will declare your starting stats.
+    print(f'''Hello, {name}. Next, you will declare your starting skills.
 There are four, each pertaining to a different aspect of life in
 the world of Aetrynos. STRENGTH governs your ability to do damage
 to enemies you encounter. DEXTERITY is a measure of your ability
@@ -1369,36 +1369,36 @@ to maneuver, and evade attacks. INTELLIGENCE describes your
 intellect, and capacity for understanding the Arcane. And finally,
 CONSTITUTION demonstrates your heartiness, and resilience.
 
-You have a pool of ten points to spend to increase your stats,
+You have a pool of ten points to spend to increase your skills,
 but each starts at 9. You do not need to spend all the points in
 your pool, but you only have this one chance, so spend them wisely.
 Any remaining points might be useful... later on...''')
 
-    statsTuple = ("STR", "DEX", "INT", "CON")
+    skillsTuple = ("STR", "DEX", "INT", "CON")
     pointsLeft = 10
 
-    ### Create and spend points on stats
-    # starting base stats
-    stats = {
-        "STR": 9,  # strength and damage
-        "DEX": 9,  # maneuverability and reflexes
-        "INT": 9,  # perception and understanding
-        "CON": 9  # health and resillience
+    ### Create and spend points on skills
+    # starting base skills
+    skills = {
+        "STR": 9,  # Strength: Power and damage
+        "DEX": 9,  # Dexterity: Maneuverability and reflexes
+        "INT": 9,  # Intellect: Perception, understanding, and magic
+        "CON": 9  # Constitution: Health and resillience
     }
 
     # Additional point allocation, based on pointsLeft
-    for i in statsTuple:
+    for i in skillsTuple:
         next = False
         if (pointsLeft > 0):
             while next == False:
                 if (pointsLeft > 0):
-                    print(f"\nCurrent {i}: {stats[i]}. Add [0 - {pointsLeft}]: ")
+                    print(f"\nCurrent {i}: {skills[i]}. Add [0 - {pointsLeft}]: ")
                     try:
                         readIn = int(input("> "))
                         if (readIn <= pointsLeft and readIn >= 0):
-                            stats[i] += readIn
+                            skills[i] += readIn
                             pointsLeft -= readIn
-                            print(f"new {i}: {stats[i]}")
+                            print(f"new {i}: {skills[i]}")
                             next = True
                         else:
                             print(f"invalid input, please choose a number between [0 - {pointsLeft}]")
@@ -1410,15 +1410,17 @@ Any remaining points might be useful... later on...''')
                     next = True
 
         else:
-            print(f"Current {i}: {stats[i]}. No more points to spend.")
+            print(f"Current {i}: {skills[i]}. No more points to spend.")
 
-    # Calculate derived stats (maxHP, currentHP, and damage)
-    maxHP = stats["CON"] + 2
-    currentHP = int(maxHP)
-    damage = math.ceil(stats["STR"] / 5)
-    magic = math.ceil((stats["INT"] / 2) - 4)
-    defense = math.ceil((stats["DEX"] / 5) - 1)
-    experience = pointsLeft * 10
+    # Calculate derived stats
+    stats = {
+        "maxHP": int(skills["CON"] + 2),
+        "currentHP": int(skills["CON"] + 2),
+        "damage": int(math.ceil(skills["STR"] / 5)),
+        "magic": int(math.ceil((skills["INT"] / 2) - 4)),
+        "defense": int(math.ceil((skills["DEX"] / 5) - 1)),
+        "experience": int(pointsLeft * 10)
+    }
 
     # Creates new inventory
     inventory = [0]  # only Note from Alys
@@ -1633,21 +1635,16 @@ Any remaining points might be useful... later on...''')
     # Define newPlayer dictionary in same format as load, then return it.
     newPlayer = {
         "armor": armor,  # player's armor (release: 0 - Clothes)
-        "currentHP": currentHP,  # current HP, starts the same as Max
-        "damage": damage,  # the player's base damage range, determined by STR
         "darknessTimer": darknessTimer,  # used for measuring time spent in the dark
-        "defense": defense,  # the player's defenses, based on DEX
-        "experience": experience,  # running experience points for advancement and leveling up
         "globalStatus": globalStatus,  # a huge dictionary of all GS booleans
         "inventory": inventory,  # the starting inventory (release: 0)
         "isAlive": isAlive,  # the player starts alive, if this becomes false, Game Over
-        "magic": magic,  # the player's magical attunement, based on INT
         "matchTimer": matchTimer,  # used to track how long a match is burning
-        "maxHP": maxHP,  # the player's maximum HP, based on CON
         "maze": maze,  # the number of the maze version
         "mazeKey": mazeKey,  # the specific path for the generated maze
         "name": name,  # the player's name
-        "stats": stats,  # the player's stats / attributes (STR, DEX, INT, CON)
+        "skills": skills,  # the player's skills (STR, DEX, INT, CON)
+        "stats": stats,  # the player's derived stats
         "weapon": weapon,  # the player's weapon (release: 99 - knife)
         "zoneID": startingZoneID  # Choose where play starts (release: 0)
     }

@@ -11,20 +11,15 @@ class Player:
 
         # initialize player values based on either newPlayer or loaded JSON data
         self.armor = playerDict["armor"]
-        self.currentHP = playerDict["currentHP"]
-        self.damage = playerDict["damage"]
         self.darknessTimer = playerDict["darknessTimer"]
-        self.defense = playerDict["defense"]
-        self.experience = playerDict["experience"]
         self.globalStatus = playerDict["globalStatus"]
         self.inventory = playerDict["inventory"]
         self.isAlive = playerDict["isAlive"]
-        self.magic = playerDict["magic"]
         self.matchTimer = playerDict["matchTimer"]
-        self.maxHP = playerDict["maxHP"]
         self.maze = playerDict["maze"]
         self.mazeKey = playerDict["mazeKey"]
         self.name = playerDict["name"]
+        self.skills = playerDict["skills"]
         self.stats = playerDict["stats"]
         self.weapon = playerDict["weapon"]
         self.zoneID = playerDict["zoneID"]
@@ -40,7 +35,7 @@ class Player:
     def attack(self, creature):
         weaponName = Item(self.weapon[0]).name
         bonus = Item(self.weapon[0]).damageBonus
-        damage = random.randrange(self.damage) + random.randrange(bonus)
+        damage = random.randrange(self.stats["damage"]) + random.randrange(bonus)
 
         print(f"You attack with your {weaponName}.")
         if(damage > 0):
@@ -51,15 +46,15 @@ class Player:
 
 
     def takeDamage(self, damage):
-        self.currentHP -= (damage - self.defense)
+        self.stats["currentHP"] -= (damage - self.stats["defense"])
 
-        if(self.currentHP <= 0):
+        if(self.stats["currentHP"] <= 0):
             self.isAlive = False
             print("You have perished.\n\n\t # GAME OVER #")
 
 
     def intimidate(self, enemy):
-        intimidation = (self.stats["STR"] + self.stats["CON"]) - 15 #min 1, max 11
+        intimidation = (self.skills["STR"] + self.skills["CON"]) - 15 #min 1, max 11
         intimidateFactor = math.ceil(random.randrange(intimidation))
         if(intimidateFactor > (math.ceil(enemy.maxHP / 2))):
             print(f"The {enemy.type} is scared by your terrifying visage, and scurries away!")
@@ -80,7 +75,7 @@ class Player:
             if(item.use == "equip"):
                 self.equipItem(item)
             elif(item.use == "spell"):
-                if(self.stats["INT"] >= item.statRequired["INT"]):
+                if(self.skills["INT"] >= item.skillRequired["INT"]):
                     self.castSpell(item)
                 else:
                     print("You do not have a high enough Intelligence score.")
@@ -95,16 +90,16 @@ class Player:
     def equipItem(self, item):
         if(item.armor == True):
             self.armor.append(item.itemID)
-            self.defense += item.armorBonus
+            self.stats["defense"] += item.armorBonus
             print(f"You don the {item.name}")
         elif(item.weapon == True):
             # unequip current weapon
-            self.damage -= Item(self.weapon[0]).damageBonus
+            self.stats["damage"] -= Item(self.weapon[0]).damageBonus
             self.inventory.append(self.weapon.pop(0))
 
             # equip new weapon - only one can be used at a time
             self.weapon = [item.itemID]
-            self.damage += item.damageBonus
+            self.stats["damage"] += item.damageBonus
             print(f"You wield the {item.name}")
         else:
             print("Not yet made")
@@ -119,32 +114,32 @@ class Player:
             print("3: Subtle Steps")
             choice = input("> ")
             if(int(choice) == 1):
-                if(self.magic >= item.spell["Astral Crown"]["magic"]):
+                if(self.stats["magic"] >= item.spell["Astral Crown"]["magic"]):
                     print(item.spell["Astral Crown"]["description"])
-                    self.damage += item.spell["Astral Crown"]["effect"]
-                    self.defense += item.spell["Astral Crown"]["effect"]
-                    self.magic -= 1
+                    self.stats["damage"] += item.spell["Astral Crown"]["effect"]
+                    self.stats["defense"] += item.spell["Astral Crown"]["effect"]
+                    self.stats["magic"] -= 1
                 else:
                     print("You attempt to cast the spell, but nothing happens.")
             elif(int(choice) == 2):
-                if(self.magic >= item.spell["Miraculous Recovery"]["magic"]):
+                if(self.stats["magic"] >= item.spell["Miraculous Recovery"]["magic"]):
                     print(item.spell["Miraculous Recovery"]["description"])
-                    self.currentHP += item.spell["Miraculous Recovery"]["effect"]
-                    self.magic -= 1
+                    self.stats["currentHP"] += item.spell["Miraculous Recovery"]["effect"]
+                    self.stats["magic"] -= 1
                 else:
                     print("You attempt to cast the spell, but nothing happens.")
             elif(int(choice) == 3):
-                if(self.magic >= item.spell["Subtle Steps"]["magic"]):
+                if(self.stats["magic"] >= item.spell["Subtle Steps"]["magic"]):
                     print(item.spell["Subtle Steps"]["description"])
                     self.globalStatus["Stealthy"] = item.spell["Subtle Steps"]["effect"]
-                    self.magic -= 1
+                    self.stats["magic"] -= 1
                 else:
                     print("You attempt to cast the spell, but nothing happens.")
         elif(item.itemID == 6):  # Ink?
             print(item.spell)
             self.inventory.pop(self.inventory.index(item.itemID))
         elif(item.itemID == 11):  # Liquid Darkness
-            self.magic += item.magicBonus
+            self.stats["magic"] += item.magicBonus
             print(item.spell)
             self.globalStatus["Darkvision"] = True
         elif(item.itemID == 19):  # Jar Bomb
@@ -182,7 +177,7 @@ nostrils...''')
                     self.isAlive = False
             self.inventory.pop(self.inventory.index(item.itemID))
         elif(item.itemID == 22):  # Emerald Merkaba Pendant
-            self.magic += item.magicBonus
+            self.stats["magic"] += item.magicBonus
             self.globalStatus["Staircase Visible"] = True
             print(item.spell)
         elif(item.itemID == 24):
@@ -335,9 +330,9 @@ about this page's weight now.''')
     def viewEquipment(self):
         print("\n\t# EQUIPMENT #")
         if(len(self.weapon) < 1):
-            print(f"Wielding: Bare Fists (damage: {self.damage})")
+            print(f"Wielding: Bare Fists (damage: {self.stats['damage']})")
         else:
-            print(f"Wielding: {Item(self.weapon[0]).name} (damage: {self.damage})")
+            print(f"Wielding: {Item(self.weapon[0]).name} (damage: {self.stats['damage']})")
         if(len(self.armor) < 1):
             print("Wearing: Clothes")
         else:
@@ -346,12 +341,12 @@ about this page's weight now.''')
 
     def viewStats(self):
         print(self.name)
-        print(f"\n\t# STATS #\nHP: {self.currentHP} / {self.maxHP}")
-        for stat in self.stats:
-            print(f"{stat}: {self.stats[stat]}")
-        print(f"Damage: {self.damage}")
-        print(f"Defense: {self.defense}")
-        print(f"Magic: {self.magic}")
+        print(f"\n\t# STATS #\nHP: {self.stats['currentHP']} / {self.stats['maxHP']}")
+        for skill in self.skills:
+            print(f"{skill}: {self.skills[skill]}")
+        print(f"Damage: {self.stats['damage']}")
+        print(f"Defense: {self.stats['defense']}")
+        print(f"Magic: {self.stats['magic']}")
 
 
 
@@ -413,7 +408,7 @@ about this page's weight now.''')
             print("      every zone has this, and it always involves the entire zone.")
             print("    - Player Menu: Finally, the menu is always accessible at the")
             print("      bottom, which provides interactions like this help screen,")
-            print("      as well as viewing your inventory, stats, and equipment,")
+            print("      as well as viewing your inventory, skills, and equipment,")
             print("      and even saving or quitting the game. Make sure to save often.")
             print("- If you encounter an issue, please record detailed notes on what")
             print("  happened, including which zone you were in, what you were doing,")
@@ -450,20 +445,15 @@ when moving between rooms. It is off by default.""")
     def saveState(self):
         saveDict = {
             "armor": self.armor,
-            "currentHP": self.currentHP,
-            "damage": self.damage,
             "darknessTimer": self.darknessTimer,
-            "defense": self.defense,
-            "experience": self.experience,
             "globalStatus": self.globalStatus,
             "inventory": self.inventory,
             "isAlive": self.isAlive,
-            "magic": self.magic,
             "matchTimer": self.matchTimer,
-            "maxHP": self.maxHP,
             "maze": self.maze,
             "mazeKey": self.mazeKey,
             "name": self.name,
+            "skills": self.skills,
             "stats": self.stats,
             "weapon": self.weapon,
             "zoneID": self.zoneID

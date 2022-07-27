@@ -4,7 +4,10 @@ class Item:
     def __init__(self, itemID):
         self.itemID = itemID
 
-        # default values are False
+        # default values
+        self.name = "Item"
+        self.value = 0
+        self.description = "Item description."
         self.equippable = False
         self.armor = False
         self.weapon = False
@@ -72,7 +75,7 @@ whole. When worn, the pyramid points down.'''
             self.value = 10
             self.magic = True
             self.magicBonus = 2
-            self.statRequired = {"INT": 13}
+            self.skillRequired = {"INT": 13}
             self.use = "spell"
             self.spell = {
                 "Astral Crown": {
@@ -132,7 +135,7 @@ glass windows.'''
 of some sort of stairway. It appears to indicate that this
 stairway exists and does not exist at the same time; or perhaps
 it exists in a parallel dimension.'''
-            self.description = "A strange drawing found by the well."
+            self.description = "A strange note found by the cellar stairs."
             # location: Tucked into the stairs of the cellar
 
         elif(self.itemID == 9):
@@ -243,7 +246,7 @@ chemicals.'''
         elif(self.itemID == 19):
             self.name = "Jar Bomb"
             self.value = 2
-            self.statRequired = {"INT": 9}
+            self.skillRequired = {"INT": 9}
             self.use = "spell"
             self.spell = "You shake the jar and throw it! After a few seconds, it explodes!"
             self.description = '''A very dangerous homemade bomb. It could be useful, but it is
@@ -269,7 +272,7 @@ around its edges, it has a peculiar symmertry.'''
             self.name = "Emerald Merkaba Pendant"
             self.magicBonus = 10
             self.value = 50
-            self.statRequired = {"INT": 11}
+            self.skillRequired = {"INT": 11}
             self.use = "spell"
             self.spell = '''You twist the double pyramid structure, which seems to interlock
 and shift around itself. The inside glows a bright green, and the
@@ -297,7 +300,7 @@ in plain words: "Only in darkness do the stars light the way."'''
             self.name = "Stained Journal Page"
             self.value = 1
             self.use = "spell"
-            self.statRequired = {"INT": 9}
+            self.skillRequired = {"INT": 9}
             self.spell = '''You hold the page up, and can feel it almost guiding you.'''
             self.description = '''The page of the journal is now stained with black ink, except for
 a star in the center. The page almost seems to be affected by a

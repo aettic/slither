@@ -285,6 +285,10 @@ You can see the footprints came from the sitting room.'''
                         }
                     }
                 else:
+                    self.description = '''Only the dim evening light spills in from the windows on the
+        West side of the wall. It appears that this place was left in
+        a hurry. The tell-tale signs of a struggle can be seen about the
+        room. There are unlit candles on the table and around the room.'''
                     self.options = [
                         "Into the sitting room",
                         "Open the closet",
@@ -606,7 +610,7 @@ silver chain. You put it in your pack.''',
 fireplace, blackened with use. Behind the chairs, a staircase
 climbs to the second floor. The kitchen and closet aren't far away.'''
             self.description = '''A pair of comfortable looking chairs face a fireplace, taking up
-the body of the room. Around the edges are a basket with some
+the body of the room. On one side is a basket filled with some
 books. The fireplace seems to have exploded outward, as ash is
 scattered in a burst toward the chairs. Upon closer inspection,
 in the ash are tiny footprints...'''
@@ -660,8 +664,8 @@ in the ash are tiny footprints...'''
 the floor and even the bottoms of the chairs. Little clawed
 footprints can be made out in the ash, coming from the fireplace,
 and leading out of the sitting room. Following the tracks, you
-can see multiple sets, heading toward the kitchen at the front of
-the house.''',
+can make out multiple sets, heading toward the kitchen at the
+front of the house.''',
                         "examine": "farmhouseSittingRoom Fireplace"
                     },
                     4: {
@@ -681,9 +685,9 @@ which runs the height of the house, from ground to roof. The
 stairs creak gently. The back wall is decorated with a handful
 of portraits: A beautiful woman you know to be Alys, a young
 man who must be her son, and another man who you remember as
-her late husband. A crest of the Astraniela family featuring
-thirteen stars around a circular labyrinth design with a heart
-at the center.'''
+her husband. A crest of the Astraniela family featuring thirteen
+stars around a circular labyrinth design with a heart at the
+center.'''
             self.items.clear()
             self.options = [
                 "Down to the ground floor sitting room",

@@ -13,7 +13,7 @@ The core of this program, where the game code is written and executed.
 A file which contains information on all of the zones in the area, in the form of Zone() objects.  
 
 #### player.py
-A core element of the game, generates the actual player object, which is carried forward through the entire game. Houses the globalStatus boolean dictionary, inventory items list, stats, and general save state. Includes a feature to save the game to a json file. Contains information for combat, using items, and a player menu which includes universal options, which can be used regardless of location (this was to reduce the increasing amount of options in a given zone)
+A core element of the game, generates the actual Player() object, which is carried forward through the entire game. Houses the globalStatus boolean dictionary, inventory items list, stats, and general save state. Includes a feature to save the game to a json file. Contains information for combat, using items, and a player menu which includes universal options, which can be used regardless of location.
 
 #### item.py
 Houses descriptions for all items in the game, organized by itemID. Can contain lots of information, such as what type of object it is, whether it has any magical abilities, or gives a boost to armor or damage, etc. All items share a common set of traits, all of which start as False, and are turned on for individual items based on needs.
@@ -43,12 +43,12 @@ This is a zork-like text-based adventure game. It contains a global status syste
 
 #### Extra To Do
 - [ ] Build a way to light the candles in the study with the matches, so they stay lit
-- [ ] Build NPC objects with interactive dialogue capacity (model after combat) (for Act 3)
+- [ ] Build NPC objects with interactive dialogue capacity (model after combat) (for Acts 2 and 3)
 - [ ] Clean up code redundancy, especially in zones
 - [ ] Cornfield unique flavor text?
 - [ ] Develop json dataset to house descriptions, options, etc. (will require re-architecture)
 - [ ] Look into combining all possible movements into one function - pc.moveTo(Zone) or something
-- [ ] Make the matches expendable, so you only have three(?)
+- [ ] Make the matches expendable, so you only have a few (5? 10?)
 - [ ] Redesign doSomething choices to ALWAYS include moving backwards as number 1
 - [ ] Redesign Items so that inventory and everything use actual Item objects, not just the ID
 - [ ] ! Redesign menus to always include a movement option which opens a move menu for each room
@@ -239,8 +239,8 @@ You must explore her abandoned farm, and discover clues that lead to finding and
 **The Farm**
 Explore the farmland, including the fields, the house, the barn, and smaller buildings to find clues about what might have happened to Alys, and where she might have gone. If one explores the cornfield before finding the proper opening, they will not be able to solve the maze.
 
-#### Act II (Dreaming)
-**The Underworld**
+#### Act II (Planning)
+**The Dark Below**
 Upon entering the staircase, one is transported down into the underworld. This will start out as caves, which in and of themselves will be maze-like. Various things can be found in these caves, from tools and magical items, to history and notes, to secret tunnels, etc. And eventually one may discover the threshold that marks the true descent into the underworld.
 
 #### Act III (Dreaming)

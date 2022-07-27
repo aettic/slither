@@ -41,9 +41,9 @@ class Creature:
     def attack(self, pc):
         damage = random.randrange(self.damage) + 1
         print(f"The {self.type} attacks with a {random.choice(self.weapons)}.")
-        if ((damage - pc.defense) > 0):
+        if ((damage - pc.stats["defense"]) > 0):
             pc.takeDamage(damage)
-            print(f"The {self.type} deals {damage - pc.defense} damage.")
+            print(f"The {self.type} deals {damage - pc.stats['defense']} damage.")
         else:
             if (damage == 0):
                 print("You evade the attack.")

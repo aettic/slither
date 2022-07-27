@@ -1,0 +1,136 @@
+{
+  "main": {
+    "id": "203f5e2d4d9e0b30",
+    "type": "split",
+    "children": [
+      {
+        "id": "1780274b3e216abd",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "mechanics.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d080a9cb9767f6a7",
+    "type": "split",
+    "children": [
+      {
+        "id": "406cc2932642629f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "aeac13b5f3aef6a5",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "40336a93e605c4ab",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "72df1f2c5083dcfe",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 178.5
+  },
+  "right": {
+    "id": "09c441700fd85346",
+    "type": "split",
+    "children": [
+      {
+        "id": "2a4cfddaf59f53a5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7bdef905e198c575",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "mechanics.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "b0f45ed1981418a6",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "mechanics.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "4f2a16fd416592a1",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "9109348cae07b691",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "mechanics.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "1780274b3e216abd",
+  "lastOpenFiles": [
+    "the-dark-below.md",
+    "mechanics.md"
+  ]
+}
