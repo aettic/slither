@@ -1,0 +1,8 @@
+# ignore files
+
+src/saves/gameSave.json
+
+# DS_Store
+.DS_Store
+src/.DS_Store
+src/saves/.DS_Store

@@ -20,6 +20,8 @@ def printTitle():
   dPYb    88__      88    88__dP   YbdY   88Yb88  dY   Yb  `Ybo.
  dP__Yb   88""      88    88"Yb     88    88 Y88  Yb   dY    `Y8b
 dP""""Yb  888888    88    88  Yb    88    88  Y8   YbodP   '8bodP
+
+                      --- UNDER THE STARS ---
 ''')
 
 
@@ -1653,7 +1655,7 @@ Any remaining points might be useful... later on...''')
 
 
 def gameStart():
-    print("\t\t\t  1 - NEW GAME\n\t\t\t  2 - CONTINUE\n")
+    print("\t\t\t   1 - NEW GAME\n\t\t\t   2 - CONTINUE\n")
 
     try:
         choice = input("> ")
