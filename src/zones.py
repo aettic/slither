@@ -42,13 +42,13 @@ ditch just off the road, you spot a tiny hat.'''
                 self.selection = {
                     1: {
                         "do": "You walk toward the house.",
-                        "moveTo": 1,
+                        "moveTo": 1
                     },
                     2: {
                         "do": "You walk up the road, but decide to head back.",
                     },
                     3: {
-                        "do": "You walk down the road, but decide to head back.",
+                        "do": "You walk down the road, but decide to head back."
                     },
                     4: {
                         "do": self.description,
@@ -72,13 +72,13 @@ ditch just off the road, you spot a tiny hat.'''
                     self.selection = {
                         1: {
                             "do": "You walk toward the house.",
-                            "moveTo": 1,
+                            "moveTo": 1
                         },
                         2: {
-                            "do": "You walk up the road, but decide to head back.",
+                            "do": "You walk up the road, but decide to head back."
                         },
                         3: {
-                            "do": "You walk down the road, but decide to head back.",
+                            "do": "You walk down the road, but decide to head back."
                         },
                         4: {
                             "do": "You pick up the small hat.",
@@ -111,13 +111,13 @@ a misty thicket of wood.'''
                     self.selection = {
                         1: {
                             "do": "You walk toward the house.",
-                            "moveTo": 1,
+                            "moveTo": 1
                         },
                         2: {
-                            "do": "You walk up the road, but decide to head back.",
+                            "do": "You walk up the road, but decide to head back."
                         },
                         3: {
-                            "do": "You walk down the road, but decide to head back.",
+                            "do": "You walk down the road, but decide to head back."
                         },
                         4: {
                             "do": self.description,
@@ -1188,49 +1188,268 @@ bed is a plaque mounted to the wall, which once held a sword.'''
             self.summary = '''The centerpiece of this study is its wide desk. The area is poorly
 lit by a thin window above the desk. Papers are littered all over
 the desk, and some on the floor.'''
-            self.description = '''This cramped space seems well-used. A wide, but shallow desk
-abuts the wooden wall, and the room is dimly lit by the evening
-sky through a thin window above the desk. Two unlit candles in
-sconces flank the door on either side. A small bottle of black
-ink sits on the desk, next to a quill. You can also see that
-notes are scattered about. Each contains formulae, sketches, and
-hastily written theories and worries.'''
             self.items.clear()
             self.items = [6]
             if(pc.globalStatus["Match Lit"] == False and pc.globalStatus["Lantern Lit"] == False):
                 pc.globalStatus["Dark"] = True
+
+                if((pc.globalStatus["farmhouseStudy examined"] == False) or (pc.globalStatus["farmhouseStudy examined"] == True and pc.globalStatus["Bottle of Ink taken"] == True)):
+                    self.options = [
+                        "Return to the Bedroom",
+                        "Exit to the hallway",
+                        "Read the letter",
+                        "Light the candles",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+                    if(pc.globalStatus["Candles lit"] == False):
+                        self.description = '''This cramped space seems well-used. A wide, but shallow desk
+            abuts the wooden wall, and the room is dimly lit by the evening
+            sky through a thin window above the desk. Two unlit candles in
+            sconces flank the door on either side. A small bottle of black
+            ink sits on the desk, next to a quill. You can also see that
+            notes are scattered about. Each contains formulae, sketches, and
+            hastily written theories and worries.'''
+                        if(pc.globalStatus["Fire"] == False):
+                            if(pc.globalStatus["Dark"] == True):
+                                self.selection = {
+                                    1: {
+                                        "do": "You leave the study, closing the door behind you.",
+                                        "moveTo": 8
+                                    },
+                                    2: {
+                                        "do": "You leave the study, closing the door behind you.",
+                                        "moveTo": 6
+                                    },
+                                    3: {
+                                        "do": "It is too dark to make out what the letter says clearly."
+                                    },
+                                    4: {
+                                        "do": "You have nothing to light the candles with."
+                                    }
+                                    5: {
+                                        "do": self.description,
+                                        "examine": "farmhouseStudy"
+                                    },
+                                    6: {
+                                        "menu": "menu"
+                                    }
+                                }
+                            if(pc.globalStatus["Dark"] == False):
+                                self.selection = {
+                                    1: {
+                                        "do": "You leave the study, closing the door behind you.",
+                                        "moveTo": 8
+                                    },
+                                    2: {
+                                        "do": "You leave the study, closing the door behind you.",
+                                        "moveTo": 6
+                                    },
+                                    3: {
+                                        "do": "You read the letter.",
+                                        "read": Item(11).read
+                                    },
+                                    4: {
+                                        "do": "You have nothing to light the candles with."
+                                    }
+                                    5: {
+                                        "do": self.description,
+                                        "examine": "farmhouseStudy"
+                                    },
+                                    6: {
+                                        "menu": "menu"
+                                    }
+                                }
+                        elif(pc.globalStatus["Fire"] == True):
+                            self.selection = {
+                                1: {
+                                    "do": "You leave the study, closing the door behind you.",
+                                    "moveTo": 8
+                                },
+                                2: {
+                                    "do": "You leave the study, closing the door behind you.",
+                                    "moveTo": 6
+                                },
+                                3: {
+                                    "do": "You read the letter.",
+                                    "read": Item(11).read
+                                },
+                                4: {
+                                    "do": "You light the candles.",
+                                    "activate": "Candles lit"
+                                }
+                                5: {
+                                    "do": self.description,
+                                    "examine": "farmhouseStudy"
+                                },
+                                6: {
+                                    "menu": "menu"
+                                }
+                            }
+                    elif(pc.globalStatus["Candles lit"] == True):
+                        self.options = [
+                            "Return to the Bedroom",
+                            "Exit to the hallway",
+                            "Read the letter",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+                        self.description = '''This cramped space seems well-used. A wide, but shallow desk
+            abuts the wooden wall, and the room is well lit by two white
+            candles in sconces, which flank the door on either side. The
+            evening sky pours through a thin window above the desk. A small
+            bottle of black ink sits on the desk, next to a quill. You can
+            also see that notes are scattered about. Each contains formulae,
+            sketches, and hastily written theories and worries.'''
+                        # read letter O
+                if(pc.globalStatus["farmhouseStudy examined"] == True and pc.globalStatus["Bottle of Ink taken"] == False):
+                    self.options = [
+                        "Return to the Bedroom",
+                        "Exit to the hallway",
+                        "Read the letter",
+                        "Take the bottle of ink",
+                        "Light the candles",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
+                    if(pc.globalStatus["Candles lit"] == False):
+                        self.description = '''This cramped space seems well-used. A wide, but shallow desk
+            abuts the wooden wall, and the room is dimly lit by the evening
+            sky through a thin window above the desk. Two unlit candles in
+            sconces flank the door on either side. A small bottle of black
+            ink sits on the desk, next to a quill. You can also see that
+            notes are scattered about. Each contains formulae, sketches, and
+            hastily written theories and worries.'''
+                        if(pc.globalStatus["Fire"] == False):
+                            if(pc.globalStatus["Dark"] == True):
+                                # light Candles X
+                                # take ink
+                                # read letter X
+                            if(pc.globalStatus["Dark"] == False):
+                                # light Candles X
+                                # take ink
+                                # read letter O
+                        elif(pc.globalStatus["Fire"] == True):
+                            # light candles O
+                            # take ink
+                            # read letter O
+                    elif(pc.globalStatus["Candles lit"] == True):
+                        self.description = '''This cramped space seems well-used. A wide, but shallow desk
+            abuts the wooden wall, and the room is well lit by two white
+            candles in sconces, which flank the door on either side. The
+            evening sky pours through a thin window above the desk. A small
+            bottle of black ink sits on the desk, next to a quill. You can
+            also see that notes are scattered about. Each contains formulae,
+            sketches, and hastily written theories and worries.'''
+                        self.options = [
+                            "Return to the Bedroom",
+                            "Exit to the hallway",
+                            "Read the letter",
+                            "Take the bottle of ink",
+                            "Look around the area",
+                            "Player Menu"
+                        ]
+                        # read letter O
+                        # take ink
+
+
+
+
 
             if(pc.globalStatus["farmhouseStudy examined"] == False):
                 self.options = [
                     "Return to the Bedroom",
                     "Exit to the hallway",
                     "Read the letter",
+                    "Light the candles",
                     "Look around the area",
                     "Player Menu"
                 ]
-
-                if(pc.globalStatus["Dark"] == True):
-                    self.selection = {
-                        1: {
-                            "do": "You leave the study, closing the door behind you.",
-                            "moveTo": 8
-                        },
-                        2: {
-                            "do": "You leave the study, closing the door behind you.",
-                            "moveTo": 6
-                        },
-                        3: {
-                            "do": "It is too dark to make out what the letter says clearly."
-                        },
-                        4: {
-                            "do": self.description,
-                            "examine": "farmhouseStudy"
-                        },
-                        5: {
-                            "menu": "menu"
+                if(pc.globalStatus["Candles lit"] == False):
+                    if(pc.globalStatus["Dark"] == True):
+                        self.selection = {
+                            1: {
+                                "do": "You leave the study, closing the door behind you.",
+                                "moveTo": 8
+                            },
+                            2: {
+                                "do": "You leave the study, closing the door behind you.",
+                                "moveTo": 6
+                            },
+                            3: {
+                                "do": "It is too dark to make out what the letter says clearly."
+                            },
+                            4: {
+                                "do": "You have nothing to light the candles with."
+                            }
+                            5: {
+                                "do": self.description,
+                                "examine": "farmhouseStudy"
+                            },
+                            6: {
+                                "menu": "menu"
+                            }
                         }
-                    }
+                    else:
+                        if(pc.globalStatus["Fire"] == True):
+                            self.selection = {
+                                1: {
+                                    "do": "You leave the study, closing the door behind you.",
+                                    "moveTo": 8
+                                },
+                                2: {
+                                    "do": "You leave the study, closing the door behind you.",
+                                    "moveTo": 6
+                                },
+                                3: {
+                                    "do": "You read the letter.",
+                                    "read": Item(11).read
+                                },
+                                4: {
+                                    "do": "You light the candles.",
+                                    "activate": "Candles lit"
+                                }
+                                5: {
+                                    "do": self.description,
+                                    "examine": "farmhouseStudy"
+                                },
+                                6: {
+                                    "menu": "menu"
+                                }
+                            }
+                        else:
+                            self.selection = {
+                                1: {
+                                    "do": "You leave the study, closing the door behind you.",
+                                    "moveTo": 8
+                                },
+                                2: {
+                                    "do": "You leave the study, closing the door behind you.",
+                                    "moveTo": 6
+                                },
+                                3: {
+                                    "do": "You read the letter.",
+                                    "read": Item(11).read
+                                },
+                                4: {
+                                    "do": "You have nothing to light the candles with."
+                                }
+                                5: {
+                                    "do": self.description,
+                                    "examine": "farmhouseStudy"
+                                },
+                                6: {
+                                    "menu": "menu"
+                                }
+                            }
                 else:
+                    self.options = [
+                        "Return to the Bedroom",
+                        "Exit to the hallway",
+                        "Read the letter",
+                        "Look around the area",
+                        "Player Menu"
+                    ]
                     self.selection = {
                         1: {
                             "do": "You leave the study, closing the door behind you.",
@@ -1252,6 +1471,7 @@ hastily written theories and worries.'''
                             "menu": "menu"
                         }
                     }
+
             elif(pc.globalStatus["farmhouseStudy examined"] == True):
                 if(pc.globalStatus["Dark"] == True):
                     if(pc.globalStatus["Bottle of Ink taken"] == False):
@@ -1260,6 +1480,7 @@ hastily written theories and worries.'''
                             "Exit to the hallway",
                             "Pick up the Bottle of Ink",
                             "Read the letter",
+                            "Light the candles",
                             "Look around the area",
                             "Player Menu"
                         ]
@@ -1300,6 +1521,7 @@ worries.'''
                             "Return to the Bedroom",
                             "Exit to the hallway",
                             "Read the letter",
+                            "Light the candles",
                             "Look around the area",
                             "Player Menu"
                         ]

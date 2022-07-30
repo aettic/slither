@@ -21,7 +21,7 @@ def printTitle():
  dP__Yb   88""      88    88"Yb     88    88 Y88  Yb   dY    `Y8b
 dP""""Yb  888888    88    88  Yb    88    88  Y8   YbodP   '8bodP
 
-                      --- UNDER THE STARS ---
+                    --- UNDER EMERALD STARS ---
 ''')
 
 
@@ -65,6 +65,8 @@ def doSomething(pc):
                     break
                 elif(key == "toggle"):
                     pc.globalStatus[f"{whatHappens[key]} toggle"] = not pc.globalStatus[f"{whatHappens[key]} toggle"]
+                elif(key == "activate"):
+                    pc.globalStatus[f"{whatHappens[key]}] = True
                 else:
                     print("\n\t:: INVALID SELECTION ::")
                     break
@@ -1442,6 +1444,7 @@ Any remaining points might be useful... later on...''')
     matchTimer = 0  # timer for rounds with match lit
 
     # Select the maze path for later (All zone IDs are maze numbers + 27)
+    # WIP
     mazeOptions = [
         [27, 28, 29, 31, 46, 44, 42, 36, 39, 40, 37, 38, 43, 45, 35, 48],
         [27, 28, 32, 33, 35, 38, 37, 36, 39, 42, 44, 34, 31, 32, 48],
@@ -1609,9 +1612,13 @@ Any remaining points might be useful... later on...''')
         "Match Lit": False,
         "Stealthy": False,
 
+        # activate effects (one time)
+        "Candles lit": False,
+
         # environment effects
         "Dark": False,
         "Dark Place": False,
+        "Fire": False,
         "Goblin seen": False,
         "prairieShedExterior Unlocked toggle": False,
         "prairieWell obstruction destroyed": False,

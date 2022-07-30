@@ -234,6 +234,7 @@ nostrils...''')
             if(self.globalStatus["Match Lit"] == False):
                 print("You light a match.")
                 self.globalStatus["Match Lit"] = True
+                self.globalStatus["Fire"] = True
                 self.globalStatus["Dark"] = False
                 self.matchTimer = 0
             else:
@@ -241,6 +242,9 @@ nostrils...''')
                 if(self.globalStatus["Dark Place"] == True):
                     self.globalStatus["Dark"] = True
                 self.globalStatus["Match Lit"] = False
+                self.globalStatus["Fire"] = False
+
+        # Hidden Notes
         elif(item.itemID == 8):
             print(item.read)
             self.globalStatus["Hidden Note 1 read"] = True

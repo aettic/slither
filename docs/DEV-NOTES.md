@@ -40,18 +40,16 @@ This is a zork-like text-based adventure game. It contains a global status syste
 ## Development Progress
 
 #### Priority To Do
+- [ ] Build a way to light the candles in the study with the matches, so they stay lit (Added Fire globalStatus boolean, activated when lighting matches)
+- [ ] Build NPC objects with interactive dialogue capacity (model after combat) (for Acts 2 and 3)
+- [ ] Make the matches expendable, so you only have a few (5? 10?)
+- [ ] Redesign Items so that inventory and everything use actual Item objects, not just the ID
 
 #### Extra To Do
-- [ ] Build a way to light the candles in the study with the matches, so they stay lit
-- [ ] Build NPC objects with interactive dialogue capacity (model after combat) (for Acts 2 and 3)
 - [ ] Clean up code redundancy, especially in zones
 - [ ] Cornfield unique flavor text?
 - [ ] Develop json dataset to house descriptions, options, etc. (will require re-architecture)
 - [ ] Look into combining all possible movements into one function - pc.moveTo(Zone) or something
-- [ ] Make the matches expendable, so you only have a few (5? 10?)
-- [ ] Redesign doSomething choices to ALWAYS include moving backwards as number 1
-- [ ] Redesign Items so that inventory and everything use actual Item objects, not just the ID
-- [ ] ! Redesign menus to always include a movement option which opens a move menu for each room
 - [ ] Write out Cornfield First Time text for all zones
 
 #### Done

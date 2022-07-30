@@ -15,7 +15,7 @@ dP""""Yb  888888    88    88  Yb    88    88  Y8   YbodP   '8bodP
 - How to report issues, provide feedback, or donate
 
 ### Quick Note
-This game comes with all of the source code, as well as the "README.md" which is designed as a development tracker and provides technical information on the game. It *also* contains many spoilers, so please do not read it until after you have played the game. This README manual aims to provide any information that should be needed.
+This game comes with all of the source code, as well as the "DEV-NOTES.md" which is designed as a development tracker and provides technical information on the game. It *also* contains many spoilers, so please do not read it until after you have played the game. Same goes for the documents in the "docs" folder. This README manual aims to provide any information that should be needed.
 
 ---
 ### Downloading the Game
@@ -48,18 +48,18 @@ MD5 (play-windows.bat)  =  3eb3c04b613254c8adb4f27f32ae7529
 MD5 (play-linux.sh)     =  596306781453677685cc2f3380601b07
 MD5 (play-mac.command)  =  ce87985bb5ddfc420338fff31fd5f9a1
 
-This should start the game inside your Terminal window. If there is something wrong, you may experience a Python interpreter execution error, and the game will not start. If this happens, please take note of the error and contact me. (See the final section in this manual).
+This should start the game inside a Terminal window. If there is something wrong, you may experience a Python interpreter execution error, and the game will not start. If this happens, please take note of the error and contact me. (See the final section in this manual).  
 
-If the text seems to wrap poorly and cuts off words, try increasing the width of your terminal window. It needs to be at least 70 columns wide.
+If the text seems to wrap poorly and cuts off words, try increasing the width of your terminal window. It needs to be at least 70 columns wide to display correctly.  
 
 ---
 ### Playing the Game
 Running the game should be fairly self-explanatory, but here are the basics:
-You create a character by typing in their name, and then allotting stat points to their abilities. Once that process is complete, you will be shown an overview of your characters stats. This same overview is accessible during the game at any time from "Player Menu > View Stats".  
+You create a character by typing in their name, and then allotting points to their Skills. Once that process is complete, you will be shown an overview of your character's Skills. This same overview is accessible during the game at any time from "Player Menu > View Skills".  
 
-All options are accessible via number key entries. Player Menu is always the last option in the list (the number with the greatest value), and contains constant features like View Stats, or Equipment, or Inventory, and system options such as Save, Quit, and Help.
+All options are accessible via number key entries. Player Menu is always the last option in the list (the number with the greatest value), and contains constant features like View Stats, or Equipment, or Inventory, and system options such as Save, Quit, and Help.  
 
-Movement in the game takes up the top-most action options in any given zone, allowing you to move between zones. Each zone is different, and may have a different number of options for movement, or interacting with the environment.
+Movement in the game takes up the top-most action options in any given zone, allowing you to move between zones. Each zone is different, and may have a different number of options for movement, or interacting with the environment.  
 
 **Items**
 Some zones have objects which can be interacted with. Some of those objects can be taken. Some objects which have been taken can then be used (from within the inventory, or during combat). Some objects can be combined, some can be toggled on or off, some can be equipped. Some objects even function as magical spells, which may be expendable or reusable.
