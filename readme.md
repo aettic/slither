@@ -44,9 +44,13 @@ If you are curious and want to verify the integrity of the batch file yourself, 
 ```
 
 If you want, you can also verify the hash for these script files:
+
 MD5 (play-windows.bat)  =  3eb3c04b613254c8adb4f27f32ae7529
+
 MD5 (play-linux.sh)     =  596306781453677685cc2f3380601b07
+
 MD5 (play-mac.command)  =  ce87985bb5ddfc420338fff31fd5f9a1
+
 
 This should start the game inside your Terminal window. If there is something wrong, you may experience a Python interpreter execution error, and the game will not start. If this happens, please take note of the error and contact me. (See the final section in this manual).
 
